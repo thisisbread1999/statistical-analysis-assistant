@@ -1,0 +1,8 @@
+# secrets and local settings
+.env
+# generated at run time
+outputs/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
