@@ -42,7 +42,7 @@ mean adopting the teammate's UI, date filtering, benchmark data or saved results
 
 - Model A and B must be distinct underlying models. Label mock stand-ins explicitly.
 - Statistical tools, program checks and save steps are not LLM agents.
-- Never automatically edit, delete, impute or exclude observations. Require a verified user answer and reason, preserve the source file, and log confirmed changes. Tests may use labelled TEST INPUT fixtures.
+- Never automatically edit, delete, impute or exclude observations. Require an explicit user selection of a currently permitted action. Source or reason is optional for verification, exclusion and correction; correction still requires a valid replacement value. Preserve the source CSV, write new versions for approved data changes, and log actions, affected cells/records, old/new values and any supplied note. Store an omitted reason as an empty string, display "No note provided" in the UI, and never invent a reason. Tests may use labelled TEST INPUT fixtures.
 - Welch does not require equal variance. Shapiro-Wilk is descriptive rather than a method switch. Do not change the estimand to rescue a failed assumption check.
 - Compute active statistics in Python. Do not tune synthetic data to desired p-values.
 - Keep confidence level separate from alpha. Avoid causal claims for observational analyses.

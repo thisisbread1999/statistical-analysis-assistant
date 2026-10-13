@@ -111,7 +111,12 @@ Run `python ui_server.py --port 8765` from the project directory and open
 `127.0.0.1`. The browser polls analysis jobs, offers explicitly labelled mock and
 real modes, and presents our synthetic cases plus a CSV upload with reviewed
 study/variable metadata JSON. Data corrections, exclusions and verification need
-explicit user answers and reasons before inference can continue.
+explicit user selections of currently permitted actions before inference can
+continue. Source or reason is optional; corrections still require valid replacement
+values. The source CSV is retained, approved data changes create new versions, and
+audit records include the action, affected cells/records, old/new values and notes
+when supplied. Omitted notes remain empty and appear as "No note provided" in the
+browser; the system does not generate reasons.
 
 Session graph memory clears when the server restarts. Uploads and session files
 are written to ignored `artifacts/runtime/ui/`; core correction versions and audit

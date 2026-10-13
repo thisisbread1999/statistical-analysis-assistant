@@ -45,7 +45,7 @@ def _examples():
         ("welch", "Two-group mean comparison", "clean", "Compare the mean score for tutoring yes versus no.", SYNTHETIC_DESIGN,
          "Welch t-test; two independent groups, numeric score, nonrandom participation."),
         ("messy", "Data issues and user confirmation", "messy", "Compare the mean score for tutoring yes versus no.", SYNTHETIC_DESIGN,
-         "Pause before inference for missing values, invalid labels and unusual observations. Decisions need your reason."),
+         "Pause before inference for missing values, invalid labels and unusual observations. Choose an action; supporting notes are optional."),
         ("pearson", "Correlation of study hours and score", "students", "What is the Pearson correlation between study hours and score?", student,
          "Pearson correlation; linear association, with a confidence interval and causal restraint."),
         ("chi_square", "Association of tutoring and passing", "students", "Are tutoring and passed associated?", student,

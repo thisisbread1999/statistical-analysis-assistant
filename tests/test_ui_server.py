@@ -156,17 +156,65 @@ def test_messy_data_requires_explicit_decisions_and_preserves_source(workspace):
     assert sum(entry["action"] == "exclude" for entry in resumed["correction_log"]) == 2
 
 
-@pytest.mark.parametrize("invalid_input", ["blank_reason", "impossible_correction"])
+@pytest.mark.parametrize("note_kind", ["blank", "missing", "none"])
+def test_messy_decisions_accept_optional_notes_and_keep_explicit_audit(workspace, note_kind):
+    source = PROJECT / "examples" / "tutoring_scores_messy_synthetic.csv"
+    source_before = source.read_bytes()
+    result = analyze(workspace, "messy")
+    assert result["status"] == "needs_clarification"
+
+    def optional_note_answers(requests):
+        answers = fixture_answers(requests)
+        for answer in answers:
+            if note_kind == "missing":
+                answer.pop("reason")
+            else:
+                answer["reason"] = "   " if note_kind == "blank" else None
+        return answers
+
+    resumed = finish(workspace, {
+        "action": "resume", "session_id": result["session_id"],
+        "answers": optional_note_answers(result["clarification"]["requests"]),
+    })
+    if resumed["status"] == "needs_clarification":
+        resumed = finish(workspace, {
+            "action": "resume", "session_id": result["session_id"],
+            "answers": optional_note_answers(resumed["clarification"]["requests"]),
+        })
+    assert resumed["status"] == "delivered", resumed
+    assert resumed["data_version"] != "v1"
+    assert resumed["stats"]["n_included"] == 78
+    assert source.read_bytes() == source_before
+    assert "missing_data" in resumed["stats_block"]["required_limitations"]
+    assert all(entry["reason"] == "" and entry["source"] == "explicit user answer"
+               for entry in resumed["correction_log"])
+    assert sum(entry["action"] == "exclude" for entry in resumed["correction_log"]) == 2
+    corrected = {entry["new_value"] for entry in resumed["correction_log"] if entry["action"] == "correct"}
+    assert corrected == {"85", "yes"}
+    assert any(entry["action"] == "verify" for entry in resumed["correction_log"])
+
+
+@pytest.mark.parametrize("invalid_input", ["impossible_correction", "missing_action", "missing_corrected_value", "missing_answer"])
 def test_invalid_answer_cannot_apply_corrections_or_consume_the_pause(workspace, invalid_input):
     result = analyze(workspace, "messy")
     answers = fixture_answers(result["clarification"]["requests"])
-    if invalid_input == "blank_reason":
-        answers[0]["reason"] = "   "
-    else:
+    if invalid_input in ("impossible_correction", "missing_corrected_value"):
         correction = next(answer for answer in answers if answer.get("new_value") == "85")
-        correction["new_value"] = "999"
+        if invalid_input == "impossible_correction":
+            correction["new_value"] = "999"
+        else:
+            correction.pop("new_value")
+    elif invalid_input == "missing_action":
+        answers[0].pop("action")
+    else:
+        answers.pop()
+    jobs_before = len(workspace.jobs)
     with pytest.raises(ValueError):
         workspace.submit({"action": "resume", "session_id": result["session_id"], "answers": answers})
+    session = workspace.sessions[result["session_id"]]
+    assert not session["busy"] and len(workspace.jobs) == jobs_before
+    assert session["state"]["data_version"] == "v1" and session["state"]["correction_log"] == []
+    assert not session["state"].get("stat_result")
     # The same current request IDs remain usable after rejected input.
     valid = finish(workspace, {
         "action": "resume", "session_id": result["session_id"],

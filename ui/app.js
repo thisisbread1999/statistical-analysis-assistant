@@ -385,11 +385,11 @@ function renderClarification(result) {
     valueBox.append(valueLabel, input);
     if (request.valid_levels?.length) valueBox.append(el("p", `Valid labels: ${request.valid_levels.join(", ")}. Exact spelling is required.`, "muted"));
     if (request.valid_range) valueBox.append(el("p", `User-stated range: ${request.valid_range.join(" to ")}.`, "muted"));
-    const reasonLabel = el("label", "Source or reason"); reasonLabel.htmlFor = `reason-${index}`;
+    const reasonLabel = el("label", "Source or reason (optional)"); reasonLabel.htmlFor = `reason-${index}`;
     const reason = el("textarea"); reason.id = reasonLabel.htmlFor; reason.className = "decision-reason"; reason.rows = 2;
-    reason.placeholder = "Describe what you checked or why this decision is appropriate.";
+    reason.placeholder = "Optional: describe what you checked or why you chose this action. Leave blank to continue.";
     card.append(label, select, valueBox, reasonLabel, reason);
-    select.addEventListener("change", () => { valueBox.hidden = select.value !== "correct"; input.required = select.value === "correct"; reason.required = select.value !== "stop"; });
+    select.addEventListener("change", () => { valueBox.hidden = select.value !== "correct"; input.required = select.value === "correct"; });
     return card;
   });
   replace("clarificationRequests", ...elements);
@@ -432,7 +432,7 @@ function renderResult(result) {
   const audit = result.correction_log || [];
   $("auditDetails").hidden = !audit.length;
   replace("audit", el("p", `Current data version: ${result.data_version}. Original input is retained; decisions are applied to a new version.`, "muted"),
-    table(["Record", "Field", "Action", "Old value", "New value", "Source / reason", "Version"], audit.map((entry) => [entry.record_id, entry.field, entry.action, entry.old_value, entry.new_value, entry.reason, `${entry.from_version} → ${entry.to_version}`])));
+    table(["Record", "Field", "Action", "Old value", "New value", "Source / reason", "Version"], audit.map((entry) => [entry.record_id, entry.field, entry.action, entry.old_value, entry.new_value, entry.reason || "No note provided", `${entry.from_version} → ${entry.to_version}`])));
   const calls = (result.model_calls || []).filter((entry) => !entry.request_number || entry.request_number === result.request_number);
   replace("modelCalls", calls.length ? table(["Node", "Agent action", "Model", "Mode", "Status"], calls.map((entry) => [entry.node, entry.method, entry.model, entry.mode, entry.status])) : el("p", "No model calls were made for this request.", "muted"));
   $("followSection").hidden = !result.can_followup;
@@ -489,7 +489,6 @@ $("clarificationForm").addEventListener("submit", (event) => {
       const action = card.querySelector(".decision-action").value;
       const reason = card.querySelector(".decision-reason").value.trim();
       if (!action) throw new Error("Select an action for every flagged item, or stop the analysis.");
-      if (!reason) throw new Error("Supply a source or reason for every correction, exclusion or verification.");
       const answer = { request_id: card.dataset.requestId, action, reason };
       if (action === "correct") {
         answer.new_value = card.querySelector(".decision-value").value.trim();

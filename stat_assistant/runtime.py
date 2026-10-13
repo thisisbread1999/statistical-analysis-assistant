@@ -83,7 +83,7 @@ def collect_answers(open_items, input_fn=input):
                 answer = {"request_id": item["request_id"], "action": action}
                 if action == "correct":
                     answer["new_value"] = input_fn("Verified replacement value: ")
-                answer["reason"] = "" if action == "stop" else input_fn("Reason or source: ")
+                answer["reason"] = "" if action == "stop" else input_fn("Reason or source (optional; Enter to skip): ")
                 try:
                     accepted = validate_answer(item, answer)
                 except ValueError as exc:

@@ -322,6 +322,26 @@ def test_collect_answers_reprompts_without_inventing_confirmation():
     assert graph.get_state(config_for(s["run_id"])).values["clarification_rounds"] == 0
 
 
+@pytest.mark.parametrize("action", ["correct", "exclude", "verify"])
+def test_collect_answers_accepts_an_explicit_action_without_an_optional_note(action):
+    graph, state = run(name="messy")
+    if action == "correct":
+        item = next(request for request in state["clarification_requests"] if request["check"] == "out_of_range")
+        typed = iter([action, "85", ""])
+    elif action == "exclude":
+        item = next(request for request in state["clarification_requests"] if request["check"] == "missing_value")
+        typed = iter([action, ""])
+    else:
+        item = next(request for request in state["clarification_requests"] if action in request["allowed_responses"])
+        typed = iter([action, ""])
+    answers = collect_answers([item], input_fn=lambda _: next(typed))
+    expected = {"request_id": item["request_id"], "action": action, "reason": ""}
+    if action == "correct":
+        expected["new_value"] = "85"
+    assert answers == [expected]
+    assert graph.get_state(config_for(state["run_id"])).values["clarification_rounds"] == 0
+
+
 def test_same_real_model_and_mixed_mock_real_are_rejected():
     a, b = MockAnalysisAgentA(), MockReviewAgentB()
     a.is_mock = b.is_mock = False

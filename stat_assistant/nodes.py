@@ -135,9 +135,9 @@ def validate_answer(request, answer):
     action = str(answer.get("action", "")).strip().lower()
     if action not in request["allowed_responses"]:
         raise ValueError(f"Allowed actions: {request['allowed_responses']}")
-    reason = str(answer.get("reason", "")).strip()
-    if action != "stop" and not reason:
-        raise ValueError("A reason or source is required for each correction, exclusion or verification.")
+    # The selected action is the user's explicit decision. Supporting notes are optional;
+    # keep an omitted note empty rather than inventing a rationale or verification source.
+    reason = str(answer.get("reason") or "").strip()
     result = {"request_id": request["request_id"], "action": action, "reason": reason}
     if action == "correct":
         value = answer.get("new_value")

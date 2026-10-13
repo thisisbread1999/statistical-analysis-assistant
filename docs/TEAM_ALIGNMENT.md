@@ -53,8 +53,11 @@ messy data, non-significance, unequal variances and an unsupported design.
 They do not constitute the teammate's 31-case benchmark or an accuracy evaluation.
 
 Uploaded CSVs require explicitly reviewed study/variable metadata JSON. The browser
-shows our per-record clarification requests and collects permitted actions and reasons;
-it does not silently apply `dropna()` or generate user confirmations. Follow-ups reuse
+shows our per-record clarification requests and collects explicit permitted actions
+with optional source/reason notes. Corrections require valid replacement values.
+An omitted note is stored as an empty string and shown as "No note provided" in the
+UI. It does not silently apply `dropna()`, generate user confirmations or invent
+reasons. Follow-ups reuse
 or recompute evidence according to our existing policy. Date filters still require a
 new CSV. Submitted jobs are polled by the browser; graph session memory clears on server
 restart. Uploads and session files are stored locally in ignored `artifacts/runtime/ui/`,
@@ -102,7 +105,7 @@ An independent normal-data check compared our centered implementation with `linr
 ## Deliberate differences retained
 
 - **Two different models.** Model A plans, diagnoses and writes; Model B independently receives the report and original evidence for review. The teammate's reviewed version uses one configured DeepSeek model for planning and interpretation, with a deterministic critique step. We do not replace our separate reviewer with that arrangement.
-- **No silent complete-case deletion.** The teammate's preparation function uses `dropna()`. Our raw CSV is preserved, missing values block inference, and the graph requires an explicit user answer and a reason before exclusion. The correction log records all approved changes. Boxplot flags lead to verification, not automatic deletion.
+- **No silent complete-case deletion.** The teammate's preparation function uses `dropna()`. Our raw CSV is preserved, missing values block inference, and the graph requires an explicit permitted user action before exclusion. Source/reason notes are optional under the user's updated policy. Approved data changes create new versions; the correction log records actions, affected cells/records, old/new values and any supplied notes without generating reasons. Boxplot flags lead to verification, not automatic deletion.
 - **User-supplied study design.** Independence and randomization cannot be inferred from a CSV. Unconfirmed or unsupported designs stop the analysis. Observational comparisons do not establish causal effects.
 - **Bounded revision.** The graph retains one automatic plan revision and one report revision, plus explicit clarification and model-call limits. Both program checks and Model B must accept a delivered report.
 - **Evidence-preserving follow-ups.** Re-explanation reuses a completed result; a new confidence level recomputes its interval on unchanged validated data. Changes of variables, data or design require the appropriate fresh plan/diagnostics. A requested subset or date filter is unsupported in this stage and requires a new CSV.

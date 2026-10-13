@@ -87,7 +87,7 @@ md('''
 | Step 4 | `stat_diagnostics` | Python independently checks missing/nonfinite values, stated ranges and labels, duplicate IDs, sample size, degenerate variables, boxplot flags and method-specific conditions. |
 | Step 5 | `merge_diagnostics` | Fixed rules combine both branches and select proceed, clarification or stop; Model A explains that decision and phrases questions. |
 | Step 6 | `request_clarification` | LangGraph `interrupt()` pauses and presents each flagged record and allowed actions to the user. |
-| Step 7 | `apply_corrections` | Python validates explicit answers and reasons, writes a new data version and logs changes/exclusions. The original CSV stays unchanged. |
+| Step 7 | `apply_corrections` | Python validates explicit permitted actions and replacement values; source/reason notes are optional. It writes a new data version for approved changes and logs actions, affected cells/records, old/new values and any supplied notes. The original CSV stays unchanged; omitted notes remain empty. |
 | Step 8 | `run_statistical_test` | Python/SciPy computes the planned test, estimate, p-value and interval where implemented. |
 | Step 9 | `build_stats_block` | Python formats protected numeric fields, H0/H1, decision at alpha and required limitations. |
 | Step 10 | `draft_report` | Model A receives the plan and evidence and writes an interpretation using numeric placeholders. |
@@ -213,9 +213,13 @@ md('''
 ## Messy data — pause for real user decisions
 The uploaded file contains missing scores, an out-of-range score, an unexpected group label
 and unusual values. The exact findings are computed, not hard-coded. The workflow presents
-feedback before any inferential test. The human can correct a value with a source, explicitly
-exclude a record with a reason, verify a merely unusual value, or stop. A missing or invalid
-value cannot be made valid by clicking “verify”.
+feedback before any inferential test. The human explicitly selects a permitted action:
+correct a value with a valid replacement, exclude a record, verify a merely unusual value,
+or stop. Source or reason is optional for correction, exclusion and verification. The
+original CSV is retained; approved data changes produce a new version and audit records
+capture actions, affected cells/records, old/new values and any supplied notes. Omitted
+notes are stored as empty strings and shown as "No note provided" in the browser; no
+reason is generated. A missing or invalid value cannot be made valid by clicking “verify”.
 
 **This headless example stops at the interrupt. No user answers are invented.** For a live
 Jupyter demonstration, set `INTERACTIVE = True` and enter actual answers. Scripted answers

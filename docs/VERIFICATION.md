@@ -181,3 +181,26 @@ guarantee. Evidence is preserved in `artifacts/verification/ui_smoke.json`.
 The local service was left running for user trials. Uploads and generated runtime files
 remain ignored by Git. Neither a hosted deployment nor a teammate-repository modification
 was part of this UI work. Existing assignment notebooks and midterm artifacts were retained.
+
+### Optional decision notes (2026-10-12)
+
+At the user's request, source/reason notes are now optional for verification, exclusion
+and correction. A permitted action remains required for every current finding, and a
+correction still needs a valid replacement. Omitted, blank or null notes are stored as an
+empty string; the UI displays "No note provided" rather than generating a rationale.
+The earlier mandatory-note behavior and live smoke evidence above are historical.
+
+The complete suite passed **133 tests**, including note-free pause/resume paths, retained
+nonempty notes and rejection of invalid corrections, missing actions and incomplete
+answers. A sandboxed HTTP attempt had a local connection aborted; the complete rerun with
+local transport access passed without failures. Both canonical notebooks were rebuilt
+from the updated source and executed in explicit mock mode: 14 project code cells and
+15 standalone code cells completed. The graph and frozen v1 artifacts were unchanged.
+
+The browser was also used to select two exclusions, two corrections and three
+verifications on the messy synthetic fixture, leaving all notes empty. Submission
+delivered on v2 with 78 included records, the missingness limitation and seven empty
+audit notes. This was a synthetic UI smoke test, not human verification of research
+records or a real-model evaluation. Evidence is recorded in
+`artifacts/verification/ui_optional_notes_smoke.json`. The local service was updated and
+left running with the new rule.

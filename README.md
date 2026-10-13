@@ -73,9 +73,14 @@ models to be available. A failed real call is reported, without a mock substitut
 For your own CSV, review the study and variable metadata JSON explicitly before
 running the analysis. A CSV alone cannot establish independence or randomization.
 When the graph pauses on a data issue, choose a permitted correction, exclusion,
-verification or stop action and provide a reason when required. The UI submits your
-answers to the existing workflow; it does not generate answers for you or silently
-remove rows. After a delivered report, try re-explanation or a new confidence level.
+verification or stop action. **Source or reason is optional** for correction,
+exclusion and verification; a correction still requires a valid replacement value.
+The UI submits your explicit choices to the existing workflow; it does not generate
+answers or reasons for you or silently remove rows. The original CSV is retained,
+and audit records capture the action, affected cell or record, old/new values and
+any note you provide. An omitted note is stored as an empty string and displayed
+as "No note provided" in the UI. After a delivered report, try re-explanation or a
+new confidence level.
 Automatic date/subset filtering is unsupported; provide a new CSV for a subset.
 
 The browser polls submitted analysis jobs and displays their status. Session memory
@@ -139,7 +144,7 @@ real-model evaluation. See the verification record for measured results.
 
 1. **Plan:** map the question to variable roles, estimand and hypotheses. Supported methods are two-sided Welch t, Pearson correlation, chi-square independence and simple OLS with an intercept.
 2. **Diagnose in parallel:** Model A checks semantics/design/goal alignment from a shared descriptive summary; Python checks raw values and method-specific computability. The branches join before routing.
-3. **Clarify if needed:** missing scores, invalid labels, impossible values or unusual observations are shown to the user. Each correction/exclusion/verification needs an explicit answer and reason. The original file stays unchanged. The system never fills in missing values or drops rows silently.
+3. **Clarify if needed:** missing scores, invalid labels, impossible values or unusual observations are shown to the user. Each correction/exclusion/verification needs an explicit permitted action; source or reason is optional. Corrections require valid replacement values. The original file stays unchanged, approved changes produce a new data version, and the audit records actions and any supplied notes without inventing reasons. The system never fills in missing values or drops rows silently.
 4. **Compute and explain:** Python produces the numerical result. Model A writes a placeholder-based explanation. A program checks required values, common field bindings and decision consistency; Model B checks the rendered meaning against original evidence. One report revision is allowed, then delivery or an issue notice.
 5. **Follow up:** a changed confidence level reruns statistics; re-explanation reuses validated numbers; a new question replans and rechecks. A changed file cannot reuse stale diagnostics. Metadata-only changes keep the correction history. Memory currently lasts only for the running graph process.
 

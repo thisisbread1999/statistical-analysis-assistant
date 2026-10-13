@@ -1,0 +1,787 @@
+{
+  "verified_at_utc": "2026-10-13T02:05:37.133803+00:00",
+  "scope": "Optional-note UI integration using explicit decisions on synthetic teaching data; mock agents, real Python statistics.",
+  "automated_tests_passed": 133,
+  "notebooks_executed_in_mock": [
+    "demo.ipynb",
+    "assignments/2026-10-12/langgraph/LangGraph_Submission.ipynb"
+  ],
+  "browser_result": {
+    "session_id": "zTyTna1igdshaXrjS8nIwi4KdNk9Aihr",
+    "mode": "mock",
+    "models": {
+      "model_a": "ollama:qwen3:8b",
+      "model_b": "ollama:gemma3:12b"
+    },
+    "status": "delivered",
+    "request_number": 1,
+    "question": "Compare the mean score for tutoring yes versus no.",
+    "plan": {
+      "method": "welch_t_test",
+      "outcome": "score",
+      "group": "tutoring",
+      "group_1_label": "yes",
+      "group_2_label": "no",
+      "x": "",
+      "y": "",
+      "target_parameter": "Δ = μ(yes) − μ(no)",
+      "null_hypothesis": "H0: Δ = 0",
+      "alternative_hypothesis": "H1: Δ ≠ 0",
+      "method_rationale": "Difference in mean of a numeric outcome between two independent groups.",
+      "design_notes": [
+        "Synthetic teaching scenario: tutoring was voluntary and not randomized.",
+        "Synthetic teaching design: one independent record per simulated student."
+      ]
+    },
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v2",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\data_versions\\8b7619c5b0734181b7c234083c1a6945_v2.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 80,
+      "columns_found": [
+        "student_id",
+        "tutoring",
+        "score"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [
+        "S001",
+        "S041"
+      ],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 78,
+      "columns": [
+        {
+          "name": "score",
+          "role": "outcome",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 78,
+          "n_unique_as_written": 71,
+          "quantiles": {
+            "min": 50.1,
+            "p05": 58.375,
+            "p25": 66.85,
+            "p50": 70.95,
+            "p75": 75.57499999999999,
+            "p95": 89.68999999999998,
+            "max": 95.8
+          },
+          "mean": 71.92692307692306,
+          "sd": 9.13663487850406
+        },
+        {
+          "name": "tutoring",
+          "role": "group",
+          "type": "categorical",
+          "n_blank": 0,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 2,
+          "levels_as_written": [
+            {
+              "label_as_written": "no",
+              "quoted": "\"no\"",
+              "n": 39
+            },
+            {
+              "label_as_written": "yes",
+              "quoted": "\"yes\"",
+              "n": 39
+            }
+          ]
+        }
+      ],
+      "stated_ranges": {
+        "score": [
+          0,
+          100
+        ]
+      },
+      "stated_levels": {
+        "tutoring": [
+          "yes",
+          "no"
+        ]
+      },
+      "group_labels": [
+        "yes",
+        "no"
+      ],
+      "by_group_as_written": [
+        {
+          "label_as_written": "no",
+          "quoted": "\"no\"",
+          "n": 39,
+          "mean": 68.8076923076923,
+          "sd": 8.90048445208357,
+          "median": 68.8,
+          "min": 50.1,
+          "max": 95.8
+        },
+        {
+          "label_as_written": "yes",
+          "quoted": "\"yes\"",
+          "n": 39,
+          "mean": 75.04615384615384,
+          "sd": 8.364393398392792,
+          "median": 73.7,
+          "min": 60.5,
+          "max": 93.2
+        }
+      ]
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Synthetic teaching scenario: tutoring was voluntary and not randomized.; Synthetic teaching design: one independent record per simulated student.",
+      "goal_alignment": "The planned welch_t_test matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Synthetic teaching scenario: tutoring was voluntary and not randomized.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v2",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\data_versions\\8b7619c5b0734181b7c234083c1a6945_v2.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 80,
+      "columns_found": [
+        "student_id",
+        "tutoring",
+        "score"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [
+        "S001",
+        "S041"
+      ],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 78,
+      "n_usable_rows": 78,
+      "findings": [
+        {
+          "record_id": "S049",
+          "row_number": 49,
+          "field": "score",
+          "value_as_written": "89.6",
+          "check": "boxplot_flag",
+          "severity": "verify",
+          "detail": "Outside 1.5*IQR fences for group 'no'; verify, do not automatically exclude"
+        },
+        {
+          "record_id": "S052",
+          "row_number": 52,
+          "field": "score",
+          "value_as_written": "50.1",
+          "check": "boxplot_flag",
+          "severity": "verify",
+          "detail": "Outside 1.5*IQR fences for group 'no'; verify, do not automatically exclude"
+        },
+        {
+          "record_id": "S065",
+          "row_number": 65,
+          "field": "score",
+          "value_as_written": "95.8",
+          "check": "boxplot_flag",
+          "severity": "verify",
+          "detail": "Outside 1.5*IQR fences for group 'no'; verify, do not automatically exclude"
+        }
+      ],
+      "n_blocking": 0,
+      "n_verify": 3,
+      "method_checks_run": true,
+      "method_findings": [],
+      "distribution_checks_run": true,
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "score",
+          "group": "yes",
+          "n": 39,
+          "shapiro_wilk_p": 0.23008700016724787
+        },
+        {
+          "check": "shapiro_wilk",
+          "variable": "score",
+          "group": "no",
+          "n": 39,
+          "shapiro_wilk_p": 0.10385749171786746
+        }
+      ],
+      "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+    },
+    "stats": {
+      "task": "run_test",
+      "data_version": "v2",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\data_versions\\8b7619c5b0734181b7c234083c1a6945_v2.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 80,
+      "columns_found": [
+        "student_id",
+        "tutoring",
+        "score"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [
+        "S001",
+        "S041"
+      ],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "scipy.stats.ttest_ind(group_1='yes', group_2='no', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 78,
+      "tool_warnings": [],
+      "method_label": "Welch independent-samples t-test",
+      "var_equal": false,
+      "group_1": {
+        "label": "yes",
+        "n": 39,
+        "mean": 75.04615384615384,
+        "sd": 8.364393398392792
+      },
+      "group_2": {
+        "label": "no",
+        "n": 39,
+        "mean": 68.8076923076923,
+        "sd": 8.90048445208357
+      },
+      "mean_difference": 6.238461538461536,
+      "ci_lower": 2.3428965041812817,
+      "ci_upper": 10.13402657274179,
+      "t_statistic": 3.189716088360297,
+      "df": 75.70858081530747,
+      "p_value": 0.0020725593634033086,
+      "decision": "reject_H0"
+    },
+    "stats_block": {
+      "method": "welch_t_test",
+      "method_label": "two-sided Welch independent-samples t-test",
+      "data_version": "v2",
+      "tool_call": "scipy.stats.ttest_ind(group_1='yes', group_2='no', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+      "values": {
+        "p_value": "0.0021",
+        "alpha": "0.05",
+        "null_value": "0",
+        "confidence_level": "95%",
+        "decision_claim": "reject",
+        "direction_claim": "positive",
+        "group_1": "yes",
+        "group_2": "no",
+        "n_group_1": "39",
+        "n_group_2": "39",
+        "mean_group_1": "75.05",
+        "mean_group_2": "68.81",
+        "sd_group_1": "8.36",
+        "sd_group_2": "8.90",
+        "mean_difference": "6.24",
+        "ci_lower": "2.34",
+        "ci_upper": "10.13",
+        "t_statistic": "3.190",
+        "df": "75.71",
+        "n_included": "78"
+      },
+      "hypotheses": "H0: Δ = 0 versus H1: Δ ≠ 0, where Δ = μ(tutoring = yes) − μ(tutoring = no) for the mean of score",
+      "required_placeholders": [
+        "t_statistic",
+        "df",
+        "p_value",
+        "mean_difference",
+        "ci_lower",
+        "ci_upper"
+      ],
+      "required_limitations": {
+        "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+        "missing_data": "User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.",
+        "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      },
+      "direction": "positive",
+      "decision": "reject_H0",
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "score",
+          "group": "yes",
+          "n": 39,
+          "shapiro_wilk_p": 0.23008700016724787
+        },
+        {
+          "check": "shapiro_wilk",
+          "variable": "score",
+          "group": "no",
+          "n": 39,
+          "shapiro_wilk_p": 0.10385749171786746
+        }
+      ],
+      "observed": null,
+      "yates": false,
+      "tool_warnings": [],
+      "t_statistic_note": ""
+    },
+    "report": "MOCK: rule-based agent stand-ins; Python calculations are real.\n\nMethod: two-sided Welch independent-samples t-test  (data version v2; Python: scipy.stats.ttest_ind(group_1='yes', group_2='no', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95))\nH0: Δ = 0 versus H1: Δ ≠ 0, where Δ = μ(tutoring = yes) − μ(tutoring = no) for the mean of score; α = 0.05\n\n| Group | n | Mean | SD |\n|---|---|---|---|\n| yes | 39 | 75.05 | 8.36 |\n| no | 39 | 68.81 | 8.90 |\n\nMean difference = 6.24 (95% CI 2.34 to 10.13); t(75.71) = 3.190; p = 0.0021\nDecision at α = 0.05: reject_H0\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'score', 'group': 'yes', 'n': 39, 'shapiro_wilk_p': 0.23008700016724787}, {'check': 'shapiro_wilk', 'variable': 'score', 'group': 'no', 'n': 39, 'shapiro_wilk_p': 0.10385749171786746}]\n\nThe analysis included 39 records in group yes and 39 in group no. Welch's test gave t(75.71) = 3.190, p = 0.0021. At alpha = 0.05, we reject H0. The estimated mean difference (yes minus no) was 6.24 (95% CI 2.34 to 10.13).\n\nLimitations:\n- Random allocation was not established. This analysis describes an association and does not establish causation.\n- User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+    "interpretation": {
+      "interpretation": "The analysis included 39 records in group yes and 39 in group no. Welch's test gave t(75.71) = 3.190, p = 0.0021. At alpha = 0.05, we reject H0. The estimated mean difference (yes minus no) was 6.24 (95% CI 2.34 to 10.13).",
+      "limitations": [
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "missing_data",
+          "text": "User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        }
+      ],
+      "direction_claim": "positive",
+      "decision_claim": "reject_H0",
+      "version": "draft1"
+    },
+    "program_check": {
+      "report_version": "draft1",
+      "passed": true,
+      "problems": []
+    },
+    "review": {
+      "passed": true,
+      "issues": [],
+      "summary": "Rule-based mock review: no issues found."
+    },
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791857036.5606737,
+        "end": 1791857036.5614977,
+        "thread": "browser-analysis_0",
+        "data_version": "v1",
+        "step": 1,
+        "role": "Analysis Agent A planning"
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791857036.5620894,
+        "end": 1791857036.5644462,
+        "thread": "browser-analysis_0",
+        "data_version": "v1",
+        "step": 2,
+        "role": "Python descriptive tool"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791857036.5650291,
+        "end": 1791857036.5650697,
+        "thread": "ThreadPoolExecutor-1_0",
+        "data_version": "v1",
+        "step": 3,
+        "role": "Analysis Agent A semantic diagnosis"
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791857036.565378,
+        "end": 1791857036.566788,
+        "thread": "ThreadPoolExecutor-1_1",
+        "data_version": "v1",
+        "step": 3,
+        "role": "Python statistical diagnostic tool"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791857036.5673099,
+        "end": 1791857036.5675738,
+        "thread": "browser-analysis_0",
+        "data_version": "v1",
+        "step": 4,
+        "role": "Program evidence merge and Analysis Agent A explanation"
+      },
+      {
+        "request_number": 1,
+        "node": "request_clarification",
+        "status": "completed",
+        "start": 1791857082.917081,
+        "end": 1791857082.9171112,
+        "thread": "browser-analysis_0",
+        "data_version": "v1",
+        "step": 5,
+        "role": "Human input via interrupt"
+      },
+      {
+        "request_number": 1,
+        "node": "apply_corrections",
+        "status": "completed",
+        "start": 1791857082.9177847,
+        "end": 1791857082.918798,
+        "thread": "browser-analysis_0",
+        "data_version": "v1",
+        "step": 6,
+        "role": "Program applies confirmed corrections"
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791857082.9193428,
+        "end": 1791857082.921758,
+        "thread": "browser-analysis_0",
+        "data_version": "v2",
+        "step": 7,
+        "role": "Python descriptive tool"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791857082.9223487,
+        "end": 1791857082.9224033,
+        "thread": "ThreadPoolExecutor-2_0",
+        "data_version": "v2",
+        "step": 8,
+        "role": "Analysis Agent A semantic diagnosis"
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791857082.922847,
+        "end": 1791857082.9255142,
+        "thread": "ThreadPoolExecutor-2_1",
+        "data_version": "v2",
+        "step": 8,
+        "role": "Python statistical diagnostic tool"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791857082.9260714,
+        "end": 1791857082.926366,
+        "thread": "browser-analysis_0",
+        "data_version": "v2",
+        "step": 9,
+        "role": "Program evidence merge and Analysis Agent A explanation"
+      },
+      {
+        "request_number": 1,
+        "node": "run_statistical_test",
+        "status": "completed",
+        "start": 1791857082.926929,
+        "end": 1791857082.9294732,
+        "thread": "browser-analysis_0",
+        "data_version": "v2",
+        "step": 10,
+        "role": "Python SciPy statistical tool"
+      },
+      {
+        "request_number": 1,
+        "node": "build_stats_block",
+        "status": "completed",
+        "start": 1791857082.9299111,
+        "end": 1791857082.929939,
+        "thread": "browser-analysis_0",
+        "data_version": "v2",
+        "step": 11,
+        "role": "Program protected statistics"
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "status": "completed",
+        "start": 1791857082.9305465,
+        "end": 1791857082.9305832,
+        "thread": "browser-analysis_0",
+        "data_version": "v2",
+        "step": 12,
+        "role": "Analysis Agent A drafting"
+      },
+      {
+        "request_number": 1,
+        "node": "check_report",
+        "status": "completed",
+        "start": 1791857082.930939,
+        "end": 1791857082.931554,
+        "thread": "browser-analysis_0",
+        "data_version": "v2",
+        "step": 13,
+        "role": "Program numeric and content validation"
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "status": "completed",
+        "start": 1791857082.931863,
+        "end": 1791857082.9319472,
+        "thread": "browser-analysis_0",
+        "data_version": "v2",
+        "step": 14,
+        "role": "Review Agent B evidence review"
+      },
+      {
+        "request_number": 1,
+        "node": "deliver_report",
+        "status": "completed",
+        "start": 1791857082.9326406,
+        "end": 1791857082.9326599,
+        "thread": "browser-analysis_0",
+        "data_version": "v2",
+        "step": 15,
+        "role": "Program delivers validated report"
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791857082.932956,
+        "end": 1791857082.9331021,
+        "thread": "browser-analysis_0",
+        "data_version": "v2",
+        "step": 16,
+        "role": "Program session memory"
+      }
+    ],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK stand-in for Model A (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK stand-in for Model A (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK stand-in for Model A (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK stand-in for Model A (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK stand-in for Model A (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "method": "draft",
+        "model": "MOCK stand-in for Model A (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "method": "review",
+        "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "correction_log": [
+      {
+        "request_id": "S001:score:missing_value:1:",
+        "action": "exclude",
+        "reason": "",
+        "record_id": "S001",
+        "field": "score",
+        "check": "missing_value",
+        "old_value": "",
+        "new_value": null,
+        "from_version": "v1",
+        "to_version": "v2",
+        "request_number": 1,
+        "source": "explicit user answer",
+        "rows_affected": 1
+      },
+      {
+        "request_id": "S006:score:out_of_range:6:850",
+        "action": "correct",
+        "reason": "",
+        "new_value": "85",
+        "record_id": "S006",
+        "field": "score",
+        "check": "out_of_range",
+        "old_value": "850",
+        "from_version": "v1",
+        "to_version": "v2",
+        "request_number": 1,
+        "source": "explicit user answer",
+        "rows_affected": 1
+      },
+      {
+        "request_id": "S041:score:missing_value:41:",
+        "action": "exclude",
+        "reason": "",
+        "record_id": "S041",
+        "field": "score",
+        "check": "missing_value",
+        "old_value": "",
+        "new_value": null,
+        "from_version": "v1",
+        "to_version": "v2",
+        "request_number": 1,
+        "source": "explicit user answer",
+        "rows_affected": 1
+      },
+      {
+        "request_id": "S015:tutoring:invalid_label:15:yes ",
+        "action": "correct",
+        "reason": "",
+        "new_value": "yes",
+        "record_id": "S015",
+        "field": "tutoring",
+        "check": "invalid_label",
+        "old_value": "yes ",
+        "from_version": "v1",
+        "to_version": "v2",
+        "request_number": 1,
+        "source": "explicit user answer",
+        "rows_affected": 1
+      },
+      {
+        "request_id": "S049:score:boxplot_flag:49:89.6",
+        "action": "verify",
+        "reason": "",
+        "record_id": "S049",
+        "field": "score",
+        "check": "boxplot_flag",
+        "old_value": "89.6",
+        "new_value": null,
+        "from_version": "v1",
+        "to_version": "v2",
+        "request_number": 1,
+        "source": "explicit user answer",
+        "rows_affected": 1
+      },
+      {
+        "request_id": "S052:score:boxplot_flag:52:50.1",
+        "action": "verify",
+        "reason": "",
+        "record_id": "S052",
+        "field": "score",
+        "check": "boxplot_flag",
+        "old_value": "50.1",
+        "new_value": null,
+        "from_version": "v1",
+        "to_version": "v2",
+        "request_number": 1,
+        "source": "explicit user answer",
+        "rows_affected": 1
+      },
+      {
+        "request_id": "S065:score:boxplot_flag:65:95.8",
+        "action": "verify",
+        "reason": "",
+        "record_id": "S065",
+        "field": "score",
+        "check": "boxplot_flag",
+        "old_value": "95.8",
+        "new_value": null,
+        "from_version": "v1",
+        "to_version": "v2",
+        "request_number": 1,
+        "source": "explicit user answer",
+        "rows_affected": 1
+      }
+    ],
+    "data_version": "v2",
+    "errors": [],
+    "clarification": {
+      "requests": [],
+      "previous_rejections": []
+    },
+    "can_followup": true,
+    "preview": {
+      "columns": [
+        "student_id",
+        "tutoring",
+        "score"
+      ],
+      "rows": 80,
+      "preview": [
+        {
+          "student_id": "S001",
+          "tutoring": "yes",
+          "score": ""
+        },
+        {
+          "student_id": "S002",
+          "tutoring": "yes",
+          "score": "78"
+        },
+        {
+          "student_id": "S003",
+          "tutoring": "yes",
+          "score": "64.9"
+        },
+        {
+          "student_id": "S004",
+          "tutoring": "yes",
+          "score": "75.2"
+        },
+        {
+          "student_id": "S005",
+          "tutoring": "yes",
+          "score": "78.7"
+        },
+        {
+          "student_id": "S006",
+          "tutoring": "yes",
+          "score": "85"
+        }
+      ]
+    }
+  }
+}
