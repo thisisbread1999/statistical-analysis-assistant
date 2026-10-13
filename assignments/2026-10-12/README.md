@@ -1,9 +1,22 @@
-# LangGraph coursework package — 2026-10-12
+# Coursework packages — 2026-10-12
 
 The current deliverables use the teammate's dated assignment layout and filenames:
 
 - `langgraph/LangGraph_Submission.ipynb`: standalone notebook with this project's embedded Python implementation, synthetic datasets, actual graph rendering and node/edge/agent-handoff explanation.
 - `langgraph/graph.png`: PNG exported from the compiled graph that the standalone notebook executes.
+
+## Midterm deliverables
+
+- `midterm/Midterm_Presentation_Final.pptx`: five editable English slides, with speaker notes timed for five minutes.
+- `midterm/Midterm_Writeup.docx`: editable English project status report.
+- `midterm/Midterm_Writeup.pdf`: two-page PDF exported from the final DOCX.
+
+The midterm files use the teammate's presentation and writeup as references and describe
+our current two-model implementation. They cover the problem, architecture, an actual
+synthetic-data walkthrough, completed work, observed failures and remaining evaluation.
+See [the midterm guide](midterm/README.md) for the implementation snapshot and source evidence.
+
+## LangGraph deliverables
 
 The notebook contains a fresh, explicitly labelled **mock-mode** execution. The statistical
 calculations and LangGraph are real; its named rule-based agents are test stand-ins. These

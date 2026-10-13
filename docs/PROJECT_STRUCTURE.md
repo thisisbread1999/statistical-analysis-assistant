@@ -37,6 +37,10 @@ langgraph_visualization/
 ├── assignments/
 │   └── 2026-10-12/
 │       ├── README.md
+│       ├── midterm/
+│       │   ├── Midterm_Presentation_Final.pptx
+│       │   ├── Midterm_Writeup.docx
+│       │   └── Midterm_Writeup.pdf
 │       └── langgraph/
 │           ├── LangGraph_Submission.ipynb
 │           └── graph.png
