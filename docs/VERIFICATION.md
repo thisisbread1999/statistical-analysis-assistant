@@ -271,3 +271,34 @@ See `artifacts/verification/ui_regression_diagnostics.jpg`.
 
 Human ratings remain unperformed. Frozen report texts, hashes and blank CSV rating
 columns are available, with instructions in `docs/HUMAN_EVALUATION_RUBRIC.md`.
+
+### Lean LangGraph visualization submission (2026-10-12)
+
+At the user's request, the dated visualization submission was reduced from 25 cells
+(15 code cells) to **10 cells (5 code cells)**. It retains the actual 17-node compiled
+workflow, built-in `draw_mermaid_png()` rendering, and an explanation directly below
+the image covering all nodes, conditional paths and Model A/B handoffs. Only one short,
+optional synthetic Welch execution remains; other method demonstrations, followups,
+human-confirmation and injected report faults remain in the unchanged project demo.
+
+All five code cells executed successfully from an independent working directory in
+explicit mock mode. The optional Welch analysis delivered, and both the program check
+and mock reviewer passed. The exported PNG exactly matches the image displayed by
+that execution. Every embedded Python file matches current project source; only one
+clean synthetic CSV is embedded. The notebook includes its own pinned dependency
+installation instructions and requires no external project files, secrets or model
+service. Diagram regeneration uses the Mermaid renderer. Mock execution verifies
+control flow and calculations, not live-model interpretation quality.
+
+The complete project `demo.ipynb` remained byte-for-byte unchanged (SHA256
+`bac3b4b09ed599334db0810c6013c6d3adda6fc0ce01d1b8ce60c164e522def7`). No workflow logic,
+statistical methods, model settings, weights, midterm artifacts or frozen v1 artifacts
+were changed. Earlier 15-code-cell standalone execution counts above describe the
+submission before this simplification. The focused standalone notebook now rejects
+real mode explicitly; real-model execution remains available in the full project.
+
+`LangGraph_Visualization_Current.zip` contains exactly `LangGraph_Submission.ipynb`
+and `graph.png`, with entry bytes verified against the canonical files. It is a download
+convenience; the assignment specifies uploading the notebook and image. Detailed
+execution, counts, hashes and archive checks are recorded in
+`artifacts/verification/langgraph_submission_lean.json`.

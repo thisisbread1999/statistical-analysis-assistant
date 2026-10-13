@@ -1,0 +1,22 @@
+{
+  "scope": "Lean LangGraph visualization submission; explicit mock execution",
+  "cells": 10,
+  "executed_code_cells": 5,
+  "workflow_nodes": 17,
+  "embedded_python_files": 12,
+  "embedded_csv_files": 1,
+  "notebook_bytes": 367639,
+  "image_bytes": 219091,
+  "image_matches_displayed_png": true,
+  "project_demo_unchanged": true,
+  "smoke_output": "Status: delivered\nMethod: welch_t_test\nChecks: True True\nExecuted nodes: plan_analysis → prepare_data_summary → llm_diagnostics → stat_diagnostics → merge_diagnostics → run_statistical_test → build_stats_block → draft_report → check_report → review_report → deliver_report → save_session\n",
+  "zip_entries": [
+    "LangGraph_Submission.ipynb",
+    "graph.png"
+  ],
+  "sha256": {
+    "LangGraph_Submission.ipynb": "61ab67334e2c36330a472a9b1a03b734c8f8d7db7b81b68741f5715df093f36a",
+    "graph.png": "686eb9547965c5e0068d3e5dcd448ee396b14db1843503461a9d4491e2948985",
+    "LangGraph_Visualization_Current.zip": "bfb53d3da929ae0ddd4ebdb4b76c8c8411581c185d55dc7cc54c9195e0b5f658"
+  }
+}

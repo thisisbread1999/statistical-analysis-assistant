@@ -1,38 +1,41 @@
 # Coursework packages — 2026-10-12
 
-The current deliverables use the teammate's dated assignment layout and filenames:
+The current deliverables use the teammate's dated assignment layout and filenames.
 
-- `langgraph/LangGraph_Submission.ipynb`: standalone notebook with this project's embedded Python implementation, synthetic datasets, actual graph rendering and node/edge/agent-handoff explanation.
-- `langgraph/graph.png`: PNG exported from the compiled graph that the standalone notebook executes.
+## LangGraph Visualization Assignment: upload these two files
 
-## Midterm deliverables
+- `langgraph/LangGraph_Submission.ipynb`: executed, standalone notebook with the actual compiled LangGraph, built-in diagram rendering and a short explanation below the image.
+- `langgraph/graph.png`: the image exported by that notebook from the same compiled graph.
 
-- `midterm/Midterm_Presentation_Final.pptx`: five editable English slides, with speaker notes timed for five minutes.
-- `midterm/Midterm_Writeup.docx`: editable English project status report.
-- `midterm/Midterm_Writeup.pdf`: two-page PDF exported from the final DOCX.
+The assignment requires an actual implemented graph, its automatically generated image,
+and explanations of every node, edge/conditional branch and multi-agent handoff. The
+explanation is already inside the notebook below the image. It does not require additional
+analysis examples, a separate Python script, datasets, an evaluation report, a PDF or slides.
+The midterm deliverables listed below belong to the separate midterm submission.
 
-The midterm files use the teammate's presentation and writeup as references and describe
-our current two-model implementation. They cover the problem, architecture, an actual
-synthetic-data walkthrough, completed work, observed failures and remaining evaluation.
-See [the midterm guide](midterm/README.md) for the implementation snapshot and source evidence.
+The lean notebook keeps one optional, short Welch-test run to show the graph executes.
+The remaining method examples, followups, human-confirmation demonstration and injected
+report faults remain in the full project-linked `demo.ipynb`; they are not needed in this
+visualization submission. The graph itself retains the project's complete 17-node workflow.
 
-## LangGraph deliverables
+The saved execution is explicitly **mock mode**: LangGraph and Python statistics execute
+normally, while the two named agent roles use rule-based stand-ins. This proves workflow
+mechanics, not real-model semantic accuracy. The standalone visualization notebook is
+intentionally mock-only; use the full project notebook or UI for the real configured LLMs.
 
-The notebook contains a fresh, explicitly labelled **mock-mode** execution. The statistical
-calculations and LangGraph are real; its named rule-based agents are test stand-ins. These
-saved outputs demonstrate mechanics and numerical behavior, not real-model semantic
-accuracy. The examples retain this project's own data and workflow, including two-model
-roles, parallel diagnostics, user-confirmation interrupts and bounded review. The package
-does not contain the teammate's data or saved model outputs.
+`LangGraph_Visualization_Current.zip` at the repository root packages exactly these two
+files for convenient download. Unpack it and upload the notebook and PNG; the assignment
+text does not specifically authorize a ZIP as the submission format.
 
-## Inspect or rerun
+## Inspect or rerun the LangGraph submission
 
-Open the notebook in Jupyter or a compatible notebook viewer. Install the dependencies
-listed in the root `requirements-lock.txt` in a Python 3.13 environment; the notebook embeds
-the implementation and data, so it does not need the project `stat_assistant/` or `examples/`
-folders alongside it. Run cells in order from an otherwise empty working directory.
-The notebook materializes its embedded source/data for execution and exports its graph.
-PNG rendering requires access to the Mermaid renderer. A saved PNG is included for inspection.
+Open the notebook in Jupyter or a compatible notebook viewer. Its opening instructions
+include the pinned installation command for Python 3.13, so a separate requirements file
+is not needed in the two-file upload. Run cells in order. The notebook embeds this project's
+Python implementation and one clean synthetic CSV, materializes them in a temporary folder,
+and displays the actual graph source and diagram. It needs neither project source folders,
+API keys nor Ollama. Diagram regeneration needs network access to the Mermaid renderer;
+the executed notebook and PNG already include the generated image for offline inspection.
 
 From the repository, regenerate and execute with:
 
@@ -41,25 +44,32 @@ python build_notebook.py
 python scripts/run_notebook.py --mode mock --submission
 ```
 
-Rebuilding clears saved outputs. The runner's `--output` option saves an alternate executed
-notebook instead of replacing this canonical copy. A deliberate `--mode real --submission`
-run requires two distinct locally configured models and records its selected mode. This
-layout refactor did not conduct a new real-model run.
+The builder refreshes both the full project notebook and the lean standalone submission,
+clearing their saved outputs. The runner's `--output` option can save an alternate executed
+notebook instead of replacing the canonical one. `--mode real --submission` is rejected
+explicitly; run real models through the project notebook/UI rather than this mock-only
+coursework artifact.
 
-The messy-data case intentionally pauses for a human in headless execution. Any resumed
-answers must come from verified user information; a scripted test answer is not an actual
-user decision. A 99% confidence follow-up retains alpha at 0.05. Re-explanation reuses
-validated statistics, and unsupported designs stop visibly.
+## Midterm deliverables
+
+- `midterm/Midterm_Presentation_Final.pptx`: five editable English slides with five-minute speaker notes.
+- `midterm/Midterm_Writeup.docx`: editable English project status report.
+- `midterm/Midterm_Writeup.pdf`: two-page PDF exported from the final DOCX.
+
+The midterm files use the teammate's presentation and writeup as references and describe
+our current two-model implementation: problem, architecture, synthetic-data walkthrough,
+completed work, observed failures and future work. See [the midterm guide](midterm/README.md)
+for the implementation snapshot and source evidence.
 
 ## Artifact provenance
 
-Root `demo.ipynb` is the project-linked teaching notebook. The standalone notebook is
-generated from our current source by root `build_notebook.py`. Both use the same workflow;
-each diagram is exported from its own executed compiled graph.
+Root `demo.ipynb` is the full project-linked teaching notebook. The lean standalone notebook
+is generated by `scripts/notebook_artifacts.py`, called by root `build_notebook.py`, from
+this project's own source. Both use the same workflow; each image comes from its actual
+compiled graph. The submission includes none of the teammate's saved model outputs or data.
 
-Earlier v2 real-run evidence is retained separately under `artifacts/verification/`,
-including `python_v2_pre_layout.ipynb`, the full initial run and targeted rerun JSONs.
-Those development runs predate this naming/layout change and are not one fresh real
-execution of this assignment notebook. Frozen Module 6 v1 remains in its original root
-notebook/image and `data/`/`r/` files. Verification and limits are documented in
-[docs/VERIFICATION.md](../../docs/VERIFICATION.md).
+Earlier v2 real-run evidence is retained separately under `artifacts/verification/`, including
+`python_v2_pre_layout.ipynb`, the initial run and targeted rerun JSONs. These are historical
+development runs, not a fresh real execution of this visualization notebook. Frozen Module 6
+v1 remains in its original root notebook/image and `data/`/`r/` files. See
+[docs/VERIFICATION.md](../../docs/VERIFICATION.md) for executed evidence and limits.

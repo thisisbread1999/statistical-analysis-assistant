@@ -73,8 +73,10 @@ langgraph_visualization/
 ```
 
 `demo.ipynb` imports the local `stat_assistant` package. The dated assignment notebook
-embeds this project's source and the datasets selected by `build_notebook.py` so its
-two-file deliverable can run with the Python dependencies installed. Historical
+embeds this project's source and one clean synthetic CSV, selected by
+`scripts/notebook_artifacts.py`, so its two-file deliverable can run with the Python
+dependencies installed. Its lean visualization submission retains one optional short run;
+other analysis examples remain in the full project notebook. Historical
 layout-stage notebook execution produced labelled mock outputs. Mock agents are
 rule-based stand-ins; those outputs demonstrate workflow and calculations rather
 than measured real-model semantic accuracy. Read the current saved outputs and
