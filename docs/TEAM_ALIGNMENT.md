@@ -6,6 +6,37 @@ The existing local reference checkout and the fresh reference clone had the same
 
 Our v2 uses Python throughout: LangGraph for orchestration and NumPy/SciPy for statistics. The frozen Module 6 v1 notebook and its historical R tool remain available separately. Migrating the statistical tool does not change the project's two-model review or user-confirmation requirements.
 
+## File and folder alignment
+
+The main branch was checked again on 2026-10-12 and remained at the reviewed reference
+commit. Our primary project names now match its conventions:
+
+| Teammate convention | Our current path |
+|---|---|
+| Python package | `stat_assistant/` |
+| Agent/workflow/statistical modules | `stat_assistant/agents.py`, `stat_assistant/workflow.py`, `stat_assistant/tools.py` |
+| CLI and teaching notebook | `demo.py`, `demo.ipynb` |
+| Notebook builder | Root `build_notebook.py` |
+| Synthetic examples | `examples/` |
+| Diagram artifacts | `artifacts/graph.png`, `artifacts/graph.mmd` |
+| Exact runtime pins | `requirements-lock.txt`, included by `requirements.txt` |
+| Current LangGraph assignment | `assignments/2026-10-12/langgraph/LangGraph_Submission.ipynb` and `graph.png` |
+
+The complete old-to-new mapping is in [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md).
+Additional modules supporting our review and user-confirmation requirements remain
+separate. Active examples keep our original synthetic filenames and are byte-identical
+copies of the preserved files in `data/`; the teammate's data and outputs are not used.
+The standalone assignment embeds our own source and datasets.
+
+Canonical `demo.ipynb` and the assignment notebook have fresh, explicitly labelled mock
+outputs. Earlier live outputs remain separately preserved in `artifacts/verification/`,
+including the pre-layout notebook and historical JSON evidence. A naming/layout change
+does not establish new real-model evaluation results.
+
+This refactor does not add the teammate's browser UI, date-filtering support, extra
+regression diagnostics, hosted deployment or 31-case benchmark. Their presence in the
+reference repository is not represented as a feature of this project.
+
 ## Method mapping and numerical conventions
 
 | Our canonical method | Teammate's result name / accepted tool alias | Shared calculation and interpretation |

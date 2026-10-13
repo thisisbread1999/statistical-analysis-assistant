@@ -1,0 +1,55 @@
+{
+  "checked_at_utc": "2026-10-13T00:31:42.360319+00:00",
+  "baseline_commit": "c393717b9a1b96ecf8a1fe7bcdfd06da41ed1d47",
+  "teammate_reference_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "pytest": {
+    "passed": 93,
+    "failed": 0,
+    "mode": "mock",
+    "command": "python -X utf8 -m pytest -q --basetemp=artifacts/runtime/pytest --tb=short"
+  },
+  "cli_smoke": {
+    "command": "python -X utf8 demo.py --mode mock",
+    "status": "delivered"
+  },
+  "preserved_files": [
+    "stats_assistant_graph.ipynb",
+    "stats_assistant_langgraph.png",
+    "r/stats_tools.R",
+    "r/make_synthetic_data.R",
+    "tests/run_checks.py",
+    "tests/check_real_mode_payloads.py",
+    "data/students_synthetic.csv",
+    "data/tutoring_scores_clean_synthetic.csv",
+    "data/tutoring_scores_messy_synthetic.csv",
+    "data/tutoring_scores_no_difference_synthetic.csv",
+    "data/tutoring_scores_unequal_variance_synthetic.csv"
+  ],
+  "git_comparison": "Text checked after CRLF normalization; binary graph checked without normalization.",
+  "historical_json_preserved": [
+    "initial_full_real.json",
+    "first_targeted_real.json",
+    "final_targeted_real.json"
+  ],
+  "historical_notebook_preserved": true,
+  "dependency_pins_preserved": true,
+  "example_csvs_byte_identical": true,
+  "notebooks": {
+    "demo.ipynb": {
+      "mode": "mock",
+      "executed_code_cells": 14,
+      "error_outputs": 0,
+      "summary": "Saved: C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\v2_notebook_mock_evidence.json\nwelch              delivered          revisions=0 errors=0\npearson            delivered          revisions=0 errors=0\nchi_square         delivered          revisions=0 errors=0\nregression         delivered          revisions=0 errors=0\nci99               delivered          revisions=0 errors=0\nre_explain         delivered          revisions=0 errors=0\nmessy              paused_for_user    revisions=0 errors=0\ncausal_fault       delivered          revisions=1 errors=0\nnumeric_fault      delivered          revisions=1 errors=0\nmodel_failure      stopped            revisions=0 errors=1"
+    },
+    "assignments/2026-10-12/langgraph/LangGraph_Submission.ipynb": {
+      "mode": "mock",
+      "executed_code_cells": 15,
+      "error_outputs": 0,
+      "summary": "Saved: C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\jupyter_runtime\\stat_assistant_submission_sawiv0wg\\artifacts\\runtime\\v2_notebook_mock_evidence.json\nwelch              delivered          revisions=0 errors=0\npearson            delivered          revisions=0 errors=0\nchi_square         delivered          revisions=0 errors=0\nregression         delivered          revisions=0 errors=0\nci99               delivered          revisions=0 errors=0\nre_explain         delivered          revisions=0 errors=0\nmessy              paused_for_user    revisions=0 errors=0\ncausal_fault       delivered          revisions=1 errors=0\nnumeric_fault      delivered          revisions=1 errors=0\nmodel_failure      stopped            revisions=0 errors=1"
+    }
+  },
+  "standalone_working_directory": "empty artifacts/runtime/jupyter_runtime/standalone_cwd",
+  "graph_png_sha256": "686eb9547965c5e0068d3e5dcd448ee396b14db1843503461a9d4491e2948985",
+  "fresh_real_model_evaluation": false,
+  "standalone_module_cache_check": "Passed with project package preloaded and two successive embedded setups in one process."
+}

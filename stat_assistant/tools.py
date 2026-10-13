@@ -564,7 +564,7 @@ def execute(task: str, request: dict) -> dict:
             "n_rows_in_file": None, "columns_found": [], "missing_required_columns": [],
             "excluded_ids": req.get("excluded_ids", []), "request_warnings": [],
             "python_version": platform.python_version(), "scipy_version": scipy.__version__,
-            "tool_call": f"stats_assistant.statistics.execute({task!r}, request)"}
+            "tool_call": f"stat_assistant.tools.execute({task!r}, request)"}
     if problems:
         # Do not echo invalid NaN / Infinity values from a malformed request.
         safe_base = {key: value for key, value in base.items() if key != "excluded_ids"}

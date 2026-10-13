@@ -1,17 +1,17 @@
 # Python statistical-tool interface (v2)
 
-The v2 graph calls Python functions; it does not launch R. The historical R specification is retained only as v1/design history.
+The active graph in `stat_assistant/workflow.py` calls Python functions in `stat_assistant/tools.py`; it does not launch R. These module names follow the teammate's layout. The historical R specification is retained as v1/design history. See `docs/PROJECT_STRUCTURE.md` for the path mapping.
 
 ```python
-from stats_assistant.statistics import execute
+from stat_assistant.tools import execute
 result = execute("diagnostics", request)
 
 # The graph uses this wrapper to retain input/output JSON for audit:
-from stats_assistant.tool_bridge import run_stat_tool
+from stat_assistant.tool_bridge import run_stat_tool
 result = run_stat_tool("diagnostics", request, tag="example-request")
 ```
 
-`execute(task, request)` reads the CSV and returns a JSON-compatible dictionary. `run_stat_tool` additionally saves uniquely named request/result files beneath `outputs/stat_io`; it records unexpected failures as `tool_error` before raising `StatToolError`. No LLM arithmetic or generated executable analysis code is used.
+`execute(task, request)` reads the CSV and returns a JSON-compatible dictionary. `run_stat_tool` additionally saves uniquely named request/result files beneath ignored `artifacts/runtime/stat_io`; it records unexpected failures as `tool_error` before raising `StatToolError`. No LLM arithmetic or generated executable analysis code is used.
 
 ## Tasks and request
 
@@ -19,7 +19,7 @@ The tasks are `summary`, `diagnostics` and `run_test`. `welch_test` remains a le
 
 ```json
 {
-  "data_path": "C:/project/data/students_synthetic.csv",
+  "data_path": "C:/project/examples/students_synthetic.csv",
   "data_version": "v1",
   "excluded_ids": [],
   "id_column": "student_id",

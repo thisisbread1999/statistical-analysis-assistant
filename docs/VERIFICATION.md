@@ -2,7 +2,45 @@
 
 Date: 2026-10-12. This record distinguishes executed checks from pending verification. Mock agents and scripted answers are test inputs, not evidence of real model accuracy or actual user decisions.
 
-## Confirmed checks
+## Naming/layout refactor verification
+
+The refactor aligns the package, entry points, example/artifact folders, dependency files
+and assignment filenames with the teammate's
+[`b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5` layout](https://github.com/Junliang-Lyu/statistical-analysis-assistant/tree/b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5).
+See `docs/PROJECT_STRUCTURE.md` for the mapping. Imports and runtime paths were updated;
+the statistical and human-confirmation policies remain the same.
+
+The canonical `demo.ipynb` and
+`assignments/2026-10-12/langgraph/LangGraph_Submission.ipynb` are newly generated with
+explicit mock-mode provenance. The standalone version embeds our source and datasets.
+Earlier live outputs remain in `artifacts/verification/`, separate from current mock
+outputs. No new real-model evaluation was performed for this naming refactor.
+
+| Current refactor check | Observed result |
+|---|---|
+| Full renamed-package pytest suite | **93 passed**: 31 in `test_four_methods.py`, 32 in `test_reports.py`, 30 in `test_mvp.py`; no failed or skipped tests. Model responses were mocked. |
+| Root CLI mock demonstration | `python demo.py --mode mock` delivered a validated report for the supplied synthetic tutoring data. |
+| Project-linked `demo.ipynb` fresh mock execution | All 14 code cells executed successfully in explicit mock mode. The messy-data case remained paused; no user answers were fabricated. |
+| Standalone assignment from an empty working directory | All 15 code cells executed successfully in explicit mock mode. Both canonical notebooks have no saved error outputs: eight expected cases delivered, messy data paused for the user, and the injected model failure stopped. |
+| Diagram consistency and artifact paths | `artifacts/graph.png` and `assignments/2026-10-12/langgraph/graph.png` are byte-identical. Mermaid source is exported directly from the executed compiled workflow. |
+| Preserved v1 assets, source CSVs and historical JSONs | Eleven historical files retain their Git contents after normalizing text CRLF: the v1 notebook/PNG, R scripts, two v1 check files and all five source CSVs. The binary PNG is exact. Five `examples/` CSVs are byte-identical to the original physical CSV files. Three historical JSONs and the archived pre-layout notebook were moved/copied without rewriting. Dependency pins are unchanged. |
+
+The machine-readable layout audit is preserved at
+[`artifacts/verification/layout_alignment.json`](../artifacts/verification/layout_alignment.json).
+An independent review found a cached-module issue in the standalone bootstrap. After its
+repair, a targeted same-process check passed with the original package already loaded and
+the standalone setup executed twice. The current standalone bootstrap includes this repair.
+These checks concern portability and workflow mechanics.
+
+Current generated request/result logs and notebook temporary files use ignored
+`artifacts/runtime/`. Use `python -m pytest -q --basetemp=artifacts/pytest` for an ignored
+project-local test temporary directory whose parent exists in a fresh checkout. The first
+refactor pytest attempt had an absent nested basetemp parent; creating the runtime directory
+resolved it before the complete successful run above. Existing ignored `outputs/` is
+retained for v1 history. Mock/test passes and agreement with SciPy do not measure semantic accuracy. Cloud-provider calls,
+hosted CI and independent human interpretation scoring remain unverified by this refactor.
+
+## Historical checks before the naming/layout refactor
 
 | Check | Observed result | Scope |
 |---|---|---|
@@ -30,16 +68,16 @@ R 4.4.1 loaded the installed `jsonlite` 2.0.0. The package's build-version warni
 
 The local isolated-run log is `C:/Users/62703/Documents/Codex/2026-09-20/https-chatgpt-com-share-6ab06193-d980/work/v1-compat-audit/v1-checks.log`. This local audit path is not required to run the submitted v2 project. V2 does not require R or this library setting.
 
-## Integration results
+## Historical Python v2 integration results
 
 The table separates completed integration checks from unperformed cloud/hosted/human checks. An implementation or test file existing on disk does not itself establish a passing result.
 
-| Final integration check | Status |
+| Pre-layout integration check | Status |
 |---|---|
 | Full v2 pytest suite | **93 passed** (31 statistics, 32 report/model-identity, 30 workflow), no failed or skipped tests; `python -X utf8 -m pytest -q --basetemp=outputs/pytest --tb=short`. |
-| Executed v2 notebook | Complete 14-code-cell real run plus selective real reruns of two repaired cases; saved notebook labels provenance. Final mock run also passed expected routes. Messy data intentionally stays paused. |
+| Archived pre-layout v2 notebook | Complete 14-code-cell real run plus selective real reruns of two repaired cases; provenance retained in `artifacts/verification/python_v2_pre_layout.ipynb`. A pre-layout mock run also passed expected routes. Messy data intentionally stays paused. |
 | PNG exported from the same compiled graph used for execution | Generated by the notebook with `graph.get_graph().draw_mermaid_png()`; inspected at 1454 by 2213 pixels. All 17 nodes and handoffs are present. LangGraph coalesces coincident conditional edges; notebook text enumerates every condition. |
-| Two real local models in the final v2 workflow | A: `ollama:qwen3:8b`; B: `ollama:gemma3:12b`. Four methods, two follow-ups and both injected report faults delivered after the runs described below. The simulated model failure stopped. |
+| Two real local models in the pre-layout v2 workflow | A: `ollama:qwen3:8b`; B: `ollama:gemma3:12b`. Four methods, two follow-ups and both injected report faults delivered after the runs described below. The simulated model failure stopped. |
 | Cloud API providers | Not verified by these checks. |
 | Hosted CI execution | Not verified by these checks; local tests are not a hosted CI result. |
 | Independent human interpretation evaluation | Not performed by these automated checks. |
@@ -94,10 +132,13 @@ draft. No retry limit was bypassed within a request; development reruns are logg
 | numeric_fault | delivered | 1 |
 | model_failure | stopped | 0 |
 
-Evidence: `verification/initial_full_real.json`, `verification/first_targeted_real.json`,
-and `verification/final_targeted_real.json`. The main notebook retains the latest observed
-outputs for the two rerun cases and labels its aggregate summary. Other real outputs come
-from the complete initial run. Its saved results are not presented as one fresh execution.
+Evidence: `artifacts/verification/initial_full_real.json`,
+`artifacts/verification/first_targeted_real.json` and
+`artifacts/verification/final_targeted_real.json`. These historical JSONs were moved byte
+for byte. The archived `artifacts/verification/python_v2_pre_layout.ipynb` retains the latest
+observed outputs for the two rerun cases and labels its aggregate summary. Other real
+outputs come from the complete initial run. Its saved results are not one fresh execution.
+The canonical `demo.ipynb` and standalone assignment notebook now contain fresh mock outputs.
 
 Minor reviewer false alarms about correctly rounded numbers occurred. The prompt now
 explicitly distinguishes protected displayed values from raw floating-point precision.

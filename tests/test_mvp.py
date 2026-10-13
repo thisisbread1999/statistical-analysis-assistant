@@ -5,12 +5,12 @@ from pathlib import Path
 
 import pytest
 
-from stats_assistant import settings
-from stats_assistant.agents import MockAnalysisAgentA, MockReviewAgentB
-from stats_assistant.graph import ROLES, build_graph
-from stats_assistant.nodes import _design_problems
-from stats_assistant.runtime import ask_followup, collect_answers, config_for, new_run, resume_answers
-from stats_assistant.schemas import ReviewIssue, ReviewVerdict
+from stat_assistant import settings
+from stat_assistant.agents import MockAnalysisAgentA, MockReviewAgentB
+from stat_assistant.workflow import ROLES, build_graph
+from stat_assistant.nodes import _design_problems
+from stat_assistant.runtime import ask_followup, collect_answers, config_for, new_run, resume_answers
+from stat_assistant.schemas import ReviewIssue, ReviewVerdict
 
 
 DESIGN = {"id_column": "student_id", "independence": "Independent observations, explicitly stated by the user.",
@@ -18,7 +18,7 @@ DESIGN = {"id_column": "student_id", "independence": "Independent observations, 
           "variables": {"score": {"type": "numeric", "range": [0, 100]},
                         "tutoring": {"type": "categorical", "levels": ["yes", "no"]}}}
 QUESTION = "Is the mean score different between tutoring groups?"
-DATA = Path(__file__).resolve().parents[1] / "data"
+DATA = Path(__file__).resolve().parents[1] / "examples"
 
 
 @pytest.fixture(autouse=True)
@@ -155,7 +155,7 @@ def test_external_change_to_previous_file_does_not_reuse_stale_result(tmp_path):
 
 
 def test_data_change_during_statistical_test_stops_before_drafting(tmp_path):
-    from stats_assistant.tool_bridge import run_stat_tool
+    from stat_assistant.tool_bridge import run_stat_tool
 
     data = tmp_path / "changing_during_test.csv"
     data.write_bytes((DATA / "tutoring_scores_clean_synthetic.csv").read_bytes())

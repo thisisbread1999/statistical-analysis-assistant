@@ -13,7 +13,7 @@ import numpy as np
 
 SEED = 20261012
 N_STUDENTS = 120
-DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / "data" / "students_synthetic.csv"
+DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / "examples" / "students_synthetic.csv"
 
 
 def generate(path: Path = DEFAULT_OUTPUT) -> Path:

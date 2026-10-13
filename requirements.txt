@@ -1,20 +1,2 @@
-# v2 Python runtime. Versions present on the development machine; CI installs the same pins.
-langgraph==1.2.14
-langgraph-checkpoint==4.2.0
-langchain==1.4.4
-langchain-core==1.6.9
-langchain-openai==1.7.0       # Model A provider (OpenAI)
-langchain-anthropic==1.7.5    # Model B provider (Anthropic)
-langchain-ollama==1.1.0       # local models via Ollama (optional alternative to the cloud APIs)
-pydantic==2.14.0
-pandas==3.0.6
-python-dotenv==1.2.4
-requests==2.34.2              # used by draw_mermaid_png() to call mermaid.ink
-ipykernel==7.4.0
-ipython==9.17.1
-jupyterlab==4.6.4
-nbformat==5.11.1              # used by tests/run_checks.py
-scipy==1.18.1
-numpy==2.5.3
-pytest==9.1.1
-nbclient==0.11.0
+# Pinned course runtime, matching the teammate's lock-file convention.
+-r requirements-lock.txt

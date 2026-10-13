@@ -5,10 +5,10 @@ from nbclient import NotebookClient
 from jupyter_client import KernelManager
 import tempfile
 root=Path(__file__).resolve().parents[1]
-runtime=root/'outputs'/'jupyter_runtime'; runtime.mkdir(exist_ok=True)
+runtime=root/'artifacts'/'runtime'/'jupyter_runtime'; runtime.mkdir(parents=True, exist_ok=True)
 os.environ.update(LLM_MODE='real',PYTHONUTF8='1',TMP=str(runtime),TEMP=str(runtime),JUPYTER_RUNTIME_DIR=str(runtime),IPYTHONDIR=str(runtime/'ipython'))
 tempfile.tempdir=str(runtime)
-source=nbformat.read(root/'stats_assistant_v2.ipynb',as_version=4)
+source=nbformat.read(root/'demo.ipynb',as_version=4)
 # Setup, shared synthetic design/show helper, and exactly the two affected examples.
 selected=[]
 for i,c in enumerate(source.cells):
@@ -24,7 +24,7 @@ print([(k,v["status"],v["revisions"]) for k,v in case_outputs.items()])'''))
 nb=nbformat.v4.new_notebook(cells=selected,metadata=source.metadata)
 km=KernelManager(kernel_name='python3'); km.kernel_spec.argv=[sys.executable,'-m','ipykernel_launcher','-f','{connection_file}']
 client=NotebookClient(nb,km=km,timeout=900,allow_errors=False,resources={'metadata':{'path':str(root)}})
-out=root/'outputs'/'v2_targeted_real.ipynb'
+out=root/'artifacts'/'runtime'/'v2_targeted_real.ipynb'
 def progress(cell,cell_index,**kwargs):
     nbformat.write(nb,out); print('Completed targeted cell',cell_index+1,flush=True)
 client.on_cell_executed=progress

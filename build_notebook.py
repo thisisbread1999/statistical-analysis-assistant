@@ -1,8 +1,9 @@
 from pathlib import Path
 import textwrap
 import nbformat as nbf
+from scripts.notebook_artifacts import write_notebooks
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parent
 nb = nbf.v4.new_notebook()
 nb.metadata = {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
                "language_info": {"name": "python", "version": "3.13"}}
@@ -31,16 +32,17 @@ import os, sys, json, inspect
 from pathlib import Path
 from IPython.display import Image, Markdown, display
 
-PROJECT = Path.cwd()
-if not (PROJECT / "stats_assistant").is_dir():
-    raise RuntimeError("Start Jupyter from the project folder.")
+PROJECT = next((candidate for candidate in (Path.cwd(), *Path.cwd().parents)
+                if (candidate / "stat_assistant").is_dir()), None)
+if PROJECT is None:
+    raise RuntimeError("Start Jupyter from within the project repository.")
 sys.path.insert(0, str(PROJECT))
-from stats_assistant.models import create_agents
-from stats_assistant.graph import build_graph
-from stats_assistant.runtime import new_run, ask_followup, resume_answers, collect_answers
-from stats_assistant.settings import DATA_DIR, OUTPUT_DIR
-from stats_assistant.nodes import AnalysisState
-import stats_assistant.graph as graph_module
+from stat_assistant.models import create_agents
+from stat_assistant.workflow import build_graph
+from stat_assistant.runtime import new_run, ask_followup, resume_answers, collect_answers
+from stat_assistant.settings import DATA_DIR, OUTPUT_DIR
+from stat_assistant.nodes import AnalysisState
+import stat_assistant.workflow as graph_module
 
 agent_a, agent_b, configuration = create_agents()
 graph = build_graph(agent_a, agent_b, mode=configuration["mode"])
@@ -69,8 +71,10 @@ The `graph` object below is also used by every example. Rendering uses LangGraph
 ''')
 code('''
 png_bytes = graph.get_graph().draw_mermaid_png()
-(PROJECT / "stats_assistant_v2_langgraph.png").write_bytes(png_bytes)
-(OUTPUT_DIR / "stats_assistant_v2.mmd").write_text(graph.get_graph().draw_mermaid(), encoding="utf-8")
+artifact_dir = PROJECT / "artifacts"
+artifact_dir.mkdir(parents=True, exist_ok=True)
+(artifact_dir / "graph.png").write_bytes(png_bytes)
+(artifact_dir / "graph.mmd").write_text(graph.get_graph().draw_mermaid(), encoding="utf-8")
 display(Image(png_bytes))
 ''')
 md('''
@@ -263,5 +267,5 @@ for name, item in case_outputs.items():
     print(f"{name:18} {item['status']:18} revisions={item['revisions']} errors={len(item['errors'])}")
 ''')
 nb.cells = cells
-nbf.write(nb, ROOT / 'stats_assistant_v2.ipynb')
-print('Created stats_assistant_v2.ipynb')
+write_notebooks(ROOT, nb)
+print('Created demo.ipynb and assignments/2026-10-12/langgraph/LangGraph_Submission.ipynb')

@@ -7,7 +7,7 @@ import re
 import uuid
 
 from . import settings
-from .statistics import StatToolError, execute
+from .tools import StatToolError, execute
 
 
 def run_stat_tool(task: str, request: dict, tag: str) -> dict:

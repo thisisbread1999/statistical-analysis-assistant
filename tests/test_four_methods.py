@@ -9,8 +9,8 @@ import numpy as np
 import pytest
 from scipy import stats
 
-from stats_assistant.statistics import StatToolError, execute
-from stats_assistant.tool_bridge import run_stat_tool
+from stat_assistant.tools import StatToolError, execute
+from stat_assistant.tool_bridge import run_stat_tool
 
 
 def write_csv(tmp_path, rows, fields=("student_id", "tutoring", "score")):
@@ -245,7 +245,7 @@ def test_pearson_small_sample_and_nonfinite_overflow_stop(tmp_path):
 
 
 def test_bridge_audits_strict_json(welch_request, tmp_path, monkeypatch):
-    from stats_assistant import settings
+    from stat_assistant import settings
     req, _, _ = welch_request
     monkeypatch.setattr(settings, "OUTPUT_DIR", tmp_path / "audit")
     one, two = run_stat_tool("run_test", req, "test/tag"), run_stat_tool("run_test", req, "test/tag")

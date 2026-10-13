@@ -4,9 +4,9 @@ import math
 
 import pytest
 
-from stats_assistant import models
-from stats_assistant.methods import format_p
-from stats_assistant.report import check_report, render
+from stat_assistant import models
+from stat_assistant.methods import format_p
+from stat_assistant.report import check_report, render
 
 
 @pytest.fixture
@@ -197,8 +197,8 @@ def test_small_p_renders_as_inequality_without_equals():
 
 def test_report_sentence_plans_obey_the_placeholder_number_contract():
     import re
-    from stats_assistant.methods import METHODS
-    from stats_assistant.report import PLACEHOLDER, HYPOTHESIS_NAMES
+    from stat_assistant.methods import METHODS
+    from stat_assistant.report import PLACEHOLDER, HYPOTHESIS_NAMES
     for spec in METHODS.values():
         instructions = HYPOTHESIS_NAMES.sub("", PLACEHOLDER.sub("", " ".join(spec.sentence_plan)))
         assert re.search(r"\d", instructions) is None

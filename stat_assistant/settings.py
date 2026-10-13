@@ -3,8 +3,8 @@ from pathlib import Path
 
 PACKAGE_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = PACKAGE_DIR.parent
-DATA_DIR = PROJECT_DIR / "data"
-OUTPUT_DIR = PROJECT_DIR / "outputs"          # tests may point this somewhere else
+DATA_DIR = PROJECT_DIR / "examples"
+OUTPUT_DIR = PROJECT_DIR / "artifacts" / "runtime"          # tests may point this somewhere else
 
 ALPHA = 0.05                        # significance level fixed by the analysis design
 DEFAULT_CONF_LEVEL = 0.95           # a follow-up question may ask for another level (e.g. 0.99)

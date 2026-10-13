@@ -1,0 +1,58 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	plan_analysis(plan_analysis<hr/><small><em>role = Analysis Agent A planning</em></small>)
+	prepare_data_summary(prepare_data_summary<hr/><small><em>role = Python descriptive tool</em></small>)
+	llm_diagnostics(llm_diagnostics<hr/><small><em>role = Analysis Agent A semantic diagnosis</em></small>)
+	stat_diagnostics(stat_diagnostics<hr/><small><em>role = Python statistical diagnostic tool</em></small>)
+	merge_diagnostics(merge_diagnostics<hr/><small><em>role = Program evidence merge and Analysis Agent A explanation</em></small>)
+	request_clarification(request_clarification<hr/><small><em>role = Human input via interrupt</em></small>)
+	apply_corrections(apply_corrections<hr/><small><em>role = Program applies confirmed corrections</em></small>)
+	run_statistical_test(run_statistical_test<hr/><small><em>role = Python SciPy statistical tool</em></small>)
+	build_stats_block(build_stats_block<hr/><small><em>role = Program protected statistics</em></small>)
+	draft_report(draft_report<hr/><small><em>role = Analysis Agent A drafting</em></small>)
+	check_report(check_report<hr/><small><em>role = Program numeric and content validation</em></small>)
+	review_report(review_report<hr/><small><em>role = Review Agent B evidence review</em></small>)
+	revise_report(revise_report<hr/><small><em>role = Analysis Agent A bounded revision</em></small>)
+	deliver_report(deliver_report<hr/><small><em>role = Program delivers validated report</em></small>)
+	issue_notice(issue_notice<hr/><small><em>role = Program stops with issues</em></small>)
+	save_session(save_session<hr/><small><em>role = Program session memory</em></small>)
+	handle_followup(handle_followup<hr/><small><em>role = Analysis Agent A followup routing</em></small>)
+	__end__([<p>__end__</p>]):::last
+	__start__ -. &nbsp;followup&nbsp; .-> handle_followup;
+	__start__ -. &nbsp;new_analysis&nbsp; .-> plan_analysis;
+	apply_corrections -. &nbsp;error&nbsp; .-> issue_notice;
+	apply_corrections -. &nbsp;recheck_data&nbsp; .-> prepare_data_summary;
+	build_stats_block --> draft_report;
+	check_report --> review_report;
+	deliver_report --> save_session;
+	draft_report --> check_report;
+	handle_followup -. &nbsp;re_explain&nbsp; .-> draft_report;
+	handle_followup -. &nbsp;error&nbsp; .-> issue_notice;
+	handle_followup -. &nbsp;new_question&nbsp; .-> plan_analysis;
+	handle_followup -. &nbsp;new_confidence_level&nbsp; .-> run_statistical_test;
+	issue_notice --> save_session;
+	llm_diagnostics --> merge_diagnostics;
+	merge_diagnostics -. &nbsp;error&nbsp; .-> issue_notice;
+	merge_diagnostics -. &nbsp;needs_clarification&nbsp; .-> request_clarification;
+	merge_diagnostics -. &nbsp;proceed&nbsp; .-> run_statistical_test;
+	plan_analysis -. &nbsp;error&nbsp; .-> issue_notice;
+	plan_analysis -. &nbsp;ready&nbsp; .-> prepare_data_summary;
+	prepare_data_summary --> llm_diagnostics;
+	prepare_data_summary --> stat_diagnostics;
+	request_clarification --> apply_corrections;
+	review_report -. &nbsp;review_passed&nbsp; .-> deliver_report;
+	review_report -. &nbsp;error&nbsp; .-> issue_notice;
+	review_report -. &nbsp;revise_once&nbsp; .-> revise_report;
+	revise_report --> check_report;
+	run_statistical_test --> build_stats_block;
+	stat_diagnostics --> merge_diagnostics;
+	save_session --> __end__;
+	plan_analysis -. &nbsp;revise_plan_once&nbsp; .-> plan_analysis;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
