@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-13",
+  "transport": "actual public HTTPS Quick Tunnel",
+  "unauthenticated_api_rejected": true,
+  "login_succeeded": true,
+  "cross_origin_rejected": true,
+  "cross_browser_job_and_followup_rejected": true,
+  "mode": "mock",
+  "status": "delivered",
+  "n": 80,
+  "mean_difference": 6.917500000000004,
+  "p_value": 0.0008242404431303837,
+  "program_check_passed": true,
+  "mock_review_passed": true,
+  "ollama": {
+    "available": true,
+    "configured_models_installed": true
+  }
+}

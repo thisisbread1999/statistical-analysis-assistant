@@ -89,9 +89,15 @@ Automatic date/subset filtering is unsupported; provide a new CSV for a subset.
 The browser polls submitted analysis jobs and displays their status. Session memory
 lasts for this server process; restarting clears it. Uploads and local session files
 are saved under ignored `artifacts/runtime/ui/`, with correction versions and audit
-files under the workflow's ignored runtime directory. This is a local prototype,
-without a hosted deployment or persistent multi-user service. Use Ctrl+C in the
+files under the workflow's ignored runtime directory. This is a local prototype with optional protected temporary HTTPS sharing; it has no
+permanent hosted deployment or persistent multi-user service. Use Ctrl+C in the
 server terminal to stop it.
+
+For a temporary HTTPS link, run a dedicated instance with `--public-origin`,
+`--share-token-file` and `--runtime-dir` as described in
+[temporary sharing](docs/TEMPORARY_SHARING.md). It requires an access code and isolates
+each authenticated browser's jobs and sessions. It does not expose the ordinary local
+workspace or the Ollama port.
 
 The CLI supports `--mode mock|real`; `--live` is an alias for real mode. An external
 CSV requires both `--csv` and `--design-json`, where the latter names a JSON file containing

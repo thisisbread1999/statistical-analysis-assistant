@@ -14,10 +14,12 @@ import math
 import os
 import secrets
 import threading
+import time
 from concurrent.futures import ThreadPoolExecutor
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from http.cookies import CookieError, SimpleCookie
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 from demo import SYNTHETIC_DESIGN
 from stat_assistant import settings
@@ -168,7 +170,7 @@ class Workspace:
         self.runtime_dir = Path(runtime_dir or settings.OUTPUT_DIR / "ui").resolve()
         self.runtime_dir.mkdir(parents=True, exist_ok=True)
         self.agents_factory = agents_factory or create_agents
-        self.sessions, self.jobs = {}, {}
+        self.sessions, self.jobs, self.job_owners = {}, {}, {}
         self.lock = threading.RLock()
         self.executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="browser-analysis")
 
@@ -184,7 +186,7 @@ class Workspace:
         text = (settings.DATA_DIR / example["filename"]).read_text(encoding="utf-8")
         return {**copy.deepcopy(example), "csv": text, **parse_csv(text)}
 
-    def submit(self, payload):
+    def submit(self, payload, *, owner=None):
         if not isinstance(payload, dict):
             raise ValueError("The request must be a JSON object.")
         action = payload.get("action")
@@ -215,14 +217,14 @@ class Workspace:
                 directory.mkdir()
                 path = directory / "input.csv"
                 path.write_text(text.lstrip("\ufeff"), encoding="utf-8", newline="")
-                session = {"session_id": sid, "mode": mode, "data_path": path, "question": question,
+                session = {"session_id": sid, "owner": owner, "mode": mode, "data_path": path, "question": question,
                            "design_info": design, "preview": preview, "graph": None, "state": {}, "busy": True}
                 self.sessions[sid] = session
                 operation = lambda: self._analyze(session)
             elif action in ("resume", "followup"):
                 sid = payload.get("session_id")
                 session = self.sessions.get(sid) if isinstance(sid, str) else None
-                if session is None:
+                if session is None or session.get("owner") != owner:
                     raise ValueError("Unknown or expired session. Start a new analysis.")
                 if session["busy"]:
                     raise ValueError("This session already has an analysis running.")
@@ -246,6 +248,7 @@ class Workspace:
                 raise ValueError("Unknown action. Use analyze, resume or followup.")
             job_id = secrets.token_urlsafe(24)
             self.jobs[job_id] = {"status": "running"}
+            self.job_owners[job_id] = owner
             self.executor.submit(self._execute, job_id, session, operation)
             return {"job_id": job_id}
 
@@ -303,9 +306,9 @@ class Workspace:
             "can_followup": not interrupts and bool(state.get("session_memory", {}).get("last_success")),
             "preview": preview})
 
-    def job(self, job_id):
+    def job(self, job_id, *, owner=None):
         with self.lock:
-            if job_id not in self.jobs:
+            if job_id not in self.jobs or self.job_owners.get(job_id) != owner:
                 raise ValueError("Unknown job.")
             return copy.deepcopy(self.jobs[job_id])
 
@@ -313,26 +316,94 @@ class Workspace:
         self.executor.shutdown(wait=True)
 
 
-def create_server(workspace, port=8765):
+LOGIN_HTML = b'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Statistical Analysis Lab - shared access</title>
+<style>body{font:16px system-ui;background:#f7f6f1;color:#203d37;margin:0}
+main{max-width:420px;margin:12vh auto;padding:32px;background:white;border:1px solid #d1dad1;border-radius:12px}
+input,button{box-sizing:border-box;width:100%;padding:12px;margin-top:12px;font:inherit;border-radius:6px;border:1px solid #aabdad}
+button{background:#244c40;color:white;cursor:pointer}p{line-height:1.6}</style></head>
+<body><main><h1>Statistical Analysis Lab</h1><p>Enter the access code shared by the host.</p>
+<form method="post" action="/share-login"><label for="code">Access code</label>
+<input id="code" name="code" type="password" autocomplete="current-password" required autofocus>
+<button type="submit">Open workspace</button></form>
+<p>This temporary demo runs on the host's computer.</p></main></body></html>'''
+
+
+def validate_public_origin(value):
+    if value is None:
+        return None
+    if not isinstance(value, str) or any(character.isspace() for character in value):
+        raise ValueError("Supply one HTTPS origin without whitespace.")
+    parsed = urlsplit(value)
+    if (parsed.scheme != "https" or not parsed.hostname or parsed.username is not None or
+            parsed.password is not None or parsed.path not in ("", "/") or parsed.query or parsed.fragment):
+        raise ValueError("Supply an HTTPS origin without credentials, path, query or fragment.")
+    parsed.port  # Also reject malformed port numbers before opening a socket.
+    return f"https://{parsed.netloc}"
+
+
+def create_server(workspace, port=8765, *, public_origin=None, share_token=None):
+    public_origin = validate_public_origin(public_origin)
+    if public_origin and (not isinstance(share_token, str) or len(share_token) < 16):
+        raise ValueError("Temporary sharing needs an access code of at least 16 characters.")
+    if share_token is not None and public_origin is None:
+        raise ValueError("An access code requires a configured public origin.")
+    public_host = urlsplit(public_origin).netloc if public_origin else None
+    browser_tokens, token_lock = {}, threading.Lock()
+
     class Handler(BaseHTTPRequestHandler):
         def _local(self):
             expected = f"127.0.0.1:{self.server.server_port}"
             return self.headers.get("Host") == expected
 
-        def _send(self, status, body, content_type="application/json; charset=utf-8"):
+        def _public_host(self):
+            return public_host is not None and self.headers.get("Host") == public_host
+
+        def _valid_origin(self):
+            origin = self.headers.get("Origin")
+            return (self._public_host() and origin == public_origin) if public_origin else (
+                self._local() and origin in (None, f"http://127.0.0.1:{self.server.server_port}"))
+
+        def _owner(self):
+            if not self._public_host():
+                return None
+            try:
+                cookies = SimpleCookie(self.headers.get("Cookie", ""))
+                token = cookies["sa_share"].value if "sa_share" in cookies else ""
+            except CookieError:
+                return None
+            with token_lock:
+                expires = browser_tokens.get(token)
+                if expires is not None and expires > time.monotonic():
+                    return token
+                browser_tokens.pop(token, None)
+            return None
+
+        def _send(self, status, body, content_type="application/json; charset=utf-8", headers=None):
             data = json.dumps(_json_safe(body), ensure_ascii=False, allow_nan=False).encode("utf-8") if isinstance(body, (dict, list)) else body
             self.send_response(status)
             self.send_header("Content-Type", content_type)
             self.send_header("Content-Length", str(len(data)))
             self.send_header("Cache-Control", "no-store")
             self.send_header("X-Content-Type-Options", "nosniff")
+            self.send_header("Referrer-Policy", "same-origin")
+            self.send_header("X-Frame-Options", "DENY")
+            for name, value in (headers or {}).items():
+                self.send_header(name, value)
             self.end_headers()
             self.wfile.write(data)
 
         def do_GET(self):
-            if not self._local():
-                return self._send(403, {"error": "Use this server's 127.0.0.1 address."})
+            host_valid = self._public_host() if public_origin else self._local()
+            if not host_valid:
+                return self._send(403, {"error": "Use this server's configured address."})
             path = urlsplit(self.path).path
+            owner = self._owner()
+            if self._public_host() and owner is None:
+                if self.path == "/":
+                    return self._send(200, LOGIN_HTML, "text/html; charset=utf-8")
+                return self._send(401, {"error": "Enter the shared access code at the home page."})
             assets = {"/": ("index.html", "text/html; charset=utf-8"),
                       "/app.js": ("app.js", "text/javascript; charset=utf-8"),
                       "/style.css": ("style.css", "text/css; charset=utf-8")}
@@ -345,15 +416,19 @@ def create_server(workspace, port=8765):
                 if path.startswith("/examples/") and path.endswith(".json"):
                     return self._send(200, workspace.example(path[len("/examples/"):-5]))
                 if path.startswith("/api/jobs/"):
-                    return self._send(200, workspace.job(path[len("/api/jobs/"):]))
+                    return self._send(200, workspace.job(path[len("/api/jobs/"):], owner=owner))
             except (ValueError, FileNotFoundError):
                 pass
             self._send(404, {"error": "Not found."})
 
         def do_POST(self):
-            origin = self.headers.get("Origin")
-            if not self._local() or origin not in (None, f"http://127.0.0.1:{self.server.server_port}"):
-                return self._send(403, {"error": "Requests must come from this local UI."})
+            if not self._valid_origin():
+                return self._send(403, {"error": "Requests must come from this UI's configured origin."})
+            if self.path == "/share-login" and self._public_host():
+                return self._login()
+            owner = self._owner()
+            if self._public_host() and owner is None:
+                return self._send(401, {"error": "Enter the shared access code at the home page."})
             if self.path != "/api":
                 return self._send(404, {"error": "Not found."})
             if self.headers.get("Content-Type", "").split(";")[0].strip() != "application/json":
@@ -365,10 +440,36 @@ def create_server(workspace, port=8765):
                 def reject_constant(value):
                     raise ValueError("JSON numbers must be finite.")
                 payload = json.loads(self.rfile.read(length).decode("utf-8"), parse_constant=reject_constant)
-                result = workspace.submit(payload)
+                result = workspace.submit(payload, owner=owner)
             except (ValueError, UnicodeDecodeError) as exc:
                 return self._send(400, {"error": str(exc)})
             self._send(202, result)
+
+        def _login(self):
+            if self.headers.get("Content-Type", "").split(";")[0].strip() != "application/x-www-form-urlencoded":
+                return self._send(415, {"error": "Submit the access-code form."})
+            try:
+                length = int(self.headers.get("Content-Length", "0"))
+                if not 0 < length <= 2048:
+                    return self._send(413, {"error": "Access-code form is too large."})
+                values = parse_qs(self.rfile.read(length).decode("utf-8"), max_num_fields=4)
+                codes = values.get("code", [])
+                valid = len(codes) == 1 and secrets.compare_digest(codes[0].encode(), share_token.encode())
+            except (ValueError, UnicodeDecodeError):
+                valid = False
+            if not valid:
+                return self._send(401, {"error": "Access code was not accepted. Return to the home page and retry."})
+            with token_lock:
+                now = time.monotonic()
+                for token, expires in list(browser_tokens.items()):
+                    if expires <= now:
+                        del browser_tokens[token]
+                if len(browser_tokens) >= 128:
+                    return self._send(503, {"error": "The demo has reached its login limit."})
+                owner = secrets.token_urlsafe(24)
+                browser_tokens[owner] = now + 4 * 3600
+            cookie = f"sa_share={owner}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=14400"
+            return self._send(303, b"", headers={"Location": "/", "Set-Cookie": cookie})
 
         def log_message(self, format, *args):
             # Request path/status only; never log CSV contents, questions or answers.
@@ -380,11 +481,18 @@ def create_server(workspace, port=8765):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8765)
+    parser.add_argument("--public-origin", help="Exact HTTPS origin of a temporary sharing tunnel.")
+    parser.add_argument("--share-token-file", type=Path, help="Local ignored file containing the shared access code.")
+    parser.add_argument("--runtime-dir", type=Path, help="Separate private upload/session folder for a sharing trial.")
     args = parser.parse_args()
-    workspace = Workspace()
-    server = create_server(workspace, args.port)
-    print(f"Statistical Analysis Lab: http://127.0.0.1:{server.server_port}", flush=True)
+    share_token = args.share_token_file.read_text(encoding="utf-8").strip() if args.share_token_file else None
+    workspace = Workspace(runtime_dir=args.runtime_dir)
+    server = create_server(workspace, args.port, public_origin=args.public_origin, share_token=share_token)
+    if not args.public_origin:
+        print(f"Statistical Analysis Lab: http://127.0.0.1:{server.server_port}", flush=True)
     print("Mock and real modes are selected explicitly in the UI. Ctrl+C stops the server.", flush=True)
+    if args.public_origin:
+        print(f"Temporary shared UI: {validate_public_origin(args.public_origin)} (access code required)", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

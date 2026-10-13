@@ -325,3 +325,30 @@ All twelve embedded Python files match current source. The full project demo and
 are byte-for-byte unchanged, and the PNG matches the displayed compiled-graph image.
 The updated two-file ZIP was verified against the canonical notebook/image bytes.
 Evidence and current hashes are in `artifacts/verification/langgraph_submission_compact.json`.
+
+### Protected temporary HTTPS UI sharing (2026-10-13)
+
+A dedicated sharing instance adds an exact HTTPS Host/Origin allowlist, a random-code
+login form and Secure/HttpOnly/SameSite=Strict browser cookies. Authenticated browsers
+own their jobs and sessions; shared IDs cannot bypass ownership checks. A local Host
+cannot bypass login on the sharing instance. The ordinary local-only mode remains
+unchanged. The sharing process binds to loopback and uses a fresh private runtime folder,
+with the two local Ollama models configured explicitly. No model API port is forwarded.
+
+All **50 focused UI tests** passed, including the prior local adapter cases and new
+login, source validation, cookie and browser-ownership cases. The official cloudflared
+2026.10.0 binary was downloaded to the task workspace, and its SHA256 matched the official
+release asset digest. A real Quick Tunnel connected over HTTP/2. Through that external
+HTTPS URL, login and an 80-record Mock Welch analysis delivered successfully; program
+and mock review checks passed. Unauthenticated API calls, a mismatched Origin, another
+browser's job read and another browser's follow-up were rejected. The local Ollama service
+reported both qwen3:8b and gemma3:12b installed. No live-model analysis was run as part of
+this transport verification. See `artifacts/verification/ui_tunnel_smoke.json`.
+
+The user's trial was left running in the background. The access code and process logs
+are private runtime files and are not committed. No permanent server, domain or recurring
+scheduler was created. Statistical methods, the graph, notebooks, midterm files and
+frozen v1 artifacts were unchanged.
+
+
+The user's real-browser login exposed a conflict after the initial HTTP-client checks: the login form's no-referrer policy serializes its navigation Origin as null under the Fetch standard, which the exact-origin validator rejected. The response policy was corrected to same-origin; the exact origin, access-code and browser-ownership rules remain unchanged. The same UI instance was restarted without restarting the tunnel or changing the access code. No further test or model analysis was run, as requested by the user.
