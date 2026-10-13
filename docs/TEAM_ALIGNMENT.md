@@ -16,6 +16,7 @@ commit. Our primary project names now match its conventions:
 | Python package | `stat_assistant/` |
 | Agent/workflow/statistical modules | `stat_assistant/agents.py`, `stat_assistant/workflow.py`, `stat_assistant/tools.py` |
 | CLI and teaching notebook | `demo.py`, `demo.ipynb` |
+| Local browser server and frontend | `ui_server.py`, `ui/index.html`, `ui/app.js`, `ui/style.css` |
 | Notebook builder | Root `build_notebook.py` |
 | Synthetic examples | `examples/` |
 | Diagram artifacts | `artifacts/graph.png`, `artifacts/graph.mmd` |
@@ -33,9 +34,33 @@ outputs. Earlier live outputs remain separately preserved in `artifacts/verifica
 including the pre-layout notebook and historical JSON evidence. A naming/layout change
 does not establish new real-model evaluation results.
 
-This refactor does not add the teammate's browser UI, date-filtering support, extra
-regression diagnostics, hosted deployment or 31-case benchmark. Their presence in the
-reference repository is not represented as a feature of this project.
+The local browser interface now follows the teammate's filenames and visual layout,
+with an adapter for our workflow. Date-filtering support, extra regression diagnostics,
+hosted deployment and the 31-case benchmark remain outside this project.
+
+## Browser interface adaptation
+
+The interface runs through `python ui_server.py --port 8765` at
+[http://127.0.0.1:8765](http://127.0.0.1:8765), using Python's standard-library HTTP
+server bound to `127.0.0.1`. The frontend retains the question, example/upload,
+report and execution-trail structure while the backend uses our own 17-node graph.
+The teammate's reviewed graph and state schema are not substituted for our implementation.
+
+Execution modes are explicitly **mock** (rule-based agents with real Python statistics)
+or **real** (two configured distinct models, locally defaulting to Ollama `qwen3:8b`
+and `gemma3:12b`). Built-ins use our five synthetic CSVs to exercise four methods,
+messy data, non-significance, unequal variances and an unsupported design.
+They do not constitute the teammate's 31-case benchmark or an accuracy evaluation.
+
+Uploaded CSVs require explicitly reviewed study/variable metadata JSON. The browser
+shows our per-record clarification requests and collects permitted actions and reasons;
+it does not silently apply `dropna()` or generate user confirmations. Follow-ups reuse
+or recompute evidence according to our existing policy. Date filters still require a
+new CSV. Submitted jobs are polled by the browser; graph session memory clears on server
+restart. Uploads and session files are stored locally in ignored `artifacts/runtime/ui/`,
+alongside the core runtime correction/audit files. UI adapter checks are kept in
+`tests/test_ui_server.py`; their executed results are recorded separately in the
+verification record.
 
 ## Method mapping and numerical conventions
 

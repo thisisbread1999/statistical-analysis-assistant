@@ -148,3 +148,36 @@ must not be reported as a model success rate.
 Additional fail-closed source/version and empty-review-verdict guards were validated in
 pytest. The notebook runner now uses project-local temporary files and explicitly shuts
 down its kernel; final mock and targeted real runs exited successfully.
+
+## Local browser UI verification (2026-10-12)
+
+The new `ui_server.py` and `ui/` adapt the teammate's browser layout to this project's
+existing seventeen-node workflow. No statistical package, model prompt or notebook was
+changed for this interface. The server binds to `127.0.0.1` and queues jobs in one worker;
+mock/real mode is selected explicitly, with no fallback after a real-model failure.
+
+`python -X utf8 -m pytest -q --basetemp=artifacts/pytest` passed **125 tests**: the previous
+93 plus 32 browser-adapter/HTTP tests. New coverage includes all four methods, uploads and
+metadata confirmation, missing-data interruption and explicit resume decisions, original
+source preservation, changed-confidence/re-explanation routing, unsupported paired design,
+model-start failure without mock substitution, and local HTTP request/JSON validation.
+
+Manual browser checks exercised a mock Welch report, a 99% CI follow-up, missing decisions
+being rejected before inference, and the messy-data pause/resume flow. The entered decisions
+were labelled **UI TEST ONLY**, not human research verification. The resumed teaching case
+delivered on data version v2 with 78 included records and a missingness limitation. An actual
+file-chooser upload of the clean synthetic CSV also delivered after entering and confirming
+its study metadata. Input edits now identify the displayed report as belonging to the
+previous session, and completion updates the sidebar status after a resume.
+
+One browser-initiated real Welch run delivered with Model A `ollama:qwen3:8b` and Model B
+`ollama:gemma3:12b`. Five real calls completed, the program check and independent review
+passed, and recorded workflow-node durations totalled approximately 46.6 seconds on this
+machine. The protected estimate was 6.9175, p = 0.000824240443, with the 95% interval
+[2.9688820792, 10.8661179208]. The UI rounded these values for presentation. This was a
+single integration smoke run; it is not an accuracy score, human evaluation or latency
+guarantee. Evidence is preserved in `artifacts/verification/ui_smoke.json`.
+
+The local service was left running for user trials. Uploads and generated runtime files
+remain ignored by Git. Neither a hosted deployment nor a teammate-repository modification
+was part of this UI work. Existing assignment notebooks and midterm artifacts were retained.

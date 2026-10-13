@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Statistical Analysis Lab</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="operationNotice" class="operation-notice" role="status" aria-live="polite" hidden></div>
+  <header>
+    <div class="wordmark">STAT / LAB <span>Agentic analysis workspace</span></div>
+    <span class="local-tag">LOCAL PREVIEW</span>
+  </header>
+  <main>
+    <section class="intro">
+      <div class="eyebrow">LOCAL RESEARCH WORKSPACE · LANGGRAPH</div>
+      <h1>From a question<br>to an auditable analysis.</h1>
+      <p>Upload data. Ask a question. Inspect the plan, checks, calculations and review. Compare two group means, examine correlation or categorical association, or fit a simple regression.</p>
+    </section>
+    <div class="workspace">
+      <aside>
+        <div class="section-label">01 / INPUT</div>
+        <h2>Start an analysis</h2>
+        <label for="case">Built-in test case</label>
+        <select id="case" disabled><option>Loading examples…</option></select>
+        <p id="caseNote" class="muted"></p>
+        <div id="caseGuide" class="case-guide"></div>
+        <section id="material" hidden>
+          <h3>Test CSV</h3>
+          <p id="csvInfo" class="muted"></p>
+          <button id="downloadCsv" type="button">Download CSV</button>
+          <details><summary>Preview test data</summary><div id="materialPreview" class="table-wrap"></div></details>
+        </section>
+        <label for="file">Or upload a CSV (up to 4 MB)</label>
+        <input id="file" type="file" accept=".csv,text/csv" hidden>
+        <label for="file" class="upload-button" id="uploadLabel">Choose CSV file</label>
+        <p id="fileInfo" class="muted"></p>
+        <label for="question">Research question</label>
+        <textarea id="question" rows="4" placeholder="For example: Compare mean exam scores for tutoring yes versus no."></textarea>
+        <details id="designDetails">
+          <summary>Study design & variable meanings</summary>
+          <p class="muted">The CSV cannot establish independence or random assignment. Review the example metadata, or enter your own study facts and variable definitions below.</p>
+          <label for="designInfo">Design metadata (JSON)</label>
+          <textarea id="designInfo" rows="12" spellcheck="false" aria-describedby="designHelp"></textarea>
+          <p id="designHelp" class="muted">Use numeric or categorical variable types. Declare valid ranges or levels when known. For paired, repeated or clustered observations, describe that design honestly; this MVP will stop.</p>
+          <label id="designConfirmLabel" class="checkbox-label" hidden>
+            <input id="designConfirm" type="checkbox">
+            <span>I confirm that the metadata describes my study and variables. I have not assumed independence from the CSV.</span>
+          </label>
+        </details>
+        <label for="mode">Execution mode</label>
+        <select id="mode">
+          <option value="mock">Mock demonstration · real Python statistics</option>
+          <option value="real">Real mode · two configured LLMs</option>
+        </select>
+        <p id="modeHelp" class="muted"></p>
+        <button id="run" class="primary" type="button" disabled>Run analysis →</button>
+        <p id="progress" role="status" aria-live="polite"></p>
+      </aside>
+      <article>
+        <div class="section-label">02 / ANALYSIS</div>
+        <div id="empty">
+          <h2>Every conclusion has a trail.</h2>
+          <p>Start with the clean two-group example. Then try the messy dataset to see the workflow pause for your decisions.</p>
+          <div class="mini-flow">Plan → Parallel diagnostics → Python statistics → Model A draft → Program checks + Model B review</div>
+          <p class="muted">A data issue does not authorize an automatic correction or exclusion. The workflow asks you to choose an action and document its source.</p>
+        </div>
+        <div id="output" hidden>
+          <div class="result-head"><h2 id="status"></h2><span id="modeBadge" class="badge"></span></div>
+          <p id="resultContext" class="muted"></p>
+          <div id="notice" role="alert"></div>
+          <section id="clarify" hidden>
+            <h3>Your input is needed</h3>
+            <p>Review each flagged record. Supply a source or reason for every correction, exclusion or verification. No action is selected for you.</p>
+            <div id="clarificationRejected" class="error-text"></div>
+            <form id="clarificationForm" novalidate>
+              <div id="clarificationRequests"></div>
+              <div class="button-row">
+                <button id="resume" class="primary" type="submit">Submit decisions & continue →</button>
+                <button id="stop" type="button">Stop this analysis</button>
+              </div>
+            </form>
+            <p id="clarifyProgress" role="status" aria-live="polite"></p>
+          </section>
+          <div id="metrics" class="metrics"></div>
+          <section id="hypotheses" class="hypotheses" hidden></section>
+          <section id="interpretation" hidden>
+            <h3 id="reportTitle">Validated report</h3>
+            <div id="reportText" class="report-text"></div>
+            <details id="fullReportDetails"><summary>Full report & statistical evidence</summary><div id="fullReport" class="report-text"></div></details>
+            <button id="downloadReport" type="button">Download report (.txt)</button>
+          </section>
+          <details open><summary>Analysis plan</summary><div id="plan"></div></details>
+          <details><summary>Checks & warnings</summary><div id="checks"></div></details>
+          <details id="reviewDetails"><summary>Report validation & independent review</summary><div id="reviewContent"></div></details>
+          <details open><summary>Actual execution trail</summary><ol id="trace"></ol></details>
+          <details><summary>Dataset preview</summary><div id="preview" class="table-wrap"></div></details>
+          <details id="auditDetails" hidden><summary>Your decisions & data versions</summary><div id="audit"></div></details>
+          <details><summary>Model-call log</summary><div id="modelCalls" class="table-wrap"></div></details>
+          <section id="followSection" hidden>
+            <h3>Continue this session</h3>
+            <p class="muted">Re-explanation reuses the saved statistics. A new confidence level recomputes the interval. A new supported question replans the analysis. This session keeps its original execution mode. For a different date range or subset, upload a new CSV.</p>
+            <div class="button-row">
+              <button id="explain" type="button">Explain this result simply</button>
+              <button id="confidence" type="button">Recalculate with a 99% CI</button>
+            </div>
+            <label for="follow">Follow-up question</label>
+            <textarea id="follow" rows="3" placeholder="Explain what rejecting the null hypothesis means here."></textarea>
+            <button id="followRun" class="primary" type="button">Run follow-up →</button>
+            <p id="followProgress" role="status" aria-live="polite"></p>
+          </section>
+        </div>
+      </article>
+    </div>
+    <footer>Two model roles. Deterministic Python statistics. Bounded revisions.<br><span>Runs stay local to this server. Uploaded CSVs and audit artifacts are saved locally; session memory clears when the server restarts.</span></footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

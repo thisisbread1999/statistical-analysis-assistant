@@ -10,6 +10,11 @@ folder and entry-point names while retaining its own two-model workflow and data
 langgraph_visualization/
 ├── README.md
 ├── demo.py
+├── ui_server.py
+├── ui/
+│   ├── index.html
+│   ├── app.js
+│   └── style.css
 ├── demo.ipynb
 ├── build_notebook.py
 ├── requirements.txt
@@ -47,6 +52,8 @@ langgraph_visualization/
 ├── docs/
 ├── scripts/
 ├── tests/
+│   ├── test_ui_server.py
+│   └── other offline tests
 ├── data/                         # preserved pre-layout synthetic CSVs
 ├── r/                            # frozen v1 tools
 ├── legacy/                       # unfinished R v2 reference/bridge
@@ -91,10 +98,33 @@ remain separate files because the two-model/user-confirmation implementation use
 `tests/test_reports.py` remain useful extensions to the shared layout. Names that identify
 frozen v1 material are kept for provenance.
 
+## Local browser interface
+
+The browser interface uses the teammate's root `ui_server.py` and `ui/index.html`,
+`ui/app.js`, `ui/style.css` filenames. Its adapter invokes our existing 17-node
+workflow and exposes our own result schema and user-confirmation policy. It does
+not replace the statistical package or change the submitted notebooks and midterm
+artifacts.
+
+Run `python ui_server.py --port 8765` from the project directory and open
+[http://127.0.0.1:8765](http://127.0.0.1:8765). The standard-library server binds to
+`127.0.0.1`. The browser polls analysis jobs, offers explicitly labelled mock and
+real modes, and presents our synthetic cases plus a CSV upload with reviewed
+study/variable metadata JSON. Data corrections, exclusions and verification need
+explicit user answers and reasons before inference can continue.
+
+Session graph memory clears when the server restarts. Uploads and session files
+are written to ignored `artifacts/runtime/ui/`; core correction versions and audit
+logs remain under ignored `artifacts/runtime/`. `tests/test_ui_server.py` contains
+the local UI adapter checks; executed verification belongs in
+[VERIFICATION.md](VERIFICATION.md).
+
 ## Change scope
 
 The layout refactor updates imports, relative paths, builders, entry points and documentation.
 It keeps the four statistical methods and the existing human-confirmation/review policies.
-It does not import the teammate's UI, deployment setup, date filtering, extra regression
-diagnostics or 31-case benchmark. See [TEAM_ALIGNMENT.md](TEAM_ALIGNMENT.md) for the
-implementation comparison and [VERIFICATION.md](VERIFICATION.md) for executed evidence.
+The subsequent browser interface adapts the teammate's layout to our own workflow.
+Deployment setup, date filtering, extra regression diagnostics and the 31-case
+benchmark remain outside this implementation. See [TEAM_ALIGNMENT.md](TEAM_ALIGNMENT.md)
+for the implementation comparison and [VERIFICATION.md](VERIFICATION.md) for executed
+evidence.

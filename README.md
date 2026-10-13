@@ -11,8 +11,9 @@ The current layout follows the teammate's
 `examples/`, `artifacts/`, `requirements-lock.txt` and the dated assignment folder use the
 same names. See [project structure](docs/PROJECT_STRUCTURE.md) for the complete mapping and
 [team alignment](docs/TEAM_ALIGNMENT.md) for retained implementation differences.
-This change aligns project organization; it does not add the teammate's browser UI,
-date-filtering feature or benchmark suite.
+The local browser interface now follows the same `ui_server.py` and `ui/` convention,
+with an adapter for this project's own workflow. Date filtering and the teammate's
+benchmark suite are outside the current implementation.
 
 ## Open these files
 
@@ -20,6 +21,7 @@ date-filtering feature or benchmark suite.
 |---|---|
 | `demo.ipynb` | Project-linked teaching notebook: executable workflow, diagram, node/edge/handoff explanation and examples; saved outputs are from a fresh, explicitly labelled mock run. |
 | `demo.py` | Command-line entry point; defaults to the supplied synthetic tutoring demonstration in mock mode. |
+| `ui_server.py`, `ui/` | Local browser interface: select an example or upload CSV, review study metadata, answer data issues and inspect the report and execution trail. |
 | `artifacts/graph.png`, `artifacts/graph.mmd` | Diagram and Mermaid source exported from the compiled workflow used by the demo. |
 | `stat_assistant/` | Python package: `agents.py`, `workflow.py`, `tools.py` and supporting modules. |
 | `examples/` | Active synthetic CSV examples, with their original descriptive filenames. |
@@ -50,6 +52,38 @@ Reuse an existing project environment when available. `requirements.txt` include
 `requirements-lock.txt`, which contains the exact pinned course runtime. Python 3.13 is
 the configured CI version. Copy `.env.example` to `.env` only if `.env` does not already
 exist; keep keys local.
+
+### Try the browser interface
+
+Start the local server from the project folder, then open
+[http://127.0.0.1:8765](http://127.0.0.1:8765):
+
+```powershell
+& "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" ui_server.py --port 8765
+```
+
+The server uses Python's standard-library HTTP server and listens on `127.0.0.1`.
+Choose a built-in synthetic case to inspect its CSV preview, research question and
+study/variable metadata. Start with **mock** mode for a quick workflow demonstration:
+the agents are rule-based, while the graph and Python statistical calculations run.
+Choose **real** mode to use the two configured, distinct LLMs; the local defaults are
+Ollama `qwen3:8b` and `gemma3:12b`. Real calls can take longer and require the configured
+models to be available. A failed real call is reported, without a mock substitution.
+
+For your own CSV, review the study and variable metadata JSON explicitly before
+running the analysis. A CSV alone cannot establish independence or randomization.
+When the graph pauses on a data issue, choose a permitted correction, exclusion,
+verification or stop action and provide a reason when required. The UI submits your
+answers to the existing workflow; it does not generate answers for you or silently
+remove rows. After a delivered report, try re-explanation or a new confidence level.
+Automatic date/subset filtering is unsupported; provide a new CSV for a subset.
+
+The browser polls submitted analysis jobs and displays their status. Session memory
+lasts for this server process; restarting clears it. Uploads and local session files
+are saved under ignored `artifacts/runtime/ui/`, with correction versions and audit
+files under the workflow's ignored runtime directory. This is a local prototype,
+without a hosted deployment or persistent multi-user service. Use Ctrl+C in the
+server terminal to stop it.
 
 The CLI supports `--mode mock|real`; `--live` is an alias for real mode. An external
 CSV requires both `--csv` and `--design-json`, where the latter names a JSON file containing
