@@ -1,0 +1,1295 @@
+{
+  "id": "ambiguous_outcome",
+  "category": "clarification",
+  "mode": "live",
+  "mode_label": "REAL: actual two-model agents; one attempt with bounded internal revisions",
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "source_question": "Compare groups; I have not decided whether before or after is the outcome.",
+  "source_expected_behavior": "interrupt",
+  "source_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\clarification\\ambiguous_outcome.csv",
+  "source_csv_sha256": "c3b42f26e2aa9111ebf7a68c7b1e0073b2e701fb99c6a6fec5321a9a39bf4f72",
+  "blinding": "Exact source bytes copied to neutral hashed runtime path before any agent/tool input; source labels retained only in evaluator evidence.",
+  "adapted_expectation": {
+    "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+    "policy_version": "ours-v1",
+    "source_expected_behavior": "interrupt",
+    "expected_primary_behavior": "stop",
+    "fixture_answers": [],
+    "expected_method": "welch_t_test",
+    "source_csv_sha256": "c3b42f26e2aa9111ebf7a68c7b1e0073b2e701fb99c6a6fec5321a9a39bf4f72",
+    "source_json_sha256": "44e383e7151d23df4ef7f5684778627e6fb97cb46a4ec39081f901548bd0be31",
+    "adaptation_note": "Safely stop with target unresolved; an arbitrary outcome is a failure."
+  },
+  "checks": {
+    "primary_safety_behavior": false,
+    "no_runner_exception": true,
+    "no_core_errors": true,
+    "analysis_execution_valid": true,
+    "method": false
+  },
+  "mechanical_pass": false,
+  "method_assessed": true,
+  "method_pass": false,
+  "safety_assessed": true,
+  "safety_pass": false,
+  "numeric": {
+    "assessed": false,
+    "passed": null,
+    "reference": null,
+    "fields": {}
+  },
+  "interpretation_accepted": false,
+  "semantic_review": "unlabelled: no independent human review",
+  "report_delivery_status": "paused",
+  "actual_status": "paused",
+  "primary_state": {
+    "run_id": "bench-6c82c783625b4794",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Compare groups; I have not decided whether before or after is the outcome.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "group": {
+          "type": "categorical",
+          "levels": [
+            "treatment",
+            "control"
+          ],
+          "meaning": "Source text labels in group"
+        },
+        "before": {
+          "type": "numeric",
+          "meaning": "Numeric source field before; units not supplied"
+        },
+        "after": {
+          "type": "numeric",
+          "meaning": "Numeric source field after; units not supplied"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations.",
+      "analysis_target": "The user has not chosen the outcome or direction. Obtain a concrete target before analysis.",
+      "comparison_order": "Requested contrast: treatment minus control."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+    "data_version": "v1",
+    "data_fingerprint": "c3b42f26e2aa9111ebf7a68c7b1e0073b2e701fb99c6a6fec5321a9a39bf4f72",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "welch_t_test",
+      "outcome": "after",
+      "group": "group",
+      "group_1_label": "treatment",
+      "group_2_label": "control",
+      "x": "",
+      "y": "",
+      "target_parameter": "difference in means",
+      "null_hypothesis": "The mean of after in treatment group equals the mean of after in control group.",
+      "alternative_hypothesis": "The mean of after in treatment group is different from the mean of after in control group.",
+      "method_rationale": "The Welch t-test is appropriate for comparing the means of a numeric outcome (after) between two independent groups (treatment and control). The comparison order is specified as treatment minus control, which aligns with the Welch t-test's requirement for group_1_label and group_2_label in the order of the contrast. Since the design is observational and not randomized, we describe the association between group and after, without claiming causation.",
+      "design_notes": [
+        "The analysis is observational, so we describe associations, not causation.",
+        "The Welch t-test is used because the groups are independent and the variances may not be equal."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 50,
+      "columns_found": [
+        "group",
+        "before",
+        "after"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 50,
+      "columns": [
+        {
+          "name": "after",
+          "role": "outcome",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 50,
+          "n_unique_as_written": 50,
+          "quantiles": {
+            "min": -0.9510351886538364,
+            "p05": -0.003488428805322033,
+            "p25": 1.0039068062620875,
+            "p50": 1.6991588226591139,
+            "p75": 2.2300198794937103,
+            "p95": 2.813750204913053,
+            "max": 4.141647600870462
+          },
+          "mean": 1.5912110304930112,
+          "sd": 0.9871862300300069
+        },
+        {
+          "name": "group",
+          "role": "group",
+          "type": "categorical",
+          "n_blank": 0,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 2,
+          "levels_as_written": [
+            {
+              "label_as_written": "control",
+              "quoted": "\"control\"",
+              "n": 25
+            },
+            {
+              "label_as_written": "treatment",
+              "quoted": "\"treatment\"",
+              "n": 25
+            }
+          ]
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {
+        "group": [
+          "treatment",
+          "control"
+        ]
+      },
+      "group_labels": [
+        "treatment",
+        "control"
+      ],
+      "by_group_as_written": [
+        {
+          "label_as_written": "control",
+          "quoted": "\"control\"",
+          "n": 25,
+          "mean": 0.9646100124079423,
+          "sd": 0.8310923822923664,
+          "median": 0.9831988424957112,
+          "min": -0.9510351886538364,
+          "max": 2.2225413386740303
+        },
+        {
+          "label_as_written": "treatment",
+          "quoted": "\"treatment\"",
+          "n": 25,
+          "mean": 2.2178120485780806,
+          "sd": 0.6935327750700925,
+          "median": 2.2321613230667197,
+          "min": 1.159843523037472,
+          "max": 4.141647600870462
+        }
+      ]
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "The variables 'group', 'before', and 'after' are defined as follows: 'group' is a categorical variable with levels 'treatment' and 'control'; 'before' and 'after' are numeric variables representing measurements before and after an event, respectively. The units for 'before' and 'after' are not provided.",
+      "design_assessment": "The study design is observational, as confirmed by the 'randomized' field being false. The analysis plan correctly specifies that the Welch t-test is appropriate for comparing the means of a numeric outcome between two independent groups. The comparison order is specified as treatment minus control, which aligns with the Welch t-test's requirement for group_1_label and group_2_label in the order of the contrast.",
+      "goal_alignment": "The analysis plan aligns with the goal of comparing the means of 'after' between the treatment and control groups. The null hypothesis is correctly specified as the mean of 'after' in the treatment group equals the mean of 'after' in the control group. The alternative hypothesis is correctly specified as the mean of 'after' in the treatment group is different from the mean of 'after' in the control group.",
+      "distribution_notes": "The distribution of 'after' appears to be roughly symmetric, with a mean of {mean_after} and a standard deviation of {sd_after}. The minimum value is {min_after}, and the maximum value is {max_after}. The median is {median_after}, which is close to the mean, suggesting a roughly symmetric distribution. There are no extreme values, as the minimum and maximum values are not far from the mean.",
+      "issues": [
+        {
+          "topic": "variable_meaning",
+          "severity": "note",
+          "issue": "The units for 'before' and 'after' are not provided, which may affect the interpretation of the results.",
+          "evidence": "The 'meaning' field for 'before' and 'after' states that the units are not supplied.",
+          "suggested_action": "The user should provide the units for 'before' and 'after' to ensure accurate interpretation of the results."
+        },
+        {
+          "topic": "study_design",
+          "severity": "note",
+          "issue": "The study design is observational, so we describe associations, not causation.",
+          "evidence": "The 'randomized' field is false, and the 'assignment' field states that the allocation was not random.",
+          "suggested_action": "The user should be reminded that the analysis describes associations, not causation."
+        },
+        {
+          "topic": "distribution",
+          "severity": "note",
+          "issue": "The distribution of 'after' appears to be roughly symmetric, but there is no normality test to confirm this.",
+          "evidence": "The 'quantiles' field for 'after' shows that the distribution is roughly symmetric, with the median close to the mean.",
+          "suggested_action": "A normality test should be conducted to confirm the distribution of 'after' before proceeding with the Welch t-test."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 50,
+      "columns_found": [
+        "group",
+        "before",
+        "after"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 50,
+      "n_usable_rows": 50,
+      "findings": [
+        {
+          "record_id": "row 31",
+          "row_number": 31,
+          "field": "after",
+          "value_as_written": "4.141647600870462",
+          "check": "boxplot_flag",
+          "severity": "verify",
+          "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+        }
+      ],
+      "n_blocking": 0,
+      "n_verify": 1,
+      "method_checks_run": true,
+      "method_findings": [],
+      "distribution_checks_run": true,
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "after",
+          "group": "treatment",
+          "n": 25,
+          "shapiro_wilk_p": 0.16838955839372982
+        },
+        {
+          "check": "shapiro_wilk",
+          "variable": "after",
+          "group": "control",
+          "n": 25,
+          "shapiro_wilk_p": 0.5649965949945559
+        }
+      ],
+      "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+    },
+    "diagnostic_route": "needs_clarification",
+    "diagnostic_assessment": {
+      "rationale": "The route is set to 'needs_clarification' because there is an outlier in the 'after' variable for the 'treatment' group (record row 31). This value is outside the 1.5*IQR fences and requires verification before proceeding with the Welch t-test. The analysis plan uses the Welch t-test to compare the means of 'after' between the treatment and control groups, but the presence of this outlier may affect the results and needs to be addressed.",
+      "limitations": [
+        "The study design is observational, so we describe associations, not causation.",
+        "The Welch t-test assumes independence between observations, which is confirmed by the data.",
+        "The distribution of 'after' is not formally tested for normality, and the Shapiro-Wilk test results are not sufficient to confirm normality.",
+        "The outlier in 'after' for the 'treatment' group may influence the results and requires verification."
+      ],
+      "questions": [
+        {
+          "request_id": "row 31:after:boxplot_flag:31:4.141647600870462",
+          "question": "Record row 31: after = \"4.141647600870462\" (Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude). Allowed responses: verify, correct, exclude, stop."
+        }
+      ]
+    },
+    "stop_reasons": [],
+    "clarification_requests": [
+      {
+        "record_id": "row 31",
+        "row_number": 31,
+        "field": "after",
+        "value_as_written": "4.141647600870462",
+        "check": "boxplot_flag",
+        "severity": "verify",
+        "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude",
+        "request_id": "row 31:after:boxplot_flag:31:4.141647600870462",
+        "allowed_responses": [
+          "verify",
+          "correct",
+          "exclude",
+          "stop"
+        ],
+        "field_type": "numeric",
+        "valid_range": null,
+        "valid_levels": null,
+        "question": "Record row 31: after = \"4.141647600870462\" (Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude). Allowed responses: verify, correct, exclude, stop."
+      }
+    ],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "running",
+    "final_report": "",
+    "session_memory": {},
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791862564.0004146,
+        "end": 1791862578.9761996,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791862578.9771447,
+        "end": 1791862578.9803827,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791862578.9815102,
+        "end": 1791862590.695299,
+        "thread": "ThreadPoolExecutor-24_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791862578.9852345,
+        "end": 1791862578.9977374,
+        "thread": "ThreadPoolExecutor-24_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791862590.6964967,
+        "end": 1791862597.766043,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      }
+    ],
+    "observed_status": "paused"
+  },
+  "final_state": {
+    "run_id": "bench-6c82c783625b4794",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Compare groups; I have not decided whether before or after is the outcome.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "group": {
+          "type": "categorical",
+          "levels": [
+            "treatment",
+            "control"
+          ],
+          "meaning": "Source text labels in group"
+        },
+        "before": {
+          "type": "numeric",
+          "meaning": "Numeric source field before; units not supplied"
+        },
+        "after": {
+          "type": "numeric",
+          "meaning": "Numeric source field after; units not supplied"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations.",
+      "analysis_target": "The user has not chosen the outcome or direction. Obtain a concrete target before analysis.",
+      "comparison_order": "Requested contrast: treatment minus control."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+    "data_version": "v1",
+    "data_fingerprint": "c3b42f26e2aa9111ebf7a68c7b1e0073b2e701fb99c6a6fec5321a9a39bf4f72",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "welch_t_test",
+      "outcome": "after",
+      "group": "group",
+      "group_1_label": "treatment",
+      "group_2_label": "control",
+      "x": "",
+      "y": "",
+      "target_parameter": "difference in means",
+      "null_hypothesis": "The mean of after in treatment group equals the mean of after in control group.",
+      "alternative_hypothesis": "The mean of after in treatment group is different from the mean of after in control group.",
+      "method_rationale": "The Welch t-test is appropriate for comparing the means of a numeric outcome (after) between two independent groups (treatment and control). The comparison order is specified as treatment minus control, which aligns with the Welch t-test's requirement for group_1_label and group_2_label in the order of the contrast. Since the design is observational and not randomized, we describe the association between group and after, without claiming causation.",
+      "design_notes": [
+        "The analysis is observational, so we describe associations, not causation.",
+        "The Welch t-test is used because the groups are independent and the variances may not be equal."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 50,
+      "columns_found": [
+        "group",
+        "before",
+        "after"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 50,
+      "columns": [
+        {
+          "name": "after",
+          "role": "outcome",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 50,
+          "n_unique_as_written": 50,
+          "quantiles": {
+            "min": -0.9510351886538364,
+            "p05": -0.003488428805322033,
+            "p25": 1.0039068062620875,
+            "p50": 1.6991588226591139,
+            "p75": 2.2300198794937103,
+            "p95": 2.813750204913053,
+            "max": 4.141647600870462
+          },
+          "mean": 1.5912110304930112,
+          "sd": 0.9871862300300069
+        },
+        {
+          "name": "group",
+          "role": "group",
+          "type": "categorical",
+          "n_blank": 0,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 2,
+          "levels_as_written": [
+            {
+              "label_as_written": "control",
+              "quoted": "\"control\"",
+              "n": 25
+            },
+            {
+              "label_as_written": "treatment",
+              "quoted": "\"treatment\"",
+              "n": 25
+            }
+          ]
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {
+        "group": [
+          "treatment",
+          "control"
+        ]
+      },
+      "group_labels": [
+        "treatment",
+        "control"
+      ],
+      "by_group_as_written": [
+        {
+          "label_as_written": "control",
+          "quoted": "\"control\"",
+          "n": 25,
+          "mean": 0.9646100124079423,
+          "sd": 0.8310923822923664,
+          "median": 0.9831988424957112,
+          "min": -0.9510351886538364,
+          "max": 2.2225413386740303
+        },
+        {
+          "label_as_written": "treatment",
+          "quoted": "\"treatment\"",
+          "n": 25,
+          "mean": 2.2178120485780806,
+          "sd": 0.6935327750700925,
+          "median": 2.2321613230667197,
+          "min": 1.159843523037472,
+          "max": 4.141647600870462
+        }
+      ]
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "The variables 'group', 'before', and 'after' are defined as follows: 'group' is a categorical variable with levels 'treatment' and 'control'; 'before' and 'after' are numeric variables representing measurements before and after an event, respectively. The units for 'before' and 'after' are not provided.",
+      "design_assessment": "The study design is observational, as confirmed by the 'randomized' field being false. The analysis plan correctly specifies that the Welch t-test is appropriate for comparing the means of a numeric outcome between two independent groups. The comparison order is specified as treatment minus control, which aligns with the Welch t-test's requirement for group_1_label and group_2_label in the order of the contrast.",
+      "goal_alignment": "The analysis plan aligns with the goal of comparing the means of 'after' between the treatment and control groups. The null hypothesis is correctly specified as the mean of 'after' in the treatment group equals the mean of 'after' in the control group. The alternative hypothesis is correctly specified as the mean of 'after' in the treatment group is different from the mean of 'after' in the control group.",
+      "distribution_notes": "The distribution of 'after' appears to be roughly symmetric, with a mean of {mean_after} and a standard deviation of {sd_after}. The minimum value is {min_after}, and the maximum value is {max_after}. The median is {median_after}, which is close to the mean, suggesting a roughly symmetric distribution. There are no extreme values, as the minimum and maximum values are not far from the mean.",
+      "issues": [
+        {
+          "topic": "variable_meaning",
+          "severity": "note",
+          "issue": "The units for 'before' and 'after' are not provided, which may affect the interpretation of the results.",
+          "evidence": "The 'meaning' field for 'before' and 'after' states that the units are not supplied.",
+          "suggested_action": "The user should provide the units for 'before' and 'after' to ensure accurate interpretation of the results."
+        },
+        {
+          "topic": "study_design",
+          "severity": "note",
+          "issue": "The study design is observational, so we describe associations, not causation.",
+          "evidence": "The 'randomized' field is false, and the 'assignment' field states that the allocation was not random.",
+          "suggested_action": "The user should be reminded that the analysis describes associations, not causation."
+        },
+        {
+          "topic": "distribution",
+          "severity": "note",
+          "issue": "The distribution of 'after' appears to be roughly symmetric, but there is no normality test to confirm this.",
+          "evidence": "The 'quantiles' field for 'after' shows that the distribution is roughly symmetric, with the median close to the mean.",
+          "suggested_action": "A normality test should be conducted to confirm the distribution of 'after' before proceeding with the Welch t-test."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 50,
+      "columns_found": [
+        "group",
+        "before",
+        "after"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 50,
+      "n_usable_rows": 50,
+      "findings": [
+        {
+          "record_id": "row 31",
+          "row_number": 31,
+          "field": "after",
+          "value_as_written": "4.141647600870462",
+          "check": "boxplot_flag",
+          "severity": "verify",
+          "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+        }
+      ],
+      "n_blocking": 0,
+      "n_verify": 1,
+      "method_checks_run": true,
+      "method_findings": [],
+      "distribution_checks_run": true,
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "after",
+          "group": "treatment",
+          "n": 25,
+          "shapiro_wilk_p": 0.16838955839372982
+        },
+        {
+          "check": "shapiro_wilk",
+          "variable": "after",
+          "group": "control",
+          "n": 25,
+          "shapiro_wilk_p": 0.5649965949945559
+        }
+      ],
+      "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+    },
+    "diagnostic_route": "needs_clarification",
+    "diagnostic_assessment": {
+      "rationale": "The route is set to 'needs_clarification' because there is an outlier in the 'after' variable for the 'treatment' group (record row 31). This value is outside the 1.5*IQR fences and requires verification before proceeding with the Welch t-test. The analysis plan uses the Welch t-test to compare the means of 'after' between the treatment and control groups, but the presence of this outlier may affect the results and needs to be addressed.",
+      "limitations": [
+        "The study design is observational, so we describe associations, not causation.",
+        "The Welch t-test assumes independence between observations, which is confirmed by the data.",
+        "The distribution of 'after' is not formally tested for normality, and the Shapiro-Wilk test results are not sufficient to confirm normality.",
+        "The outlier in 'after' for the 'treatment' group may influence the results and requires verification."
+      ],
+      "questions": [
+        {
+          "request_id": "row 31:after:boxplot_flag:31:4.141647600870462",
+          "question": "Record row 31: after = \"4.141647600870462\" (Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude). Allowed responses: verify, correct, exclude, stop."
+        }
+      ]
+    },
+    "stop_reasons": [],
+    "clarification_requests": [
+      {
+        "record_id": "row 31",
+        "row_number": 31,
+        "field": "after",
+        "value_as_written": "4.141647600870462",
+        "check": "boxplot_flag",
+        "severity": "verify",
+        "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude",
+        "request_id": "row 31:after:boxplot_flag:31:4.141647600870462",
+        "allowed_responses": [
+          "verify",
+          "correct",
+          "exclude",
+          "stop"
+        ],
+        "field_type": "numeric",
+        "valid_range": null,
+        "valid_levels": null,
+        "question": "Record row 31: after = \"4.141647600870462\" (Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude). Allowed responses: verify, correct, exclude, stop."
+      }
+    ],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "running",
+    "final_report": "",
+    "session_memory": {},
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791862564.0004146,
+        "end": 1791862578.9761996,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791862578.9771447,
+        "end": 1791862578.9803827,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791862578.9815102,
+        "end": 1791862590.695299,
+        "thread": "ThreadPoolExecutor-24_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791862578.9852345,
+        "end": 1791862578.9977374,
+        "thread": "ThreadPoolExecutor-24_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791862590.6964967,
+        "end": 1791862597.766043,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      }
+    ],
+    "observed_status": "paused"
+  },
+  "warmup": null,
+  "stages": [
+    {
+      "stage": "primary",
+      "state": {
+        "run_id": "bench-6c82c783625b4794",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Compare groups; I have not decided whether before or after is the outcome.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "group": {
+              "type": "categorical",
+              "levels": [
+                "treatment",
+                "control"
+              ],
+              "meaning": "Source text labels in group"
+            },
+            "before": {
+              "type": "numeric",
+              "meaning": "Numeric source field before; units not supplied"
+            },
+            "after": {
+              "type": "numeric",
+              "meaning": "Numeric source field after; units not supplied"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations.",
+          "analysis_target": "The user has not chosen the outcome or direction. Obtain a concrete target before analysis.",
+          "comparison_order": "Requested contrast: treatment minus control."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+        "data_version": "v1",
+        "data_fingerprint": "c3b42f26e2aa9111ebf7a68c7b1e0073b2e701fb99c6a6fec5321a9a39bf4f72",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "analysis_plan": {
+          "method": "welch_t_test",
+          "outcome": "after",
+          "group": "group",
+          "group_1_label": "treatment",
+          "group_2_label": "control",
+          "x": "",
+          "y": "",
+          "target_parameter": "difference in means",
+          "null_hypothesis": "The mean of after in treatment group equals the mean of after in control group.",
+          "alternative_hypothesis": "The mean of after in treatment group is different from the mean of after in control group.",
+          "method_rationale": "The Welch t-test is appropriate for comparing the means of a numeric outcome (after) between two independent groups (treatment and control). The comparison order is specified as treatment minus control, which aligns with the Welch t-test's requirement for group_1_label and group_2_label in the order of the contrast. Since the design is observational and not randomized, we describe the association between group and after, without claiming causation.",
+          "design_notes": [
+            "The analysis is observational, so we describe associations, not causation.",
+            "The Welch t-test is used because the groups are independent and the variances may not be equal."
+          ]
+        },
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "ready",
+        "data_summary": {
+          "task": "summary",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+          "method": "welch_t_test",
+          "request_format": "v2",
+          "n_rows_in_file": 50,
+          "columns_found": [
+            "group",
+            "before",
+            "after"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('summary', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 50,
+          "columns": [
+            {
+              "name": "after",
+              "role": "outcome",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 50,
+              "n_unique_as_written": 50,
+              "quantiles": {
+                "min": -0.9510351886538364,
+                "p05": -0.003488428805322033,
+                "p25": 1.0039068062620875,
+                "p50": 1.6991588226591139,
+                "p75": 2.2300198794937103,
+                "p95": 2.813750204913053,
+                "max": 4.141647600870462
+              },
+              "mean": 1.5912110304930112,
+              "sd": 0.9871862300300069
+            },
+            {
+              "name": "group",
+              "role": "group",
+              "type": "categorical",
+              "n_blank": 0,
+              "n_parseable_numeric": 0,
+              "n_unique_as_written": 2,
+              "levels_as_written": [
+                {
+                  "label_as_written": "control",
+                  "quoted": "\"control\"",
+                  "n": 25
+                },
+                {
+                  "label_as_written": "treatment",
+                  "quoted": "\"treatment\"",
+                  "n": 25
+                }
+              ]
+            }
+          ],
+          "stated_ranges": {},
+          "stated_levels": {
+            "group": [
+              "treatment",
+              "control"
+            ]
+          },
+          "group_labels": [
+            "treatment",
+            "control"
+          ],
+          "by_group_as_written": [
+            {
+              "label_as_written": "control",
+              "quoted": "\"control\"",
+              "n": 25,
+              "mean": 0.9646100124079423,
+              "sd": 0.8310923822923664,
+              "median": 0.9831988424957112,
+              "min": -0.9510351886538364,
+              "max": 2.2225413386740303
+            },
+            {
+              "label_as_written": "treatment",
+              "quoted": "\"treatment\"",
+              "n": 25,
+              "mean": 2.2178120485780806,
+              "sd": 0.6935327750700925,
+              "median": 2.2321613230667197,
+              "min": 1.159843523037472,
+              "max": 4.141647600870462
+            }
+          ]
+        },
+        "llm_diagnostics": {
+          "variable_meanings": "The variables 'group', 'before', and 'after' are defined as follows: 'group' is a categorical variable with levels 'treatment' and 'control'; 'before' and 'after' are numeric variables representing measurements before and after an event, respectively. The units for 'before' and 'after' are not provided.",
+          "design_assessment": "The study design is observational, as confirmed by the 'randomized' field being false. The analysis plan correctly specifies that the Welch t-test is appropriate for comparing the means of a numeric outcome between two independent groups. The comparison order is specified as treatment minus control, which aligns with the Welch t-test's requirement for group_1_label and group_2_label in the order of the contrast.",
+          "goal_alignment": "The analysis plan aligns with the goal of comparing the means of 'after' between the treatment and control groups. The null hypothesis is correctly specified as the mean of 'after' in the treatment group equals the mean of 'after' in the control group. The alternative hypothesis is correctly specified as the mean of 'after' in the treatment group is different from the mean of 'after' in the control group.",
+          "distribution_notes": "The distribution of 'after' appears to be roughly symmetric, with a mean of {mean_after} and a standard deviation of {sd_after}. The minimum value is {min_after}, and the maximum value is {max_after}. The median is {median_after}, which is close to the mean, suggesting a roughly symmetric distribution. There are no extreme values, as the minimum and maximum values are not far from the mean.",
+          "issues": [
+            {
+              "topic": "variable_meaning",
+              "severity": "note",
+              "issue": "The units for 'before' and 'after' are not provided, which may affect the interpretation of the results.",
+              "evidence": "The 'meaning' field for 'before' and 'after' states that the units are not supplied.",
+              "suggested_action": "The user should provide the units for 'before' and 'after' to ensure accurate interpretation of the results."
+            },
+            {
+              "topic": "study_design",
+              "severity": "note",
+              "issue": "The study design is observational, so we describe associations, not causation.",
+              "evidence": "The 'randomized' field is false, and the 'assignment' field states that the allocation was not random.",
+              "suggested_action": "The user should be reminded that the analysis describes associations, not causation."
+            },
+            {
+              "topic": "distribution",
+              "severity": "note",
+              "issue": "The distribution of 'after' appears to be roughly symmetric, but there is no normality test to confirm this.",
+              "evidence": "The 'quantiles' field for 'after' shows that the distribution is roughly symmetric, with the median close to the mean.",
+              "suggested_action": "A normality test should be conducted to confirm the distribution of 'after' before proceeding with the Welch t-test."
+            }
+          ]
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+          "method": "welch_t_test",
+          "request_format": "v2",
+          "n_rows_in_file": 50,
+          "columns_found": [
+            "group",
+            "before",
+            "after"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 50,
+          "n_usable_rows": 50,
+          "findings": [
+            {
+              "record_id": "row 31",
+              "row_number": 31,
+              "field": "after",
+              "value_as_written": "4.141647600870462",
+              "check": "boxplot_flag",
+              "severity": "verify",
+              "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+            }
+          ],
+          "n_blocking": 0,
+          "n_verify": 1,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "after",
+              "group": "treatment",
+              "n": 25,
+              "shapiro_wilk_p": 0.16838955839372982
+            },
+            {
+              "check": "shapiro_wilk",
+              "variable": "after",
+              "group": "control",
+              "n": 25,
+              "shapiro_wilk_p": 0.5649965949945559
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+        },
+        "diagnostic_route": "needs_clarification",
+        "diagnostic_assessment": {
+          "rationale": "The route is set to 'needs_clarification' because there is an outlier in the 'after' variable for the 'treatment' group (record row 31). This value is outside the 1.5*IQR fences and requires verification before proceeding with the Welch t-test. The analysis plan uses the Welch t-test to compare the means of 'after' between the treatment and control groups, but the presence of this outlier may affect the results and needs to be addressed.",
+          "limitations": [
+            "The study design is observational, so we describe associations, not causation.",
+            "The Welch t-test assumes independence between observations, which is confirmed by the data.",
+            "The distribution of 'after' is not formally tested for normality, and the Shapiro-Wilk test results are not sufficient to confirm normality.",
+            "The outlier in 'after' for the 'treatment' group may influence the results and requires verification."
+          ],
+          "questions": [
+            {
+              "request_id": "row 31:after:boxplot_flag:31:4.141647600870462",
+              "question": "Record row 31: after = \"4.141647600870462\" (Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude). Allowed responses: verify, correct, exclude, stop."
+            }
+          ]
+        },
+        "stop_reasons": [],
+        "clarification_requests": [
+          {
+            "record_id": "row 31",
+            "row_number": 31,
+            "field": "after",
+            "value_as_written": "4.141647600870462",
+            "check": "boxplot_flag",
+            "severity": "verify",
+            "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude",
+            "request_id": "row 31:after:boxplot_flag:31:4.141647600870462",
+            "allowed_responses": [
+              "verify",
+              "correct",
+              "exclude",
+              "stop"
+            ],
+            "field_type": "numeric",
+            "valid_range": null,
+            "valid_levels": null,
+            "question": "Record row 31: after = \"4.141647600870462\" (Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude). Allowed responses: verify, correct, exclude, stop."
+          }
+        ],
+        "clarification_answers": [],
+        "clarification_rounds": 0,
+        "rejected_answers": [],
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "report_draft": {},
+        "rendered_draft": {},
+        "program_check": {},
+        "review_verdict": {},
+        "revision_count": 0,
+        "final_status": "running",
+        "final_report": "",
+        "session_memory": {},
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [],
+        "model_calls": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "method": "plan",
+            "model": "ollama:qwen3:8b",
+            "mode": "REAL",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "ollama:qwen3:8b",
+            "mode": "REAL",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "method": "merge",
+            "model": "ollama:qwen3:8b",
+            "mode": "REAL",
+            "status": "completed"
+          }
+        ],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791862564.0004146,
+            "end": 1791862578.9761996,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791862578.9771447,
+            "end": 1791862578.9803827,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791862578.9815102,
+            "end": 1791862590.695299,
+            "thread": "ThreadPoolExecutor-24_0",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "completed",
+            "start": 1791862578.9852345,
+            "end": 1791862578.9977374,
+            "thread": "ThreadPoolExecutor-24_1",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "completed",
+            "start": 1791862590.6964967,
+            "end": 1791862597.766043,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 4
+          }
+        ],
+        "observed_status": "paused"
+      }
+    },
+    {
+      "stage": "fixture_continuation_unassessed",
+      "reason": "Clarification not covered by preregistered TEST FIXTURE recipe.",
+      "request": {
+        "record_id": "row 31",
+        "row_number": 31,
+        "field": "after",
+        "value_as_written": "4.141647600870462",
+        "check": "boxplot_flag",
+        "severity": "verify",
+        "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude",
+        "request_id": "row 31:after:boxplot_flag:31:4.141647600870462",
+        "allowed_responses": [
+          "verify",
+          "correct",
+          "exclude",
+          "stop"
+        ],
+        "field_type": "numeric",
+        "valid_range": null,
+        "valid_levels": null,
+        "question": "Record row 31: after = \"4.141647600870462\" (Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude). Allowed responses: verify, correct, exclude, stop."
+      }
+    }
+  ],
+  "clarification_requested": true,
+  "model_calls": [
+    {
+      "request_number": 1,
+      "node": "plan_analysis",
+      "method": "plan",
+      "model": "ollama:qwen3:8b",
+      "mode": "REAL",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "llm_diagnostics",
+      "method": "diagnose",
+      "model": "ollama:qwen3:8b",
+      "mode": "REAL",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "merge_diagnostics",
+      "method": "merge",
+      "model": "ollama:qwen3:8b",
+      "mode": "REAL",
+      "status": "completed"
+    }
+  ],
+  "original_diagnostics": {
+    "task": "diagnostics",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9\\input.csv",
+    "method": "welch_t_test",
+    "request_format": "v2",
+    "n_rows_in_file": 50,
+    "columns_found": [
+      "group",
+      "before",
+      "after"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+    "status": "ok",
+    "n_rows_in_analysis_set": 50,
+    "n_usable_rows": 50,
+    "findings": [
+      {
+        "record_id": "row 31",
+        "row_number": 31,
+        "field": "after",
+        "value_as_written": "4.141647600870462",
+        "check": "boxplot_flag",
+        "severity": "verify",
+        "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+      }
+    ],
+    "n_blocking": 0,
+    "n_verify": 1,
+    "method_checks_run": true,
+    "method_findings": [],
+    "distribution_checks_run": true,
+    "distribution_checks": [
+      {
+        "check": "shapiro_wilk",
+        "variable": "after",
+        "group": "treatment",
+        "n": 25,
+        "shapiro_wilk_p": 0.16838955839372982
+      },
+      {
+        "check": "shapiro_wilk",
+        "variable": "after",
+        "group": "control",
+        "n": 25,
+        "shapiro_wilk_p": 0.5649965949945559
+      }
+    ],
+    "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+  },
+  "report_revisions": 0,
+  "regression_warning_codes": [],
+  "error": null,
+  "failure_class": null,
+  "suite": "frozen_source_31",
+  "runtime_audit_dir": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\e54269c9",
+  "duration_seconds": 33.95572080009151
+}

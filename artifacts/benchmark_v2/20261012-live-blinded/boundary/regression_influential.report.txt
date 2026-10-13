@@ -1,0 +1,24 @@
+REAL: two distinct models; statistics computed with Python.
+
+Method: simple linear regression (one predictor, with intercept)  (data version v2; Python: NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95))
+H0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x); α = 0.05
+
+n = 60; slope = 2.992 (95% CI 1.266 to 4.717); intercept = 4.678; t(58) = 3.471; p = 0.0010; R-squared = 0.172
+Decision at α = 0.05: reject_H0
+
+Regression diagnostics (screening flags; no automatic record deletion):
+Maximum Cook's distance = 2.00644; screening threshold = 0.0666667.
+Maximum leverage = 0.0650273; screening threshold = 0.0666667.
+Koenker studentized Breusch–Pagan test: LM = 3.14851; p = 0.0759966.
+Influential record IDs: row 60
+High-leverage record IDs: none flagged
+Diagnostic warning: Potential influential observations have Cook's distance > 4/n (0.0666667): row 60. No observations were excluded automatically.
+Distribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'residuals', 'n': 60, 'shapiro_wilk_p': 1.7180616335015986e-15}, {'check': 'spread_check', 'variable': '|residual| vs fitted value', 'method': 'spearman', 'n': 60, 'spearman_rho': 0.6233953876076689, 'p_value': 1.0371343977212104e-07}]
+
+A total of 60 records were analysed. The estimated slope is 2.992, with a 95% confidence interval ranging from 1.266 to 4.717. The t-statistic of 3.471 with 58 degrees of freedom yields a p-value of 0.0010, which is less than the significance level of 0.05. Therefore, we reject H0 (slope = 0) in favor of H1 (slope ≠ 0). The R-squared value of 0.172 suggests that approximately 0.172 percent of the variation in y is explained by the linear relationship with x. It is important to note that the slope describes an association within the observed range of the predictor and does not imply a causal effect of changing x.
+
+Limitations:
+- The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.
+- Random allocation was not established. This analysis describes an association and does not establish causation.
+- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.
+- Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed.

@@ -1,0 +1,8 @@
+A total of 59 records were analysed. The estimated slope is 1.490 (change in y per one unit of x) with a 95% confidence interval ranging from 1.358 to 1.622. The t-statistic is t(57) = 22.635, and the p-value is < 0.0001, which is less than 0.05. Therefore, we reject H0 (slope = 0) in favor of H1 (slope ≠ 0). This result describes an association and does not establish causation. The R-squared value of 0.900 indicates that approximately 0.900 of the variation in y is explained by the linear relationship with x. It is important to note that the slope describes an association within the observed range of the predictor and should not be interpreted as the effect of changing x, as random allocation was not established.
+
+Limitations:
+The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.
+Random allocation was not established. This analysis describes an association and does not establish causation.
+User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.
+Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.
+Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed.

@@ -1,0 +1,1055 @@
+{
+  "id": "regression_perfect",
+  "category": "stop",
+  "mode": "live",
+  "mode_label": "REAL: actual two-model agents; one attempt with bounded internal revisions",
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "source_question": "Regress y on x.",
+  "source_expected_behavior": "stop",
+  "source_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_perfect.csv",
+  "source_csv_sha256": "dc8fc8b87d4499ee894df10b87e77813274ce9621dc0385d2adcae0e75573bed",
+  "blinding": "Exact source bytes copied to neutral hashed runtime path before any agent/tool input; source labels retained only in evaluator evidence.",
+  "adapted_expectation": {
+    "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+    "policy_version": "ours-v1",
+    "source_expected_behavior": "stop",
+    "expected_primary_behavior": "stop",
+    "fixture_answers": [],
+    "expected_method": "simple_linear_regression",
+    "source_csv_sha256": "dc8fc8b87d4499ee894df10b87e77813274ce9621dc0385d2adcae0e75573bed",
+    "source_json_sha256": "f647512aab861494662cd74c016f5973cd90ace538ed68d554be1138df7b2815",
+    "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+  },
+  "checks": {
+    "primary_safety_behavior": true,
+    "no_runner_exception": true,
+    "no_core_errors": true,
+    "analysis_execution_valid": true,
+    "method": true,
+    "roles_and_contrast": true
+  },
+  "mechanical_pass": true,
+  "method_assessed": true,
+  "method_pass": true,
+  "safety_assessed": true,
+  "safety_pass": true,
+  "numeric": {
+    "assessed": false,
+    "passed": null,
+    "reference": null,
+    "fields": {}
+  },
+  "interpretation_accepted": false,
+  "semantic_review": "unlabelled: no independent human review",
+  "report_delivery_status": "stopped",
+  "actual_status": "stopped",
+  "primary_state": {
+    "run_id": "bench-6494b35f782546c0",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Regress y on x.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+    "data_version": "v1",
+    "data_fingerprint": "dc8fc8b87d4499ee894df10b87e77813274ce9621dc0385d2adcae0e75573bed",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "simple_linear_regression",
+      "outcome": "y",
+      "group": "x",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "slope",
+      "null_hypothesis": "The slope is zero (no linear association between x and y).",
+      "alternative_hypothesis": "The slope is not zero (there is a linear association between x and y).",
+      "method_rationale": "The research question asks to regress y on x, which is a linear relationship between two numeric variables. The simple linear regression method is appropriate for this question as it models the linear change in the numeric outcome (y) per unit of the numeric predictor (x).",
+      "design_notes": [
+        "The analysis is based on an observational study, so any conclusions will describe associations, not causation."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 10,
+      "columns_found": [
+        "x",
+        "y"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 10,
+      "columns": [
+        {
+          "name": "x",
+          "role": "x",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 10,
+          "n_unique_as_written": 10,
+          "quantiles": {
+            "min": 0.0,
+            "p05": 0.45,
+            "p25": 2.25,
+            "p50": 4.5,
+            "p75": 6.75,
+            "p95": 8.549999999999999,
+            "max": 9.0
+          },
+          "mean": 4.5,
+          "sd": 3.0276503540974917
+        },
+        {
+          "name": "y",
+          "role": "y",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 10,
+          "n_unique_as_written": 10,
+          "quantiles": {
+            "min": 0.0,
+            "p05": 0.9,
+            "p25": 4.5,
+            "p50": 9.0,
+            "p75": 13.5,
+            "p95": 17.099999999999998,
+            "max": 18.0
+          },
+          "mean": 9.0,
+          "sd": 6.0553007081949835
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {}
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "The variables x and y are both numeric. Their meanings are described as 'Numeric source field x' and 'Numeric source field y', respectively, with no units provided. This is acceptable for the analysis, but units could be added for clarity.",
+      "design_assessment": "The study is observational, and the analysis plan correctly notes that conclusions will describe associations, not causation. The design is independent, and the analysis plan aligns with the observational nature of the study.",
+      "goal_alignment": "The analysis plan uses simple linear regression to assess the linear association between x and y, which is appropriate for the research question. The method rationale correctly identifies the relationship between the numeric outcome (y) and the numeric predictor (x).",
+      "distribution_notes": "The summary statistics suggest that both x and y are skewed. For x, the mean (4.5) is less than the median (4.5), and the standard deviation (3.03) is relatively large compared to the mean. For y, the mean (9.0) is equal to the median (9.0), but the standard deviation (6.06) is also relatively large. These distributions may not be normal, which could affect the assumptions of linear regression. However, the method does not assume normality of the residuals, only that the relationship is linear and the variance is constant.",
+      "issues": [
+        {
+          "topic": "variable_meaning",
+          "severity": "note",
+          "issue": "The variable meanings for x and y are generic and lack units or context. This could lead to ambiguity in interpretation.",
+          "evidence": "The variable meanings are described as 'Numeric source field x' and 'Numeric source field y', with no additional context or units provided.",
+          "suggested_action": "Clarify the meanings of x and y by adding units or context. For example, if x represents time in hours and y represents temperature in degrees Celsius, this would improve interpretability."
+        },
+        {
+          "topic": "distribution",
+          "severity": "note",
+          "issue": "The distributions of x and y may be skewed, which could affect the assumptions of linear regression.",
+          "evidence": "For x, the mean (4.5) is equal to the median (4.5), but the standard deviation (3.03) is relatively large. For y, the mean (9.0) is equal to the median (9.0), but the standard deviation (6.06) is also relatively large. These distributions may not be normal.",
+          "suggested_action": "Consider checking for normality of residuals after fitting the regression model. If the residuals are not normally distributed, consider using a non-parametric alternative or transforming the variables."
+        },
+        {
+          "topic": "study_design",
+          "severity": "note",
+          "issue": "The study is observational, and the analysis plan correctly notes that conclusions will describe associations, not causation.",
+          "evidence": "The design notes state that the analysis is based on an observational study, and the analysis plan correctly describes the limitations of the study.",
+          "suggested_action": "No action is needed. The analysis plan correctly reflects the observational nature of the study."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 10,
+      "columns_found": [
+        "x",
+        "y"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 10,
+      "n_usable_rows": 10,
+      "findings": [],
+      "n_blocking": 0,
+      "n_verify": 0,
+      "method_checks_run": true,
+      "method_findings": [
+        {
+          "check": "zero_residual_variance",
+          "severity": "out_of_scope",
+          "detail": "Residual variance is zero or numerically degenerate; a usual slope t-test and interval are not reported"
+        }
+      ],
+      "distribution_checks_run": false,
+      "distribution_checks": [],
+      "distribution_checks_note": "Deferred: resolve blocking record-level problems and method requirements before distribution checks.",
+      "regression_diagnostics": null
+    },
+    "diagnostic_route": "stop",
+    "diagnostic_assessment": {
+      "rationale": "The route is set to 'stop' because the residual variance is zero or numerically degenerate, which means the statistical tool cannot compute the usual slope t-test and confidence interval. This is a critical issue that prevents the analysis from proceeding with the planned method.",
+      "limitations": [
+        "The residual variance being zero or numerically degenerate indicates that the model cannot estimate the slope or its uncertainty, which is essential for the analysis.",
+        "The analysis is based on an observational study, so any conclusions will describe associations, not causation.",
+        "The distributions of x and y may be skewed, which could affect the assumptions of linear regression, though the method does not assume normality of residuals."
+      ],
+      "questions": []
+    },
+    "stop_reasons": [
+      "Residual variance is zero or numerically degenerate; a usual slope t-test and interval are not reported"
+    ],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "stopped",
+    "final_report": "No validated inferential report was delivered.\nResidual variance is zero or numerically degenerate; a usual slope t-test and interval are not reported",
+    "session_memory": {
+      "last_request_status": "stopped"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791863011.315094,
+        "end": 1791863024.9468372,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791863024.947651,
+        "end": 1791863024.9499094,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791863024.950798,
+        "end": 1791863036.6759143,
+        "thread": "ThreadPoolExecutor-36_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791863024.9539683,
+        "end": 1791863024.9646926,
+        "thread": "ThreadPoolExecutor-36_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791863036.6775026,
+        "end": 1791863040.1381445,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "issue_notice",
+        "status": "completed",
+        "start": 1791863040.1400392,
+        "end": 1791863040.1400497,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791863040.1426525,
+        "end": 1791863040.1426728,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      }
+    ],
+    "observed_status": "stopped"
+  },
+  "final_state": {
+    "run_id": "bench-6494b35f782546c0",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Regress y on x.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+    "data_version": "v1",
+    "data_fingerprint": "dc8fc8b87d4499ee894df10b87e77813274ce9621dc0385d2adcae0e75573bed",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "simple_linear_regression",
+      "outcome": "y",
+      "group": "x",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "slope",
+      "null_hypothesis": "The slope is zero (no linear association between x and y).",
+      "alternative_hypothesis": "The slope is not zero (there is a linear association between x and y).",
+      "method_rationale": "The research question asks to regress y on x, which is a linear relationship between two numeric variables. The simple linear regression method is appropriate for this question as it models the linear change in the numeric outcome (y) per unit of the numeric predictor (x).",
+      "design_notes": [
+        "The analysis is based on an observational study, so any conclusions will describe associations, not causation."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 10,
+      "columns_found": [
+        "x",
+        "y"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 10,
+      "columns": [
+        {
+          "name": "x",
+          "role": "x",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 10,
+          "n_unique_as_written": 10,
+          "quantiles": {
+            "min": 0.0,
+            "p05": 0.45,
+            "p25": 2.25,
+            "p50": 4.5,
+            "p75": 6.75,
+            "p95": 8.549999999999999,
+            "max": 9.0
+          },
+          "mean": 4.5,
+          "sd": 3.0276503540974917
+        },
+        {
+          "name": "y",
+          "role": "y",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 10,
+          "n_unique_as_written": 10,
+          "quantiles": {
+            "min": 0.0,
+            "p05": 0.9,
+            "p25": 4.5,
+            "p50": 9.0,
+            "p75": 13.5,
+            "p95": 17.099999999999998,
+            "max": 18.0
+          },
+          "mean": 9.0,
+          "sd": 6.0553007081949835
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {}
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "The variables x and y are both numeric. Their meanings are described as 'Numeric source field x' and 'Numeric source field y', respectively, with no units provided. This is acceptable for the analysis, but units could be added for clarity.",
+      "design_assessment": "The study is observational, and the analysis plan correctly notes that conclusions will describe associations, not causation. The design is independent, and the analysis plan aligns with the observational nature of the study.",
+      "goal_alignment": "The analysis plan uses simple linear regression to assess the linear association between x and y, which is appropriate for the research question. The method rationale correctly identifies the relationship between the numeric outcome (y) and the numeric predictor (x).",
+      "distribution_notes": "The summary statistics suggest that both x and y are skewed. For x, the mean (4.5) is less than the median (4.5), and the standard deviation (3.03) is relatively large compared to the mean. For y, the mean (9.0) is equal to the median (9.0), but the standard deviation (6.06) is also relatively large. These distributions may not be normal, which could affect the assumptions of linear regression. However, the method does not assume normality of the residuals, only that the relationship is linear and the variance is constant.",
+      "issues": [
+        {
+          "topic": "variable_meaning",
+          "severity": "note",
+          "issue": "The variable meanings for x and y are generic and lack units or context. This could lead to ambiguity in interpretation.",
+          "evidence": "The variable meanings are described as 'Numeric source field x' and 'Numeric source field y', with no additional context or units provided.",
+          "suggested_action": "Clarify the meanings of x and y by adding units or context. For example, if x represents time in hours and y represents temperature in degrees Celsius, this would improve interpretability."
+        },
+        {
+          "topic": "distribution",
+          "severity": "note",
+          "issue": "The distributions of x and y may be skewed, which could affect the assumptions of linear regression.",
+          "evidence": "For x, the mean (4.5) is equal to the median (4.5), but the standard deviation (3.03) is relatively large. For y, the mean (9.0) is equal to the median (9.0), but the standard deviation (6.06) is also relatively large. These distributions may not be normal.",
+          "suggested_action": "Consider checking for normality of residuals after fitting the regression model. If the residuals are not normally distributed, consider using a non-parametric alternative or transforming the variables."
+        },
+        {
+          "topic": "study_design",
+          "severity": "note",
+          "issue": "The study is observational, and the analysis plan correctly notes that conclusions will describe associations, not causation.",
+          "evidence": "The design notes state that the analysis is based on an observational study, and the analysis plan correctly describes the limitations of the study.",
+          "suggested_action": "No action is needed. The analysis plan correctly reflects the observational nature of the study."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 10,
+      "columns_found": [
+        "x",
+        "y"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 10,
+      "n_usable_rows": 10,
+      "findings": [],
+      "n_blocking": 0,
+      "n_verify": 0,
+      "method_checks_run": true,
+      "method_findings": [
+        {
+          "check": "zero_residual_variance",
+          "severity": "out_of_scope",
+          "detail": "Residual variance is zero or numerically degenerate; a usual slope t-test and interval are not reported"
+        }
+      ],
+      "distribution_checks_run": false,
+      "distribution_checks": [],
+      "distribution_checks_note": "Deferred: resolve blocking record-level problems and method requirements before distribution checks.",
+      "regression_diagnostics": null
+    },
+    "diagnostic_route": "stop",
+    "diagnostic_assessment": {
+      "rationale": "The route is set to 'stop' because the residual variance is zero or numerically degenerate, which means the statistical tool cannot compute the usual slope t-test and confidence interval. This is a critical issue that prevents the analysis from proceeding with the planned method.",
+      "limitations": [
+        "The residual variance being zero or numerically degenerate indicates that the model cannot estimate the slope or its uncertainty, which is essential for the analysis.",
+        "The analysis is based on an observational study, so any conclusions will describe associations, not causation.",
+        "The distributions of x and y may be skewed, which could affect the assumptions of linear regression, though the method does not assume normality of residuals."
+      ],
+      "questions": []
+    },
+    "stop_reasons": [
+      "Residual variance is zero or numerically degenerate; a usual slope t-test and interval are not reported"
+    ],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "stopped",
+    "final_report": "No validated inferential report was delivered.\nResidual variance is zero or numerically degenerate; a usual slope t-test and interval are not reported",
+    "session_memory": {
+      "last_request_status": "stopped"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791863011.315094,
+        "end": 1791863024.9468372,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791863024.947651,
+        "end": 1791863024.9499094,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791863024.950798,
+        "end": 1791863036.6759143,
+        "thread": "ThreadPoolExecutor-36_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791863024.9539683,
+        "end": 1791863024.9646926,
+        "thread": "ThreadPoolExecutor-36_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791863036.6775026,
+        "end": 1791863040.1381445,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "issue_notice",
+        "status": "completed",
+        "start": 1791863040.1400392,
+        "end": 1791863040.1400497,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791863040.1426525,
+        "end": 1791863040.1426728,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      }
+    ],
+    "observed_status": "stopped"
+  },
+  "warmup": null,
+  "stages": [
+    {
+      "stage": "primary",
+      "state": {
+        "run_id": "bench-6494b35f782546c0",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Regress y on x.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "x": {
+              "type": "numeric",
+              "meaning": "Numeric source field x; units not supplied"
+            },
+            "y": {
+              "type": "numeric",
+              "meaning": "Numeric source field y; units not supplied"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+        "data_version": "v1",
+        "data_fingerprint": "dc8fc8b87d4499ee894df10b87e77813274ce9621dc0385d2adcae0e75573bed",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "analysis_plan": {
+          "method": "simple_linear_regression",
+          "outcome": "y",
+          "group": "x",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "x",
+          "y": "y",
+          "target_parameter": "slope",
+          "null_hypothesis": "The slope is zero (no linear association between x and y).",
+          "alternative_hypothesis": "The slope is not zero (there is a linear association between x and y).",
+          "method_rationale": "The research question asks to regress y on x, which is a linear relationship between two numeric variables. The simple linear regression method is appropriate for this question as it models the linear change in the numeric outcome (y) per unit of the numeric predictor (x).",
+          "design_notes": [
+            "The analysis is based on an observational study, so any conclusions will describe associations, not causation."
+          ]
+        },
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "ready",
+        "data_summary": {
+          "task": "summary",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+          "method": "simple_linear_regression",
+          "request_format": "v2",
+          "n_rows_in_file": 10,
+          "columns_found": [
+            "x",
+            "y"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('summary', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 10,
+          "columns": [
+            {
+              "name": "x",
+              "role": "x",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 10,
+              "n_unique_as_written": 10,
+              "quantiles": {
+                "min": 0.0,
+                "p05": 0.45,
+                "p25": 2.25,
+                "p50": 4.5,
+                "p75": 6.75,
+                "p95": 8.549999999999999,
+                "max": 9.0
+              },
+              "mean": 4.5,
+              "sd": 3.0276503540974917
+            },
+            {
+              "name": "y",
+              "role": "y",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 10,
+              "n_unique_as_written": 10,
+              "quantiles": {
+                "min": 0.0,
+                "p05": 0.9,
+                "p25": 4.5,
+                "p50": 9.0,
+                "p75": 13.5,
+                "p95": 17.099999999999998,
+                "max": 18.0
+              },
+              "mean": 9.0,
+              "sd": 6.0553007081949835
+            }
+          ],
+          "stated_ranges": {},
+          "stated_levels": {}
+        },
+        "llm_diagnostics": {
+          "variable_meanings": "The variables x and y are both numeric. Their meanings are described as 'Numeric source field x' and 'Numeric source field y', respectively, with no units provided. This is acceptable for the analysis, but units could be added for clarity.",
+          "design_assessment": "The study is observational, and the analysis plan correctly notes that conclusions will describe associations, not causation. The design is independent, and the analysis plan aligns with the observational nature of the study.",
+          "goal_alignment": "The analysis plan uses simple linear regression to assess the linear association between x and y, which is appropriate for the research question. The method rationale correctly identifies the relationship between the numeric outcome (y) and the numeric predictor (x).",
+          "distribution_notes": "The summary statistics suggest that both x and y are skewed. For x, the mean (4.5) is less than the median (4.5), and the standard deviation (3.03) is relatively large compared to the mean. For y, the mean (9.0) is equal to the median (9.0), but the standard deviation (6.06) is also relatively large. These distributions may not be normal, which could affect the assumptions of linear regression. However, the method does not assume normality of the residuals, only that the relationship is linear and the variance is constant.",
+          "issues": [
+            {
+              "topic": "variable_meaning",
+              "severity": "note",
+              "issue": "The variable meanings for x and y are generic and lack units or context. This could lead to ambiguity in interpretation.",
+              "evidence": "The variable meanings are described as 'Numeric source field x' and 'Numeric source field y', with no additional context or units provided.",
+              "suggested_action": "Clarify the meanings of x and y by adding units or context. For example, if x represents time in hours and y represents temperature in degrees Celsius, this would improve interpretability."
+            },
+            {
+              "topic": "distribution",
+              "severity": "note",
+              "issue": "The distributions of x and y may be skewed, which could affect the assumptions of linear regression.",
+              "evidence": "For x, the mean (4.5) is equal to the median (4.5), but the standard deviation (3.03) is relatively large. For y, the mean (9.0) is equal to the median (9.0), but the standard deviation (6.06) is also relatively large. These distributions may not be normal.",
+              "suggested_action": "Consider checking for normality of residuals after fitting the regression model. If the residuals are not normally distributed, consider using a non-parametric alternative or transforming the variables."
+            },
+            {
+              "topic": "study_design",
+              "severity": "note",
+              "issue": "The study is observational, and the analysis plan correctly notes that conclusions will describe associations, not causation.",
+              "evidence": "The design notes state that the analysis is based on an observational study, and the analysis plan correctly describes the limitations of the study.",
+              "suggested_action": "No action is needed. The analysis plan correctly reflects the observational nature of the study."
+            }
+          ]
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+          "method": "simple_linear_regression",
+          "request_format": "v2",
+          "n_rows_in_file": 10,
+          "columns_found": [
+            "x",
+            "y"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 10,
+          "n_usable_rows": 10,
+          "findings": [],
+          "n_blocking": 0,
+          "n_verify": 0,
+          "method_checks_run": true,
+          "method_findings": [
+            {
+              "check": "zero_residual_variance",
+              "severity": "out_of_scope",
+              "detail": "Residual variance is zero or numerically degenerate; a usual slope t-test and interval are not reported"
+            }
+          ],
+          "distribution_checks_run": false,
+          "distribution_checks": [],
+          "distribution_checks_note": "Deferred: resolve blocking record-level problems and method requirements before distribution checks.",
+          "regression_diagnostics": null
+        },
+        "diagnostic_route": "stop",
+        "diagnostic_assessment": {
+          "rationale": "The route is set to 'stop' because the residual variance is zero or numerically degenerate, which means the statistical tool cannot compute the usual slope t-test and confidence interval. This is a critical issue that prevents the analysis from proceeding with the planned method.",
+          "limitations": [
+            "The residual variance being zero or numerically degenerate indicates that the model cannot estimate the slope or its uncertainty, which is essential for the analysis.",
+            "The analysis is based on an observational study, so any conclusions will describe associations, not causation.",
+            "The distributions of x and y may be skewed, which could affect the assumptions of linear regression, though the method does not assume normality of residuals."
+          ],
+          "questions": []
+        },
+        "stop_reasons": [
+          "Residual variance is zero or numerically degenerate; a usual slope t-test and interval are not reported"
+        ],
+        "clarification_requests": [],
+        "clarification_answers": [],
+        "clarification_rounds": 0,
+        "rejected_answers": [],
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "report_draft": {},
+        "rendered_draft": {},
+        "program_check": {},
+        "review_verdict": {},
+        "revision_count": 0,
+        "final_status": "stopped",
+        "final_report": "No validated inferential report was delivered.\nResidual variance is zero or numerically degenerate; a usual slope t-test and interval are not reported",
+        "session_memory": {
+          "last_request_status": "stopped"
+        },
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [],
+        "model_calls": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "method": "plan",
+            "model": "ollama:qwen3:8b",
+            "mode": "REAL",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "ollama:qwen3:8b",
+            "mode": "REAL",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "method": "merge",
+            "model": "ollama:qwen3:8b",
+            "mode": "REAL",
+            "status": "completed"
+          }
+        ],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791863011.315094,
+            "end": 1791863024.9468372,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791863024.947651,
+            "end": 1791863024.9499094,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791863024.950798,
+            "end": 1791863036.6759143,
+            "thread": "ThreadPoolExecutor-36_0",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "completed",
+            "start": 1791863024.9539683,
+            "end": 1791863024.9646926,
+            "thread": "ThreadPoolExecutor-36_1",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "completed",
+            "start": 1791863036.6775026,
+            "end": 1791863040.1381445,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 4
+          },
+          {
+            "request_number": 1,
+            "node": "issue_notice",
+            "status": "completed",
+            "start": 1791863040.1400392,
+            "end": 1791863040.1400497,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 5
+          },
+          {
+            "request_number": 1,
+            "node": "save_session",
+            "status": "completed",
+            "start": 1791863040.1426525,
+            "end": 1791863040.1426728,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 6
+          }
+        ],
+        "observed_status": "stopped"
+      }
+    }
+  ],
+  "clarification_requested": false,
+  "model_calls": [
+    {
+      "request_number": 1,
+      "node": "plan_analysis",
+      "method": "plan",
+      "model": "ollama:qwen3:8b",
+      "mode": "REAL",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "llm_diagnostics",
+      "method": "diagnose",
+      "model": "ollama:qwen3:8b",
+      "mode": "REAL",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "merge_diagnostics",
+      "method": "merge",
+      "model": "ollama:qwen3:8b",
+      "mode": "REAL",
+      "status": "completed"
+    }
+  ],
+  "original_diagnostics": {
+    "task": "diagnostics",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d\\input.csv",
+    "method": "simple_linear_regression",
+    "request_format": "v2",
+    "n_rows_in_file": 10,
+    "columns_found": [
+      "x",
+      "y"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+    "status": "ok",
+    "n_rows_in_analysis_set": 10,
+    "n_usable_rows": 10,
+    "findings": [],
+    "n_blocking": 0,
+    "n_verify": 0,
+    "method_checks_run": true,
+    "method_findings": [
+      {
+        "check": "zero_residual_variance",
+        "severity": "out_of_scope",
+        "detail": "Residual variance is zero or numerically degenerate; a usual slope t-test and interval are not reported"
+      }
+    ],
+    "distribution_checks_run": false,
+    "distribution_checks": [],
+    "distribution_checks_note": "Deferred: resolve blocking record-level problems and method requirements before distribution checks.",
+    "regression_diagnostics": null
+  },
+  "report_revisions": 0,
+  "regression_warning_codes": [],
+  "error": null,
+  "failure_class": null,
+  "suite": "frozen_source_31",
+  "runtime_audit_dir": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\1fb0906c\\540b102d",
+  "duration_seconds": 28.915986299980432
+}

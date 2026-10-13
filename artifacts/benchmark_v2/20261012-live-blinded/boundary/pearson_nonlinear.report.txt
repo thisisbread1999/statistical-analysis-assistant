@@ -1,0 +1,6 @@
+A total of 40 records were analysed. Pearson's r = -0.000 with its 95% CI ranging from -0.312 to 0.312 and p = 1.0000. The decision at 0.05: we do not reject H0 (rho = 0). The direction of the linear association is negative, but the strength is very weak, indicating no meaningful linear relationship between x and y. Correlation does not establish causation.
+
+Limitations:
+Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.
+Random allocation was not established. This analysis describes an association and does not establish causation.
+Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.

@@ -34,5 +34,27 @@
       "size": 5225388164,
       "modified_at": "2026-10-09T06:24:48.5120551-05:00"
     }
-  ]
+  ],
+  "live_workflow": {
+    "mechanical_pass": 27,
+    "numeric_assessed": 19,
+    "safety_assessed": 31,
+    "safety_unassessed": 0,
+    "infrastructure_failures": 0,
+    "numeric_pass": 19,
+    "computed_results": 20,
+    "reports_accepted_by_code_and_model_b": 17,
+    "completed_cases": 31,
+    "mechanical_failure_cases": [
+      "regression_heteroscedastic",
+      "ambiguous_outcome",
+      "regression_direction",
+      "regression_2025"
+    ]
+  },
+  "github_ci": {
+    "commit": "c1edb12",
+    "status": "success",
+    "url": "https://github.com/thisisbread1999/statistical-analysis-assistant/actions/runs/38341652403"
+  }
 }

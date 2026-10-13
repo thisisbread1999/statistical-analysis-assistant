@@ -1,0 +1,8 @@
+A total of 60 records were analysed. The estimated slope is 0.609 (change in y per one unit of x) with a 95% confidence interval ranging from -0.196 to 1.415, t(58) = 1.514, p = 0.1355. At the 0.05 significance level, we do not reject H0 (slope = 0). R-squared = 0.038 indicates that 0.038 of the variation in y is explained by x. The slope describes an association, not the effect of changing x.
+
+Limitations:
+The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.
+Random allocation was not established. This analysis describes an association and does not establish causation.
+Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.
+Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed.
+The heteroscedasticity diagnostic flagged unequal error variance. Conventional ordinary least squares standard errors, p-values and confidence intervals may be unreliable; no robust covariance correction was applied.

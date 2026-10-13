@@ -1,0 +1,24 @@
+REAL: two distinct models; statistics computed with Python.
+
+Method: simple linear regression (one predictor, with intercept)  (data version v1; Python: NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95))
+H0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x); α = 0.05
+
+n = 4; slope = -1.009 (95% CI -11.408 to 9.390); intercept = -3.882; t(2) = -0.417; p = 0.7169; R-squared = 0.080
+Decision at α = 0.05: do_not_reject_H0
+
+Regression diagnostics (screening flags; no automatic record deletion):
+Maximum Cook's distance = 2.2416; screening threshold = 1.
+Maximum leverage = 0.7; screening threshold = 1.
+Koenker studentized Breusch–Pagan test: LM = 1.33137; p = 0.248562.
+Influential record IDs: row 1
+High-leverage record IDs: none flagged
+Diagnostic warning: Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically.
+Distribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'residuals', 'n': 4, 'shapiro_wilk_p': 0.606577641660143}, {'check': 'spread_check', 'variable': '|residual| vs fitted value', 'method': 'spearman', 'n': 4, 'spearman_rho': 0.6000000000000001, 'p_value': 0.4}]
+
+A total of 4 records were analysed. The estimated slope is -1.009 (change in y per one unit of x) with its 95% confidence interval ranging from -11.408 to 9.390, t(2) = -0.417, p = 0.7169. The decision at 0.05: we do not reject H0 (slope = 0). R-squared = 0.080 as the share of variation in y explained by x. The slope describes an association, not the effect of changing x.
+
+Limitations:
+- The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.
+- Random allocation was not established. This analysis describes an association and does not establish causation.
+- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.
+- Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed.

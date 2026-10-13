@@ -219,6 +219,9 @@ check that warning limitations reach drafting, review and delivery, and that una
 diagnostics are not represented as a pass. Both new browser examples were tested through
 the asynchronous UI adapter. See `artifacts/verification/evaluation_regression_pytest.txt`.
 
+The GitHub Linux/Python 3.13 CI run for commit `c1edb12` also completed successfully:
+[Python v2 checks](https://github.com/thisisbread1999/statistical-analysis-assistant/actions/runs/38341652403).
+
 Both canonical notebooks were rebuilt and executed in mock mode: all 14 project code
 cells and 15 standalone code cells completed. The graph still has 17 nodes. No model
 weights, dependency versions or frozen v1 artifacts were changed. Evaluated source
@@ -231,12 +234,23 @@ hashes and local model weight digests are in
 | `artifacts/benchmark_v2/20261012-supplemental-offline/` | Five separate confidence-level, re-explanation, missing-exclusion and replacement-data followups passed. This denominator is separate from the source 31. |
 | `artifacts/interpretation_checks/20261012-offline-blinded/` | Four valid templates accepted; combined program/Mock B detected eight of twelve authored mutations. Mechanics only. |
 | `artifacts/interpretation_checks/20261012-live-blinded/` | Actual `gemma3:12b` reviewer plus program check accepted four of four valid templates and detected ten of twelve authored mutations. No reviewer errors or valid-template false alarms in this run. Model A was not called. |
-| `artifacts/benchmark_v2/20261012-live-blinded/` | Actual `qwen3:8b` / `gemma3:12b` full-workflow results are recorded per case with the completed/requested count. Use that run's REPORT.md for the final aggregate. |
+| `artifacts/benchmark_v2/20261012-live-blinded/` | All 31 cases completed with actual `qwen3:8b` / `gemma3:12b`: 27/31 mechanical checks passed; 19/19 assessed numerical references matched; 17/20 computed reports were accepted by code and Model B, including explicitly identified warmup reports. No infrastructure failures. These are separate denominators, not human accuracy. |
 
 The live interpretation reviewer missed the Welch-as-correlation mutation and the
 frequentist interval probability mutation. Those drafts, verdicts and detector misses
 remain recorded. The score measures controlled detector coverage; it is not a human
 semantic accuracy score or the natural error rate of Model A's generated reports.
+
+The complete live workflow retained four mechanical failures: `regression_heteroscedastic`
+had a malformed reviewer response; `ambiguous_outcome` selected a target and paused
+instead of stopping for the unresolved target; `regression_direction` inferred a
+direction and delivered a guessed target; and `regression_2025` incorrectly routed a
+date-filter followup as a confidence-level change. No filtering was performed in that
+last case. Its successful warmup must not be counted as a successful filtered analysis.
+One computed guessed-target case is excluded from the numerical oracle's assessed
+denominator. Separately, `regression_missing` and `pearson_nonlinear` retained correct
+numbers but did not deliver a final report after the gates. All failures remain recorded;
+production model prompts were not tuned to make this observed run pass.
 
 Initial development runs are retained with `PROVENANCE.md` status notes. The first
 workflow run hit Windows path-length failures; the runner now uses short, ignored audit

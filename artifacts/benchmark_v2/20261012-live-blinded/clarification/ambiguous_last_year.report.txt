@@ -1,0 +1,15 @@
+REAL: two distinct models; statistics computed with Python.
+
+Method: Pearson correlation test (two-sided)  (data version v1; Python: scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95))
+H0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of x and y); α = 0.05
+
+n = 20; r = 0.993 (95% CI 0.982 to 0.997); t(18) = 35.455; p < 0.0001
+Decision at α = 0.05: reject_H0
+Distribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'x', 'role': 'x', 'n': 20, 'shapiro_wilk_p': 0.5513717430400781}, {'check': 'shapiro_wilk', 'variable': 'y', 'role': 'y', 'n': 20, 'shapiro_wilk_p': 0.3222096145126395}]
+
+A total of 20 records were analysed. Pearson's r = 0.993 with its 95% CI [0.982, 0.997] and p < 0.0001. The decision at 0.05 is to reject H0 (rho = 0). The direction of the linear association is positive, indicating a very strong positive relationship between x and y. However, correlation does not establish causation. It is important to note that Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship. Random allocation was not established, so this analysis describes an association and does not establish causation. Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.
+
+Limitations:
+- Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.
+- Random allocation was not established. This analysis describes an association and does not establish causation.
+- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.
