@@ -84,7 +84,7 @@ md('''
 | Step 1 | `plan_analysis` | Model A maps the question and user-supplied variable meanings to one of four methods, roles, estimand, H0 and H1. The program checks roles and scope. |
 | Step 2 | `prepare_data_summary` | Python reads the raw CSV, preserves missing entries and labels, and produces the shared descriptive summary. |
 | Step 3 | `llm_diagnostics` | Model A reviews the summary, variable meanings, study design and goal alignment, with evidence for each concern. |
-| Step 4 | `stat_diagnostics` | Python independently checks missing/nonfinite values, stated ranges and labels, duplicate IDs, sample size, degenerate variables, boxplot flags and method-specific conditions. |
+| Step 4 | `stat_diagnostics` | Python independently checks missing/nonfinite values, stated ranges and labels, duplicate IDs, sample size, degenerate variables, boxplot flags and method-specific conditions. Accepted OLS fits also receive Cook's distance, leverage and Koenker Breusch–Pagan diagnostics; flags require interpretation limitations, not automatic deletion. |
 | Step 5 | `merge_diagnostics` | Fixed rules combine both branches and select proceed, clarification or stop; Model A explains that decision and phrases questions. |
 | Step 6 | `request_clarification` | LangGraph `interrupt()` pauses and presents each flagged record and allowed actions to the user. |
 | Step 7 | `apply_corrections` | Python validates explicit permitted actions and replacement values; source/reason notes are optional. It writes a new data version for approved changes and logs actions, affected cells/records, old/new values and any supplied notes. The original CSV stays unchanged; omitted notes remain empty. |
@@ -254,6 +254,9 @@ md('''
 The final cell writes the actual mode, per-case statuses, model call records, checks and results.
 `pytest` separately covers numerical agreement with SciPy and workflow edge cases, including
 borderline/degenerate data, sparse tables, error routing, limits and memory reuse.
+The repository's `benchmark_suite.py` adapts frozen teammate inputs to our actual workflow;
+`interpretation_benchmark.py` separately challenges the program check and Model B. Offline
+and live evidence are stored separately; gold answers never enter live model context.
 Those tests are **not** a human evaluation of LLM accuracy. A future blinded rubric evaluation
 should score interpretation fidelity, uncertainty, causality, missingness and inappropriate
 method switching on predefined clean, ambiguous and failing cases. Human raters judge the

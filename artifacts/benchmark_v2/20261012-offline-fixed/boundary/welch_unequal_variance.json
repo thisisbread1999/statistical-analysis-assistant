@@ -1,0 +1,2690 @@
+{
+  "id": "welch_unequal_variance",
+  "category": "boundary",
+  "mode": "offline",
+  "mode_label": "MOCK: prespecified fixture plans and rule-based reports; mechanics only, NOT LLM accuracy",
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "source_question": "Compare mean outcome between groups.",
+  "source_expected_behavior": "result",
+  "adapted_expectation": {
+    "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+    "policy_version": "ours-v1",
+    "source_expected_behavior": "result",
+    "expected_primary_behavior": "pause",
+    "fixture_answers": [
+      {
+        "record_id": "row 31",
+        "field": "outcome",
+        "check_prefix": "boxplot_flag",
+        "action": "verify",
+        "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+        "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+      }
+    ],
+    "expected_method": "welch_t_test",
+    "source_csv_sha256": "b50bd505a2f2d96c78f5843d7102ee0676cd3ea2a36a519cbde2f9187e06d5b5",
+    "source_json_sha256": "fac1d93ae216bc10330c43ae6b14ec577eb5730195021d688d2c25766e8532a6",
+    "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+  },
+  "checks": {
+    "primary_safety_behavior": true,
+    "no_runner_exception": true,
+    "method": true,
+    "roles_and_contrast": true,
+    "independent_numbers": true
+  },
+  "mechanical_pass": true,
+  "method_assessed": true,
+  "method_pass": true,
+  "safety_pass": true,
+  "numeric": {
+    "assessed": true,
+    "passed": true,
+    "reference": {
+      "n_included": 50,
+      "mean_difference": 3.6888261333262986,
+      "t_statistic": 8.232343144304977,
+      "p_value": 2.3883567404772e-09,
+      "df": 31.468699373521545,
+      "ci_lower": 2.775493038835574,
+      "ci_upper": 4.602159227817023,
+      "group_1_n": 25,
+      "group_2_n": 25
+    },
+    "fields": {
+      "n_included": true,
+      "mean_difference": true,
+      "t_statistic": true,
+      "p_value": true,
+      "df": true,
+      "ci_lower": true,
+      "ci_upper": true,
+      "group_1_n": true,
+      "group_2_n": true
+    },
+    "actual_data_version": "v2",
+    "actual_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+    "approved_excluded_ids": [],
+    "original_n": 50
+  },
+  "interpretation_accepted": true,
+  "semantic_review": "unlabelled: no independent human review",
+  "report_delivery_status": "delivered",
+  "actual_status": "delivered",
+  "primary_state": {
+    "run_id": "bench-61a432dfcc4f4f9e",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Compare mean outcome between groups.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "group": {
+          "type": "categorical",
+          "levels": [
+            "treatment",
+            "control"
+          ],
+          "meaning": "Source text labels in group"
+        },
+        "outcome": {
+          "type": "numeric",
+          "meaning": "Numeric source field outcome; units not supplied"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations.",
+      "comparison_order": "Requested contrast: treatment minus control."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+    "data_version": "v1",
+    "data_fingerprint": "b50bd505a2f2d96c78f5843d7102ee0676cd3ea2a36a519cbde2f9187e06d5b5",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "welch_t_test",
+      "outcome": "outcome",
+      "group": "group",
+      "group_1_label": "treatment",
+      "group_2_label": "control",
+      "x": "",
+      "y": "",
+      "target_parameter": "Mean outcome: treatment minus control",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 50,
+      "columns_found": [
+        "group",
+        "outcome"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 50,
+      "columns": [
+        {
+          "name": "outcome",
+          "role": "outcome",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 50,
+          "n_unique_as_written": 50,
+          "quantiles": {
+            "min": -1.9510351886538364,
+            "p05": -1.003488428805322,
+            "p25": 0.003906806262087413,
+            "p50": 0.9099813456270212,
+            "p75": 3.690059638481131,
+            "p95": 5.441250614739159,
+            "max": 9.424942802611383
+          },
+          "mean": 1.8090230790710917,
+          "sd": 2.4351317801763672
+        },
+        {
+          "name": "group",
+          "role": "group",
+          "type": "categorical",
+          "n_blank": 0,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 2,
+          "levels_as_written": [
+            {
+              "label_as_written": "control",
+              "quoted": "\"control\"",
+              "n": 25
+            },
+            {
+              "label_as_written": "treatment",
+              "quoted": "\"treatment\"",
+              "n": 25
+            }
+          ]
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {
+        "group": [
+          "treatment",
+          "control"
+        ]
+      },
+      "group_labels": [
+        "treatment",
+        "control"
+      ],
+      "by_group_as_written": [
+        {
+          "label_as_written": "control",
+          "quoted": "\"control\"",
+          "n": 25,
+          "mean": -0.035389987592057665,
+          "sd": 0.8310923822923664,
+          "median": -0.016801157504288795,
+          "min": -1.9510351886538364,
+          "max": 1.2225413386740303
+        },
+        {
+          "label_as_written": "treatment",
+          "quoted": "\"treatment\"",
+          "n": 25,
+          "mean": 3.653436145734241,
+          "sd": 2.080598325210277,
+          "median": 3.696483969200159,
+          "min": 0.47953056911241587,
+          "max": 9.424942802611383
+        }
+      ]
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned welch_t_test matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 50,
+      "columns_found": [
+        "group",
+        "outcome"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 50,
+      "n_usable_rows": 50,
+      "findings": [
+        {
+          "record_id": "row 31",
+          "row_number": 31,
+          "field": "outcome",
+          "value_as_written": "9.424942802611383",
+          "check": "boxplot_flag",
+          "severity": "verify",
+          "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+        }
+      ],
+      "n_blocking": 0,
+      "n_verify": 1,
+      "method_checks_run": true,
+      "method_findings": [],
+      "distribution_checks_run": true,
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "outcome",
+          "group": "treatment",
+          "n": 25,
+          "shapiro_wilk_p": 0.1683895583937307
+        },
+        {
+          "check": "shapiro_wilk",
+          "variable": "outcome",
+          "group": "control",
+          "n": 25,
+          "shapiro_wilk_p": 0.5649965949945559
+        }
+      ],
+      "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+    },
+    "diagnostic_route": "needs_clarification",
+    "diagnostic_assessment": {
+      "rationale": "1 record(s) need the user's verification before testing.",
+      "limitations": [],
+      "questions": [
+        {
+          "request_id": "row 31:outcome:boxplot_flag:31:9.424942802611383",
+          "question": "Record row 31: outcome = \"9.424942802611383\" (Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude). Allowed responses: verify, correct, exclude, stop."
+        }
+      ]
+    },
+    "stop_reasons": [],
+    "clarification_requests": [
+      {
+        "record_id": "row 31",
+        "row_number": 31,
+        "field": "outcome",
+        "value_as_written": "9.424942802611383",
+        "check": "boxplot_flag",
+        "severity": "verify",
+        "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude",
+        "request_id": "row 31:outcome:boxplot_flag:31:9.424942802611383",
+        "allowed_responses": [
+          "verify",
+          "correct",
+          "exclude",
+          "stop"
+        ],
+        "field_type": "numeric",
+        "valid_range": null,
+        "valid_levels": null,
+        "question": "Record row 31: outcome = \"9.424942802611383\" (Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude). Allowed responses: verify, correct, exclude, stop."
+      }
+    ],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "running",
+    "final_report": "",
+    "session_memory": {},
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860685.6806629,
+        "end": 1791860685.6822705,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860685.683442,
+        "end": 1791860685.6891997,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860685.691274,
+        "end": 1791860685.6914113,
+        "thread": "ThreadPoolExecutor-6_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791860685.6924589,
+        "end": 1791860685.7002754,
+        "thread": "ThreadPoolExecutor-6_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791860685.701278,
+        "end": 1791860685.7017317,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      }
+    ],
+    "observed_status": "paused"
+  },
+  "final_state": {
+    "run_id": "bench-61a432dfcc4f4f9e",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Compare mean outcome between groups.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "group": {
+          "type": "categorical",
+          "levels": [
+            "treatment",
+            "control"
+          ],
+          "meaning": "Source text labels in group"
+        },
+        "outcome": {
+          "type": "numeric",
+          "meaning": "Numeric source field outcome; units not supplied"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations.",
+      "comparison_order": "Requested contrast: treatment minus control."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+    "data_version": "v2",
+    "data_fingerprint": "b50bd505a2f2d96c78f5843d7102ee0676cd3ea2a36a519cbde2f9187e06d5b5",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "welch_t_test",
+      "outcome": "outcome",
+      "group": "group",
+      "group_1_label": "treatment",
+      "group_2_label": "control",
+      "x": "",
+      "y": "",
+      "target_parameter": "Mean outcome: treatment minus control",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v2",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 50,
+      "columns_found": [
+        "group",
+        "outcome"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 50,
+      "columns": [
+        {
+          "name": "outcome",
+          "role": "outcome",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 50,
+          "n_unique_as_written": 50,
+          "quantiles": {
+            "min": -1.9510351886538364,
+            "p05": -1.003488428805322,
+            "p25": 0.003906806262087413,
+            "p50": 0.9099813456270212,
+            "p75": 3.690059638481131,
+            "p95": 5.441250614739159,
+            "max": 9.424942802611383
+          },
+          "mean": 1.8090230790710917,
+          "sd": 2.4351317801763672
+        },
+        {
+          "name": "group",
+          "role": "group",
+          "type": "categorical",
+          "n_blank": 0,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 2,
+          "levels_as_written": [
+            {
+              "label_as_written": "control",
+              "quoted": "\"control\"",
+              "n": 25
+            },
+            {
+              "label_as_written": "treatment",
+              "quoted": "\"treatment\"",
+              "n": 25
+            }
+          ]
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {
+        "group": [
+          "treatment",
+          "control"
+        ]
+      },
+      "group_labels": [
+        "treatment",
+        "control"
+      ],
+      "by_group_as_written": [
+        {
+          "label_as_written": "control",
+          "quoted": "\"control\"",
+          "n": 25,
+          "mean": -0.035389987592057665,
+          "sd": 0.8310923822923664,
+          "median": -0.016801157504288795,
+          "min": -1.9510351886538364,
+          "max": 1.2225413386740303
+        },
+        {
+          "label_as_written": "treatment",
+          "quoted": "\"treatment\"",
+          "n": 25,
+          "mean": 3.653436145734241,
+          "sd": 2.080598325210277,
+          "median": 3.696483969200159,
+          "min": 0.47953056911241587,
+          "max": 9.424942802611383
+        }
+      ]
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned welch_t_test matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v2",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 50,
+      "columns_found": [
+        "group",
+        "outcome"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 50,
+      "n_usable_rows": 50,
+      "findings": [
+        {
+          "record_id": "row 31",
+          "row_number": 31,
+          "field": "outcome",
+          "value_as_written": "9.424942802611383",
+          "check": "boxplot_flag",
+          "severity": "verify",
+          "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+        }
+      ],
+      "n_blocking": 0,
+      "n_verify": 1,
+      "method_checks_run": true,
+      "method_findings": [],
+      "distribution_checks_run": true,
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "outcome",
+          "group": "treatment",
+          "n": 25,
+          "shapiro_wilk_p": 0.1683895583937307
+        },
+        {
+          "check": "shapiro_wilk",
+          "variable": "outcome",
+          "group": "control",
+          "n": 25,
+          "shapiro_wilk_p": 0.5649965949945559
+        }
+      ],
+      "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+    },
+    "diagnostic_route": "proceed",
+    "diagnostic_assessment": {
+      "rationale": "No unresolved record-level problems remain; the planned test can run.",
+      "limitations": [],
+      "questions": []
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [
+      {
+        "request_id": "row 31:outcome:boxplot_flag:31:9.424942802611383",
+        "action": "verify",
+        "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+      }
+    ],
+    "clarification_rounds": 1,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [
+      "row 31:outcome:boxplot_flag:31:9.424942802611383"
+    ],
+    "correction_log": [
+      {
+        "request_id": "row 31:outcome:boxplot_flag:31:9.424942802611383",
+        "action": "verify",
+        "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification.",
+        "record_id": "row 31",
+        "field": "outcome",
+        "check": "boxplot_flag",
+        "old_value": "9.424942802611383",
+        "new_value": null,
+        "from_version": "v1",
+        "to_version": "v2",
+        "request_number": 1,
+        "source": "explicit user answer",
+        "rows_affected": 1
+      }
+    ],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v2",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 50,
+      "columns_found": [
+        "group",
+        "outcome"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 50,
+      "tool_warnings": [],
+      "method_label": "Welch independent-samples t-test",
+      "var_equal": false,
+      "group_1": {
+        "label": "treatment",
+        "n": 25,
+        "mean": 3.653436145734241,
+        "sd": 2.080598325210277
+      },
+      "group_2": {
+        "label": "control",
+        "n": 25,
+        "mean": -0.035389987592057665,
+        "sd": 0.8310923822923664
+      },
+      "mean_difference": 3.6888261333262986,
+      "ci_lower": 2.775493038835574,
+      "ci_upper": 4.602159227817023,
+      "t_statistic": 8.232343144304977,
+      "df": 31.468699373521545,
+      "p_value": 2.3883567404772e-09,
+      "decision": "reject_H0"
+    },
+    "stats_block": {
+      "method": "welch_t_test",
+      "method_label": "two-sided Welch independent-samples t-test",
+      "data_version": "v2",
+      "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+      "values": {
+        "p_value": "< 0.0001",
+        "alpha": "0.05",
+        "null_value": "0",
+        "confidence_level": "95%",
+        "decision_claim": "reject",
+        "direction_claim": "positive",
+        "group_1": "treatment",
+        "group_2": "control",
+        "n_group_1": "25",
+        "n_group_2": "25",
+        "mean_group_1": "3.65",
+        "mean_group_2": "-0.04",
+        "sd_group_1": "2.08",
+        "sd_group_2": "0.83",
+        "mean_difference": "3.69",
+        "ci_lower": "2.78",
+        "ci_upper": "4.60",
+        "t_statistic": "8.232",
+        "df": "31.47",
+        "n_included": "50"
+      },
+      "hypotheses": "H0: Δ = 0 versus H1: Δ ≠ 0, where Δ = μ(group = treatment) − μ(group = control) for the mean of outcome",
+      "required_placeholders": [
+        "t_statistic",
+        "df",
+        "p_value",
+        "mean_difference",
+        "ci_lower",
+        "ci_upper"
+      ],
+      "required_limitations": {
+        "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+        "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      },
+      "direction": "positive",
+      "decision": "reject_H0",
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "outcome",
+          "group": "treatment",
+          "n": 25,
+          "shapiro_wilk_p": 0.1683895583937307
+        },
+        {
+          "check": "shapiro_wilk",
+          "variable": "outcome",
+          "group": "control",
+          "n": 25,
+          "shapiro_wilk_p": 0.5649965949945559
+        }
+      ],
+      "regression_diagnostics": null,
+      "observed": null,
+      "yates": false,
+      "tool_warnings": [],
+      "t_statistic_note": ""
+    },
+    "report_draft": {
+      "interpretation": "The analysis included {n_group_1} records in group {group_1} and {n_group_2} in group {group_2}. Welch's test gave t({df}) = {t_statistic}, p = {p_value}. At alpha = {alpha}, we reject H0. The estimated mean difference ({group_1} minus {group_2}) was {mean_difference} ({confidence_level} CI {ci_lower} to {ci_upper}).",
+      "limitations": [
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        }
+      ],
+      "direction_claim": "positive",
+      "decision_claim": "reject_H0",
+      "version": "draft1"
+    },
+    "rendered_draft": {
+      "interpretation": "The analysis included 25 records in group treatment and 25 in group control. Welch's test gave t(31.47) = 8.232, p < 0.0001. At alpha = 0.05, we reject H0. The estimated mean difference (treatment minus control) was 3.69 (95% CI 2.78 to 4.60).",
+      "limitations": [
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        }
+      ],
+      "direction_claim": "positive",
+      "decision_claim": "reject_H0",
+      "version": "draft1"
+    },
+    "program_check": {
+      "report_version": "draft1",
+      "passed": true,
+      "problems": []
+    },
+    "review_verdict": {
+      "passed": true,
+      "issues": [],
+      "summary": "Rule-based mock review: no issues found."
+    },
+    "revision_count": 0,
+    "final_status": "delivered",
+    "final_report": "MOCK: rule-based agent stand-ins; Python calculations are real.\n\nMethod: two-sided Welch independent-samples t-test  (data version v2; Python: scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95))\nH0: Δ = 0 versus H1: Δ ≠ 0, where Δ = μ(group = treatment) − μ(group = control) for the mean of outcome; α = 0.05\n\n| Group | n | Mean | SD |\n|---|---|---|---|\n| treatment | 25 | 3.65 | 2.08 |\n| control | 25 | -0.04 | 0.83 |\n\nMean difference = 3.69 (95% CI 2.78 to 4.60); t(31.47) = 8.232; p < 0.0001\nDecision at α = 0.05: reject_H0\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'outcome', 'group': 'treatment', 'n': 25, 'shapiro_wilk_p': 0.1683895583937307}, {'check': 'shapiro_wilk', 'variable': 'outcome', 'group': 'control', 'n': 25, 'shapiro_wilk_p': 0.5649965949945559}]\n\nThe analysis included 25 records in group treatment and 25 in group control. Welch's test gave t(31.47) = 8.232, p < 0.0001. At alpha = 0.05, we reject H0. The estimated mean difference (treatment minus control) was 3.69 (95% CI 2.78 to 4.60).\n\nLimitations:\n- Random allocation was not established. This analysis describes an association and does not establish causation.\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+    "session_memory": {
+      "last_success": {
+        "research_question": "Compare mean outcome between groups.",
+        "design_info": {
+          "variables": {
+            "group": {
+              "type": "categorical",
+              "levels": [
+                "treatment",
+                "control"
+              ],
+              "meaning": "Source text labels in group"
+            },
+            "outcome": {
+              "type": "numeric",
+              "meaning": "Numeric source field outcome; units not supplied"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations.",
+          "comparison_order": "Requested contrast: treatment minus control."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+        "data_version": "v2",
+        "data_fingerprint": "b50bd505a2f2d96c78f5843d7102ee0676cd3ea2a36a519cbde2f9187e06d5b5",
+        "analysis_plan": {
+          "method": "welch_t_test",
+          "outcome": "outcome",
+          "group": "group",
+          "group_1_label": "treatment",
+          "group_2_label": "control",
+          "x": "",
+          "y": "",
+          "target_parameter": "Mean outcome: treatment minus control",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "excluded_ids": [],
+        "verified_ids": [
+          "row 31:outcome:boxplot_flag:31:9.424942802611383"
+        ],
+        "correction_log": [
+          {
+            "request_id": "row 31:outcome:boxplot_flag:31:9.424942802611383",
+            "action": "verify",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification.",
+            "record_id": "row 31",
+            "field": "outcome",
+            "check": "boxplot_flag",
+            "old_value": "9.424942802611383",
+            "new_value": null,
+            "from_version": "v1",
+            "to_version": "v2",
+            "request_number": 1,
+            "source": "explicit user answer",
+            "rows_affected": 1
+          }
+        ],
+        "conf_level": 0.95,
+        "stat_result": {
+          "task": "run_test",
+          "data_version": "v2",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+          "method": "welch_t_test",
+          "request_format": "v2",
+          "n_rows_in_file": 50,
+          "columns_found": [
+            "group",
+            "outcome"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+          "status": "ok",
+          "alternative": "two-sided",
+          "conf_level": 0.95,
+          "alpha": 0.05,
+          "n_included": 50,
+          "tool_warnings": [],
+          "method_label": "Welch independent-samples t-test",
+          "var_equal": false,
+          "group_1": {
+            "label": "treatment",
+            "n": 25,
+            "mean": 3.653436145734241,
+            "sd": 2.080598325210277
+          },
+          "group_2": {
+            "label": "control",
+            "n": 25,
+            "mean": -0.035389987592057665,
+            "sd": 0.8310923822923664
+          },
+          "mean_difference": 3.6888261333262986,
+          "ci_lower": 2.775493038835574,
+          "ci_upper": 4.602159227817023,
+          "t_statistic": 8.232343144304977,
+          "df": 31.468699373521545,
+          "p_value": 2.3883567404772e-09,
+          "decision": "reject_H0"
+        },
+        "stats_block": {
+          "method": "welch_t_test",
+          "method_label": "two-sided Welch independent-samples t-test",
+          "data_version": "v2",
+          "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+          "values": {
+            "p_value": "< 0.0001",
+            "alpha": "0.05",
+            "null_value": "0",
+            "confidence_level": "95%",
+            "decision_claim": "reject",
+            "direction_claim": "positive",
+            "group_1": "treatment",
+            "group_2": "control",
+            "n_group_1": "25",
+            "n_group_2": "25",
+            "mean_group_1": "3.65",
+            "mean_group_2": "-0.04",
+            "sd_group_1": "2.08",
+            "sd_group_2": "0.83",
+            "mean_difference": "3.69",
+            "ci_lower": "2.78",
+            "ci_upper": "4.60",
+            "t_statistic": "8.232",
+            "df": "31.47",
+            "n_included": "50"
+          },
+          "hypotheses": "H0: Δ = 0 versus H1: Δ ≠ 0, where Δ = μ(group = treatment) − μ(group = control) for the mean of outcome",
+          "required_placeholders": [
+            "t_statistic",
+            "df",
+            "p_value",
+            "mean_difference",
+            "ci_lower",
+            "ci_upper"
+          ],
+          "required_limitations": {
+            "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+            "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+          },
+          "direction": "positive",
+          "decision": "reject_H0",
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "outcome",
+              "group": "treatment",
+              "n": 25,
+              "shapiro_wilk_p": 0.1683895583937307
+            },
+            {
+              "check": "shapiro_wilk",
+              "variable": "outcome",
+              "group": "control",
+              "n": 25,
+              "shapiro_wilk_p": 0.5649965949945559
+            }
+          ],
+          "regression_diagnostics": null,
+          "observed": null,
+          "yates": false,
+          "tool_warnings": [],
+          "t_statistic_note": ""
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v2",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+          "method": "welch_t_test",
+          "request_format": "v2",
+          "n_rows_in_file": 50,
+          "columns_found": [
+            "group",
+            "outcome"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 50,
+          "n_usable_rows": 50,
+          "findings": [
+            {
+              "record_id": "row 31",
+              "row_number": 31,
+              "field": "outcome",
+              "value_as_written": "9.424942802611383",
+              "check": "boxplot_flag",
+              "severity": "verify",
+              "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+            }
+          ],
+          "n_blocking": 0,
+          "n_verify": 1,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "outcome",
+              "group": "treatment",
+              "n": 25,
+              "shapiro_wilk_p": 0.1683895583937307
+            },
+            {
+              "check": "shapiro_wilk",
+              "variable": "outcome",
+              "group": "control",
+              "n": 25,
+              "shapiro_wilk_p": 0.5649965949945559
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+        },
+        "request_number": 1
+      },
+      "last_request_status": "delivered"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "method": "draft",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "method": "review",
+        "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860685.6806629,
+        "end": 1791860685.6822705,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860685.683442,
+        "end": 1791860685.6891997,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860685.691274,
+        "end": 1791860685.6914113,
+        "thread": "ThreadPoolExecutor-6_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791860685.6924589,
+        "end": 1791860685.7002754,
+        "thread": "ThreadPoolExecutor-6_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791860685.701278,
+        "end": 1791860685.7017317,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "request_clarification",
+        "status": "completed",
+        "start": 1791860685.7292042,
+        "end": 1791860685.7292356,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "apply_corrections",
+        "status": "completed",
+        "start": 1791860685.7302802,
+        "end": 1791860685.732428,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860685.7332718,
+        "end": 1791860685.7386656,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 7
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860685.739666,
+        "end": 1791860685.7397568,
+        "thread": "ThreadPoolExecutor-7_0",
+        "data_version": "v2",
+        "step": 8
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791860685.7405112,
+        "end": 1791860685.7463307,
+        "thread": "ThreadPoolExecutor-7_1",
+        "data_version": "v2",
+        "step": 8
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791860685.7482443,
+        "end": 1791860685.7487202,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 9
+      },
+      {
+        "request_number": 1,
+        "node": "run_statistical_test",
+        "status": "completed",
+        "start": 1791860685.7498002,
+        "end": 1791860685.7559347,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 10
+      },
+      {
+        "request_number": 1,
+        "node": "build_stats_block",
+        "status": "completed",
+        "start": 1791860685.7567112,
+        "end": 1791860685.7567542,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 11
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "status": "completed",
+        "start": 1791860685.7581348,
+        "end": 1791860685.7582216,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 12
+      },
+      {
+        "request_number": 1,
+        "node": "check_report",
+        "status": "completed",
+        "start": 1791860685.7588887,
+        "end": 1791860685.7591238,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 13
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "status": "completed",
+        "start": 1791860685.7597063,
+        "end": 1791860685.7597733,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 14
+      },
+      {
+        "request_number": 1,
+        "node": "deliver_report",
+        "status": "completed",
+        "start": 1791860685.761087,
+        "end": 1791860685.7611237,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 15
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860685.761681,
+        "end": 1791860685.7618697,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 16
+      }
+    ],
+    "observed_status": "delivered"
+  },
+  "warmup": null,
+  "stages": [
+    {
+      "stage": "primary",
+      "state": {
+        "run_id": "bench-61a432dfcc4f4f9e",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Compare mean outcome between groups.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "group": {
+              "type": "categorical",
+              "levels": [
+                "treatment",
+                "control"
+              ],
+              "meaning": "Source text labels in group"
+            },
+            "outcome": {
+              "type": "numeric",
+              "meaning": "Numeric source field outcome; units not supplied"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations.",
+          "comparison_order": "Requested contrast: treatment minus control."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+        "data_version": "v1",
+        "data_fingerprint": "b50bd505a2f2d96c78f5843d7102ee0676cd3ea2a36a519cbde2f9187e06d5b5",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "analysis_plan": {
+          "method": "welch_t_test",
+          "outcome": "outcome",
+          "group": "group",
+          "group_1_label": "treatment",
+          "group_2_label": "control",
+          "x": "",
+          "y": "",
+          "target_parameter": "Mean outcome: treatment minus control",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "ready",
+        "data_summary": {
+          "task": "summary",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+          "method": "welch_t_test",
+          "request_format": "v2",
+          "n_rows_in_file": 50,
+          "columns_found": [
+            "group",
+            "outcome"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('summary', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 50,
+          "columns": [
+            {
+              "name": "outcome",
+              "role": "outcome",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 50,
+              "n_unique_as_written": 50,
+              "quantiles": {
+                "min": -1.9510351886538364,
+                "p05": -1.003488428805322,
+                "p25": 0.003906806262087413,
+                "p50": 0.9099813456270212,
+                "p75": 3.690059638481131,
+                "p95": 5.441250614739159,
+                "max": 9.424942802611383
+              },
+              "mean": 1.8090230790710917,
+              "sd": 2.4351317801763672
+            },
+            {
+              "name": "group",
+              "role": "group",
+              "type": "categorical",
+              "n_blank": 0,
+              "n_parseable_numeric": 0,
+              "n_unique_as_written": 2,
+              "levels_as_written": [
+                {
+                  "label_as_written": "control",
+                  "quoted": "\"control\"",
+                  "n": 25
+                },
+                {
+                  "label_as_written": "treatment",
+                  "quoted": "\"treatment\"",
+                  "n": 25
+                }
+              ]
+            }
+          ],
+          "stated_ranges": {},
+          "stated_levels": {
+            "group": [
+              "treatment",
+              "control"
+            ]
+          },
+          "group_labels": [
+            "treatment",
+            "control"
+          ],
+          "by_group_as_written": [
+            {
+              "label_as_written": "control",
+              "quoted": "\"control\"",
+              "n": 25,
+              "mean": -0.035389987592057665,
+              "sd": 0.8310923822923664,
+              "median": -0.016801157504288795,
+              "min": -1.9510351886538364,
+              "max": 1.2225413386740303
+            },
+            {
+              "label_as_written": "treatment",
+              "quoted": "\"treatment\"",
+              "n": 25,
+              "mean": 3.653436145734241,
+              "sd": 2.080598325210277,
+              "median": 3.696483969200159,
+              "min": 0.47953056911241587,
+              "max": 9.424942802611383
+            }
+          ]
+        },
+        "llm_diagnostics": {
+          "variable_meanings": "As described by the user.",
+          "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+          "goal_alignment": "The planned welch_t_test matches the question.",
+          "distribution_notes": "See the statistical summary.",
+          "issues": [
+            {
+              "topic": "study_design",
+              "severity": "limitation",
+              "issue": "Groups or exposures are self-selected, not randomized.",
+              "evidence": "Observational synthetic fixture; allocation was not random.",
+              "suggested_action": "Report an association only."
+            }
+          ]
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+          "method": "welch_t_test",
+          "request_format": "v2",
+          "n_rows_in_file": 50,
+          "columns_found": [
+            "group",
+            "outcome"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 50,
+          "n_usable_rows": 50,
+          "findings": [
+            {
+              "record_id": "row 31",
+              "row_number": 31,
+              "field": "outcome",
+              "value_as_written": "9.424942802611383",
+              "check": "boxplot_flag",
+              "severity": "verify",
+              "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+            }
+          ],
+          "n_blocking": 0,
+          "n_verify": 1,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "outcome",
+              "group": "treatment",
+              "n": 25,
+              "shapiro_wilk_p": 0.1683895583937307
+            },
+            {
+              "check": "shapiro_wilk",
+              "variable": "outcome",
+              "group": "control",
+              "n": 25,
+              "shapiro_wilk_p": 0.5649965949945559
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+        },
+        "diagnostic_route": "needs_clarification",
+        "diagnostic_assessment": {
+          "rationale": "1 record(s) need the user's verification before testing.",
+          "limitations": [],
+          "questions": [
+            {
+              "request_id": "row 31:outcome:boxplot_flag:31:9.424942802611383",
+              "question": "Record row 31: outcome = \"9.424942802611383\" (Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude). Allowed responses: verify, correct, exclude, stop."
+            }
+          ]
+        },
+        "stop_reasons": [],
+        "clarification_requests": [
+          {
+            "record_id": "row 31",
+            "row_number": 31,
+            "field": "outcome",
+            "value_as_written": "9.424942802611383",
+            "check": "boxplot_flag",
+            "severity": "verify",
+            "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude",
+            "request_id": "row 31:outcome:boxplot_flag:31:9.424942802611383",
+            "allowed_responses": [
+              "verify",
+              "correct",
+              "exclude",
+              "stop"
+            ],
+            "field_type": "numeric",
+            "valid_range": null,
+            "valid_levels": null,
+            "question": "Record row 31: outcome = \"9.424942802611383\" (Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude). Allowed responses: verify, correct, exclude, stop."
+          }
+        ],
+        "clarification_answers": [],
+        "clarification_rounds": 0,
+        "rejected_answers": [],
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "report_draft": {},
+        "rendered_draft": {},
+        "program_check": {},
+        "review_verdict": {},
+        "revision_count": 0,
+        "final_status": "running",
+        "final_report": "",
+        "session_memory": {},
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [],
+        "model_calls": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "method": "plan",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "method": "merge",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          }
+        ],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791860685.6806629,
+            "end": 1791860685.6822705,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791860685.683442,
+            "end": 1791860685.6891997,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791860685.691274,
+            "end": 1791860685.6914113,
+            "thread": "ThreadPoolExecutor-6_0",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "completed",
+            "start": 1791860685.6924589,
+            "end": 1791860685.7002754,
+            "thread": "ThreadPoolExecutor-6_1",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "completed",
+            "start": 1791860685.701278,
+            "end": 1791860685.7017317,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 4
+          }
+        ],
+        "observed_status": "paused"
+      }
+    },
+    {
+      "stage": "TEST FIXTURE continuation 1",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "answers": [
+        {
+          "request_id": "row 31:outcome:boxplot_flag:31:9.424942802611383",
+          "action": "verify",
+          "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+        }
+      ],
+      "state": {
+        "run_id": "bench-61a432dfcc4f4f9e",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Compare mean outcome between groups.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "group": {
+              "type": "categorical",
+              "levels": [
+                "treatment",
+                "control"
+              ],
+              "meaning": "Source text labels in group"
+            },
+            "outcome": {
+              "type": "numeric",
+              "meaning": "Numeric source field outcome; units not supplied"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations.",
+          "comparison_order": "Requested contrast: treatment minus control."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+        "data_version": "v2",
+        "data_fingerprint": "b50bd505a2f2d96c78f5843d7102ee0676cd3ea2a36a519cbde2f9187e06d5b5",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "analysis_plan": {
+          "method": "welch_t_test",
+          "outcome": "outcome",
+          "group": "group",
+          "group_1_label": "treatment",
+          "group_2_label": "control",
+          "x": "",
+          "y": "",
+          "target_parameter": "Mean outcome: treatment minus control",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "ready",
+        "data_summary": {
+          "task": "summary",
+          "data_version": "v2",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+          "method": "welch_t_test",
+          "request_format": "v2",
+          "n_rows_in_file": 50,
+          "columns_found": [
+            "group",
+            "outcome"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('summary', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 50,
+          "columns": [
+            {
+              "name": "outcome",
+              "role": "outcome",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 50,
+              "n_unique_as_written": 50,
+              "quantiles": {
+                "min": -1.9510351886538364,
+                "p05": -1.003488428805322,
+                "p25": 0.003906806262087413,
+                "p50": 0.9099813456270212,
+                "p75": 3.690059638481131,
+                "p95": 5.441250614739159,
+                "max": 9.424942802611383
+              },
+              "mean": 1.8090230790710917,
+              "sd": 2.4351317801763672
+            },
+            {
+              "name": "group",
+              "role": "group",
+              "type": "categorical",
+              "n_blank": 0,
+              "n_parseable_numeric": 0,
+              "n_unique_as_written": 2,
+              "levels_as_written": [
+                {
+                  "label_as_written": "control",
+                  "quoted": "\"control\"",
+                  "n": 25
+                },
+                {
+                  "label_as_written": "treatment",
+                  "quoted": "\"treatment\"",
+                  "n": 25
+                }
+              ]
+            }
+          ],
+          "stated_ranges": {},
+          "stated_levels": {
+            "group": [
+              "treatment",
+              "control"
+            ]
+          },
+          "group_labels": [
+            "treatment",
+            "control"
+          ],
+          "by_group_as_written": [
+            {
+              "label_as_written": "control",
+              "quoted": "\"control\"",
+              "n": 25,
+              "mean": -0.035389987592057665,
+              "sd": 0.8310923822923664,
+              "median": -0.016801157504288795,
+              "min": -1.9510351886538364,
+              "max": 1.2225413386740303
+            },
+            {
+              "label_as_written": "treatment",
+              "quoted": "\"treatment\"",
+              "n": 25,
+              "mean": 3.653436145734241,
+              "sd": 2.080598325210277,
+              "median": 3.696483969200159,
+              "min": 0.47953056911241587,
+              "max": 9.424942802611383
+            }
+          ]
+        },
+        "llm_diagnostics": {
+          "variable_meanings": "As described by the user.",
+          "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+          "goal_alignment": "The planned welch_t_test matches the question.",
+          "distribution_notes": "See the statistical summary.",
+          "issues": [
+            {
+              "topic": "study_design",
+              "severity": "limitation",
+              "issue": "Groups or exposures are self-selected, not randomized.",
+              "evidence": "Observational synthetic fixture; allocation was not random.",
+              "suggested_action": "Report an association only."
+            }
+          ]
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v2",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+          "method": "welch_t_test",
+          "request_format": "v2",
+          "n_rows_in_file": 50,
+          "columns_found": [
+            "group",
+            "outcome"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 50,
+          "n_usable_rows": 50,
+          "findings": [
+            {
+              "record_id": "row 31",
+              "row_number": 31,
+              "field": "outcome",
+              "value_as_written": "9.424942802611383",
+              "check": "boxplot_flag",
+              "severity": "verify",
+              "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+            }
+          ],
+          "n_blocking": 0,
+          "n_verify": 1,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "outcome",
+              "group": "treatment",
+              "n": 25,
+              "shapiro_wilk_p": 0.1683895583937307
+            },
+            {
+              "check": "shapiro_wilk",
+              "variable": "outcome",
+              "group": "control",
+              "n": 25,
+              "shapiro_wilk_p": 0.5649965949945559
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+        },
+        "diagnostic_route": "proceed",
+        "diagnostic_assessment": {
+          "rationale": "No unresolved record-level problems remain; the planned test can run.",
+          "limitations": [],
+          "questions": []
+        },
+        "stop_reasons": [],
+        "clarification_requests": [],
+        "clarification_answers": [
+          {
+            "request_id": "row 31:outcome:boxplot_flag:31:9.424942802611383",
+            "action": "verify",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          }
+        ],
+        "clarification_rounds": 1,
+        "rejected_answers": [],
+        "excluded_ids": [],
+        "verified_ids": [
+          "row 31:outcome:boxplot_flag:31:9.424942802611383"
+        ],
+        "correction_log": [
+          {
+            "request_id": "row 31:outcome:boxplot_flag:31:9.424942802611383",
+            "action": "verify",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification.",
+            "record_id": "row 31",
+            "field": "outcome",
+            "check": "boxplot_flag",
+            "old_value": "9.424942802611383",
+            "new_value": null,
+            "from_version": "v1",
+            "to_version": "v2",
+            "request_number": 1,
+            "source": "explicit user answer",
+            "rows_affected": 1
+          }
+        ],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "stat_result": {
+          "task": "run_test",
+          "data_version": "v2",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+          "method": "welch_t_test",
+          "request_format": "v2",
+          "n_rows_in_file": 50,
+          "columns_found": [
+            "group",
+            "outcome"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+          "status": "ok",
+          "alternative": "two-sided",
+          "conf_level": 0.95,
+          "alpha": 0.05,
+          "n_included": 50,
+          "tool_warnings": [],
+          "method_label": "Welch independent-samples t-test",
+          "var_equal": false,
+          "group_1": {
+            "label": "treatment",
+            "n": 25,
+            "mean": 3.653436145734241,
+            "sd": 2.080598325210277
+          },
+          "group_2": {
+            "label": "control",
+            "n": 25,
+            "mean": -0.035389987592057665,
+            "sd": 0.8310923822923664
+          },
+          "mean_difference": 3.6888261333262986,
+          "ci_lower": 2.775493038835574,
+          "ci_upper": 4.602159227817023,
+          "t_statistic": 8.232343144304977,
+          "df": 31.468699373521545,
+          "p_value": 2.3883567404772e-09,
+          "decision": "reject_H0"
+        },
+        "stats_block": {
+          "method": "welch_t_test",
+          "method_label": "two-sided Welch independent-samples t-test",
+          "data_version": "v2",
+          "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+          "values": {
+            "p_value": "< 0.0001",
+            "alpha": "0.05",
+            "null_value": "0",
+            "confidence_level": "95%",
+            "decision_claim": "reject",
+            "direction_claim": "positive",
+            "group_1": "treatment",
+            "group_2": "control",
+            "n_group_1": "25",
+            "n_group_2": "25",
+            "mean_group_1": "3.65",
+            "mean_group_2": "-0.04",
+            "sd_group_1": "2.08",
+            "sd_group_2": "0.83",
+            "mean_difference": "3.69",
+            "ci_lower": "2.78",
+            "ci_upper": "4.60",
+            "t_statistic": "8.232",
+            "df": "31.47",
+            "n_included": "50"
+          },
+          "hypotheses": "H0: Δ = 0 versus H1: Δ ≠ 0, where Δ = μ(group = treatment) − μ(group = control) for the mean of outcome",
+          "required_placeholders": [
+            "t_statistic",
+            "df",
+            "p_value",
+            "mean_difference",
+            "ci_lower",
+            "ci_upper"
+          ],
+          "required_limitations": {
+            "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+            "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+          },
+          "direction": "positive",
+          "decision": "reject_H0",
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "outcome",
+              "group": "treatment",
+              "n": 25,
+              "shapiro_wilk_p": 0.1683895583937307
+            },
+            {
+              "check": "shapiro_wilk",
+              "variable": "outcome",
+              "group": "control",
+              "n": 25,
+              "shapiro_wilk_p": 0.5649965949945559
+            }
+          ],
+          "regression_diagnostics": null,
+          "observed": null,
+          "yates": false,
+          "tool_warnings": [],
+          "t_statistic_note": ""
+        },
+        "report_draft": {
+          "interpretation": "The analysis included {n_group_1} records in group {group_1} and {n_group_2} in group {group_2}. Welch's test gave t({df}) = {t_statistic}, p = {p_value}. At alpha = {alpha}, we reject H0. The estimated mean difference ({group_1} minus {group_2}) was {mean_difference} ({confidence_level} CI {ci_lower} to {ci_upper}).",
+          "limitations": [
+            {
+              "limitation_id": "nonrandom_design",
+              "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+            },
+            {
+              "limitation_id": "analysis_assumptions",
+              "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+            }
+          ],
+          "direction_claim": "positive",
+          "decision_claim": "reject_H0",
+          "version": "draft1"
+        },
+        "rendered_draft": {
+          "interpretation": "The analysis included 25 records in group treatment and 25 in group control. Welch's test gave t(31.47) = 8.232, p < 0.0001. At alpha = 0.05, we reject H0. The estimated mean difference (treatment minus control) was 3.69 (95% CI 2.78 to 4.60).",
+          "limitations": [
+            {
+              "limitation_id": "nonrandom_design",
+              "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+            },
+            {
+              "limitation_id": "analysis_assumptions",
+              "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+            }
+          ],
+          "direction_claim": "positive",
+          "decision_claim": "reject_H0",
+          "version": "draft1"
+        },
+        "program_check": {
+          "report_version": "draft1",
+          "passed": true,
+          "problems": []
+        },
+        "review_verdict": {
+          "passed": true,
+          "issues": [],
+          "summary": "Rule-based mock review: no issues found."
+        },
+        "revision_count": 0,
+        "final_status": "delivered",
+        "final_report": "MOCK: rule-based agent stand-ins; Python calculations are real.\n\nMethod: two-sided Welch independent-samples t-test  (data version v2; Python: scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95))\nH0: Δ = 0 versus H1: Δ ≠ 0, where Δ = μ(group = treatment) − μ(group = control) for the mean of outcome; α = 0.05\n\n| Group | n | Mean | SD |\n|---|---|---|---|\n| treatment | 25 | 3.65 | 2.08 |\n| control | 25 | -0.04 | 0.83 |\n\nMean difference = 3.69 (95% CI 2.78 to 4.60); t(31.47) = 8.232; p < 0.0001\nDecision at α = 0.05: reject_H0\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'outcome', 'group': 'treatment', 'n': 25, 'shapiro_wilk_p': 0.1683895583937307}, {'check': 'shapiro_wilk', 'variable': 'outcome', 'group': 'control', 'n': 25, 'shapiro_wilk_p': 0.5649965949945559}]\n\nThe analysis included 25 records in group treatment and 25 in group control. Welch's test gave t(31.47) = 8.232, p < 0.0001. At alpha = 0.05, we reject H0. The estimated mean difference (treatment minus control) was 3.69 (95% CI 2.78 to 4.60).\n\nLimitations:\n- Random allocation was not established. This analysis describes an association and does not establish causation.\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+        "session_memory": {
+          "last_success": {
+            "research_question": "Compare mean outcome between groups.",
+            "design_info": {
+              "variables": {
+                "group": {
+                  "type": "categorical",
+                  "levels": [
+                    "treatment",
+                    "control"
+                  ],
+                  "meaning": "Source text labels in group"
+                },
+                "outcome": {
+                  "type": "numeric",
+                  "meaning": "Numeric source field outcome; units not supplied"
+                }
+              },
+              "randomized": false,
+              "assignment": "Observational synthetic fixture; allocation was not random.",
+              "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+              "independent": true,
+              "independence": "The fixture declaration confirms independent observations.",
+              "comparison_order": "Requested contrast: treatment minus control."
+            },
+            "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+            "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+            "data_version": "v2",
+            "data_fingerprint": "b50bd505a2f2d96c78f5843d7102ee0676cd3ea2a36a519cbde2f9187e06d5b5",
+            "analysis_plan": {
+              "method": "welch_t_test",
+              "outcome": "outcome",
+              "group": "group",
+              "group_1_label": "treatment",
+              "group_2_label": "control",
+              "x": "",
+              "y": "",
+              "target_parameter": "Mean outcome: treatment minus control",
+              "null_hypothesis": "H0: zero association",
+              "alternative_hypothesis": "H1: nonzero association",
+              "method_rationale": "MOCK prespecified fixture plan",
+              "design_notes": [
+                "The fixture declaration confirms independent observations."
+              ]
+            },
+            "excluded_ids": [],
+            "verified_ids": [
+              "row 31:outcome:boxplot_flag:31:9.424942802611383"
+            ],
+            "correction_log": [
+              {
+                "request_id": "row 31:outcome:boxplot_flag:31:9.424942802611383",
+                "action": "verify",
+                "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification.",
+                "record_id": "row 31",
+                "field": "outcome",
+                "check": "boxplot_flag",
+                "old_value": "9.424942802611383",
+                "new_value": null,
+                "from_version": "v1",
+                "to_version": "v2",
+                "request_number": 1,
+                "source": "explicit user answer",
+                "rows_affected": 1
+              }
+            ],
+            "conf_level": 0.95,
+            "stat_result": {
+              "task": "run_test",
+              "data_version": "v2",
+              "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+              "method": "welch_t_test",
+              "request_format": "v2",
+              "n_rows_in_file": 50,
+              "columns_found": [
+                "group",
+                "outcome"
+              ],
+              "missing_required_columns": [],
+              "excluded_ids": [],
+              "request_warnings": [],
+              "python_version": "3.13.5",
+              "scipy_version": "1.18.1",
+              "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+              "status": "ok",
+              "alternative": "two-sided",
+              "conf_level": 0.95,
+              "alpha": 0.05,
+              "n_included": 50,
+              "tool_warnings": [],
+              "method_label": "Welch independent-samples t-test",
+              "var_equal": false,
+              "group_1": {
+                "label": "treatment",
+                "n": 25,
+                "mean": 3.653436145734241,
+                "sd": 2.080598325210277
+              },
+              "group_2": {
+                "label": "control",
+                "n": 25,
+                "mean": -0.035389987592057665,
+                "sd": 0.8310923822923664
+              },
+              "mean_difference": 3.6888261333262986,
+              "ci_lower": 2.775493038835574,
+              "ci_upper": 4.602159227817023,
+              "t_statistic": 8.232343144304977,
+              "df": 31.468699373521545,
+              "p_value": 2.3883567404772e-09,
+              "decision": "reject_H0"
+            },
+            "stats_block": {
+              "method": "welch_t_test",
+              "method_label": "two-sided Welch independent-samples t-test",
+              "data_version": "v2",
+              "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+              "values": {
+                "p_value": "< 0.0001",
+                "alpha": "0.05",
+                "null_value": "0",
+                "confidence_level": "95%",
+                "decision_claim": "reject",
+                "direction_claim": "positive",
+                "group_1": "treatment",
+                "group_2": "control",
+                "n_group_1": "25",
+                "n_group_2": "25",
+                "mean_group_1": "3.65",
+                "mean_group_2": "-0.04",
+                "sd_group_1": "2.08",
+                "sd_group_2": "0.83",
+                "mean_difference": "3.69",
+                "ci_lower": "2.78",
+                "ci_upper": "4.60",
+                "t_statistic": "8.232",
+                "df": "31.47",
+                "n_included": "50"
+              },
+              "hypotheses": "H0: Δ = 0 versus H1: Δ ≠ 0, where Δ = μ(group = treatment) − μ(group = control) for the mean of outcome",
+              "required_placeholders": [
+                "t_statistic",
+                "df",
+                "p_value",
+                "mean_difference",
+                "ci_lower",
+                "ci_upper"
+              ],
+              "required_limitations": {
+                "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+                "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+              },
+              "direction": "positive",
+              "decision": "reject_H0",
+              "distribution_checks": [
+                {
+                  "check": "shapiro_wilk",
+                  "variable": "outcome",
+                  "group": "treatment",
+                  "n": 25,
+                  "shapiro_wilk_p": 0.1683895583937307
+                },
+                {
+                  "check": "shapiro_wilk",
+                  "variable": "outcome",
+                  "group": "control",
+                  "n": 25,
+                  "shapiro_wilk_p": 0.5649965949945559
+                }
+              ],
+              "regression_diagnostics": null,
+              "observed": null,
+              "yates": false,
+              "tool_warnings": [],
+              "t_statistic_note": ""
+            },
+            "stat_diagnostics": {
+              "task": "diagnostics",
+              "data_version": "v2",
+              "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578\\data_versions\\5d327d1758eb4b5c8c0f731ffd3d4108_v2.csv",
+              "method": "welch_t_test",
+              "request_format": "v2",
+              "n_rows_in_file": 50,
+              "columns_found": [
+                "group",
+                "outcome"
+              ],
+              "missing_required_columns": [],
+              "excluded_ids": [],
+              "request_warnings": [],
+              "python_version": "3.13.5",
+              "scipy_version": "1.18.1",
+              "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+              "status": "ok",
+              "n_rows_in_analysis_set": 50,
+              "n_usable_rows": 50,
+              "findings": [
+                {
+                  "record_id": "row 31",
+                  "row_number": 31,
+                  "field": "outcome",
+                  "value_as_written": "9.424942802611383",
+                  "check": "boxplot_flag",
+                  "severity": "verify",
+                  "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+                }
+              ],
+              "n_blocking": 0,
+              "n_verify": 1,
+              "method_checks_run": true,
+              "method_findings": [],
+              "distribution_checks_run": true,
+              "distribution_checks": [
+                {
+                  "check": "shapiro_wilk",
+                  "variable": "outcome",
+                  "group": "treatment",
+                  "n": 25,
+                  "shapiro_wilk_p": 0.1683895583937307
+                },
+                {
+                  "check": "shapiro_wilk",
+                  "variable": "outcome",
+                  "group": "control",
+                  "n": 25,
+                  "shapiro_wilk_p": 0.5649965949945559
+                }
+              ],
+              "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+            },
+            "request_number": 1
+          },
+          "last_request_status": "delivered"
+        },
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [],
+        "model_calls": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "method": "plan",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "method": "merge",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "method": "merge",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "draft_report",
+            "method": "draft",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "review_report",
+            "method": "review",
+            "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+            "mode": "MOCK",
+            "status": "completed"
+          }
+        ],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791860685.6806629,
+            "end": 1791860685.6822705,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791860685.683442,
+            "end": 1791860685.6891997,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791860685.691274,
+            "end": 1791860685.6914113,
+            "thread": "ThreadPoolExecutor-6_0",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "completed",
+            "start": 1791860685.6924589,
+            "end": 1791860685.7002754,
+            "thread": "ThreadPoolExecutor-6_1",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "completed",
+            "start": 1791860685.701278,
+            "end": 1791860685.7017317,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 4
+          },
+          {
+            "request_number": 1,
+            "node": "request_clarification",
+            "status": "completed",
+            "start": 1791860685.7292042,
+            "end": 1791860685.7292356,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 5
+          },
+          {
+            "request_number": 1,
+            "node": "apply_corrections",
+            "status": "completed",
+            "start": 1791860685.7302802,
+            "end": 1791860685.732428,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 6
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791860685.7332718,
+            "end": 1791860685.7386656,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 7
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791860685.739666,
+            "end": 1791860685.7397568,
+            "thread": "ThreadPoolExecutor-7_0",
+            "data_version": "v2",
+            "step": 8
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "completed",
+            "start": 1791860685.7405112,
+            "end": 1791860685.7463307,
+            "thread": "ThreadPoolExecutor-7_1",
+            "data_version": "v2",
+            "step": 8
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "completed",
+            "start": 1791860685.7482443,
+            "end": 1791860685.7487202,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 9
+          },
+          {
+            "request_number": 1,
+            "node": "run_statistical_test",
+            "status": "completed",
+            "start": 1791860685.7498002,
+            "end": 1791860685.7559347,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 10
+          },
+          {
+            "request_number": 1,
+            "node": "build_stats_block",
+            "status": "completed",
+            "start": 1791860685.7567112,
+            "end": 1791860685.7567542,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 11
+          },
+          {
+            "request_number": 1,
+            "node": "draft_report",
+            "status": "completed",
+            "start": 1791860685.7581348,
+            "end": 1791860685.7582216,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 12
+          },
+          {
+            "request_number": 1,
+            "node": "check_report",
+            "status": "completed",
+            "start": 1791860685.7588887,
+            "end": 1791860685.7591238,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 13
+          },
+          {
+            "request_number": 1,
+            "node": "review_report",
+            "status": "completed",
+            "start": 1791860685.7597063,
+            "end": 1791860685.7597733,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 14
+          },
+          {
+            "request_number": 1,
+            "node": "deliver_report",
+            "status": "completed",
+            "start": 1791860685.761087,
+            "end": 1791860685.7611237,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 15
+          },
+          {
+            "request_number": 1,
+            "node": "save_session",
+            "status": "completed",
+            "start": 1791860685.761681,
+            "end": 1791860685.7618697,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 16
+          }
+        ],
+        "observed_status": "delivered"
+      }
+    }
+  ],
+  "clarification_requested": true,
+  "model_calls": [
+    {
+      "request_number": 1,
+      "node": "plan_analysis",
+      "method": "plan",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "llm_diagnostics",
+      "method": "diagnose",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "merge_diagnostics",
+      "method": "merge",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "llm_diagnostics",
+      "method": "diagnose",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "merge_diagnostics",
+      "method": "merge",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "draft_report",
+      "method": "draft",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "review_report",
+      "method": "review",
+      "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+      "mode": "MOCK",
+      "status": "completed"
+    }
+  ],
+  "original_diagnostics": {
+    "task": "diagnostics",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\welch_unequal_variance.csv",
+    "method": "welch_t_test",
+    "request_format": "v2",
+    "n_rows_in_file": 50,
+    "columns_found": [
+      "group",
+      "outcome"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+    "status": "ok",
+    "n_rows_in_analysis_set": 50,
+    "n_usable_rows": 50,
+    "findings": [
+      {
+        "record_id": "row 31",
+        "row_number": 31,
+        "field": "outcome",
+        "value_as_written": "9.424942802611383",
+        "check": "boxplot_flag",
+        "severity": "verify",
+        "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+      }
+    ],
+    "n_blocking": 0,
+    "n_verify": 1,
+    "method_checks_run": true,
+    "method_findings": [],
+    "distribution_checks_run": true,
+    "distribution_checks": [
+      {
+        "check": "shapiro_wilk",
+        "variable": "outcome",
+        "group": "treatment",
+        "n": 25,
+        "shapiro_wilk_p": 0.1683895583937307
+      },
+      {
+        "check": "shapiro_wilk",
+        "variable": "outcome",
+        "group": "control",
+        "n": 25,
+        "shapiro_wilk_p": 0.5649965949945559
+      }
+    ],
+    "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+  },
+  "report_revisions": 0,
+  "regression_warning_codes": [],
+  "error": null,
+  "failure_class": null,
+  "runtime_audit_dir": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\22f29578",
+  "duration_seconds": 0.20817650004755706
+}

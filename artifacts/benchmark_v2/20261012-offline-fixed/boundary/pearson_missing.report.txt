@@ -1,0 +1,16 @@
+MOCK: rule-based agent stand-ins; Python calculations are real.
+
+Method: Pearson correlation test (two-sided)  (data version v2; Python: scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95))
+H0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of x and y); α = 0.05
+
+n = 19; r = 0.992 (95% CI 0.978 to 0.997); t(17) = 31.886; p < 0.0001
+Decision at α = 0.05: reject_H0
+Distribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'x', 'role': 'x', 'n': 19, 'shapiro_wilk_p': 0.5896505755975048}, {'check': 'shapiro_wilk', 'variable': 'y', 'role': 'y', 'n': 19, 'shapiro_wilk_p': 0.22104420234481736}]
+
+The analysis included 19 records. Pearson's r was 0.992 (95% CI 0.978 to 0.997), p < 0.0001. At alpha = 0.05, we reject H0.
+
+Limitations:
+- Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.
+- Random allocation was not established. This analysis describes an association and does not establish causation.
+- User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.
+- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.

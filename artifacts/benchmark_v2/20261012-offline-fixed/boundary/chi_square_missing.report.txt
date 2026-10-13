@@ -1,0 +1,20 @@
+MOCK: rule-based agent stand-ins; Python calculations are real.
+
+Method: chi-square test of independence  (data version v2; Python: scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square)
+H0: category_a and category_b are independent versus H1: they are associated; α = 0.05
+
+| | B0 | B1 |
+|---|---|---|
+| A0 | 29 | 10 |
+| A1 | 10 | 30 |
+
+n = 79; chi-square(1) = 19.247; p < 0.0001; Cramer's V = 0.494 (no Yates continuity correction)
+Decision at α = 0.05: reject_H0
+Distribution checks (descriptive only, never used to choose the method): [{'check': 'expected_counts', 'min_expected_count': 19.253164556962027, 'share_cells_expected_below_5': 0.0, 'n_cells': 4}]
+
+The analysis included 79 records. The chi-square test gave chi-square(1) = 19.247, p < 0.0001, with Cramer's V = 0.494. At alpha = 0.05, we reject H0 of independence.
+
+Limitations:
+- No confidence interval was computed for Cramer's V in this stage.
+- Random allocation was not established. This analysis describes an association and does not establish causation.
+- User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.

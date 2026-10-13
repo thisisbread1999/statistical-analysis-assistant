@@ -1,0 +1,38 @@
+{
+  "id": "chi_square_2x2",
+  "category": "normal",
+  "design_info": {
+    "variables": {
+      "category_a": {
+        "type": "categorical",
+        "levels": [
+          "A0",
+          "A1"
+        ],
+        "meaning": "Source text labels in category_a"
+      },
+      "category_b": {
+        "type": "categorical",
+        "levels": [
+          "B0",
+          "B1"
+        ],
+        "meaning": "Source text labels in category_b"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "result",
+  "expected_primary_behavior": "result",
+  "fixture_answers": [],
+  "expected_method": "chi_square_independence",
+  "source_csv_sha256": "1cd5b9e526437224e4fdfcd778f9a492cc08893852142639213a082d7143e236",
+  "source_json_sha256": "999e62ef96d4a6e7970bf2bb828915a5ed68050957eda839a79ce0780fd5f903",
+  "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+}

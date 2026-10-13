@@ -1,0 +1,353 @@
+{
+  "id": "unknown_design",
+  "category": "clarification",
+  "mode": "offline",
+  "mode_label": "MOCK: prespecified fixture plans and rule-based reports; mechanics only, NOT LLM accuracy",
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "source_question": "Compare mean outcome between groups.",
+  "source_expected_behavior": "result",
+  "adapted_expectation": {
+    "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+    "policy_version": "ours-v1",
+    "source_expected_behavior": "result",
+    "expected_primary_behavior": "stop",
+    "fixture_answers": [
+      {
+        "record_id": "row 31",
+        "field": "outcome",
+        "check_prefix": "boxplot_flag",
+        "action": "verify",
+        "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+        "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+      }
+    ],
+    "expected_method": "welch_t_test",
+    "source_csv_sha256": "cd3159142b57b9674c81ad348a71e0a3f97ca1ac25e40855f46afe6e9200e1ae",
+    "source_json_sha256": "67976b4a5673698667273dd5462ffc1a93e4b675786fd2057b8a5dc718f940f8",
+    "adaptation_note": "Our design check stops immediately; source answer is never invented."
+  },
+  "checks": {
+    "primary_safety_behavior": true,
+    "no_runner_exception": true
+  },
+  "mechanical_pass": true,
+  "method_assessed": false,
+  "method_pass": null,
+  "safety_pass": true,
+  "numeric": {
+    "assessed": false,
+    "passed": null,
+    "reference": null,
+    "fields": {}
+  },
+  "interpretation_accepted": false,
+  "semantic_review": "unlabelled: no independent human review",
+  "report_delivery_status": "stopped",
+  "actual_status": "stopped",
+  "primary_state": {
+    "run_id": "bench-928ec719e0574374",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Compare mean outcome between groups.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "group": {
+          "type": "categorical",
+          "levels": [
+            "treatment",
+            "control"
+          ],
+          "meaning": "Source text labels in group"
+        },
+        "outcome": {
+          "type": "numeric",
+          "meaning": "Numeric source field outcome; units not supplied"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independence": "Unknown; independence has not been confirmed.",
+      "comparison_order": "Requested contrast: treatment minus control."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\clarification\\unknown_design.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\clarification\\unknown_design.csv",
+    "data_version": "v1",
+    "data_fingerprint": "cd3159142b57b9674c81ad348a71e0a3f97ca1ac25e40855f46afe6e9200e1ae",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "stop",
+    "stop_reasons": [
+      "Independence must be explicitly confirmed by the user; it cannot be inferred from the CSV."
+    ],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "stopped",
+    "final_report": "No validated inferential report was delivered.\nIndependence must be explicitly confirmed by the user; it cannot be inferred from the CSV.",
+    "session_memory": {
+      "last_request_status": "stopped"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860715.3338108,
+        "end": 1791860715.333827,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "issue_notice",
+        "status": "completed",
+        "start": 1791860715.3346114,
+        "end": 1791860715.3346179,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860715.3357992,
+        "end": 1791860715.3358085,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 3
+      }
+    ],
+    "observed_status": "stopped"
+  },
+  "final_state": {
+    "run_id": "bench-928ec719e0574374",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Compare mean outcome between groups.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "group": {
+          "type": "categorical",
+          "levels": [
+            "treatment",
+            "control"
+          ],
+          "meaning": "Source text labels in group"
+        },
+        "outcome": {
+          "type": "numeric",
+          "meaning": "Numeric source field outcome; units not supplied"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independence": "Unknown; independence has not been confirmed.",
+      "comparison_order": "Requested contrast: treatment minus control."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\clarification\\unknown_design.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\clarification\\unknown_design.csv",
+    "data_version": "v1",
+    "data_fingerprint": "cd3159142b57b9674c81ad348a71e0a3f97ca1ac25e40855f46afe6e9200e1ae",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "stop",
+    "stop_reasons": [
+      "Independence must be explicitly confirmed by the user; it cannot be inferred from the CSV."
+    ],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "stopped",
+    "final_report": "No validated inferential report was delivered.\nIndependence must be explicitly confirmed by the user; it cannot be inferred from the CSV.",
+    "session_memory": {
+      "last_request_status": "stopped"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860715.3338108,
+        "end": 1791860715.333827,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "issue_notice",
+        "status": "completed",
+        "start": 1791860715.3346114,
+        "end": 1791860715.3346179,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860715.3357992,
+        "end": 1791860715.3358085,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 3
+      }
+    ],
+    "observed_status": "stopped"
+  },
+  "warmup": null,
+  "stages": [
+    {
+      "stage": "primary",
+      "state": {
+        "run_id": "bench-928ec719e0574374",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Compare mean outcome between groups.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "group": {
+              "type": "categorical",
+              "levels": [
+                "treatment",
+                "control"
+              ],
+              "meaning": "Source text labels in group"
+            },
+            "outcome": {
+              "type": "numeric",
+              "meaning": "Numeric source field outcome; units not supplied"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independence": "Unknown; independence has not been confirmed.",
+          "comparison_order": "Requested contrast: treatment minus control."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\clarification\\unknown_design.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\clarification\\unknown_design.csv",
+        "data_version": "v1",
+        "data_fingerprint": "cd3159142b57b9674c81ad348a71e0a3f97ca1ac25e40855f46afe6e9200e1ae",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "stop",
+        "stop_reasons": [
+          "Independence must be explicitly confirmed by the user; it cannot be inferred from the CSV."
+        ],
+        "clarification_requests": [],
+        "clarification_answers": [],
+        "clarification_rounds": 0,
+        "rejected_answers": [],
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "report_draft": {},
+        "rendered_draft": {},
+        "program_check": {},
+        "review_verdict": {},
+        "revision_count": 0,
+        "final_status": "stopped",
+        "final_report": "No validated inferential report was delivered.\nIndependence must be explicitly confirmed by the user; it cannot be inferred from the CSV.",
+        "session_memory": {
+          "last_request_status": "stopped"
+        },
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [],
+        "model_calls": [],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791860715.3338108,
+            "end": 1791860715.333827,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "issue_notice",
+            "status": "completed",
+            "start": 1791860715.3346114,
+            "end": 1791860715.3346179,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "save_session",
+            "status": "completed",
+            "start": 1791860715.3357992,
+            "end": 1791860715.3358085,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 3
+          }
+        ],
+        "observed_status": "stopped"
+      }
+    }
+  ],
+  "clarification_requested": false,
+  "model_calls": [],
+  "original_diagnostics": {},
+  "report_revisions": 0,
+  "regression_warning_codes": [],
+  "error": null,
+  "failure_class": null,
+  "runtime_audit_dir": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\907becf4",
+  "duration_seconds": 0.019281200016848743
+}

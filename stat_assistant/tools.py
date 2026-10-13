@@ -466,17 +466,113 @@ class _Analysis:
         return [{"check": "expected_counts", "min_expected_count": float(np.min(expected)),
                  "share_cells_expected_below_5": float(np.mean(expected < 5)), "n_cells": expected.size}]
 
+    def regression_diagnostics(self):
+        """Describe the accepted OLS fit without changing records or inference.
+
+        Cook's distance uses the internally standardized residual and two
+        fitted parameters. The variance diagnostic is the studentized
+        Koenker version of Breusch-Pagan, LM = n * auxiliary R-squared,
+        rather than the original normal-error Breusch-Pagan statistic.
+        """
+        fit = self.regression()
+        x = self.numeric["x"][self.usable]
+        n, parameters = len(x), 2
+        threshold = 4.0 / n
+        notices = []
+        observations = []
+        high_leverage_ids, influential_ids, unavailable_ids = [], [], []
+        # Normalize before squaring to avoid overflowing x-centered squared.
+        with np.errstate(all="ignore"):
+            predictor = (x - np.mean(x)) / np.sqrt(fit["sxx"])
+            leverage = 1.0 / n + predictor ** 2
+            residual_sd = np.sqrt(fit["sse"] / (n - parameters))
+        unit_tolerance = 32 * np.finfo(float).eps
+        for index, h, residual in zip(np.flatnonzero(self.usable), leverage, fit["residuals"]):
+            record_id = self.ids[index]
+            h = float(h)
+            # A rounded unit leverage also makes the deleted design singular.
+            # It is not a known, very large Cook distance: do not replace its
+            # zero denominator with epsilon and present that as a measurement.
+            cook = None
+            remaining = 1.0 - h
+            if math.isfinite(h) and 0 <= h <= 1 and remaining > unit_tolerance:
+                with np.errstate(all="ignore"):
+                    standardized = residual / residual_sd / np.sqrt(remaining)
+                    candidate = standardized ** 2 * h / (parameters * remaining)
+                if np.isfinite(candidate) and candidate >= 0:
+                    cook = float(candidate)
+            if cook is None:
+                unavailable_ids.append(record_id)
+            if h > threshold:
+                high_leverage_ids.append(record_id)
+            if cook is not None and cook > threshold:
+                influential_ids.append(record_id)
+            observations.append({"record_id": record_id, "row_number": self.row_numbers[index],
+                                 "leverage": h, "cooks_distance": cook})
+        if influential_ids:
+            notices.append({"code": "influential_observations", "message":
+                f"Potential influential observations have Cook's distance > 4/n ({threshold:.6g}): "
+                + ", ".join(influential_ids) + ". No observations were excluded automatically."})
+        if high_leverage_ids:
+            notices.append({"code": "high_leverage", "message":
+                f"High leverage observations have leverage > 4/n ({threshold:.6g}): "
+                + ", ".join(high_leverage_ids) + ". Verify the observations and model; no automatic exclusion."})
+        if unavailable_ids:
+            notices.append({"code": "cooks_distance_unavailable", "message":
+                "Cook's distance is unavailable for " + ", ".join(unavailable_ids)
+                + " because leverage is numerically one or its calculation is not finite. "
+                  "The maximum Cook's distance is unknown; null is not evidence of no influence."})
+
+        bp = {"lm_statistic": None, "p_value": None, "df": 1,
+              "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+              "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. "
+                      "Small samples can exaggerate significance. A large p-value does not establish constant variance."}
+        # Scaling the residuals before squaring leaves auxiliary R-squared
+        # unchanged and avoids overflow/underflow from the residuals' units.
+        with np.errstate(all="ignore"):
+            squared = (fit["residuals"] / np.max(np.abs(fit["residuals"]))) ** 2
+            centered_squared = squared - np.mean(squared)
+            auxiliary_sst = np.dot(centered_squared, centered_squared)
+        if (np.isfinite(squared).all() and np.isfinite(auxiliary_sst)
+                and np.ptp(squared) > unit_tolerance and auxiliary_sst > 0):
+            with np.errstate(all="ignore"):
+                auxiliary_r = np.dot(predictor, centered_squared / np.sqrt(auxiliary_sst))
+            if np.isfinite(auxiliary_r):
+                # R-squared is bounded; correct only floating point overshoot.
+                lm = float(n * min(1.0, auxiliary_r ** 2))
+                pvalue = float(stats.chi2.sf(lm, 1))
+                if math.isfinite(lm) and math.isfinite(pvalue):
+                    bp.update(lm_statistic=lm, p_value=pvalue)
+        if bp["p_value"] is None:
+            notices.append({"code": "breusch_pagan_unavailable", "message":
+                "The Koenker Breusch-Pagan diagnostic is unavailable because squared residuals have "
+                "no numerical variation or auxiliary arithmetic is not finite; constant variance is not established."})
+        elif bp["p_value"] < .05:
+            notices.append({"code": "heteroscedasticity", "message":
+                "The Koenker Breusch-Pagan diagnostic suggests nonconstant error variance (p < 0.05). "
+                "The ordinary OLS slope p-value and interval may be unreliable; the estimator and inference were not changed."})
+        defined_cooks = [row["cooks_distance"] for row in observations if row["cooks_distance"] is not None]
+        return {"n": n, "parameter_count": parameters,
+                "thresholds": {"cooks_distance": threshold, "leverage": threshold},
+                "max_leverage": float(np.max(leverage)),
+                "max_cooks_distance": max(defined_cooks) if defined_cooks and not unavailable_ids else None,
+                "high_leverage_ids": high_leverage_ids, "influential_ids": influential_ids,
+                "observations": observations, "breusch_pagan": bp, "warnings": notices}
+
     def diagnostics(self):
         self.record_checks()
         mf = self.method_checks() if not self.n_blocking else []
         dist_run = self.n_blocking == 0 and not mf
         note = ("Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
                 if dist_run else "Deferred: resolve blocking record-level problems and method requirements before distribution checks.")
-        return {"status": "ok", "n_rows_in_analysis_set": len(self.rows), "n_usable_rows": int(np.sum(self.usable)),
+        result = {"status": "ok", "n_rows_in_analysis_set": len(self.rows), "n_usable_rows": int(np.sum(self.usable)),
                 "findings": self.findings, "n_blocking": self.n_blocking, "n_verify": self.n_verify,
                 "method_checks_run": not self.n_blocking, "method_findings": mf,
                 "distribution_checks_run": dist_run, "distribution_checks": self.distribution_checks() if dist_run else [],
                 "distribution_checks_note": note}
+        if self.method == "simple_linear_regression":
+            result["regression_diagnostics"] = self.regression_diagnostics() if dist_run else None
+        return result
 
     def run_test(self):
         diagnostics = self.diagnostics()
@@ -545,6 +641,7 @@ class _Analysis:
                 t_statistic=tvalue, df=degrees, p_value=2*stats.t.sf(abs(tvalue), degrees),
                 r_squared=1-fit["sse"]/fit["syy"],
                 tool_call=f"NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level={conf})")
+            result["regression_diagnostics"] = diagnostics["regression_diagnostics"]
         result["decision"] = "reject_H0" if result["p_value"] < alpha else "do_not_reject_H0"
         return result
 

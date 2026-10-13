@@ -1,0 +1,1664 @@
+{
+  "id": "regression_clean_valid",
+  "source_case": "regression_clean",
+  "mutation": "none",
+  "expected_valid": true,
+  "note": "Correct controlled template using this project's tool placeholders and required limitations.",
+  "label_source": "Authored controlled-test expectation; not a human rating.",
+  "source_attribution": "Challenge category adapted from teammate commit b7eff1c; no source score imported.",
+  "schema": "Interpretation challenge descriptor for this project's ReportDraft.",
+  "question": "Fit a simple linear regression with x as predictor and y as outcome. Report the slope.",
+  "analysis_plan": {
+    "method": "simple_linear_regression",
+    "outcome": "",
+    "group": "",
+    "group_1_label": "",
+    "group_2_label": "",
+    "x": "x",
+    "y": "y",
+    "target_parameter": "Prespecified synthetic evaluation target",
+    "null_hypothesis": "H0: zero association",
+    "alternative_hypothesis": "H1: nonzero association",
+    "method_rationale": "MOCK prespecified fixture plan",
+    "design_notes": [
+      "The fixture declaration confirms independent observations."
+    ]
+  },
+  "design_info": {
+    "variables": {
+      "x": {
+        "type": "numeric",
+        "meaning": "Numeric source field x; units not supplied"
+      },
+      "y": {
+        "type": "numeric",
+        "meaning": "Numeric source field y; units not supplied"
+      },
+      "date": {
+        "type": "date",
+        "meaning": "Calendar date as written in the source CSV"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "stat_result": {
+    "task": "run_test",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\regression_clean.csv",
+    "method": "simple_linear_regression",
+    "request_format": "v2",
+    "n_rows_in_file": 60,
+    "columns_found": [
+      "x",
+      "y",
+      "date"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+    "status": "ok",
+    "alternative": "two-sided",
+    "conf_level": 0.95,
+    "alpha": 0.05,
+    "n_included": 60,
+    "tool_warnings": [],
+    "method_label": "Ordinary least squares (one predictor, with intercept)",
+    "n": 60,
+    "slope": 1.4750285494295663,
+    "slope_se": 0.06423591880870565,
+    "intercept": 3.110280675144431,
+    "ci_lower": 1.3464463876400463,
+    "ci_upper": 1.6036107112190863,
+    "t_statistic": 22.962675350253747,
+    "df": 58,
+    "p_value": 8.433183004011742e-31,
+    "r_squared": 0.9009028873324268,
+    "regression_diagnostics": {
+      "n": 60,
+      "parameter_count": 2,
+      "thresholds": {
+        "cooks_distance": 0.06666666666666667,
+        "leverage": 0.06666666666666667
+      },
+      "max_leverage": 0.06502732240437158,
+      "max_cooks_distance": 0.18678499543959892,
+      "high_leverage_ids": [],
+      "influential_ids": [
+        "row 8",
+        "row 20",
+        "row 52",
+        "row 58",
+        "row 60"
+      ],
+      "observations": [
+        {
+          "record_id": "row 1",
+          "row_number": 1,
+          "leverage": 0.06502732240437158,
+          "cooks_distance": 0.03729422128720078
+        },
+        {
+          "record_id": "row 2",
+          "row_number": 2,
+          "leverage": 0.06180420487172361,
+          "cooks_distance": 0.007746959543152381
+        },
+        {
+          "record_id": "row 3",
+          "row_number": 3,
+          "leverage": 0.058692229322960074,
+          "cooks_distance": 0.00014634841227565155
+        },
+        {
+          "record_id": "row 4",
+          "row_number": 4,
+          "leverage": 0.055691395758080936,
+          "cooks_distance": 0.00027578230073518526
+        },
+        {
+          "record_id": "row 5",
+          "row_number": 5,
+          "leverage": 0.052801704177086226,
+          "cooks_distance": 0.02559530286226905
+        },
+        {
+          "record_id": "row 6",
+          "row_number": 6,
+          "leverage": 0.050023154579975915,
+          "cooks_distance": 5.015582064141291e-05
+        },
+        {
+          "record_id": "row 7",
+          "row_number": 7,
+          "leverage": 0.047355746966750004,
+          "cooks_distance": 0.0003986232803485844
+        },
+        {
+          "record_id": "row 8",
+          "row_number": 8,
+          "leverage": 0.044799481337408534,
+          "cooks_distance": 0.08127840157698114
+        },
+        {
+          "record_id": "row 9",
+          "row_number": 9,
+          "leverage": 0.04235435769195145,
+          "cooks_distance": 0.001405519027716889
+        },
+        {
+          "record_id": "row 10",
+          "row_number": 10,
+          "leverage": 0.0400203760303788,
+          "cooks_distance": 0.016851188535440213
+        },
+        {
+          "record_id": "row 11",
+          "row_number": 11,
+          "leverage": 0.03779753635269056,
+          "cooks_distance": 0.0033907292033561855
+        },
+        {
+          "record_id": "row 12",
+          "row_number": 12,
+          "leverage": 0.03568583865888672,
+          "cooks_distance": 0.001650024702243501
+        },
+        {
+          "record_id": "row 13",
+          "row_number": 13,
+          "leverage": 0.0336852829489673,
+          "cooks_distance": 0.018224746162703725
+        },
+        {
+          "record_id": "row 14",
+          "row_number": 14,
+          "leverage": 0.03179586922293229,
+          "cooks_distance": 0.009308389185893797
+        },
+        {
+          "record_id": "row 15",
+          "row_number": 15,
+          "leverage": 0.030017597480781692,
+          "cooks_distance": 0.016928247472242426
+        },
+        {
+          "record_id": "row 16",
+          "row_number": 16,
+          "leverage": 0.02835046772251551,
+          "cooks_distance": 0.03003421730892508
+        },
+        {
+          "record_id": "row 17",
+          "row_number": 17,
+          "leverage": 0.02679447994813374,
+          "cooks_distance": 0.011640542965133787
+        },
+        {
+          "record_id": "row 18",
+          "row_number": 18,
+          "leverage": 0.02534963415763638,
+          "cooks_distance": 0.010832047847472928
+        },
+        {
+          "record_id": "row 19",
+          "row_number": 19,
+          "leverage": 0.024015930351023434,
+          "cooks_distance": 0.004535471660871782
+        },
+        {
+          "record_id": "row 20",
+          "row_number": 20,
+          "leverage": 0.022793368528294895,
+          "cooks_distance": 0.06680177845768602
+        },
+        {
+          "record_id": "row 21",
+          "row_number": 21,
+          "leverage": 0.021681948689450774,
+          "cooks_distance": 0.0017203663043537949
+        },
+        {
+          "record_id": "row 22",
+          "row_number": 22,
+          "leverage": 0.020681670834491062,
+          "cooks_distance": 0.008257626995206336
+        },
+        {
+          "record_id": "row 23",
+          "row_number": 23,
+          "leverage": 0.01979253496341576,
+          "cooks_distance": 0.00564279409746461
+        },
+        {
+          "record_id": "row 24",
+          "row_number": 24,
+          "leverage": 0.019014541076224876,
+          "cooks_distance": 0.0023215150508444945
+        },
+        {
+          "record_id": "row 25",
+          "row_number": 25,
+          "leverage": 0.018347689172918402,
+          "cooks_distance": 2.9920241230474474e-05
+        },
+        {
+          "record_id": "row 26",
+          "row_number": 26,
+          "leverage": 0.01779197925349634,
+          "cooks_distance": 0.027398912495948224
+        },
+        {
+          "record_id": "row 27",
+          "row_number": 27,
+          "leverage": 0.01734741131795869,
+          "cooks_distance": 0.003681877311267185
+        },
+        {
+          "record_id": "row 28",
+          "row_number": 28,
+          "leverage": 0.017013985366305454,
+          "cooks_distance": 0.016838380860910572
+        },
+        {
+          "record_id": "row 29",
+          "row_number": 29,
+          "leverage": 0.01679170139853663,
+          "cooks_distance": 0.022234733189796463
+        },
+        {
+          "record_id": "row 30",
+          "row_number": 30,
+          "leverage": 0.016680559414652216,
+          "cooks_distance": 0.00445646381205491
+        },
+        {
+          "record_id": "row 31",
+          "row_number": 31,
+          "leverage": 0.016680559414652216,
+          "cooks_distance": 0.00308323468880311
+        },
+        {
+          "record_id": "row 32",
+          "row_number": 32,
+          "leverage": 0.01679170139853663,
+          "cooks_distance": 0.001503462681018671
+        },
+        {
+          "record_id": "row 33",
+          "row_number": 33,
+          "leverage": 0.017013985366305454,
+          "cooks_distance": 0.0014307296991569007
+        },
+        {
+          "record_id": "row 34",
+          "row_number": 34,
+          "leverage": 0.017347411317958694,
+          "cooks_distance": 0.001074715301973978
+        },
+        {
+          "record_id": "row 35",
+          "row_number": 35,
+          "leverage": 0.01779197925349634,
+          "cooks_distance": 0.0028032851620230295
+        },
+        {
+          "record_id": "row 36",
+          "row_number": 36,
+          "leverage": 0.018347689172918402,
+          "cooks_distance": 0.001188384349633415
+        },
+        {
+          "record_id": "row 37",
+          "row_number": 37,
+          "leverage": 0.019014541076224876,
+          "cooks_distance": 0.024480106705682052
+        },
+        {
+          "record_id": "row 38",
+          "row_number": 38,
+          "leverage": 0.01979253496341576,
+          "cooks_distance": 0.012330403489555735
+        },
+        {
+          "record_id": "row 39",
+          "row_number": 39,
+          "leverage": 0.020681670834491062,
+          "cooks_distance": 0.00639816018981883
+        },
+        {
+          "record_id": "row 40",
+          "row_number": 40,
+          "leverage": 0.02168194868945077,
+          "cooks_distance": 0.0158453500200511
+        },
+        {
+          "record_id": "row 41",
+          "row_number": 41,
+          "leverage": 0.02279336852829489,
+          "cooks_distance": 0.0029783075246119428
+        },
+        {
+          "record_id": "row 42",
+          "row_number": 42,
+          "leverage": 0.024015930351023434,
+          "cooks_distance": 0.004380382820707131
+        },
+        {
+          "record_id": "row 43",
+          "row_number": 43,
+          "leverage": 0.025349634157636376,
+          "cooks_distance": 0.0006510361510644119
+        },
+        {
+          "record_id": "row 44",
+          "row_number": 44,
+          "leverage": 0.02679447994813373,
+          "cooks_distance": 0.0023263458492582324
+        },
+        {
+          "record_id": "row 45",
+          "row_number": 45,
+          "leverage": 0.02835046772251551,
+          "cooks_distance": 0.005618786983761322
+        },
+        {
+          "record_id": "row 46",
+          "row_number": 46,
+          "leverage": 0.030017597480781692,
+          "cooks_distance": 0.00080334388309082
+        },
+        {
+          "record_id": "row 47",
+          "row_number": 47,
+          "leverage": 0.03179586922293229,
+          "cooks_distance": 1.9686627252078475e-05
+        },
+        {
+          "record_id": "row 48",
+          "row_number": 48,
+          "leverage": 0.033685282948967304,
+          "cooks_distance": 0.03155166641937671
+        },
+        {
+          "record_id": "row 49",
+          "row_number": 49,
+          "leverage": 0.03568583865888672,
+          "cooks_distance": 0.0010040158953901327
+        },
+        {
+          "record_id": "row 50",
+          "row_number": 50,
+          "leverage": 0.03779753635269055,
+          "cooks_distance": 0.03601853270730368
+        },
+        {
+          "record_id": "row 51",
+          "row_number": 51,
+          "leverage": 0.040020376030378814,
+          "cooks_distance": 0.032169853228753285
+        },
+        {
+          "record_id": "row 52",
+          "row_number": 52,
+          "leverage": 0.04235435769195147,
+          "cooks_distance": 0.09460942193808602
+        },
+        {
+          "record_id": "row 53",
+          "row_number": 53,
+          "leverage": 0.044799481337408534,
+          "cooks_distance": 0.021965924913725343
+        },
+        {
+          "record_id": "row 54",
+          "row_number": 54,
+          "leverage": 0.04735574696675003,
+          "cooks_distance": 0.003553687853522714
+        },
+        {
+          "record_id": "row 55",
+          "row_number": 55,
+          "leverage": 0.050023154579975915,
+          "cooks_distance": 0.033158764655971854
+        },
+        {
+          "record_id": "row 56",
+          "row_number": 56,
+          "leverage": 0.052801704177086226,
+          "cooks_distance": 0.00020206903926064428
+        },
+        {
+          "record_id": "row 57",
+          "row_number": 57,
+          "leverage": 0.055691395758080964,
+          "cooks_distance": 0.01445734454070572
+        },
+        {
+          "record_id": "row 58",
+          "row_number": 58,
+          "leverage": 0.058692229322960074,
+          "cooks_distance": 0.18678499543959892
+        },
+        {
+          "record_id": "row 59",
+          "row_number": 59,
+          "leverage": 0.061804204871723625,
+          "cooks_distance": 0.006773343383012617
+        },
+        {
+          "record_id": "row 60",
+          "row_number": 60,
+          "leverage": 0.06502732240437158,
+          "cooks_distance": 0.12535383787977647
+        }
+      ],
+      "breusch_pagan": {
+        "lm_statistic": 1.6844640542608602,
+        "p_value": 0.19433233919260318,
+        "df": 1,
+        "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+        "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+      },
+      "warnings": [
+        {
+          "code": "influential_observations",
+          "message": "Potential influential observations have Cook's distance > 4/n (0.0666667): row 8, row 20, row 52, row 58, row 60. No observations were excluded automatically."
+        }
+      ]
+    },
+    "decision": "reject_H0"
+  },
+  "stat_diagnostics": {
+    "task": "diagnostics",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\regression_clean.csv",
+    "method": "simple_linear_regression",
+    "request_format": "v2",
+    "n_rows_in_file": 60,
+    "columns_found": [
+      "x",
+      "y",
+      "date"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+    "status": "ok",
+    "n_rows_in_analysis_set": 60,
+    "n_usable_rows": 60,
+    "findings": [],
+    "n_blocking": 0,
+    "n_verify": 0,
+    "method_checks_run": true,
+    "method_findings": [],
+    "distribution_checks_run": true,
+    "distribution_checks": [
+      {
+        "check": "shapiro_wilk",
+        "variable": "residuals",
+        "n": 60,
+        "shapiro_wilk_p": 0.9926849567049363
+      },
+      {
+        "check": "spread_check",
+        "variable": "|residual| vs fitted value",
+        "method": "spearman",
+        "n": 60,
+        "spearman_rho": 0.13186996387885525,
+        "p_value": 0.3152014950650355
+      }
+    ],
+    "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000.",
+    "regression_diagnostics": {
+      "n": 60,
+      "parameter_count": 2,
+      "thresholds": {
+        "cooks_distance": 0.06666666666666667,
+        "leverage": 0.06666666666666667
+      },
+      "max_leverage": 0.06502732240437158,
+      "max_cooks_distance": 0.18678499543959892,
+      "high_leverage_ids": [],
+      "influential_ids": [
+        "row 8",
+        "row 20",
+        "row 52",
+        "row 58",
+        "row 60"
+      ],
+      "observations": [
+        {
+          "record_id": "row 1",
+          "row_number": 1,
+          "leverage": 0.06502732240437158,
+          "cooks_distance": 0.03729422128720078
+        },
+        {
+          "record_id": "row 2",
+          "row_number": 2,
+          "leverage": 0.06180420487172361,
+          "cooks_distance": 0.007746959543152381
+        },
+        {
+          "record_id": "row 3",
+          "row_number": 3,
+          "leverage": 0.058692229322960074,
+          "cooks_distance": 0.00014634841227565155
+        },
+        {
+          "record_id": "row 4",
+          "row_number": 4,
+          "leverage": 0.055691395758080936,
+          "cooks_distance": 0.00027578230073518526
+        },
+        {
+          "record_id": "row 5",
+          "row_number": 5,
+          "leverage": 0.052801704177086226,
+          "cooks_distance": 0.02559530286226905
+        },
+        {
+          "record_id": "row 6",
+          "row_number": 6,
+          "leverage": 0.050023154579975915,
+          "cooks_distance": 5.015582064141291e-05
+        },
+        {
+          "record_id": "row 7",
+          "row_number": 7,
+          "leverage": 0.047355746966750004,
+          "cooks_distance": 0.0003986232803485844
+        },
+        {
+          "record_id": "row 8",
+          "row_number": 8,
+          "leverage": 0.044799481337408534,
+          "cooks_distance": 0.08127840157698114
+        },
+        {
+          "record_id": "row 9",
+          "row_number": 9,
+          "leverage": 0.04235435769195145,
+          "cooks_distance": 0.001405519027716889
+        },
+        {
+          "record_id": "row 10",
+          "row_number": 10,
+          "leverage": 0.0400203760303788,
+          "cooks_distance": 0.016851188535440213
+        },
+        {
+          "record_id": "row 11",
+          "row_number": 11,
+          "leverage": 0.03779753635269056,
+          "cooks_distance": 0.0033907292033561855
+        },
+        {
+          "record_id": "row 12",
+          "row_number": 12,
+          "leverage": 0.03568583865888672,
+          "cooks_distance": 0.001650024702243501
+        },
+        {
+          "record_id": "row 13",
+          "row_number": 13,
+          "leverage": 0.0336852829489673,
+          "cooks_distance": 0.018224746162703725
+        },
+        {
+          "record_id": "row 14",
+          "row_number": 14,
+          "leverage": 0.03179586922293229,
+          "cooks_distance": 0.009308389185893797
+        },
+        {
+          "record_id": "row 15",
+          "row_number": 15,
+          "leverage": 0.030017597480781692,
+          "cooks_distance": 0.016928247472242426
+        },
+        {
+          "record_id": "row 16",
+          "row_number": 16,
+          "leverage": 0.02835046772251551,
+          "cooks_distance": 0.03003421730892508
+        },
+        {
+          "record_id": "row 17",
+          "row_number": 17,
+          "leverage": 0.02679447994813374,
+          "cooks_distance": 0.011640542965133787
+        },
+        {
+          "record_id": "row 18",
+          "row_number": 18,
+          "leverage": 0.02534963415763638,
+          "cooks_distance": 0.010832047847472928
+        },
+        {
+          "record_id": "row 19",
+          "row_number": 19,
+          "leverage": 0.024015930351023434,
+          "cooks_distance": 0.004535471660871782
+        },
+        {
+          "record_id": "row 20",
+          "row_number": 20,
+          "leverage": 0.022793368528294895,
+          "cooks_distance": 0.06680177845768602
+        },
+        {
+          "record_id": "row 21",
+          "row_number": 21,
+          "leverage": 0.021681948689450774,
+          "cooks_distance": 0.0017203663043537949
+        },
+        {
+          "record_id": "row 22",
+          "row_number": 22,
+          "leverage": 0.020681670834491062,
+          "cooks_distance": 0.008257626995206336
+        },
+        {
+          "record_id": "row 23",
+          "row_number": 23,
+          "leverage": 0.01979253496341576,
+          "cooks_distance": 0.00564279409746461
+        },
+        {
+          "record_id": "row 24",
+          "row_number": 24,
+          "leverage": 0.019014541076224876,
+          "cooks_distance": 0.0023215150508444945
+        },
+        {
+          "record_id": "row 25",
+          "row_number": 25,
+          "leverage": 0.018347689172918402,
+          "cooks_distance": 2.9920241230474474e-05
+        },
+        {
+          "record_id": "row 26",
+          "row_number": 26,
+          "leverage": 0.01779197925349634,
+          "cooks_distance": 0.027398912495948224
+        },
+        {
+          "record_id": "row 27",
+          "row_number": 27,
+          "leverage": 0.01734741131795869,
+          "cooks_distance": 0.003681877311267185
+        },
+        {
+          "record_id": "row 28",
+          "row_number": 28,
+          "leverage": 0.017013985366305454,
+          "cooks_distance": 0.016838380860910572
+        },
+        {
+          "record_id": "row 29",
+          "row_number": 29,
+          "leverage": 0.01679170139853663,
+          "cooks_distance": 0.022234733189796463
+        },
+        {
+          "record_id": "row 30",
+          "row_number": 30,
+          "leverage": 0.016680559414652216,
+          "cooks_distance": 0.00445646381205491
+        },
+        {
+          "record_id": "row 31",
+          "row_number": 31,
+          "leverage": 0.016680559414652216,
+          "cooks_distance": 0.00308323468880311
+        },
+        {
+          "record_id": "row 32",
+          "row_number": 32,
+          "leverage": 0.01679170139853663,
+          "cooks_distance": 0.001503462681018671
+        },
+        {
+          "record_id": "row 33",
+          "row_number": 33,
+          "leverage": 0.017013985366305454,
+          "cooks_distance": 0.0014307296991569007
+        },
+        {
+          "record_id": "row 34",
+          "row_number": 34,
+          "leverage": 0.017347411317958694,
+          "cooks_distance": 0.001074715301973978
+        },
+        {
+          "record_id": "row 35",
+          "row_number": 35,
+          "leverage": 0.01779197925349634,
+          "cooks_distance": 0.0028032851620230295
+        },
+        {
+          "record_id": "row 36",
+          "row_number": 36,
+          "leverage": 0.018347689172918402,
+          "cooks_distance": 0.001188384349633415
+        },
+        {
+          "record_id": "row 37",
+          "row_number": 37,
+          "leverage": 0.019014541076224876,
+          "cooks_distance": 0.024480106705682052
+        },
+        {
+          "record_id": "row 38",
+          "row_number": 38,
+          "leverage": 0.01979253496341576,
+          "cooks_distance": 0.012330403489555735
+        },
+        {
+          "record_id": "row 39",
+          "row_number": 39,
+          "leverage": 0.020681670834491062,
+          "cooks_distance": 0.00639816018981883
+        },
+        {
+          "record_id": "row 40",
+          "row_number": 40,
+          "leverage": 0.02168194868945077,
+          "cooks_distance": 0.0158453500200511
+        },
+        {
+          "record_id": "row 41",
+          "row_number": 41,
+          "leverage": 0.02279336852829489,
+          "cooks_distance": 0.0029783075246119428
+        },
+        {
+          "record_id": "row 42",
+          "row_number": 42,
+          "leverage": 0.024015930351023434,
+          "cooks_distance": 0.004380382820707131
+        },
+        {
+          "record_id": "row 43",
+          "row_number": 43,
+          "leverage": 0.025349634157636376,
+          "cooks_distance": 0.0006510361510644119
+        },
+        {
+          "record_id": "row 44",
+          "row_number": 44,
+          "leverage": 0.02679447994813373,
+          "cooks_distance": 0.0023263458492582324
+        },
+        {
+          "record_id": "row 45",
+          "row_number": 45,
+          "leverage": 0.02835046772251551,
+          "cooks_distance": 0.005618786983761322
+        },
+        {
+          "record_id": "row 46",
+          "row_number": 46,
+          "leverage": 0.030017597480781692,
+          "cooks_distance": 0.00080334388309082
+        },
+        {
+          "record_id": "row 47",
+          "row_number": 47,
+          "leverage": 0.03179586922293229,
+          "cooks_distance": 1.9686627252078475e-05
+        },
+        {
+          "record_id": "row 48",
+          "row_number": 48,
+          "leverage": 0.033685282948967304,
+          "cooks_distance": 0.03155166641937671
+        },
+        {
+          "record_id": "row 49",
+          "row_number": 49,
+          "leverage": 0.03568583865888672,
+          "cooks_distance": 0.0010040158953901327
+        },
+        {
+          "record_id": "row 50",
+          "row_number": 50,
+          "leverage": 0.03779753635269055,
+          "cooks_distance": 0.03601853270730368
+        },
+        {
+          "record_id": "row 51",
+          "row_number": 51,
+          "leverage": 0.040020376030378814,
+          "cooks_distance": 0.032169853228753285
+        },
+        {
+          "record_id": "row 52",
+          "row_number": 52,
+          "leverage": 0.04235435769195147,
+          "cooks_distance": 0.09460942193808602
+        },
+        {
+          "record_id": "row 53",
+          "row_number": 53,
+          "leverage": 0.044799481337408534,
+          "cooks_distance": 0.021965924913725343
+        },
+        {
+          "record_id": "row 54",
+          "row_number": 54,
+          "leverage": 0.04735574696675003,
+          "cooks_distance": 0.003553687853522714
+        },
+        {
+          "record_id": "row 55",
+          "row_number": 55,
+          "leverage": 0.050023154579975915,
+          "cooks_distance": 0.033158764655971854
+        },
+        {
+          "record_id": "row 56",
+          "row_number": 56,
+          "leverage": 0.052801704177086226,
+          "cooks_distance": 0.00020206903926064428
+        },
+        {
+          "record_id": "row 57",
+          "row_number": 57,
+          "leverage": 0.055691395758080964,
+          "cooks_distance": 0.01445734454070572
+        },
+        {
+          "record_id": "row 58",
+          "row_number": 58,
+          "leverage": 0.058692229322960074,
+          "cooks_distance": 0.18678499543959892
+        },
+        {
+          "record_id": "row 59",
+          "row_number": 59,
+          "leverage": 0.061804204871723625,
+          "cooks_distance": 0.006773343383012617
+        },
+        {
+          "record_id": "row 60",
+          "row_number": 60,
+          "leverage": 0.06502732240437158,
+          "cooks_distance": 0.12535383787977647
+        }
+      ],
+      "breusch_pagan": {
+        "lm_statistic": 1.6844640542608602,
+        "p_value": 0.19433233919260318,
+        "df": 1,
+        "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+        "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+      },
+      "warnings": [
+        {
+          "code": "influential_observations",
+          "message": "Potential influential observations have Cook's distance > 4/n (0.0666667): row 8, row 20, row 52, row 58, row 60. No observations were excluded automatically."
+        }
+      ]
+    }
+  },
+  "statistical_request": {
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\regression_clean.csv",
+    "data_version": "v1",
+    "excluded_ids": [],
+    "id_column": null,
+    "method": "simple_linear_regression",
+    "roles": {
+      "x": "x",
+      "y": "y"
+    },
+    "group_labels": null,
+    "valid_ranges": {},
+    "valid_levels": {},
+    "conf_level": 0.95,
+    "alpha": 0.05
+  },
+  "stats_block": {
+    "method": "simple_linear_regression",
+    "method_label": "simple linear regression (one predictor, with intercept)",
+    "data_version": "v1",
+    "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+    "values": {
+      "p_value": "< 0.0001",
+      "alpha": "0.05",
+      "null_value": "0",
+      "confidence_level": "95%",
+      "decision_claim": "reject",
+      "direction_claim": "positive",
+      "n": "60",
+      "slope": "1.475",
+      "intercept": "3.110",
+      "ci_lower": "1.346",
+      "ci_upper": "1.604",
+      "t_statistic": "22.963",
+      "df": "58",
+      "r_squared": "0.901"
+    },
+    "hypotheses": "H0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x)",
+    "required_placeholders": [
+      "slope",
+      "ci_lower",
+      "ci_upper",
+      "p_value",
+      "r_squared",
+      "n"
+    ],
+    "required_limitations": {
+      "no_extrapolation": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.",
+      "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+      "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+      "influential_observations": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+    },
+    "direction": "positive",
+    "decision": "reject_H0",
+    "distribution_checks": [
+      {
+        "check": "shapiro_wilk",
+        "variable": "residuals",
+        "n": 60,
+        "shapiro_wilk_p": 0.9926849567049363
+      },
+      {
+        "check": "spread_check",
+        "variable": "|residual| vs fitted value",
+        "method": "spearman",
+        "n": 60,
+        "spearman_rho": 0.13186996387885525,
+        "p_value": 0.3152014950650355
+      }
+    ],
+    "observed": null,
+    "yates": false,
+    "tool_warnings": [],
+    "t_statistic_note": ""
+  },
+  "correction_log": [],
+  "original_draft": {
+    "interpretation": "The analysis included {n} records. The estimated slope was {slope} ({confidence_level} CI {ci_lower} to {ci_upper}), t({df}) = {t_statistic}, p = {p_value}, and R-squared was {r_squared}. At alpha = {alpha}, we reject H0.",
+    "limitations": [
+      {
+        "limitation_id": "no_extrapolation",
+        "text": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it."
+      },
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      {
+        "limitation_id": "analysis_assumptions",
+        "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      },
+      {
+        "limitation_id": "influential_observations",
+        "text": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+      }
+    ],
+    "direction_claim": "positive",
+    "decision_claim": "reject_H0",
+    "version": "v1"
+  },
+  "controlled_execution": {
+    "scope": "Interpretation template test; not an end-to-end run or clarification-policy test.",
+    "record_verification": "No human record verification was performed or fabricated.",
+    "verification_flags_retained": 0
+  },
+  "provenance": {
+    "source_commit": "b7eff1c",
+    "source_file": "interpretation_benchmark.py",
+    "adaptation": "Challenge categories and authored mutations adapted to this project's ReportDraft and Python tools.",
+    "label_kind": "authored fixture expectation; not human review",
+    "draft_origin": "MockAnalysisAgentA controlled template, with an optional authored mutation"
+  },
+  "draft": {
+    "interpretation": "The analysis included {n} records. The estimated slope was {slope} ({confidence_level} CI {ci_lower} to {ci_upper}), t({df}) = {t_statistic}, p = {p_value}, and R-squared was {r_squared}. At alpha = {alpha}, we reject H0.",
+    "limitations": [
+      {
+        "limitation_id": "no_extrapolation",
+        "text": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it."
+      },
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      {
+        "limitation_id": "analysis_assumptions",
+        "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      },
+      {
+        "limitation_id": "influential_observations",
+        "text": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+      }
+    ],
+    "direction_claim": "positive",
+    "decision_claim": "reject_H0",
+    "version": "v1"
+  },
+  "review_evidence": {
+    "report_draft": {
+      "interpretation": "The analysis included 60 records. The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p < 0.0001, and R-squared was 0.901. At alpha = 0.05, we reject H0.",
+      "limitations": [
+        {
+          "limitation_id": "no_extrapolation",
+          "text": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        },
+        {
+          "limitation_id": "influential_observations",
+          "text": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+        }
+      ],
+      "direction_claim": "positive",
+      "decision_claim": "reject_H0",
+      "version": "v1"
+    },
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v1",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 60,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 60,
+      "tool_warnings": [],
+      "method_label": "Ordinary least squares (one predictor, with intercept)",
+      "n": 60,
+      "slope": 1.4750285494295663,
+      "slope_se": 0.06423591880870565,
+      "intercept": 3.110280675144431,
+      "ci_lower": 1.3464463876400463,
+      "ci_upper": 1.6036107112190863,
+      "t_statistic": 22.962675350253747,
+      "df": 58,
+      "p_value": 8.433183004011742e-31,
+      "r_squared": 0.9009028873324268,
+      "regression_diagnostics": {
+        "n": 60,
+        "parameter_count": 2,
+        "thresholds": {
+          "cooks_distance": 0.06666666666666667,
+          "leverage": 0.06666666666666667
+        },
+        "max_leverage": 0.06502732240437158,
+        "max_cooks_distance": 0.18678499543959892,
+        "high_leverage_ids": [],
+        "influential_ids": [
+          "row 8",
+          "row 20",
+          "row 52",
+          "row 58",
+          "row 60"
+        ],
+        "observations": [
+          {
+            "record_id": "row 1",
+            "row_number": 1,
+            "leverage": 0.06502732240437158,
+            "cooks_distance": 0.03729422128720078
+          },
+          {
+            "record_id": "row 2",
+            "row_number": 2,
+            "leverage": 0.06180420487172361,
+            "cooks_distance": 0.007746959543152381
+          },
+          {
+            "record_id": "row 3",
+            "row_number": 3,
+            "leverage": 0.058692229322960074,
+            "cooks_distance": 0.00014634841227565155
+          },
+          {
+            "record_id": "row 4",
+            "row_number": 4,
+            "leverage": 0.055691395758080936,
+            "cooks_distance": 0.00027578230073518526
+          },
+          {
+            "record_id": "row 5",
+            "row_number": 5,
+            "leverage": 0.052801704177086226,
+            "cooks_distance": 0.02559530286226905
+          },
+          {
+            "record_id": "row 6",
+            "row_number": 6,
+            "leverage": 0.050023154579975915,
+            "cooks_distance": 5.015582064141291e-05
+          },
+          {
+            "record_id": "row 7",
+            "row_number": 7,
+            "leverage": 0.047355746966750004,
+            "cooks_distance": 0.0003986232803485844
+          },
+          {
+            "record_id": "row 8",
+            "row_number": 8,
+            "leverage": 0.044799481337408534,
+            "cooks_distance": 0.08127840157698114
+          },
+          {
+            "record_id": "row 9",
+            "row_number": 9,
+            "leverage": 0.04235435769195145,
+            "cooks_distance": 0.001405519027716889
+          },
+          {
+            "record_id": "row 10",
+            "row_number": 10,
+            "leverage": 0.0400203760303788,
+            "cooks_distance": 0.016851188535440213
+          },
+          {
+            "record_id": "row 11",
+            "row_number": 11,
+            "leverage": 0.03779753635269056,
+            "cooks_distance": 0.0033907292033561855
+          },
+          {
+            "record_id": "row 12",
+            "row_number": 12,
+            "leverage": 0.03568583865888672,
+            "cooks_distance": 0.001650024702243501
+          },
+          {
+            "record_id": "row 13",
+            "row_number": 13,
+            "leverage": 0.0336852829489673,
+            "cooks_distance": 0.018224746162703725
+          },
+          {
+            "record_id": "row 14",
+            "row_number": 14,
+            "leverage": 0.03179586922293229,
+            "cooks_distance": 0.009308389185893797
+          },
+          {
+            "record_id": "row 15",
+            "row_number": 15,
+            "leverage": 0.030017597480781692,
+            "cooks_distance": 0.016928247472242426
+          },
+          {
+            "record_id": "row 16",
+            "row_number": 16,
+            "leverage": 0.02835046772251551,
+            "cooks_distance": 0.03003421730892508
+          },
+          {
+            "record_id": "row 17",
+            "row_number": 17,
+            "leverage": 0.02679447994813374,
+            "cooks_distance": 0.011640542965133787
+          },
+          {
+            "record_id": "row 18",
+            "row_number": 18,
+            "leverage": 0.02534963415763638,
+            "cooks_distance": 0.010832047847472928
+          },
+          {
+            "record_id": "row 19",
+            "row_number": 19,
+            "leverage": 0.024015930351023434,
+            "cooks_distance": 0.004535471660871782
+          },
+          {
+            "record_id": "row 20",
+            "row_number": 20,
+            "leverage": 0.022793368528294895,
+            "cooks_distance": 0.06680177845768602
+          },
+          {
+            "record_id": "row 21",
+            "row_number": 21,
+            "leverage": 0.021681948689450774,
+            "cooks_distance": 0.0017203663043537949
+          },
+          {
+            "record_id": "row 22",
+            "row_number": 22,
+            "leverage": 0.020681670834491062,
+            "cooks_distance": 0.008257626995206336
+          },
+          {
+            "record_id": "row 23",
+            "row_number": 23,
+            "leverage": 0.01979253496341576,
+            "cooks_distance": 0.00564279409746461
+          },
+          {
+            "record_id": "row 24",
+            "row_number": 24,
+            "leverage": 0.019014541076224876,
+            "cooks_distance": 0.0023215150508444945
+          },
+          {
+            "record_id": "row 25",
+            "row_number": 25,
+            "leverage": 0.018347689172918402,
+            "cooks_distance": 2.9920241230474474e-05
+          },
+          {
+            "record_id": "row 26",
+            "row_number": 26,
+            "leverage": 0.01779197925349634,
+            "cooks_distance": 0.027398912495948224
+          },
+          {
+            "record_id": "row 27",
+            "row_number": 27,
+            "leverage": 0.01734741131795869,
+            "cooks_distance": 0.003681877311267185
+          },
+          {
+            "record_id": "row 28",
+            "row_number": 28,
+            "leverage": 0.017013985366305454,
+            "cooks_distance": 0.016838380860910572
+          },
+          {
+            "record_id": "row 29",
+            "row_number": 29,
+            "leverage": 0.01679170139853663,
+            "cooks_distance": 0.022234733189796463
+          },
+          {
+            "record_id": "row 30",
+            "row_number": 30,
+            "leverage": 0.016680559414652216,
+            "cooks_distance": 0.00445646381205491
+          },
+          {
+            "record_id": "row 31",
+            "row_number": 31,
+            "leverage": 0.016680559414652216,
+            "cooks_distance": 0.00308323468880311
+          },
+          {
+            "record_id": "row 32",
+            "row_number": 32,
+            "leverage": 0.01679170139853663,
+            "cooks_distance": 0.001503462681018671
+          },
+          {
+            "record_id": "row 33",
+            "row_number": 33,
+            "leverage": 0.017013985366305454,
+            "cooks_distance": 0.0014307296991569007
+          },
+          {
+            "record_id": "row 34",
+            "row_number": 34,
+            "leverage": 0.017347411317958694,
+            "cooks_distance": 0.001074715301973978
+          },
+          {
+            "record_id": "row 35",
+            "row_number": 35,
+            "leverage": 0.01779197925349634,
+            "cooks_distance": 0.0028032851620230295
+          },
+          {
+            "record_id": "row 36",
+            "row_number": 36,
+            "leverage": 0.018347689172918402,
+            "cooks_distance": 0.001188384349633415
+          },
+          {
+            "record_id": "row 37",
+            "row_number": 37,
+            "leverage": 0.019014541076224876,
+            "cooks_distance": 0.024480106705682052
+          },
+          {
+            "record_id": "row 38",
+            "row_number": 38,
+            "leverage": 0.01979253496341576,
+            "cooks_distance": 0.012330403489555735
+          },
+          {
+            "record_id": "row 39",
+            "row_number": 39,
+            "leverage": 0.020681670834491062,
+            "cooks_distance": 0.00639816018981883
+          },
+          {
+            "record_id": "row 40",
+            "row_number": 40,
+            "leverage": 0.02168194868945077,
+            "cooks_distance": 0.0158453500200511
+          },
+          {
+            "record_id": "row 41",
+            "row_number": 41,
+            "leverage": 0.02279336852829489,
+            "cooks_distance": 0.0029783075246119428
+          },
+          {
+            "record_id": "row 42",
+            "row_number": 42,
+            "leverage": 0.024015930351023434,
+            "cooks_distance": 0.004380382820707131
+          },
+          {
+            "record_id": "row 43",
+            "row_number": 43,
+            "leverage": 0.025349634157636376,
+            "cooks_distance": 0.0006510361510644119
+          },
+          {
+            "record_id": "row 44",
+            "row_number": 44,
+            "leverage": 0.02679447994813373,
+            "cooks_distance": 0.0023263458492582324
+          },
+          {
+            "record_id": "row 45",
+            "row_number": 45,
+            "leverage": 0.02835046772251551,
+            "cooks_distance": 0.005618786983761322
+          },
+          {
+            "record_id": "row 46",
+            "row_number": 46,
+            "leverage": 0.030017597480781692,
+            "cooks_distance": 0.00080334388309082
+          },
+          {
+            "record_id": "row 47",
+            "row_number": 47,
+            "leverage": 0.03179586922293229,
+            "cooks_distance": 1.9686627252078475e-05
+          },
+          {
+            "record_id": "row 48",
+            "row_number": 48,
+            "leverage": 0.033685282948967304,
+            "cooks_distance": 0.03155166641937671
+          },
+          {
+            "record_id": "row 49",
+            "row_number": 49,
+            "leverage": 0.03568583865888672,
+            "cooks_distance": 0.0010040158953901327
+          },
+          {
+            "record_id": "row 50",
+            "row_number": 50,
+            "leverage": 0.03779753635269055,
+            "cooks_distance": 0.03601853270730368
+          },
+          {
+            "record_id": "row 51",
+            "row_number": 51,
+            "leverage": 0.040020376030378814,
+            "cooks_distance": 0.032169853228753285
+          },
+          {
+            "record_id": "row 52",
+            "row_number": 52,
+            "leverage": 0.04235435769195147,
+            "cooks_distance": 0.09460942193808602
+          },
+          {
+            "record_id": "row 53",
+            "row_number": 53,
+            "leverage": 0.044799481337408534,
+            "cooks_distance": 0.021965924913725343
+          },
+          {
+            "record_id": "row 54",
+            "row_number": 54,
+            "leverage": 0.04735574696675003,
+            "cooks_distance": 0.003553687853522714
+          },
+          {
+            "record_id": "row 55",
+            "row_number": 55,
+            "leverage": 0.050023154579975915,
+            "cooks_distance": 0.033158764655971854
+          },
+          {
+            "record_id": "row 56",
+            "row_number": 56,
+            "leverage": 0.052801704177086226,
+            "cooks_distance": 0.00020206903926064428
+          },
+          {
+            "record_id": "row 57",
+            "row_number": 57,
+            "leverage": 0.055691395758080964,
+            "cooks_distance": 0.01445734454070572
+          },
+          {
+            "record_id": "row 58",
+            "row_number": 58,
+            "leverage": 0.058692229322960074,
+            "cooks_distance": 0.18678499543959892
+          },
+          {
+            "record_id": "row 59",
+            "row_number": 59,
+            "leverage": 0.061804204871723625,
+            "cooks_distance": 0.006773343383012617
+          },
+          {
+            "record_id": "row 60",
+            "row_number": 60,
+            "leverage": 0.06502732240437158,
+            "cooks_distance": 0.12535383787977647
+          }
+        ],
+        "breusch_pagan": {
+          "lm_statistic": 1.6844640542608602,
+          "p_value": 0.19433233919260318,
+          "df": 1,
+          "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+          "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+        },
+        "warnings": [
+          {
+            "code": "influential_observations",
+            "message": "Potential influential observations have Cook's distance > 4/n (0.0666667): row 8, row 20, row 52, row 58, row 60. No observations were excluded automatically."
+          }
+        ]
+      },
+      "decision": "reject_H0"
+    },
+    "protected_statistics": {
+      "method": "simple_linear_regression",
+      "method_label": "simple linear regression (one predictor, with intercept)",
+      "data_version": "v1",
+      "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+      "values": {
+        "p_value": "< 0.0001",
+        "alpha": "0.05",
+        "null_value": "0",
+        "confidence_level": "95%",
+        "decision_claim": "reject",
+        "direction_claim": "positive",
+        "n": "60",
+        "slope": "1.475",
+        "intercept": "3.110",
+        "ci_lower": "1.346",
+        "ci_upper": "1.604",
+        "t_statistic": "22.963",
+        "df": "58",
+        "r_squared": "0.901"
+      },
+      "hypotheses": "H0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x)",
+      "required_placeholders": [
+        "slope",
+        "ci_lower",
+        "ci_upper",
+        "p_value",
+        "r_squared",
+        "n"
+      ],
+      "required_limitations": {
+        "no_extrapolation": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.",
+        "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+        "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+        "influential_observations": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+      },
+      "direction": "positive",
+      "decision": "reject_H0",
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "residuals",
+          "n": 60,
+          "shapiro_wilk_p": 0.9926849567049363
+        },
+        {
+          "check": "spread_check",
+          "variable": "|residual| vs fitted value",
+          "method": "spearman",
+          "n": 60,
+          "spearman_rho": 0.13186996387885525,
+          "p_value": 0.3152014950650355
+        }
+      ],
+      "observed": null,
+      "yates": false,
+      "tool_warnings": [],
+      "t_statistic_note": ""
+    },
+    "analysis_plan": {
+      "method": "simple_linear_regression",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        },
+        "date": {
+          "type": "date",
+          "meaning": "Calendar date as written in the source CSV"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "correction_log": [],
+    "required_limitations": {
+      "no_extrapolation": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.",
+      "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+      "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+      "influential_observations": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+    }
+  },
+  "rendered_draft": {
+    "interpretation": "The analysis included 60 records. The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p < 0.0001, and R-squared was 0.901. At alpha = 0.05, we reject H0.",
+    "limitations": [
+      {
+        "limitation_id": "no_extrapolation",
+        "text": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it."
+      },
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      {
+        "limitation_id": "analysis_assumptions",
+        "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      },
+      {
+        "limitation_id": "influential_observations",
+        "text": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+      }
+    ],
+    "direction_claim": "positive",
+    "decision_claim": "reject_H0",
+    "version": "v1"
+  },
+  "detectors": {
+    "program": {
+      "status": "assessed",
+      "accepted": true,
+      "check": {
+        "report_version": "v1",
+        "passed": true,
+        "problems": []
+      }
+    },
+    "reviewer_b": {
+      "status": "assessed",
+      "accepted": true,
+      "raw_verdict": {
+        "passed": true,
+        "issues": [],
+        "summary": "The report is consistent with the statistical results and adheres to the provided guidelines. All limitations are appropriately stated, and there are no critical issues."
+      },
+      "verdict": {
+        "passed": true,
+        "issues": [],
+        "summary": "The report is consistent with the statistical results and adheres to the provided guidelines. All limitations are appropriately stated, and there are no critical issues."
+      },
+      "elapsed_seconds": 5.964
+    },
+    "combined": {
+      "status": "assessed",
+      "accepted": true
+    }
+  }
+}

@@ -1,0 +1,719 @@
+{
+  "metadata": {
+    "run_name": "20261012-offline-blinded",
+    "mode": "offline",
+    "started_utc": "2026-10-13T03:14:20.872436+00:00",
+    "reviewer_model": "MOCK stand-in for Model B (rule-based, no LLM)",
+    "evaluation_scope": "Four valid controlled templates and twelve authored mutations; Python statistics are real. Model A is not called.",
+    "provenance": {
+      "source_commit": "b7eff1c",
+      "source_file": "interpretation_benchmark.py",
+      "adaptation": "Challenge categories and authored mutations adapted to this project's ReportDraft and Python tools.",
+      "label_kind": "authored fixture expectation; not human review",
+      "draft_origin": "MockAnalysisAgentA controlled template, with an optional authored mutation"
+    },
+    "requested_cases": [
+      "chi_square_2x2_valid",
+      "pearson_clean_valid",
+      "regression_clean_valid",
+      "welch_clean_valid",
+      "chi_square_2x2_causal",
+      "chi_square_2x2_wrong_number",
+      "nonlinear_no_relationship",
+      "pearson_clean_causal",
+      "pearson_clean_wrong_number",
+      "pearson_percent_misinterpretation",
+      "regression_clean_causal",
+      "regression_clean_wrong_number",
+      "regression_interval_probability",
+      "welch_clean_causal",
+      "welch_clean_wrong_number",
+      "welch_wrong_method"
+    ],
+    "review_evidence_blinded": true,
+    "blinding": "Neutral report version; fixture id, labels and source filename are kept only in evaluator artifacts.",
+    "configuration": {
+      "mode": "offline",
+      "model_b": "MOCK stand-in for Model B (rule-based, no LLM)"
+    }
+  },
+  "completed_cases": 16,
+  "summary": {
+    "program": {
+      "valid_total": 4,
+      "valid_accepted": 4,
+      "valid_false_alarms": 0,
+      "valid_unassessed": 0,
+      "planted_total": 12,
+      "planted_caught": 4,
+      "planted_missed": 8,
+      "planted_unassessed": 0
+    },
+    "reviewer_b": {
+      "valid_total": 4,
+      "valid_accepted": 4,
+      "valid_false_alarms": 0,
+      "valid_unassessed": 0,
+      "planted_total": 12,
+      "planted_caught": 4,
+      "planted_missed": 8,
+      "planted_unassessed": 0
+    },
+    "combined": {
+      "valid_total": 4,
+      "valid_accepted": 4,
+      "valid_false_alarms": 0,
+      "valid_unassessed": 0,
+      "planted_total": 12,
+      "planted_caught": 8,
+      "planted_missed": 4,
+      "planted_unassessed": 0
+    }
+  },
+  "cases": [
+    {
+      "id": "chi_square_2x2_valid",
+      "expected_valid": true,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.0
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "pearson_clean_valid",
+      "expected_valid": true,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.0
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "regression_clean_valid",
+      "expected_valid": true,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.001
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "welch_clean_valid",
+      "expected_valid": true,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.001
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "chi_square_2x2_causal",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "design_info: the groups or exposures were not randomized",
+                "suggested_correction": "Describe an association; remove causal wording."
+              }
+            ],
+            "summary": "Rule-based mock review: 1 issue(s)."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "design_info: the groups or exposures were not randomized",
+                "suggested_correction": "Describe an association; remove causal wording."
+              }
+            ],
+            "summary": "Rule-based mock review: 1 issue(s)."
+          },
+          "elapsed_seconds": 0.0
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "chi_square_2x2_wrong_number",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": false,
+          "check": {
+            "report_version": "v1",
+            "passed": false,
+            "problems": [
+              {
+                "check": "missing_content",
+                "detail": "the interpretation must state ['p_value']"
+              },
+              {
+                "check": "literal_number",
+                "detail": "numbers must be placeholders, found ['0.123']"
+              }
+            ]
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.0
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "nonlinear_no_relationship",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.0
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "pearson_clean_causal",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "design_info: the groups or exposures were not randomized",
+                "suggested_correction": "Describe an association; remove causal wording."
+              }
+            ],
+            "summary": "Rule-based mock review: 1 issue(s)."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "design_info: the groups or exposures were not randomized",
+                "suggested_correction": "Describe an association; remove causal wording."
+              }
+            ],
+            "summary": "Rule-based mock review: 1 issue(s)."
+          },
+          "elapsed_seconds": 0.0
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "pearson_clean_wrong_number",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": false,
+          "check": {
+            "report_version": "v1",
+            "passed": false,
+            "problems": [
+              {
+                "check": "missing_content",
+                "detail": "the interpretation must state ['p_value']"
+              },
+              {
+                "check": "literal_number",
+                "detail": "numbers must be placeholders, found ['0.123']"
+              }
+            ]
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.0
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "pearson_percent_misinterpretation",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.0
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "regression_clean_causal",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "design_info: the groups or exposures were not randomized",
+                "suggested_correction": "Describe an association; remove causal wording."
+              }
+            ],
+            "summary": "Rule-based mock review: 1 issue(s)."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "design_info: the groups or exposures were not randomized",
+                "suggested_correction": "Describe an association; remove causal wording."
+              }
+            ],
+            "summary": "Rule-based mock review: 1 issue(s)."
+          },
+          "elapsed_seconds": 0.001
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "regression_clean_wrong_number",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": false,
+          "check": {
+            "report_version": "v1",
+            "passed": false,
+            "problems": [
+              {
+                "check": "missing_content",
+                "detail": "the interpretation must state ['p_value']"
+              },
+              {
+                "check": "literal_number",
+                "detail": "numbers must be placeholders, found ['0.123']"
+              }
+            ]
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.001
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "regression_interval_probability",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.001
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "welch_clean_causal",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "design_info: the groups or exposures were not randomized",
+                "suggested_correction": "Describe an association; remove causal wording."
+              }
+            ],
+            "summary": "Rule-based mock review: 1 issue(s)."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "design_info: the groups or exposures were not randomized",
+                "suggested_correction": "Describe an association; remove causal wording."
+              }
+            ],
+            "summary": "Rule-based mock review: 1 issue(s)."
+          },
+          "elapsed_seconds": 0.0
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "welch_clean_wrong_number",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": false,
+          "check": {
+            "report_version": "v1",
+            "passed": false,
+            "problems": [
+              {
+                "check": "missing_content",
+                "detail": "the interpretation must state ['p_value']"
+              },
+              {
+                "check": "literal_number",
+                "detail": "numbers must be placeholders, found ['0.123']"
+              }
+            ]
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.0
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "welch_wrong_method",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "Rule-based mock review: no issues found."
+          },
+          "elapsed_seconds": 0.0
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    }
+  ]
+}

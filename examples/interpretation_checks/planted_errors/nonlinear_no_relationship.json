@@ -1,0 +1,10 @@
+{
+  "id": "nonlinear_no_relationship",
+  "source_case": "pearson_nonlinear",
+  "mutation": "nonlinear_no_relationship",
+  "expected_valid": false,
+  "note": "Claim no relationship from a near-zero Pearson correlation despite the U-shaped source data.",
+  "label_source": "Authored controlled-test expectation; not a human rating.",
+  "source_attribution": "Challenge category adapted from teammate commit b7eff1c; no source score imported.",
+  "schema": "Interpretation challenge descriptor for this project's ReportDraft."
+}

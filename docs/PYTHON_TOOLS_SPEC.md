@@ -119,10 +119,81 @@ When data and method requirements pass, descriptive distribution checks are:
 
 - Welch: Shapiro-Wilk per group.
 - Pearson: Shapiro-Wilk for x and y separately. These do not establish linearity or joint normality.
-- Regression: Shapiro-Wilk for residuals; a descriptive Spearman correlation between absolute residuals and fitted values. This is not a complete heteroscedasticity assessment.
+- Regression: Shapiro-Wilk for residuals; a descriptive Spearman correlation between absolute residuals and fitted values. The separate `regression_diagnostics` object adds leverage, Cook's distance and an approximate Koenker Breusch-Pagan variance diagnostic.
 - Chi-square: minimum expected count and share of expected counts below five.
 
 Shapiro-Wilk runs only for 3 through 5000 nonconstant observations; otherwise its p-value is null. A large p-value does not establish normality and a small p-value does not mechanically select another method. Welch does not require equal variances, so an equal-variance pretest is not a gate.
+
+### Regression diagnostic object
+
+For an accepted regression fit, `diagnostics` and successful `run_test` return the same
+`regression_diagnostics` object. When record-level or method requirements defer the fit,
+the diagnostics response contains `regression_diagnostics: null`; a blocked or
+out-of-scope test does not report fitted diagnostic values.
+
+```text
+regression_diagnostics = {
+  n: integer,
+  parameter_count: 2,
+  thresholds: {cooks_distance: number, leverage: number},
+  max_leverage: number,
+  max_cooks_distance: number | null,
+  high_leverage_ids: [record_id, ...],
+  influential_ids: [record_id, ...],
+  observations: [
+    {record_id: string, row_number: integer,
+     leverage: number, cooks_distance: number | null}, ...
+  ],
+  breusch_pagan: {
+    lm_statistic: number | null, p_value: number | null, df: 1,
+    method: string, note: string
+  },
+  warnings: [{code: string, message: string}, ...]
+}
+```
+
+Rows retain original source `record_id` and one-based data `row_number` after the
+current request's explicit exclusions; a missing ID column uses `row N`. No warning
+changes the fit, estimator, slope p-value or confidence interval.
+
+For the one-predictor OLS fit with intercept, the parameter count is `p = 2`,
+`Sxx = sum((x - mean(x))^2)` and leverage is
+`h_i = 1/n + (x_i - mean(x))^2 / Sxx`. The high-leverage screening threshold is
+`2p/n = 4/n`. With `MSE = SSE/(n-p)` and the internally standardized residual
+`r_i = residual_i / sqrt(MSE * (1-h_i))`, Cook's distance is
+`D_i = (r_i^2/p) * h_i/(1-h_i)`. Potential influence is flagged at `D_i > 4/n`.
+These are screening thresholds rather than rules for deleting observations.
+
+Cook's distance is null when leverage is within `32 * machine_epsilon` of one,
+outside its numerical domain, or its arithmetic is not finite. The implementation
+does not replace a singular denominator with epsilon and claim a measured distance.
+If any row's distance is unavailable, the overall `max_cooks_distance` is null;
+defined influential distances can still be flagged. A null value does not establish
+absence of influence.
+
+The field named `breusch_pagan` contains the **Koenker studentized Breusch-Pagan**
+variant: regress squared OLS residuals on an intercept and x, calculate
+`LM = n * auxiliary_R_squared`, and use the approximate upper-tail chi-square
+probability with one degree of freedom. The diagnostic is flagged at `p_value < 0.05`.
+It is not the original normal-error Breusch-Pagan statistic or a robust covariance
+estimator. Residual scaling before squaring preserves auxiliary R-squared and avoids
+overflow/underflow from units. With no numerical variation in squared residuals, or
+unrepresentable auxiliary arithmetic, the statistic and p-value are null with a warning.
+The asymptotic test can exaggerate significance in small samples; a large p-value
+does not establish constant variance. See the
+[official statsmodels test description](https://www.statsmodels.org/stable/generated/statsmodels.stats.diagnostic.het_breuschpagan.html)
+for the distinction between the Koenker and original variants.
+
+Warning codes are `influential_observations`, `high_leverage`, `heteroscedasticity`,
+`cooks_distance_unavailable` and `breusch_pagan_unavailable`. They are descriptive,
+nonblocking warnings: they do not add record findings, `n_verify` or `n_blocking`.
+Existing IQR verification and explicit human decisions still apply independently.
+The graph copies these diagnostics into the protected statistics block, requires
+limitation IDs for influence, leverage and unequal variance, and requires
+`regression_diagnostics_unavailable` when any measure is unavailable. Model A must
+include the required limitations; the program rejects their omission. Fixed report
+formatting and the browser show diagnostic values, flagged IDs and warning messages,
+rendering unavailable numeric values as `unavailable`.
 
 ## `run_test`
 
@@ -135,7 +206,7 @@ All successful methods return `n_included`, `method_label`, `conf_level`, `alpha
 | Welch | `group_1`, `group_2` each contain label/n/mean/SD; `mean_difference`, `ci_lower`, `ci_upper`, `t_statistic`, `df`, `var_equal=false`. Difference and CI follow the explicit group order. |
 | Pearson | `n`, `r`, `ci_lower`, `ci_upper`, `t_statistic`, `df`, `ci_method`, `perfect_correlation`; t is null at the perfect-correlation boundary with `t_statistic_note` and warning. |
 | Chi-square | `n`, `chi_square`, `df`, `cramers_v`, `yates_correction=false`, `observed`, `expected`, `min_expected_count`; each table includes row/column labels and nested counts. No effect CI is returned. |
-| Regression | `n`, `slope`, `slope_se`, `intercept`, `ci_lower`, `ci_upper` for the slope, `t_statistic`, `df`, `r_squared`. |
+| Regression | `n`, `slope`, `slope_se`, `intercept`, `ci_lower`, `ci_upper` for the slope, `t_statistic`, `df`, `r_squared`, and the descriptive `regression_diagnostics` object above. |
 
 Welch uses SciPy's unequal-variance t-test and its requested-level interval. Pearson uses SciPy's test and the Fisher-z normal interval. Chi-square uses `correction=False`; Cramer's V is `sqrt(chi_square / (n * (min(table_shape) - 1)))`. Regression uses centered NumPy OLS with an intercept and SciPy's t distribution, with df `n-2` and interval `slope +/- t_critical * slope_se`.
 
@@ -149,3 +220,23 @@ In addition to estimates and intervals, the program supplies `null_value` (zero)
 method-matched `H0 (slope = {null_value})` is distinguished from the estimated slope;
 an estimated-slope statement using the null value is still rejected. These are fixed
 program-owned hypothesis/conclusion fields, not model-generated numerical results.
+
+## Evaluation evidence
+
+Root `benchmark_suite.py` runs the frozen 31 source CSV/JSON cases in
+`examples/benchmark_v2/`, with provenance at teammate commit `b7eff1c` and separate
+project-specific declarations in `examples/benchmark_v2_adapted/`. It records our
+intentional pauses for missing/IQR issues, unsupported date filters and regression
+minimum of three pairs instead of silently adopting source policies. Root
+`interpretation_benchmark.py` contains 16 controlled challenges: four valid templates
+and twelve authored mutations. It recomputes statistics and checks the program and
+reviewer separately; live interpretation mode calls Model B, not Model A.
+
+New results belong to separate run directories under `artifacts/benchmark_v2/` and
+`artifacts/interpretation_checks/`, with offline/live mode and configuration recorded.
+Source fixture declarations and source README scores are preserved as provenance,
+not copied into our result claims. Offline mechanical checks, independent numeric
+agreement and controlled detector coverage are different measures. None supplies
+independent human semantic accuracy or changes model training weights. Consult
+`docs/VERIFICATION.md` and each saved run for executed outcomes; this interface
+specification does not promise current pass counts or live scores.

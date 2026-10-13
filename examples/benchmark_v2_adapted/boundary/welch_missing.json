@@ -1,0 +1,52 @@
+{
+  "id": "welch_missing",
+  "category": "boundary",
+  "design_info": {
+    "variables": {
+      "group": {
+        "type": "categorical",
+        "levels": [
+          "treatment",
+          "control"
+        ],
+        "meaning": "Source text labels in group"
+      },
+      "outcome": {
+        "type": "numeric",
+        "meaning": "Numeric source field outcome; units not supplied"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations.",
+    "comparison_order": "Requested contrast: treatment minus control."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "result",
+  "expected_primary_behavior": "pause",
+  "fixture_answers": [
+    {
+      "record_id": "row 1",
+      "field": "outcome",
+      "check_prefix": "missing",
+      "action": "exclude",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation."
+    },
+    {
+      "record_id": "row 31",
+      "field": "outcome",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    }
+  ],
+  "expected_method": "welch_t_test",
+  "source_csv_sha256": "af3a42a936a239acaab543401cc559f07bdb25d6dd816608219f61b4618922f3",
+  "source_json_sha256": "023faf57a538089a7eddea3db6452464f625516951a146a10ba8cc9c6b2113d4",
+  "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+}

@@ -1,0 +1,44 @@
+{
+  "id": "welch_unequal_variance",
+  "category": "boundary",
+  "design_info": {
+    "variables": {
+      "group": {
+        "type": "categorical",
+        "levels": [
+          "treatment",
+          "control"
+        ],
+        "meaning": "Source text labels in group"
+      },
+      "outcome": {
+        "type": "numeric",
+        "meaning": "Numeric source field outcome; units not supplied"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations.",
+    "comparison_order": "Requested contrast: treatment minus control."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "result",
+  "expected_primary_behavior": "pause",
+  "fixture_answers": [
+    {
+      "record_id": "row 31",
+      "field": "outcome",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    }
+  ],
+  "expected_method": "welch_t_test",
+  "source_csv_sha256": "b50bd505a2f2d96c78f5843d7102ee0676cd3ea2a36a519cbde2f9187e06d5b5",
+  "source_json_sha256": "fac1d93ae216bc10330c43ae6b14ec577eb5730195021d688d2c25766e8532a6",
+  "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+}

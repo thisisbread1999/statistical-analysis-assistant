@@ -1,0 +1,3311 @@
+{
+  "id": "regression_too_few",
+  "category": "stop",
+  "mode": "offline",
+  "mode_label": "MOCK: prespecified fixture plans and rule-based reports; mechanics only, NOT LLM accuracy",
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "source_question": "Regress y on x.",
+  "source_expected_behavior": "stop",
+  "adapted_expectation": {
+    "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+    "policy_version": "ours-v1",
+    "source_expected_behavior": "stop",
+    "expected_primary_behavior": "result",
+    "fixture_answers": [],
+    "expected_method": "simple_linear_regression",
+    "source_csv_sha256": "26b97f3a65f7af11609e5f48c95b54d6fb749fe75e8f066e390cd609ef3e3e27",
+    "source_json_sha256": "828c510a2ff25ceea1e55a73da8f0ae6f05111a4969e811bb04dc5c725df5534",
+    "adaptation_note": "Source has four rows; ours permits identifiable regression with at least three. Expected computation is adapted, not a disabled check."
+  },
+  "checks": {
+    "primary_safety_behavior": true,
+    "no_runner_exception": true,
+    "method": true,
+    "roles_and_contrast": true,
+    "independent_numbers": true
+  },
+  "mechanical_pass": true,
+  "method_assessed": true,
+  "method_pass": true,
+  "safety_pass": true,
+  "numeric": {
+    "assessed": true,
+    "passed": true,
+    "reference": {
+      "n_included": 4,
+      "n": 4,
+      "slope": -1.0089901039664433,
+      "intercept": -3.881546621485564,
+      "slope_se": 2.416867514371735,
+      "r_squared": 0.08015876265869759,
+      "df": 2,
+      "t_statistic": -0.41747845008737705,
+      "p_value": 0.716876771248437,
+      "ci_lower": -11.407931712120785,
+      "ci_upper": 9.389951504187898
+    },
+    "fields": {
+      "n_included": true,
+      "n": true,
+      "slope": true,
+      "intercept": true,
+      "slope_se": true,
+      "r_squared": true,
+      "df": true,
+      "t_statistic": true,
+      "p_value": true,
+      "ci_lower": true,
+      "ci_upper": true
+    },
+    "actual_data_version": "v1",
+    "actual_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+    "approved_excluded_ids": [],
+    "original_n": 4
+  },
+  "interpretation_accepted": true,
+  "semantic_review": "unlabelled: no independent human review",
+  "report_delivery_status": "delivered",
+  "actual_status": "delivered",
+  "primary_state": {
+    "run_id": "bench-3f59814900534135",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Regress y on x.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        },
+        "date": {
+          "type": "date",
+          "meaning": "Calendar date as written in the source CSV"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+    "data_version": "v1",
+    "data_fingerprint": "26b97f3a65f7af11609e5f48c95b54d6fb749fe75e8f066e390cd609ef3e3e27",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "simple_linear_regression",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 4,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 4,
+      "columns": [
+        {
+          "name": "x",
+          "role": "x",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 4,
+          "n_unique_as_written": 4,
+          "quantiles": {
+            "min": -3.0,
+            "p05": -2.9847457627118645,
+            "p25": -2.923728813559322,
+            "p50": -2.847457627118644,
+            "p75": -2.7711864406779663,
+            "p95": -2.7101694915254235,
+            "max": -2.694915254237288
+          },
+          "mean": -2.8474576271186445,
+          "sd": 0.13128757105787853
+        },
+        {
+          "name": "y",
+          "role": "y",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 4,
+          "n_unique_as_written": 4,
+          "quantiles": {
+            "min": -1.5764426834875567,
+            "p05": -1.5009338072609646,
+            "p25": -1.1988983023545958,
+            "p50": -1.0100989388255623,
+            "p75": -0.819690690730049,
+            "p95": -0.5137938628641291,
+            "max": -0.4373196558976489
+          },
+          "mean": -1.0084900542590824,
+          "sd": 0.46788057820377643
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {}
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned simple_linear_regression matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 4,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 4,
+      "n_usable_rows": 4,
+      "findings": [],
+      "n_blocking": 0,
+      "n_verify": 0,
+      "method_checks_run": true,
+      "method_findings": [],
+      "distribution_checks_run": true,
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "residuals",
+          "n": 4,
+          "shapiro_wilk_p": 0.606577641660143
+        },
+        {
+          "check": "spread_check",
+          "variable": "|residual| vs fitted value",
+          "method": "spearman",
+          "n": 4,
+          "spearman_rho": 0.6000000000000001,
+          "p_value": 0.4
+        }
+      ],
+      "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000.",
+      "regression_diagnostics": {
+        "n": 4,
+        "parameter_count": 2,
+        "thresholds": {
+          "cooks_distance": 1.0,
+          "leverage": 1.0
+        },
+        "max_leverage": 0.7000000000000031,
+        "max_cooks_distance": 2.241598906353496,
+        "high_leverage_ids": [],
+        "influential_ids": [
+          "row 1"
+        ],
+        "observations": [
+          {
+            "record_id": "row 1",
+            "row_number": 1,
+            "leverage": 0.6999999999999977,
+            "cooks_distance": 2.241598906353496
+          },
+          {
+            "record_id": "row 2",
+            "row_number": 2,
+            "leverage": 0.2999999999999989,
+            "cooks_distance": 0.38865401024712287
+          },
+          {
+            "record_id": "row 3",
+            "row_number": 3,
+            "leverage": 0.3000000000000006,
+            "cooks_distance": 0.00017808027784155538
+          },
+          {
+            "record_id": "row 4",
+            "row_number": 4,
+            "leverage": 0.7000000000000031,
+            "cooks_distance": 0.5965712029033757
+          }
+        ],
+        "breusch_pagan": {
+          "lm_statistic": 1.3313687189211498,
+          "p_value": 0.24856186719094453,
+          "df": 1,
+          "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+          "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+        },
+        "warnings": [
+          {
+            "code": "influential_observations",
+            "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+          }
+        ]
+      }
+    },
+    "diagnostic_route": "proceed",
+    "diagnostic_assessment": {
+      "rationale": "No unresolved record-level problems remain; the planned test can run.",
+      "limitations": [],
+      "questions": []
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 4,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 4,
+      "tool_warnings": [],
+      "method_label": "Ordinary least squares (one predictor, with intercept)",
+      "n": 4,
+      "slope": -1.0089901039664493,
+      "slope_se": 2.4168675143719462,
+      "intercept": -3.8815466214855823,
+      "ci_lower": -11.4079317121217,
+      "ci_upper": 9.389951504188803,
+      "t_statistic": -0.41747845008734297,
+      "df": 2,
+      "p_value": 0.7168767712484583,
+      "r_squared": 0.08015876265869781,
+      "regression_diagnostics": {
+        "n": 4,
+        "parameter_count": 2,
+        "thresholds": {
+          "cooks_distance": 1.0,
+          "leverage": 1.0
+        },
+        "max_leverage": 0.7000000000000031,
+        "max_cooks_distance": 2.241598906353496,
+        "high_leverage_ids": [],
+        "influential_ids": [
+          "row 1"
+        ],
+        "observations": [
+          {
+            "record_id": "row 1",
+            "row_number": 1,
+            "leverage": 0.6999999999999977,
+            "cooks_distance": 2.241598906353496
+          },
+          {
+            "record_id": "row 2",
+            "row_number": 2,
+            "leverage": 0.2999999999999989,
+            "cooks_distance": 0.38865401024712287
+          },
+          {
+            "record_id": "row 3",
+            "row_number": 3,
+            "leverage": 0.3000000000000006,
+            "cooks_distance": 0.00017808027784155538
+          },
+          {
+            "record_id": "row 4",
+            "row_number": 4,
+            "leverage": 0.7000000000000031,
+            "cooks_distance": 0.5965712029033757
+          }
+        ],
+        "breusch_pagan": {
+          "lm_statistic": 1.3313687189211498,
+          "p_value": 0.24856186719094453,
+          "df": 1,
+          "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+          "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+        },
+        "warnings": [
+          {
+            "code": "influential_observations",
+            "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+          }
+        ]
+      },
+      "decision": "do_not_reject_H0"
+    },
+    "stats_block": {
+      "method": "simple_linear_regression",
+      "method_label": "simple linear regression (one predictor, with intercept)",
+      "data_version": "v1",
+      "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+      "values": {
+        "p_value": "0.7169",
+        "alpha": "0.05",
+        "null_value": "0",
+        "confidence_level": "95%",
+        "decision_claim": "do not reject",
+        "direction_claim": "negative",
+        "n": "4",
+        "slope": "-1.009",
+        "intercept": "-3.882",
+        "ci_lower": "-11.408",
+        "ci_upper": "9.390",
+        "t_statistic": "-0.417",
+        "df": "2",
+        "r_squared": "0.080"
+      },
+      "hypotheses": "H0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x)",
+      "required_placeholders": [
+        "slope",
+        "ci_lower",
+        "ci_upper",
+        "p_value",
+        "r_squared",
+        "n"
+      ],
+      "required_limitations": {
+        "no_extrapolation": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.",
+        "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+        "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+        "influential_observations": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+      },
+      "direction": "negative",
+      "decision": "do_not_reject_H0",
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "residuals",
+          "n": 4,
+          "shapiro_wilk_p": 0.606577641660143
+        },
+        {
+          "check": "spread_check",
+          "variable": "|residual| vs fitted value",
+          "method": "spearman",
+          "n": 4,
+          "spearman_rho": 0.6000000000000001,
+          "p_value": 0.4
+        }
+      ],
+      "regression_diagnostics": {
+        "n": 4,
+        "parameter_count": 2,
+        "thresholds": {
+          "cooks_distance": 1.0,
+          "leverage": 1.0
+        },
+        "max_leverage": 0.7000000000000031,
+        "max_cooks_distance": 2.241598906353496,
+        "high_leverage_ids": [],
+        "influential_ids": [
+          "row 1"
+        ],
+        "observations": [
+          {
+            "record_id": "row 1",
+            "row_number": 1,
+            "leverage": 0.6999999999999977,
+            "cooks_distance": 2.241598906353496
+          },
+          {
+            "record_id": "row 2",
+            "row_number": 2,
+            "leverage": 0.2999999999999989,
+            "cooks_distance": 0.38865401024712287
+          },
+          {
+            "record_id": "row 3",
+            "row_number": 3,
+            "leverage": 0.3000000000000006,
+            "cooks_distance": 0.00017808027784155538
+          },
+          {
+            "record_id": "row 4",
+            "row_number": 4,
+            "leverage": 0.7000000000000031,
+            "cooks_distance": 0.5965712029033757
+          }
+        ],
+        "breusch_pagan": {
+          "lm_statistic": 1.3313687189211498,
+          "p_value": 0.24856186719094453,
+          "df": 1,
+          "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+          "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+        },
+        "warnings": [
+          {
+            "code": "influential_observations",
+            "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+          }
+        ]
+      },
+      "observed": null,
+      "yates": false,
+      "tool_warnings": [],
+      "t_statistic_note": ""
+    },
+    "report_draft": {
+      "interpretation": "The analysis included {n} records. The estimated slope was {slope} ({confidence_level} CI {ci_lower} to {ci_upper}), t({df}) = {t_statistic}, p = {p_value}, and R-squared was {r_squared}. At alpha = {alpha}, we do not reject H0. This is not evidence that there is no difference or association.",
+      "limitations": [
+        {
+          "limitation_id": "no_extrapolation",
+          "text": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        },
+        {
+          "limitation_id": "influential_observations",
+          "text": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+        }
+      ],
+      "direction_claim": "negative",
+      "decision_claim": "do_not_reject_H0",
+      "version": "draft1"
+    },
+    "rendered_draft": {
+      "interpretation": "The analysis included 4 records. The estimated slope was -1.009 (95% CI -11.408 to 9.390), t(2) = -0.417, p = 0.7169, and R-squared was 0.080. At alpha = 0.05, we do not reject H0. This is not evidence that there is no difference or association.",
+      "limitations": [
+        {
+          "limitation_id": "no_extrapolation",
+          "text": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        },
+        {
+          "limitation_id": "influential_observations",
+          "text": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+        }
+      ],
+      "direction_claim": "negative",
+      "decision_claim": "do_not_reject_H0",
+      "version": "draft1"
+    },
+    "program_check": {
+      "report_version": "draft1",
+      "passed": true,
+      "problems": []
+    },
+    "review_verdict": {
+      "passed": true,
+      "issues": [],
+      "summary": "Rule-based mock review: no issues found."
+    },
+    "revision_count": 0,
+    "final_status": "delivered",
+    "final_report": "MOCK: rule-based agent stand-ins; Python calculations are real.\n\nMethod: simple linear regression (one predictor, with intercept)  (data version v1; Python: NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95))\nH0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x); α = 0.05\n\nn = 4; slope = -1.009 (95% CI -11.408 to 9.390); intercept = -3.882; t(2) = -0.417; p = 0.7169; R-squared = 0.080\nDecision at α = 0.05: do_not_reject_H0\n\nRegression diagnostics (screening flags; no automatic record deletion):\nMaximum Cook's distance = 2.2416; screening threshold = 1.\nMaximum leverage = 0.7; screening threshold = 1.\nKoenker studentized Breusch–Pagan test: LM = 1.33137; p = 0.248562.\nInfluential record IDs: row 1\nHigh-leverage record IDs: none flagged\nDiagnostic warning: Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically.\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'residuals', 'n': 4, 'shapiro_wilk_p': 0.606577641660143}, {'check': 'spread_check', 'variable': '|residual| vs fitted value', 'method': 'spearman', 'n': 4, 'spearman_rho': 0.6000000000000001, 'p_value': 0.4}]\n\nThe analysis included 4 records. The estimated slope was -1.009 (95% CI -11.408 to 9.390), t(2) = -0.417, p = 0.7169, and R-squared was 0.080. At alpha = 0.05, we do not reject H0. This is not evidence that there is no difference or association.\n\nLimitations:\n- The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.\n- Random allocation was not established. This analysis describes an association and does not establish causation.\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.\n- Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed.",
+    "session_memory": {
+      "last_success": {
+        "research_question": "Regress y on x.",
+        "design_info": {
+          "variables": {
+            "x": {
+              "type": "numeric",
+              "meaning": "Numeric source field x; units not supplied"
+            },
+            "y": {
+              "type": "numeric",
+              "meaning": "Numeric source field y; units not supplied"
+            },
+            "date": {
+              "type": "date",
+              "meaning": "Calendar date as written in the source CSV"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+        "data_version": "v1",
+        "data_fingerprint": "26b97f3a65f7af11609e5f48c95b54d6fb749fe75e8f066e390cd609ef3e3e27",
+        "analysis_plan": {
+          "method": "simple_linear_regression",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "x",
+          "y": "y",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "conf_level": 0.95,
+        "stat_result": {
+          "task": "run_test",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+          "method": "simple_linear_regression",
+          "request_format": "v2",
+          "n_rows_in_file": 4,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+          "status": "ok",
+          "alternative": "two-sided",
+          "conf_level": 0.95,
+          "alpha": 0.05,
+          "n_included": 4,
+          "tool_warnings": [],
+          "method_label": "Ordinary least squares (one predictor, with intercept)",
+          "n": 4,
+          "slope": -1.0089901039664493,
+          "slope_se": 2.4168675143719462,
+          "intercept": -3.8815466214855823,
+          "ci_lower": -11.4079317121217,
+          "ci_upper": 9.389951504188803,
+          "t_statistic": -0.41747845008734297,
+          "df": 2,
+          "p_value": 0.7168767712484583,
+          "r_squared": 0.08015876265869781,
+          "regression_diagnostics": {
+            "n": 4,
+            "parameter_count": 2,
+            "thresholds": {
+              "cooks_distance": 1.0,
+              "leverage": 1.0
+            },
+            "max_leverage": 0.7000000000000031,
+            "max_cooks_distance": 2.241598906353496,
+            "high_leverage_ids": [],
+            "influential_ids": [
+              "row 1"
+            ],
+            "observations": [
+              {
+                "record_id": "row 1",
+                "row_number": 1,
+                "leverage": 0.6999999999999977,
+                "cooks_distance": 2.241598906353496
+              },
+              {
+                "record_id": "row 2",
+                "row_number": 2,
+                "leverage": 0.2999999999999989,
+                "cooks_distance": 0.38865401024712287
+              },
+              {
+                "record_id": "row 3",
+                "row_number": 3,
+                "leverage": 0.3000000000000006,
+                "cooks_distance": 0.00017808027784155538
+              },
+              {
+                "record_id": "row 4",
+                "row_number": 4,
+                "leverage": 0.7000000000000031,
+                "cooks_distance": 0.5965712029033757
+              }
+            ],
+            "breusch_pagan": {
+              "lm_statistic": 1.3313687189211498,
+              "p_value": 0.24856186719094453,
+              "df": 1,
+              "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+              "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+            },
+            "warnings": [
+              {
+                "code": "influential_observations",
+                "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+              }
+            ]
+          },
+          "decision": "do_not_reject_H0"
+        },
+        "stats_block": {
+          "method": "simple_linear_regression",
+          "method_label": "simple linear regression (one predictor, with intercept)",
+          "data_version": "v1",
+          "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+          "values": {
+            "p_value": "0.7169",
+            "alpha": "0.05",
+            "null_value": "0",
+            "confidence_level": "95%",
+            "decision_claim": "do not reject",
+            "direction_claim": "negative",
+            "n": "4",
+            "slope": "-1.009",
+            "intercept": "-3.882",
+            "ci_lower": "-11.408",
+            "ci_upper": "9.390",
+            "t_statistic": "-0.417",
+            "df": "2",
+            "r_squared": "0.080"
+          },
+          "hypotheses": "H0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x)",
+          "required_placeholders": [
+            "slope",
+            "ci_lower",
+            "ci_upper",
+            "p_value",
+            "r_squared",
+            "n"
+          ],
+          "required_limitations": {
+            "no_extrapolation": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.",
+            "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+            "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+            "influential_observations": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+          },
+          "direction": "negative",
+          "decision": "do_not_reject_H0",
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "residuals",
+              "n": 4,
+              "shapiro_wilk_p": 0.606577641660143
+            },
+            {
+              "check": "spread_check",
+              "variable": "|residual| vs fitted value",
+              "method": "spearman",
+              "n": 4,
+              "spearman_rho": 0.6000000000000001,
+              "p_value": 0.4
+            }
+          ],
+          "regression_diagnostics": {
+            "n": 4,
+            "parameter_count": 2,
+            "thresholds": {
+              "cooks_distance": 1.0,
+              "leverage": 1.0
+            },
+            "max_leverage": 0.7000000000000031,
+            "max_cooks_distance": 2.241598906353496,
+            "high_leverage_ids": [],
+            "influential_ids": [
+              "row 1"
+            ],
+            "observations": [
+              {
+                "record_id": "row 1",
+                "row_number": 1,
+                "leverage": 0.6999999999999977,
+                "cooks_distance": 2.241598906353496
+              },
+              {
+                "record_id": "row 2",
+                "row_number": 2,
+                "leverage": 0.2999999999999989,
+                "cooks_distance": 0.38865401024712287
+              },
+              {
+                "record_id": "row 3",
+                "row_number": 3,
+                "leverage": 0.3000000000000006,
+                "cooks_distance": 0.00017808027784155538
+              },
+              {
+                "record_id": "row 4",
+                "row_number": 4,
+                "leverage": 0.7000000000000031,
+                "cooks_distance": 0.5965712029033757
+              }
+            ],
+            "breusch_pagan": {
+              "lm_statistic": 1.3313687189211498,
+              "p_value": 0.24856186719094453,
+              "df": 1,
+              "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+              "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+            },
+            "warnings": [
+              {
+                "code": "influential_observations",
+                "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+              }
+            ]
+          },
+          "observed": null,
+          "yates": false,
+          "tool_warnings": [],
+          "t_statistic_note": ""
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+          "method": "simple_linear_regression",
+          "request_format": "v2",
+          "n_rows_in_file": 4,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 4,
+          "n_usable_rows": 4,
+          "findings": [],
+          "n_blocking": 0,
+          "n_verify": 0,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "residuals",
+              "n": 4,
+              "shapiro_wilk_p": 0.606577641660143
+            },
+            {
+              "check": "spread_check",
+              "variable": "|residual| vs fitted value",
+              "method": "spearman",
+              "n": 4,
+              "spearman_rho": 0.6000000000000001,
+              "p_value": 0.4
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000.",
+          "regression_diagnostics": {
+            "n": 4,
+            "parameter_count": 2,
+            "thresholds": {
+              "cooks_distance": 1.0,
+              "leverage": 1.0
+            },
+            "max_leverage": 0.7000000000000031,
+            "max_cooks_distance": 2.241598906353496,
+            "high_leverage_ids": [],
+            "influential_ids": [
+              "row 1"
+            ],
+            "observations": [
+              {
+                "record_id": "row 1",
+                "row_number": 1,
+                "leverage": 0.6999999999999977,
+                "cooks_distance": 2.241598906353496
+              },
+              {
+                "record_id": "row 2",
+                "row_number": 2,
+                "leverage": 0.2999999999999989,
+                "cooks_distance": 0.38865401024712287
+              },
+              {
+                "record_id": "row 3",
+                "row_number": 3,
+                "leverage": 0.3000000000000006,
+                "cooks_distance": 0.00017808027784155538
+              },
+              {
+                "record_id": "row 4",
+                "row_number": 4,
+                "leverage": 0.7000000000000031,
+                "cooks_distance": 0.5965712029033757
+              }
+            ],
+            "breusch_pagan": {
+              "lm_statistic": 1.3313687189211498,
+              "p_value": 0.24856186719094453,
+              "df": 1,
+              "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+              "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+            },
+            "warnings": [
+              {
+                "code": "influential_observations",
+                "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+              }
+            ]
+          }
+        },
+        "request_number": 1
+      },
+      "last_request_status": "delivered"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "method": "draft",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "method": "review",
+        "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860771.9572453,
+        "end": 1791860771.958383,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860771.960453,
+        "end": 1791860771.9694774,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860771.9721043,
+        "end": 1791860771.9722502,
+        "thread": "ThreadPoolExecutor-35_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791860771.972954,
+        "end": 1791860771.9872208,
+        "thread": "ThreadPoolExecutor-35_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791860771.9896846,
+        "end": 1791860771.9905202,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "run_statistical_test",
+        "status": "completed",
+        "start": 1791860771.9950643,
+        "end": 1791860772.0060258,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "build_stats_block",
+        "status": "completed",
+        "start": 1791860772.0067022,
+        "end": 1791860772.0067353,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "status": "completed",
+        "start": 1791860772.0071945,
+        "end": 1791860772.007248,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 7
+      },
+      {
+        "request_number": 1,
+        "node": "check_report",
+        "status": "completed",
+        "start": 1791860772.0082595,
+        "end": 1791860772.0084558,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 8
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "status": "completed",
+        "start": 1791860772.0092058,
+        "end": 1791860772.0093527,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 9
+      },
+      {
+        "request_number": 1,
+        "node": "deliver_report",
+        "status": "completed",
+        "start": 1791860772.0109491,
+        "end": 1791860772.01103,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 10
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860772.0149066,
+        "end": 1791860772.0154338,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 11
+      }
+    ],
+    "observed_status": "delivered"
+  },
+  "final_state": {
+    "run_id": "bench-3f59814900534135",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Regress y on x.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        },
+        "date": {
+          "type": "date",
+          "meaning": "Calendar date as written in the source CSV"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+    "data_version": "v1",
+    "data_fingerprint": "26b97f3a65f7af11609e5f48c95b54d6fb749fe75e8f066e390cd609ef3e3e27",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "simple_linear_regression",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 4,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 4,
+      "columns": [
+        {
+          "name": "x",
+          "role": "x",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 4,
+          "n_unique_as_written": 4,
+          "quantiles": {
+            "min": -3.0,
+            "p05": -2.9847457627118645,
+            "p25": -2.923728813559322,
+            "p50": -2.847457627118644,
+            "p75": -2.7711864406779663,
+            "p95": -2.7101694915254235,
+            "max": -2.694915254237288
+          },
+          "mean": -2.8474576271186445,
+          "sd": 0.13128757105787853
+        },
+        {
+          "name": "y",
+          "role": "y",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 4,
+          "n_unique_as_written": 4,
+          "quantiles": {
+            "min": -1.5764426834875567,
+            "p05": -1.5009338072609646,
+            "p25": -1.1988983023545958,
+            "p50": -1.0100989388255623,
+            "p75": -0.819690690730049,
+            "p95": -0.5137938628641291,
+            "max": -0.4373196558976489
+          },
+          "mean": -1.0084900542590824,
+          "sd": 0.46788057820377643
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {}
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned simple_linear_regression matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 4,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 4,
+      "n_usable_rows": 4,
+      "findings": [],
+      "n_blocking": 0,
+      "n_verify": 0,
+      "method_checks_run": true,
+      "method_findings": [],
+      "distribution_checks_run": true,
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "residuals",
+          "n": 4,
+          "shapiro_wilk_p": 0.606577641660143
+        },
+        {
+          "check": "spread_check",
+          "variable": "|residual| vs fitted value",
+          "method": "spearman",
+          "n": 4,
+          "spearman_rho": 0.6000000000000001,
+          "p_value": 0.4
+        }
+      ],
+      "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000.",
+      "regression_diagnostics": {
+        "n": 4,
+        "parameter_count": 2,
+        "thresholds": {
+          "cooks_distance": 1.0,
+          "leverage": 1.0
+        },
+        "max_leverage": 0.7000000000000031,
+        "max_cooks_distance": 2.241598906353496,
+        "high_leverage_ids": [],
+        "influential_ids": [
+          "row 1"
+        ],
+        "observations": [
+          {
+            "record_id": "row 1",
+            "row_number": 1,
+            "leverage": 0.6999999999999977,
+            "cooks_distance": 2.241598906353496
+          },
+          {
+            "record_id": "row 2",
+            "row_number": 2,
+            "leverage": 0.2999999999999989,
+            "cooks_distance": 0.38865401024712287
+          },
+          {
+            "record_id": "row 3",
+            "row_number": 3,
+            "leverage": 0.3000000000000006,
+            "cooks_distance": 0.00017808027784155538
+          },
+          {
+            "record_id": "row 4",
+            "row_number": 4,
+            "leverage": 0.7000000000000031,
+            "cooks_distance": 0.5965712029033757
+          }
+        ],
+        "breusch_pagan": {
+          "lm_statistic": 1.3313687189211498,
+          "p_value": 0.24856186719094453,
+          "df": 1,
+          "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+          "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+        },
+        "warnings": [
+          {
+            "code": "influential_observations",
+            "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+          }
+        ]
+      }
+    },
+    "diagnostic_route": "proceed",
+    "diagnostic_assessment": {
+      "rationale": "No unresolved record-level problems remain; the planned test can run.",
+      "limitations": [],
+      "questions": []
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 4,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 4,
+      "tool_warnings": [],
+      "method_label": "Ordinary least squares (one predictor, with intercept)",
+      "n": 4,
+      "slope": -1.0089901039664493,
+      "slope_se": 2.4168675143719462,
+      "intercept": -3.8815466214855823,
+      "ci_lower": -11.4079317121217,
+      "ci_upper": 9.389951504188803,
+      "t_statistic": -0.41747845008734297,
+      "df": 2,
+      "p_value": 0.7168767712484583,
+      "r_squared": 0.08015876265869781,
+      "regression_diagnostics": {
+        "n": 4,
+        "parameter_count": 2,
+        "thresholds": {
+          "cooks_distance": 1.0,
+          "leverage": 1.0
+        },
+        "max_leverage": 0.7000000000000031,
+        "max_cooks_distance": 2.241598906353496,
+        "high_leverage_ids": [],
+        "influential_ids": [
+          "row 1"
+        ],
+        "observations": [
+          {
+            "record_id": "row 1",
+            "row_number": 1,
+            "leverage": 0.6999999999999977,
+            "cooks_distance": 2.241598906353496
+          },
+          {
+            "record_id": "row 2",
+            "row_number": 2,
+            "leverage": 0.2999999999999989,
+            "cooks_distance": 0.38865401024712287
+          },
+          {
+            "record_id": "row 3",
+            "row_number": 3,
+            "leverage": 0.3000000000000006,
+            "cooks_distance": 0.00017808027784155538
+          },
+          {
+            "record_id": "row 4",
+            "row_number": 4,
+            "leverage": 0.7000000000000031,
+            "cooks_distance": 0.5965712029033757
+          }
+        ],
+        "breusch_pagan": {
+          "lm_statistic": 1.3313687189211498,
+          "p_value": 0.24856186719094453,
+          "df": 1,
+          "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+          "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+        },
+        "warnings": [
+          {
+            "code": "influential_observations",
+            "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+          }
+        ]
+      },
+      "decision": "do_not_reject_H0"
+    },
+    "stats_block": {
+      "method": "simple_linear_regression",
+      "method_label": "simple linear regression (one predictor, with intercept)",
+      "data_version": "v1",
+      "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+      "values": {
+        "p_value": "0.7169",
+        "alpha": "0.05",
+        "null_value": "0",
+        "confidence_level": "95%",
+        "decision_claim": "do not reject",
+        "direction_claim": "negative",
+        "n": "4",
+        "slope": "-1.009",
+        "intercept": "-3.882",
+        "ci_lower": "-11.408",
+        "ci_upper": "9.390",
+        "t_statistic": "-0.417",
+        "df": "2",
+        "r_squared": "0.080"
+      },
+      "hypotheses": "H0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x)",
+      "required_placeholders": [
+        "slope",
+        "ci_lower",
+        "ci_upper",
+        "p_value",
+        "r_squared",
+        "n"
+      ],
+      "required_limitations": {
+        "no_extrapolation": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.",
+        "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+        "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+        "influential_observations": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+      },
+      "direction": "negative",
+      "decision": "do_not_reject_H0",
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "residuals",
+          "n": 4,
+          "shapiro_wilk_p": 0.606577641660143
+        },
+        {
+          "check": "spread_check",
+          "variable": "|residual| vs fitted value",
+          "method": "spearman",
+          "n": 4,
+          "spearman_rho": 0.6000000000000001,
+          "p_value": 0.4
+        }
+      ],
+      "regression_diagnostics": {
+        "n": 4,
+        "parameter_count": 2,
+        "thresholds": {
+          "cooks_distance": 1.0,
+          "leverage": 1.0
+        },
+        "max_leverage": 0.7000000000000031,
+        "max_cooks_distance": 2.241598906353496,
+        "high_leverage_ids": [],
+        "influential_ids": [
+          "row 1"
+        ],
+        "observations": [
+          {
+            "record_id": "row 1",
+            "row_number": 1,
+            "leverage": 0.6999999999999977,
+            "cooks_distance": 2.241598906353496
+          },
+          {
+            "record_id": "row 2",
+            "row_number": 2,
+            "leverage": 0.2999999999999989,
+            "cooks_distance": 0.38865401024712287
+          },
+          {
+            "record_id": "row 3",
+            "row_number": 3,
+            "leverage": 0.3000000000000006,
+            "cooks_distance": 0.00017808027784155538
+          },
+          {
+            "record_id": "row 4",
+            "row_number": 4,
+            "leverage": 0.7000000000000031,
+            "cooks_distance": 0.5965712029033757
+          }
+        ],
+        "breusch_pagan": {
+          "lm_statistic": 1.3313687189211498,
+          "p_value": 0.24856186719094453,
+          "df": 1,
+          "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+          "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+        },
+        "warnings": [
+          {
+            "code": "influential_observations",
+            "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+          }
+        ]
+      },
+      "observed": null,
+      "yates": false,
+      "tool_warnings": [],
+      "t_statistic_note": ""
+    },
+    "report_draft": {
+      "interpretation": "The analysis included {n} records. The estimated slope was {slope} ({confidence_level} CI {ci_lower} to {ci_upper}), t({df}) = {t_statistic}, p = {p_value}, and R-squared was {r_squared}. At alpha = {alpha}, we do not reject H0. This is not evidence that there is no difference or association.",
+      "limitations": [
+        {
+          "limitation_id": "no_extrapolation",
+          "text": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        },
+        {
+          "limitation_id": "influential_observations",
+          "text": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+        }
+      ],
+      "direction_claim": "negative",
+      "decision_claim": "do_not_reject_H0",
+      "version": "draft1"
+    },
+    "rendered_draft": {
+      "interpretation": "The analysis included 4 records. The estimated slope was -1.009 (95% CI -11.408 to 9.390), t(2) = -0.417, p = 0.7169, and R-squared was 0.080. At alpha = 0.05, we do not reject H0. This is not evidence that there is no difference or association.",
+      "limitations": [
+        {
+          "limitation_id": "no_extrapolation",
+          "text": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        },
+        {
+          "limitation_id": "influential_observations",
+          "text": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+        }
+      ],
+      "direction_claim": "negative",
+      "decision_claim": "do_not_reject_H0",
+      "version": "draft1"
+    },
+    "program_check": {
+      "report_version": "draft1",
+      "passed": true,
+      "problems": []
+    },
+    "review_verdict": {
+      "passed": true,
+      "issues": [],
+      "summary": "Rule-based mock review: no issues found."
+    },
+    "revision_count": 0,
+    "final_status": "delivered",
+    "final_report": "MOCK: rule-based agent stand-ins; Python calculations are real.\n\nMethod: simple linear regression (one predictor, with intercept)  (data version v1; Python: NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95))\nH0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x); α = 0.05\n\nn = 4; slope = -1.009 (95% CI -11.408 to 9.390); intercept = -3.882; t(2) = -0.417; p = 0.7169; R-squared = 0.080\nDecision at α = 0.05: do_not_reject_H0\n\nRegression diagnostics (screening flags; no automatic record deletion):\nMaximum Cook's distance = 2.2416; screening threshold = 1.\nMaximum leverage = 0.7; screening threshold = 1.\nKoenker studentized Breusch–Pagan test: LM = 1.33137; p = 0.248562.\nInfluential record IDs: row 1\nHigh-leverage record IDs: none flagged\nDiagnostic warning: Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically.\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'residuals', 'n': 4, 'shapiro_wilk_p': 0.606577641660143}, {'check': 'spread_check', 'variable': '|residual| vs fitted value', 'method': 'spearman', 'n': 4, 'spearman_rho': 0.6000000000000001, 'p_value': 0.4}]\n\nThe analysis included 4 records. The estimated slope was -1.009 (95% CI -11.408 to 9.390), t(2) = -0.417, p = 0.7169, and R-squared was 0.080. At alpha = 0.05, we do not reject H0. This is not evidence that there is no difference or association.\n\nLimitations:\n- The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.\n- Random allocation was not established. This analysis describes an association and does not establish causation.\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.\n- Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed.",
+    "session_memory": {
+      "last_success": {
+        "research_question": "Regress y on x.",
+        "design_info": {
+          "variables": {
+            "x": {
+              "type": "numeric",
+              "meaning": "Numeric source field x; units not supplied"
+            },
+            "y": {
+              "type": "numeric",
+              "meaning": "Numeric source field y; units not supplied"
+            },
+            "date": {
+              "type": "date",
+              "meaning": "Calendar date as written in the source CSV"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+        "data_version": "v1",
+        "data_fingerprint": "26b97f3a65f7af11609e5f48c95b54d6fb749fe75e8f066e390cd609ef3e3e27",
+        "analysis_plan": {
+          "method": "simple_linear_regression",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "x",
+          "y": "y",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "conf_level": 0.95,
+        "stat_result": {
+          "task": "run_test",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+          "method": "simple_linear_regression",
+          "request_format": "v2",
+          "n_rows_in_file": 4,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+          "status": "ok",
+          "alternative": "two-sided",
+          "conf_level": 0.95,
+          "alpha": 0.05,
+          "n_included": 4,
+          "tool_warnings": [],
+          "method_label": "Ordinary least squares (one predictor, with intercept)",
+          "n": 4,
+          "slope": -1.0089901039664493,
+          "slope_se": 2.4168675143719462,
+          "intercept": -3.8815466214855823,
+          "ci_lower": -11.4079317121217,
+          "ci_upper": 9.389951504188803,
+          "t_statistic": -0.41747845008734297,
+          "df": 2,
+          "p_value": 0.7168767712484583,
+          "r_squared": 0.08015876265869781,
+          "regression_diagnostics": {
+            "n": 4,
+            "parameter_count": 2,
+            "thresholds": {
+              "cooks_distance": 1.0,
+              "leverage": 1.0
+            },
+            "max_leverage": 0.7000000000000031,
+            "max_cooks_distance": 2.241598906353496,
+            "high_leverage_ids": [],
+            "influential_ids": [
+              "row 1"
+            ],
+            "observations": [
+              {
+                "record_id": "row 1",
+                "row_number": 1,
+                "leverage": 0.6999999999999977,
+                "cooks_distance": 2.241598906353496
+              },
+              {
+                "record_id": "row 2",
+                "row_number": 2,
+                "leverage": 0.2999999999999989,
+                "cooks_distance": 0.38865401024712287
+              },
+              {
+                "record_id": "row 3",
+                "row_number": 3,
+                "leverage": 0.3000000000000006,
+                "cooks_distance": 0.00017808027784155538
+              },
+              {
+                "record_id": "row 4",
+                "row_number": 4,
+                "leverage": 0.7000000000000031,
+                "cooks_distance": 0.5965712029033757
+              }
+            ],
+            "breusch_pagan": {
+              "lm_statistic": 1.3313687189211498,
+              "p_value": 0.24856186719094453,
+              "df": 1,
+              "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+              "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+            },
+            "warnings": [
+              {
+                "code": "influential_observations",
+                "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+              }
+            ]
+          },
+          "decision": "do_not_reject_H0"
+        },
+        "stats_block": {
+          "method": "simple_linear_regression",
+          "method_label": "simple linear regression (one predictor, with intercept)",
+          "data_version": "v1",
+          "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+          "values": {
+            "p_value": "0.7169",
+            "alpha": "0.05",
+            "null_value": "0",
+            "confidence_level": "95%",
+            "decision_claim": "do not reject",
+            "direction_claim": "negative",
+            "n": "4",
+            "slope": "-1.009",
+            "intercept": "-3.882",
+            "ci_lower": "-11.408",
+            "ci_upper": "9.390",
+            "t_statistic": "-0.417",
+            "df": "2",
+            "r_squared": "0.080"
+          },
+          "hypotheses": "H0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x)",
+          "required_placeholders": [
+            "slope",
+            "ci_lower",
+            "ci_upper",
+            "p_value",
+            "r_squared",
+            "n"
+          ],
+          "required_limitations": {
+            "no_extrapolation": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.",
+            "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+            "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+            "influential_observations": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+          },
+          "direction": "negative",
+          "decision": "do_not_reject_H0",
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "residuals",
+              "n": 4,
+              "shapiro_wilk_p": 0.606577641660143
+            },
+            {
+              "check": "spread_check",
+              "variable": "|residual| vs fitted value",
+              "method": "spearman",
+              "n": 4,
+              "spearman_rho": 0.6000000000000001,
+              "p_value": 0.4
+            }
+          ],
+          "regression_diagnostics": {
+            "n": 4,
+            "parameter_count": 2,
+            "thresholds": {
+              "cooks_distance": 1.0,
+              "leverage": 1.0
+            },
+            "max_leverage": 0.7000000000000031,
+            "max_cooks_distance": 2.241598906353496,
+            "high_leverage_ids": [],
+            "influential_ids": [
+              "row 1"
+            ],
+            "observations": [
+              {
+                "record_id": "row 1",
+                "row_number": 1,
+                "leverage": 0.6999999999999977,
+                "cooks_distance": 2.241598906353496
+              },
+              {
+                "record_id": "row 2",
+                "row_number": 2,
+                "leverage": 0.2999999999999989,
+                "cooks_distance": 0.38865401024712287
+              },
+              {
+                "record_id": "row 3",
+                "row_number": 3,
+                "leverage": 0.3000000000000006,
+                "cooks_distance": 0.00017808027784155538
+              },
+              {
+                "record_id": "row 4",
+                "row_number": 4,
+                "leverage": 0.7000000000000031,
+                "cooks_distance": 0.5965712029033757
+              }
+            ],
+            "breusch_pagan": {
+              "lm_statistic": 1.3313687189211498,
+              "p_value": 0.24856186719094453,
+              "df": 1,
+              "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+              "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+            },
+            "warnings": [
+              {
+                "code": "influential_observations",
+                "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+              }
+            ]
+          },
+          "observed": null,
+          "yates": false,
+          "tool_warnings": [],
+          "t_statistic_note": ""
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+          "method": "simple_linear_regression",
+          "request_format": "v2",
+          "n_rows_in_file": 4,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 4,
+          "n_usable_rows": 4,
+          "findings": [],
+          "n_blocking": 0,
+          "n_verify": 0,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "residuals",
+              "n": 4,
+              "shapiro_wilk_p": 0.606577641660143
+            },
+            {
+              "check": "spread_check",
+              "variable": "|residual| vs fitted value",
+              "method": "spearman",
+              "n": 4,
+              "spearman_rho": 0.6000000000000001,
+              "p_value": 0.4
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000.",
+          "regression_diagnostics": {
+            "n": 4,
+            "parameter_count": 2,
+            "thresholds": {
+              "cooks_distance": 1.0,
+              "leverage": 1.0
+            },
+            "max_leverage": 0.7000000000000031,
+            "max_cooks_distance": 2.241598906353496,
+            "high_leverage_ids": [],
+            "influential_ids": [
+              "row 1"
+            ],
+            "observations": [
+              {
+                "record_id": "row 1",
+                "row_number": 1,
+                "leverage": 0.6999999999999977,
+                "cooks_distance": 2.241598906353496
+              },
+              {
+                "record_id": "row 2",
+                "row_number": 2,
+                "leverage": 0.2999999999999989,
+                "cooks_distance": 0.38865401024712287
+              },
+              {
+                "record_id": "row 3",
+                "row_number": 3,
+                "leverage": 0.3000000000000006,
+                "cooks_distance": 0.00017808027784155538
+              },
+              {
+                "record_id": "row 4",
+                "row_number": 4,
+                "leverage": 0.7000000000000031,
+                "cooks_distance": 0.5965712029033757
+              }
+            ],
+            "breusch_pagan": {
+              "lm_statistic": 1.3313687189211498,
+              "p_value": 0.24856186719094453,
+              "df": 1,
+              "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+              "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+            },
+            "warnings": [
+              {
+                "code": "influential_observations",
+                "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+              }
+            ]
+          }
+        },
+        "request_number": 1
+      },
+      "last_request_status": "delivered"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "method": "draft",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "method": "review",
+        "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860771.9572453,
+        "end": 1791860771.958383,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860771.960453,
+        "end": 1791860771.9694774,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860771.9721043,
+        "end": 1791860771.9722502,
+        "thread": "ThreadPoolExecutor-35_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791860771.972954,
+        "end": 1791860771.9872208,
+        "thread": "ThreadPoolExecutor-35_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791860771.9896846,
+        "end": 1791860771.9905202,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "run_statistical_test",
+        "status": "completed",
+        "start": 1791860771.9950643,
+        "end": 1791860772.0060258,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "build_stats_block",
+        "status": "completed",
+        "start": 1791860772.0067022,
+        "end": 1791860772.0067353,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "status": "completed",
+        "start": 1791860772.0071945,
+        "end": 1791860772.007248,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 7
+      },
+      {
+        "request_number": 1,
+        "node": "check_report",
+        "status": "completed",
+        "start": 1791860772.0082595,
+        "end": 1791860772.0084558,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 8
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "status": "completed",
+        "start": 1791860772.0092058,
+        "end": 1791860772.0093527,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 9
+      },
+      {
+        "request_number": 1,
+        "node": "deliver_report",
+        "status": "completed",
+        "start": 1791860772.0109491,
+        "end": 1791860772.01103,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 10
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860772.0149066,
+        "end": 1791860772.0154338,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 11
+      }
+    ],
+    "observed_status": "delivered"
+  },
+  "warmup": null,
+  "stages": [
+    {
+      "stage": "primary",
+      "state": {
+        "run_id": "bench-3f59814900534135",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Regress y on x.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "x": {
+              "type": "numeric",
+              "meaning": "Numeric source field x; units not supplied"
+            },
+            "y": {
+              "type": "numeric",
+              "meaning": "Numeric source field y; units not supplied"
+            },
+            "date": {
+              "type": "date",
+              "meaning": "Calendar date as written in the source CSV"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+        "data_version": "v1",
+        "data_fingerprint": "26b97f3a65f7af11609e5f48c95b54d6fb749fe75e8f066e390cd609ef3e3e27",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "analysis_plan": {
+          "method": "simple_linear_regression",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "x",
+          "y": "y",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "ready",
+        "data_summary": {
+          "task": "summary",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+          "method": "simple_linear_regression",
+          "request_format": "v2",
+          "n_rows_in_file": 4,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('summary', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 4,
+          "columns": [
+            {
+              "name": "x",
+              "role": "x",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 4,
+              "n_unique_as_written": 4,
+              "quantiles": {
+                "min": -3.0,
+                "p05": -2.9847457627118645,
+                "p25": -2.923728813559322,
+                "p50": -2.847457627118644,
+                "p75": -2.7711864406779663,
+                "p95": -2.7101694915254235,
+                "max": -2.694915254237288
+              },
+              "mean": -2.8474576271186445,
+              "sd": 0.13128757105787853
+            },
+            {
+              "name": "y",
+              "role": "y",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 4,
+              "n_unique_as_written": 4,
+              "quantiles": {
+                "min": -1.5764426834875567,
+                "p05": -1.5009338072609646,
+                "p25": -1.1988983023545958,
+                "p50": -1.0100989388255623,
+                "p75": -0.819690690730049,
+                "p95": -0.5137938628641291,
+                "max": -0.4373196558976489
+              },
+              "mean": -1.0084900542590824,
+              "sd": 0.46788057820377643
+            }
+          ],
+          "stated_ranges": {},
+          "stated_levels": {}
+        },
+        "llm_diagnostics": {
+          "variable_meanings": "As described by the user.",
+          "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+          "goal_alignment": "The planned simple_linear_regression matches the question.",
+          "distribution_notes": "See the statistical summary.",
+          "issues": [
+            {
+              "topic": "study_design",
+              "severity": "limitation",
+              "issue": "Groups or exposures are self-selected, not randomized.",
+              "evidence": "Observational synthetic fixture; allocation was not random.",
+              "suggested_action": "Report an association only."
+            }
+          ]
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+          "method": "simple_linear_regression",
+          "request_format": "v2",
+          "n_rows_in_file": 4,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 4,
+          "n_usable_rows": 4,
+          "findings": [],
+          "n_blocking": 0,
+          "n_verify": 0,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "residuals",
+              "n": 4,
+              "shapiro_wilk_p": 0.606577641660143
+            },
+            {
+              "check": "spread_check",
+              "variable": "|residual| vs fitted value",
+              "method": "spearman",
+              "n": 4,
+              "spearman_rho": 0.6000000000000001,
+              "p_value": 0.4
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000.",
+          "regression_diagnostics": {
+            "n": 4,
+            "parameter_count": 2,
+            "thresholds": {
+              "cooks_distance": 1.0,
+              "leverage": 1.0
+            },
+            "max_leverage": 0.7000000000000031,
+            "max_cooks_distance": 2.241598906353496,
+            "high_leverage_ids": [],
+            "influential_ids": [
+              "row 1"
+            ],
+            "observations": [
+              {
+                "record_id": "row 1",
+                "row_number": 1,
+                "leverage": 0.6999999999999977,
+                "cooks_distance": 2.241598906353496
+              },
+              {
+                "record_id": "row 2",
+                "row_number": 2,
+                "leverage": 0.2999999999999989,
+                "cooks_distance": 0.38865401024712287
+              },
+              {
+                "record_id": "row 3",
+                "row_number": 3,
+                "leverage": 0.3000000000000006,
+                "cooks_distance": 0.00017808027784155538
+              },
+              {
+                "record_id": "row 4",
+                "row_number": 4,
+                "leverage": 0.7000000000000031,
+                "cooks_distance": 0.5965712029033757
+              }
+            ],
+            "breusch_pagan": {
+              "lm_statistic": 1.3313687189211498,
+              "p_value": 0.24856186719094453,
+              "df": 1,
+              "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+              "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+            },
+            "warnings": [
+              {
+                "code": "influential_observations",
+                "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+              }
+            ]
+          }
+        },
+        "diagnostic_route": "proceed",
+        "diagnostic_assessment": {
+          "rationale": "No unresolved record-level problems remain; the planned test can run.",
+          "limitations": [],
+          "questions": []
+        },
+        "stop_reasons": [],
+        "clarification_requests": [],
+        "clarification_answers": [],
+        "clarification_rounds": 0,
+        "rejected_answers": [],
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "stat_result": {
+          "task": "run_test",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+          "method": "simple_linear_regression",
+          "request_format": "v2",
+          "n_rows_in_file": 4,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+          "status": "ok",
+          "alternative": "two-sided",
+          "conf_level": 0.95,
+          "alpha": 0.05,
+          "n_included": 4,
+          "tool_warnings": [],
+          "method_label": "Ordinary least squares (one predictor, with intercept)",
+          "n": 4,
+          "slope": -1.0089901039664493,
+          "slope_se": 2.4168675143719462,
+          "intercept": -3.8815466214855823,
+          "ci_lower": -11.4079317121217,
+          "ci_upper": 9.389951504188803,
+          "t_statistic": -0.41747845008734297,
+          "df": 2,
+          "p_value": 0.7168767712484583,
+          "r_squared": 0.08015876265869781,
+          "regression_diagnostics": {
+            "n": 4,
+            "parameter_count": 2,
+            "thresholds": {
+              "cooks_distance": 1.0,
+              "leverage": 1.0
+            },
+            "max_leverage": 0.7000000000000031,
+            "max_cooks_distance": 2.241598906353496,
+            "high_leverage_ids": [],
+            "influential_ids": [
+              "row 1"
+            ],
+            "observations": [
+              {
+                "record_id": "row 1",
+                "row_number": 1,
+                "leverage": 0.6999999999999977,
+                "cooks_distance": 2.241598906353496
+              },
+              {
+                "record_id": "row 2",
+                "row_number": 2,
+                "leverage": 0.2999999999999989,
+                "cooks_distance": 0.38865401024712287
+              },
+              {
+                "record_id": "row 3",
+                "row_number": 3,
+                "leverage": 0.3000000000000006,
+                "cooks_distance": 0.00017808027784155538
+              },
+              {
+                "record_id": "row 4",
+                "row_number": 4,
+                "leverage": 0.7000000000000031,
+                "cooks_distance": 0.5965712029033757
+              }
+            ],
+            "breusch_pagan": {
+              "lm_statistic": 1.3313687189211498,
+              "p_value": 0.24856186719094453,
+              "df": 1,
+              "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+              "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+            },
+            "warnings": [
+              {
+                "code": "influential_observations",
+                "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+              }
+            ]
+          },
+          "decision": "do_not_reject_H0"
+        },
+        "stats_block": {
+          "method": "simple_linear_regression",
+          "method_label": "simple linear regression (one predictor, with intercept)",
+          "data_version": "v1",
+          "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+          "values": {
+            "p_value": "0.7169",
+            "alpha": "0.05",
+            "null_value": "0",
+            "confidence_level": "95%",
+            "decision_claim": "do not reject",
+            "direction_claim": "negative",
+            "n": "4",
+            "slope": "-1.009",
+            "intercept": "-3.882",
+            "ci_lower": "-11.408",
+            "ci_upper": "9.390",
+            "t_statistic": "-0.417",
+            "df": "2",
+            "r_squared": "0.080"
+          },
+          "hypotheses": "H0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x)",
+          "required_placeholders": [
+            "slope",
+            "ci_lower",
+            "ci_upper",
+            "p_value",
+            "r_squared",
+            "n"
+          ],
+          "required_limitations": {
+            "no_extrapolation": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.",
+            "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+            "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+            "influential_observations": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+          },
+          "direction": "negative",
+          "decision": "do_not_reject_H0",
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "residuals",
+              "n": 4,
+              "shapiro_wilk_p": 0.606577641660143
+            },
+            {
+              "check": "spread_check",
+              "variable": "|residual| vs fitted value",
+              "method": "spearman",
+              "n": 4,
+              "spearman_rho": 0.6000000000000001,
+              "p_value": 0.4
+            }
+          ],
+          "regression_diagnostics": {
+            "n": 4,
+            "parameter_count": 2,
+            "thresholds": {
+              "cooks_distance": 1.0,
+              "leverage": 1.0
+            },
+            "max_leverage": 0.7000000000000031,
+            "max_cooks_distance": 2.241598906353496,
+            "high_leverage_ids": [],
+            "influential_ids": [
+              "row 1"
+            ],
+            "observations": [
+              {
+                "record_id": "row 1",
+                "row_number": 1,
+                "leverage": 0.6999999999999977,
+                "cooks_distance": 2.241598906353496
+              },
+              {
+                "record_id": "row 2",
+                "row_number": 2,
+                "leverage": 0.2999999999999989,
+                "cooks_distance": 0.38865401024712287
+              },
+              {
+                "record_id": "row 3",
+                "row_number": 3,
+                "leverage": 0.3000000000000006,
+                "cooks_distance": 0.00017808027784155538
+              },
+              {
+                "record_id": "row 4",
+                "row_number": 4,
+                "leverage": 0.7000000000000031,
+                "cooks_distance": 0.5965712029033757
+              }
+            ],
+            "breusch_pagan": {
+              "lm_statistic": 1.3313687189211498,
+              "p_value": 0.24856186719094453,
+              "df": 1,
+              "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+              "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+            },
+            "warnings": [
+              {
+                "code": "influential_observations",
+                "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+              }
+            ]
+          },
+          "observed": null,
+          "yates": false,
+          "tool_warnings": [],
+          "t_statistic_note": ""
+        },
+        "report_draft": {
+          "interpretation": "The analysis included {n} records. The estimated slope was {slope} ({confidence_level} CI {ci_lower} to {ci_upper}), t({df}) = {t_statistic}, p = {p_value}, and R-squared was {r_squared}. At alpha = {alpha}, we do not reject H0. This is not evidence that there is no difference or association.",
+          "limitations": [
+            {
+              "limitation_id": "no_extrapolation",
+              "text": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it."
+            },
+            {
+              "limitation_id": "nonrandom_design",
+              "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+            },
+            {
+              "limitation_id": "analysis_assumptions",
+              "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+            },
+            {
+              "limitation_id": "influential_observations",
+              "text": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+            }
+          ],
+          "direction_claim": "negative",
+          "decision_claim": "do_not_reject_H0",
+          "version": "draft1"
+        },
+        "rendered_draft": {
+          "interpretation": "The analysis included 4 records. The estimated slope was -1.009 (95% CI -11.408 to 9.390), t(2) = -0.417, p = 0.7169, and R-squared was 0.080. At alpha = 0.05, we do not reject H0. This is not evidence that there is no difference or association.",
+          "limitations": [
+            {
+              "limitation_id": "no_extrapolation",
+              "text": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it."
+            },
+            {
+              "limitation_id": "nonrandom_design",
+              "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+            },
+            {
+              "limitation_id": "analysis_assumptions",
+              "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+            },
+            {
+              "limitation_id": "influential_observations",
+              "text": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+            }
+          ],
+          "direction_claim": "negative",
+          "decision_claim": "do_not_reject_H0",
+          "version": "draft1"
+        },
+        "program_check": {
+          "report_version": "draft1",
+          "passed": true,
+          "problems": []
+        },
+        "review_verdict": {
+          "passed": true,
+          "issues": [],
+          "summary": "Rule-based mock review: no issues found."
+        },
+        "revision_count": 0,
+        "final_status": "delivered",
+        "final_report": "MOCK: rule-based agent stand-ins; Python calculations are real.\n\nMethod: simple linear regression (one predictor, with intercept)  (data version v1; Python: NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95))\nH0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x); α = 0.05\n\nn = 4; slope = -1.009 (95% CI -11.408 to 9.390); intercept = -3.882; t(2) = -0.417; p = 0.7169; R-squared = 0.080\nDecision at α = 0.05: do_not_reject_H0\n\nRegression diagnostics (screening flags; no automatic record deletion):\nMaximum Cook's distance = 2.2416; screening threshold = 1.\nMaximum leverage = 0.7; screening threshold = 1.\nKoenker studentized Breusch–Pagan test: LM = 1.33137; p = 0.248562.\nInfluential record IDs: row 1\nHigh-leverage record IDs: none flagged\nDiagnostic warning: Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically.\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'residuals', 'n': 4, 'shapiro_wilk_p': 0.606577641660143}, {'check': 'spread_check', 'variable': '|residual| vs fitted value', 'method': 'spearman', 'n': 4, 'spearman_rho': 0.6000000000000001, 'p_value': 0.4}]\n\nThe analysis included 4 records. The estimated slope was -1.009 (95% CI -11.408 to 9.390), t(2) = -0.417, p = 0.7169, and R-squared was 0.080. At alpha = 0.05, we do not reject H0. This is not evidence that there is no difference or association.\n\nLimitations:\n- The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.\n- Random allocation was not established. This analysis describes an association and does not establish causation.\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.\n- Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed.",
+        "session_memory": {
+          "last_success": {
+            "research_question": "Regress y on x.",
+            "design_info": {
+              "variables": {
+                "x": {
+                  "type": "numeric",
+                  "meaning": "Numeric source field x; units not supplied"
+                },
+                "y": {
+                  "type": "numeric",
+                  "meaning": "Numeric source field y; units not supplied"
+                },
+                "date": {
+                  "type": "date",
+                  "meaning": "Calendar date as written in the source CSV"
+                }
+              },
+              "randomized": false,
+              "assignment": "Observational synthetic fixture; allocation was not random.",
+              "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+              "independent": true,
+              "independence": "The fixture declaration confirms independent observations."
+            },
+            "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+            "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+            "data_version": "v1",
+            "data_fingerprint": "26b97f3a65f7af11609e5f48c95b54d6fb749fe75e8f066e390cd609ef3e3e27",
+            "analysis_plan": {
+              "method": "simple_linear_regression",
+              "outcome": "",
+              "group": "",
+              "group_1_label": "",
+              "group_2_label": "",
+              "x": "x",
+              "y": "y",
+              "target_parameter": "Prespecified synthetic evaluation target",
+              "null_hypothesis": "H0: zero association",
+              "alternative_hypothesis": "H1: nonzero association",
+              "method_rationale": "MOCK prespecified fixture plan",
+              "design_notes": [
+                "The fixture declaration confirms independent observations."
+              ]
+            },
+            "excluded_ids": [],
+            "verified_ids": [],
+            "correction_log": [],
+            "conf_level": 0.95,
+            "stat_result": {
+              "task": "run_test",
+              "data_version": "v1",
+              "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+              "method": "simple_linear_regression",
+              "request_format": "v2",
+              "n_rows_in_file": 4,
+              "columns_found": [
+                "x",
+                "y",
+                "date"
+              ],
+              "missing_required_columns": [],
+              "excluded_ids": [],
+              "request_warnings": [],
+              "python_version": "3.13.5",
+              "scipy_version": "1.18.1",
+              "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+              "status": "ok",
+              "alternative": "two-sided",
+              "conf_level": 0.95,
+              "alpha": 0.05,
+              "n_included": 4,
+              "tool_warnings": [],
+              "method_label": "Ordinary least squares (one predictor, with intercept)",
+              "n": 4,
+              "slope": -1.0089901039664493,
+              "slope_se": 2.4168675143719462,
+              "intercept": -3.8815466214855823,
+              "ci_lower": -11.4079317121217,
+              "ci_upper": 9.389951504188803,
+              "t_statistic": -0.41747845008734297,
+              "df": 2,
+              "p_value": 0.7168767712484583,
+              "r_squared": 0.08015876265869781,
+              "regression_diagnostics": {
+                "n": 4,
+                "parameter_count": 2,
+                "thresholds": {
+                  "cooks_distance": 1.0,
+                  "leverage": 1.0
+                },
+                "max_leverage": 0.7000000000000031,
+                "max_cooks_distance": 2.241598906353496,
+                "high_leverage_ids": [],
+                "influential_ids": [
+                  "row 1"
+                ],
+                "observations": [
+                  {
+                    "record_id": "row 1",
+                    "row_number": 1,
+                    "leverage": 0.6999999999999977,
+                    "cooks_distance": 2.241598906353496
+                  },
+                  {
+                    "record_id": "row 2",
+                    "row_number": 2,
+                    "leverage": 0.2999999999999989,
+                    "cooks_distance": 0.38865401024712287
+                  },
+                  {
+                    "record_id": "row 3",
+                    "row_number": 3,
+                    "leverage": 0.3000000000000006,
+                    "cooks_distance": 0.00017808027784155538
+                  },
+                  {
+                    "record_id": "row 4",
+                    "row_number": 4,
+                    "leverage": 0.7000000000000031,
+                    "cooks_distance": 0.5965712029033757
+                  }
+                ],
+                "breusch_pagan": {
+                  "lm_statistic": 1.3313687189211498,
+                  "p_value": 0.24856186719094453,
+                  "df": 1,
+                  "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+                  "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+                },
+                "warnings": [
+                  {
+                    "code": "influential_observations",
+                    "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+                  }
+                ]
+              },
+              "decision": "do_not_reject_H0"
+            },
+            "stats_block": {
+              "method": "simple_linear_regression",
+              "method_label": "simple linear regression (one predictor, with intercept)",
+              "data_version": "v1",
+              "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+              "values": {
+                "p_value": "0.7169",
+                "alpha": "0.05",
+                "null_value": "0",
+                "confidence_level": "95%",
+                "decision_claim": "do not reject",
+                "direction_claim": "negative",
+                "n": "4",
+                "slope": "-1.009",
+                "intercept": "-3.882",
+                "ci_lower": "-11.408",
+                "ci_upper": "9.390",
+                "t_statistic": "-0.417",
+                "df": "2",
+                "r_squared": "0.080"
+              },
+              "hypotheses": "H0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x)",
+              "required_placeholders": [
+                "slope",
+                "ci_lower",
+                "ci_upper",
+                "p_value",
+                "r_squared",
+                "n"
+              ],
+              "required_limitations": {
+                "no_extrapolation": "The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.",
+                "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+                "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+                "influential_observations": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed."
+              },
+              "direction": "negative",
+              "decision": "do_not_reject_H0",
+              "distribution_checks": [
+                {
+                  "check": "shapiro_wilk",
+                  "variable": "residuals",
+                  "n": 4,
+                  "shapiro_wilk_p": 0.606577641660143
+                },
+                {
+                  "check": "spread_check",
+                  "variable": "|residual| vs fitted value",
+                  "method": "spearman",
+                  "n": 4,
+                  "spearman_rho": 0.6000000000000001,
+                  "p_value": 0.4
+                }
+              ],
+              "regression_diagnostics": {
+                "n": 4,
+                "parameter_count": 2,
+                "thresholds": {
+                  "cooks_distance": 1.0,
+                  "leverage": 1.0
+                },
+                "max_leverage": 0.7000000000000031,
+                "max_cooks_distance": 2.241598906353496,
+                "high_leverage_ids": [],
+                "influential_ids": [
+                  "row 1"
+                ],
+                "observations": [
+                  {
+                    "record_id": "row 1",
+                    "row_number": 1,
+                    "leverage": 0.6999999999999977,
+                    "cooks_distance": 2.241598906353496
+                  },
+                  {
+                    "record_id": "row 2",
+                    "row_number": 2,
+                    "leverage": 0.2999999999999989,
+                    "cooks_distance": 0.38865401024712287
+                  },
+                  {
+                    "record_id": "row 3",
+                    "row_number": 3,
+                    "leverage": 0.3000000000000006,
+                    "cooks_distance": 0.00017808027784155538
+                  },
+                  {
+                    "record_id": "row 4",
+                    "row_number": 4,
+                    "leverage": 0.7000000000000031,
+                    "cooks_distance": 0.5965712029033757
+                  }
+                ],
+                "breusch_pagan": {
+                  "lm_statistic": 1.3313687189211498,
+                  "p_value": 0.24856186719094453,
+                  "df": 1,
+                  "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+                  "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+                },
+                "warnings": [
+                  {
+                    "code": "influential_observations",
+                    "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+                  }
+                ]
+              },
+              "observed": null,
+              "yates": false,
+              "tool_warnings": [],
+              "t_statistic_note": ""
+            },
+            "stat_diagnostics": {
+              "task": "diagnostics",
+              "data_version": "v1",
+              "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+              "method": "simple_linear_regression",
+              "request_format": "v2",
+              "n_rows_in_file": 4,
+              "columns_found": [
+                "x",
+                "y",
+                "date"
+              ],
+              "missing_required_columns": [],
+              "excluded_ids": [],
+              "request_warnings": [],
+              "python_version": "3.13.5",
+              "scipy_version": "1.18.1",
+              "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+              "status": "ok",
+              "n_rows_in_analysis_set": 4,
+              "n_usable_rows": 4,
+              "findings": [],
+              "n_blocking": 0,
+              "n_verify": 0,
+              "method_checks_run": true,
+              "method_findings": [],
+              "distribution_checks_run": true,
+              "distribution_checks": [
+                {
+                  "check": "shapiro_wilk",
+                  "variable": "residuals",
+                  "n": 4,
+                  "shapiro_wilk_p": 0.606577641660143
+                },
+                {
+                  "check": "spread_check",
+                  "variable": "|residual| vs fitted value",
+                  "method": "spearman",
+                  "n": 4,
+                  "spearman_rho": 0.6000000000000001,
+                  "p_value": 0.4
+                }
+              ],
+              "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000.",
+              "regression_diagnostics": {
+                "n": 4,
+                "parameter_count": 2,
+                "thresholds": {
+                  "cooks_distance": 1.0,
+                  "leverage": 1.0
+                },
+                "max_leverage": 0.7000000000000031,
+                "max_cooks_distance": 2.241598906353496,
+                "high_leverage_ids": [],
+                "influential_ids": [
+                  "row 1"
+                ],
+                "observations": [
+                  {
+                    "record_id": "row 1",
+                    "row_number": 1,
+                    "leverage": 0.6999999999999977,
+                    "cooks_distance": 2.241598906353496
+                  },
+                  {
+                    "record_id": "row 2",
+                    "row_number": 2,
+                    "leverage": 0.2999999999999989,
+                    "cooks_distance": 0.38865401024712287
+                  },
+                  {
+                    "record_id": "row 3",
+                    "row_number": 3,
+                    "leverage": 0.3000000000000006,
+                    "cooks_distance": 0.00017808027784155538
+                  },
+                  {
+                    "record_id": "row 4",
+                    "row_number": 4,
+                    "leverage": 0.7000000000000031,
+                    "cooks_distance": 0.5965712029033757
+                  }
+                ],
+                "breusch_pagan": {
+                  "lm_statistic": 1.3313687189211498,
+                  "p_value": 0.24856186719094453,
+                  "df": 1,
+                  "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+                  "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+                },
+                "warnings": [
+                  {
+                    "code": "influential_observations",
+                    "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+                  }
+                ]
+              }
+            },
+            "request_number": 1
+          },
+          "last_request_status": "delivered"
+        },
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [],
+        "model_calls": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "method": "plan",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "method": "merge",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "draft_report",
+            "method": "draft",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "review_report",
+            "method": "review",
+            "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+            "mode": "MOCK",
+            "status": "completed"
+          }
+        ],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791860771.9572453,
+            "end": 1791860771.958383,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791860771.960453,
+            "end": 1791860771.9694774,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791860771.9721043,
+            "end": 1791860771.9722502,
+            "thread": "ThreadPoolExecutor-35_0",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "completed",
+            "start": 1791860771.972954,
+            "end": 1791860771.9872208,
+            "thread": "ThreadPoolExecutor-35_1",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "completed",
+            "start": 1791860771.9896846,
+            "end": 1791860771.9905202,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 4
+          },
+          {
+            "request_number": 1,
+            "node": "run_statistical_test",
+            "status": "completed",
+            "start": 1791860771.9950643,
+            "end": 1791860772.0060258,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 5
+          },
+          {
+            "request_number": 1,
+            "node": "build_stats_block",
+            "status": "completed",
+            "start": 1791860772.0067022,
+            "end": 1791860772.0067353,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 6
+          },
+          {
+            "request_number": 1,
+            "node": "draft_report",
+            "status": "completed",
+            "start": 1791860772.0071945,
+            "end": 1791860772.007248,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 7
+          },
+          {
+            "request_number": 1,
+            "node": "check_report",
+            "status": "completed",
+            "start": 1791860772.0082595,
+            "end": 1791860772.0084558,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 8
+          },
+          {
+            "request_number": 1,
+            "node": "review_report",
+            "status": "completed",
+            "start": 1791860772.0092058,
+            "end": 1791860772.0093527,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 9
+          },
+          {
+            "request_number": 1,
+            "node": "deliver_report",
+            "status": "completed",
+            "start": 1791860772.0109491,
+            "end": 1791860772.01103,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 10
+          },
+          {
+            "request_number": 1,
+            "node": "save_session",
+            "status": "completed",
+            "start": 1791860772.0149066,
+            "end": 1791860772.0154338,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 11
+          }
+        ],
+        "observed_status": "delivered"
+      }
+    }
+  ],
+  "clarification_requested": false,
+  "model_calls": [
+    {
+      "request_number": 1,
+      "node": "plan_analysis",
+      "method": "plan",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "llm_diagnostics",
+      "method": "diagnose",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "merge_diagnostics",
+      "method": "merge",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "draft_report",
+      "method": "draft",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "review_report",
+      "method": "review",
+      "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+      "mode": "MOCK",
+      "status": "completed"
+    }
+  ],
+  "original_diagnostics": {
+    "task": "diagnostics",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\stop\\regression_too_few.csv",
+    "method": "simple_linear_regression",
+    "request_format": "v2",
+    "n_rows_in_file": 4,
+    "columns_found": [
+      "x",
+      "y",
+      "date"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+    "status": "ok",
+    "n_rows_in_analysis_set": 4,
+    "n_usable_rows": 4,
+    "findings": [],
+    "n_blocking": 0,
+    "n_verify": 0,
+    "method_checks_run": true,
+    "method_findings": [],
+    "distribution_checks_run": true,
+    "distribution_checks": [
+      {
+        "check": "shapiro_wilk",
+        "variable": "residuals",
+        "n": 4,
+        "shapiro_wilk_p": 0.606577641660143
+      },
+      {
+        "check": "spread_check",
+        "variable": "|residual| vs fitted value",
+        "method": "spearman",
+        "n": 4,
+        "spearman_rho": 0.6000000000000001,
+        "p_value": 0.4
+      }
+    ],
+    "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000.",
+    "regression_diagnostics": {
+      "n": 4,
+      "parameter_count": 2,
+      "thresholds": {
+        "cooks_distance": 1.0,
+        "leverage": 1.0
+      },
+      "max_leverage": 0.7000000000000031,
+      "max_cooks_distance": 2.241598906353496,
+      "high_leverage_ids": [],
+      "influential_ids": [
+        "row 1"
+      ],
+      "observations": [
+        {
+          "record_id": "row 1",
+          "row_number": 1,
+          "leverage": 0.6999999999999977,
+          "cooks_distance": 2.241598906353496
+        },
+        {
+          "record_id": "row 2",
+          "row_number": 2,
+          "leverage": 0.2999999999999989,
+          "cooks_distance": 0.38865401024712287
+        },
+        {
+          "record_id": "row 3",
+          "row_number": 3,
+          "leverage": 0.3000000000000006,
+          "cooks_distance": 0.00017808027784155538
+        },
+        {
+          "record_id": "row 4",
+          "row_number": 4,
+          "leverage": 0.7000000000000031,
+          "cooks_distance": 0.5965712029033757
+        }
+      ],
+      "breusch_pagan": {
+        "lm_statistic": 1.3313687189211498,
+        "p_value": 0.24856186719094453,
+        "df": 1,
+        "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+        "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+      },
+      "warnings": [
+        {
+          "code": "influential_observations",
+          "message": "Potential influential observations have Cook's distance > 4/n (1): row 1. No observations were excluded automatically."
+        }
+      ]
+    }
+  },
+  "report_revisions": 0,
+  "regression_warning_codes": [
+    "influential_observations"
+  ],
+  "error": null,
+  "failure_class": null,
+  "runtime_audit_dir": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\2d7cd171",
+  "duration_seconds": 0.22057499992661178
+}

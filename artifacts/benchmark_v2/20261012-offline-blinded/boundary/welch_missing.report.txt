@@ -1,0 +1,20 @@
+MOCK: rule-based agent stand-ins; Python calculations are real.
+
+Method: two-sided Welch independent-samples t-test  (data version v2; Python: scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95))
+H0: Δ = 0 versus H1: Δ ≠ 0, where Δ = μ(group = treatment) − μ(group = control) for the mean of outcome; α = 0.05
+
+| Group | n | Mean | SD |
+|---|---|---|---|
+| treatment | 25 | 1.22 | 0.69 |
+| control | 24 | -0.05 | 0.85 |
+
+Mean difference = 1.27 (95% CI 0.82 to 1.71); t(44.50) = 5.722; p < 0.0001
+Decision at α = 0.05: reject_H0
+Distribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'outcome', 'group': 'treatment', 'n': 25, 'shapiro_wilk_p': 0.16838955839373165}, {'check': 'shapiro_wilk', 'variable': 'outcome', 'group': 'control', 'n': 24, 'shapiro_wilk_p': 0.5366741918967267}]
+
+The analysis included 25 records in group treatment and 24 in group control. Welch's test gave t(44.50) = 5.722, p < 0.0001. At alpha = 0.05, we reject H0. The estimated mean difference (treatment minus control) was 1.27 (95% CI 0.82 to 1.71).
+
+Limitations:
+- Random allocation was not established. This analysis describes an association and does not establish causation.
+- User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.
+- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.

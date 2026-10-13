@@ -1,0 +1,10 @@
+{
+  "id": "welch_wrong_method",
+  "source_case": "welch_clean",
+  "mutation": "wrong_method",
+  "expected_valid": false,
+  "note": "Misdescribe the Welch analysis as Pearson correlation.",
+  "label_source": "Authored controlled-test expectation; not a human rating.",
+  "source_attribution": "Challenge category adapted from teammate commit b7eff1c; no source score imported.",
+  "schema": "Interpretation challenge descriptor for this project's ReportDraft."
+}

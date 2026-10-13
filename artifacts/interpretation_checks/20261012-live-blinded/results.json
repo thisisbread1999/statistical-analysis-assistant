@@ -1,0 +1,1018 @@
+{
+  "metadata": {
+    "run_name": "20261012-live-blinded",
+    "mode": "live",
+    "started_utc": "2026-10-13T03:09:10.433144+00:00",
+    "reviewer_model": "ollama:gemma3:12b",
+    "evaluation_scope": "Four valid controlled templates and twelve authored mutations; Python statistics are real. Model A is not called.",
+    "provenance": {
+      "source_commit": "b7eff1c",
+      "source_file": "interpretation_benchmark.py",
+      "adaptation": "Challenge categories and authored mutations adapted to this project's ReportDraft and Python tools.",
+      "label_kind": "authored fixture expectation; not human review",
+      "draft_origin": "MockAnalysisAgentA controlled template, with an optional authored mutation"
+    },
+    "requested_cases": [
+      "chi_square_2x2_valid",
+      "pearson_clean_valid",
+      "regression_clean_valid",
+      "welch_clean_valid",
+      "chi_square_2x2_causal",
+      "chi_square_2x2_wrong_number",
+      "nonlinear_no_relationship",
+      "pearson_clean_causal",
+      "pearson_clean_wrong_number",
+      "pearson_percent_misinterpretation",
+      "regression_clean_causal",
+      "regression_clean_wrong_number",
+      "regression_interval_probability",
+      "welch_clean_causal",
+      "welch_clean_wrong_number",
+      "welch_wrong_method"
+    ],
+    "review_evidence_blinded": true,
+    "blinding": "Neutral report version; fixture id, labels and source filename are kept only in evaluator artifacts.",
+    "configuration": {
+      "mode": "real",
+      "model_a": "ollama:qwen3:8b",
+      "model_b": "ollama:gemma3:12b"
+    }
+  },
+  "completed_cases": 16,
+  "summary": {
+    "program": {
+      "valid_total": 4,
+      "valid_accepted": 4,
+      "valid_false_alarms": 0,
+      "valid_unassessed": 0,
+      "planted_total": 12,
+      "planted_caught": 4,
+      "planted_missed": 8,
+      "planted_unassessed": 0
+    },
+    "reviewer_b": {
+      "valid_total": 4,
+      "valid_accepted": 4,
+      "valid_false_alarms": 0,
+      "valid_unassessed": 0,
+      "planted_total": 12,
+      "planted_caught": 10,
+      "planted_missed": 2,
+      "planted_unassessed": 0
+    },
+    "combined": {
+      "valid_total": 4,
+      "valid_accepted": 4,
+      "valid_false_alarms": 0,
+      "valid_unassessed": 0,
+      "planted_total": 12,
+      "planted_caught": 10,
+      "planted_missed": 2,
+      "planted_unassessed": 0
+    }
+  },
+  "cases": [
+    {
+      "id": "chi_square_2x2_valid",
+      "expected_valid": true,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "The report accurately reflects the statistical results and adheres to the provided guidelines. All required limitations are present and correctly stated. There are no critical issues."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "The report accurately reflects the statistical results and adheres to the provided guidelines. All required limitations are present and correctly stated. There are no critical issues."
+          },
+          "elapsed_seconds": 11.186
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "pearson_clean_valid",
+      "expected_valid": true,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Pearson's r was 0.993 (95% CI 0.982 to 0.997), p < 0.0001.",
+                "evidence": "The report states r = 0.993, while the protected statistics show r = 0.993 (rounded from 0.9929163062333216). The report states CI lower bound = 0.982, while the protected statistics show CI lower bound = 0.982 (rounded from 0.9817728824045426). The report states CI upper bound = 0.997, while the protected statistics show CI upper bound = 0.997 (rounded from 0.997256460890303).",
+                "suggested_correction": "Pearson's r was 0.993 (95% CI 0.982 to 0.997), p < 0.0001."
+              }
+            ],
+            "summary": "The reported Pearson's r and confidence interval values are slightly different from the protected statistics, although the differences are due to rounding. The correction ensures consistency in the reported values."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Pearson's r was 0.993 (95% CI 0.982 to 0.997), p < 0.0001.",
+                "evidence": "The report states r = 0.993, while the protected statistics show r = 0.993 (rounded from 0.9929163062333216). The report states CI lower bound = 0.982, while the protected statistics show CI lower bound = 0.982 (rounded from 0.9817728824045426). The report states CI upper bound = 0.997, while the protected statistics show CI upper bound = 0.997 (rounded from 0.997256460890303).",
+                "suggested_correction": "Pearson's r was 0.993 (95% CI 0.982 to 0.997), p < 0.0001."
+              }
+            ],
+            "summary": "The reported Pearson's r and confidence interval values are slightly different from the protected statistics, although the differences are due to rounding. The correction ensures consistency in the reported values."
+          },
+          "elapsed_seconds": 11.022
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "regression_clean_valid",
+      "expected_valid": true,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "The report is consistent with the statistical results and adheres to the provided guidelines. All limitations are appropriately stated, and there are no critical issues."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "The report is consistent with the statistical results and adheres to the provided guidelines. All limitations are appropriately stated, and there are no critical issues."
+          },
+          "elapsed_seconds": 5.964
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "welch_clean_valid",
+      "expected_valid": true,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69).",
+                "evidence": "The report states the mean difference as 1.25, while the protected statistics show a mean difference of 1.253202036170138. The CI lower bound is 0.82 in the report and 0.8175583600290748 in the protected statistics. The CI upper bound is 1.69 in the report and 1.688845712311201 in the protected statistics.",
+                "suggested_correction": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69)."
+              }
+            ],
+            "summary": "The report contains a minor numeric mismatch. The reported mean difference and confidence interval bounds are slightly different from the protected statistics. The difference is small enough to be considered a minor issue."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69).",
+                "evidence": "The report states the mean difference as 1.25, while the protected statistics show a mean difference of 1.253202036170138. The CI lower bound is 0.82 in the report and 0.8175583600290748 in the protected statistics. The CI upper bound is 1.69 in the report and 1.688845712311201 in the protected statistics.",
+                "suggested_correction": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69)."
+              }
+            ],
+            "summary": "The report contains a minor numeric mismatch. The reported mean difference and confidence interval bounds are slightly different from the protected statistics. The difference is small enough to be considered a minor issue."
+          },
+          "elapsed_seconds": 9.438
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "chi_square_2x2_causal",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "The report states that the analysis 'causes improvement', implying a causal relationship. However, the design is observational (non-randomized), and the analysis plan and design info confirm this. The limitations section also acknowledges that the analysis describes an association and does not establish causation.",
+                "suggested_correction": "Remove the sentence 'This analysis causes improvement.' or replace it with a statement acknowledging the association without implying causation, such as 'This analysis demonstrates an association between category_a and category_b.'"
+              }
+            ],
+            "summary": "The report makes an unsupported causal claim, which is critical given the observational design. The sentence 'This analysis causes improvement' needs to be removed or rephrased to avoid implying causation."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "The report states that the analysis 'causes improvement', implying a causal relationship. However, the design is observational (non-randomized), and the analysis plan and design info confirm this. The limitations section also acknowledges that the analysis describes an association and does not establish causation.",
+                "suggested_correction": "Remove the sentence 'This analysis causes improvement.' or replace it with a statement acknowledging the association without implying causation, such as 'This analysis demonstrates an association between category_a and category_b.'"
+              }
+            ],
+            "summary": "The report makes an unsupported causal claim, which is critical given the observational design. The sentence 'This analysis causes improvement' needs to be removed or rephrased to avoid implying causation."
+          },
+          "elapsed_seconds": 6.667
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "chi_square_2x2_wrong_number",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": false,
+          "check": {
+            "report_version": "v1",
+            "passed": false,
+            "problems": [
+              {
+                "check": "missing_content",
+                "detail": "the interpretation must state ['p_value']"
+              },
+              {
+                "check": "literal_number",
+                "detail": "numbers must be placeholders, found ['0.123']"
+              }
+            ]
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The chi-square test gave chi-square(1) = 20.000, p = 0.123, with Cramer's V = 0.500.",
+                "evidence": "Report draft: 'The chi-square test gave chi-square(1) = 20.000, p = 0.123, with Cramer's V = 0.500.'\nProtected statistics: 'chi_square': '20.000', 'p_value': '< 0.0001', 'cramers_v': '0.500'",
+                "suggested_correction": "The chi-square test gave chi-square(1) = 20.000, p < 0.0001, with Cramer's V = 0.500."
+              },
+              {
+                "severity": "critical",
+                "category": "contradiction",
+                "offending_sentence": "At alpha = 0.05, we reject H0 of independence.",
+                "evidence": "Report draft: 'At alpha = 0.05, we reject H0 of independence.'\nProtected statistics: 'decision_claim': 'reject', 'p_value': '< 0.0001'. The p-value is less than alpha, so H0 should not be rejected.",
+                "suggested_correction": "At alpha = 0.05, we do not reject H0 of independence."
+              }
+            ],
+            "summary": "The report contains a numeric mismatch and a contradiction. The reported p-value is incorrect, and the decision about the null hypothesis is inconsistent with the reported p-value."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The chi-square test gave chi-square(1) = 20.000, p = 0.123, with Cramer's V = 0.500.",
+                "evidence": "Report draft: 'The chi-square test gave chi-square(1) = 20.000, p = 0.123, with Cramer's V = 0.500.'\nProtected statistics: 'chi_square': '20.000', 'p_value': '< 0.0001', 'cramers_v': '0.500'",
+                "suggested_correction": "The chi-square test gave chi-square(1) = 20.000, p < 0.0001, with Cramer's V = 0.500."
+              },
+              {
+                "severity": "critical",
+                "category": "contradiction",
+                "offending_sentence": "At alpha = 0.05, we reject H0 of independence.",
+                "evidence": "Report draft: 'At alpha = 0.05, we reject H0 of independence.'\nProtected statistics: 'decision_claim': 'reject', 'p_value': '< 0.0001'. The p-value is less than alpha, so H0 should not be rejected.",
+                "suggested_correction": "At alpha = 0.05, we do not reject H0 of independence."
+              }
+            ],
+            "summary": "The report contains a numeric mismatch and a contradiction. The reported p-value is incorrect, and the decision about the null hypothesis is inconsistent with the reported p-value."
+          },
+          "elapsed_seconds": 12.137
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "nonlinear_no_relationship",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The analysis included 40 records. Pearson's r was -0.000 (95% CI -0.312 to 0.312), p = 1.0000.",
+                "evidence": "The report states Pearson's r was -0.000, while the protected statistics and stat_result show r = -1.249000902703301e-16. The report also states the CI as (-0.312 to 0.312) while the protected statistics and stat_result show (-0.31150934897669913, 0.3115093489766989).",
+                "suggested_correction": "The analysis included 40 records. Pearson's r was -1.249e-16 (95% CI -0.312 to 0.312), p = 1.0000."
+              },
+              {
+                "severity": "minor",
+                "category": "unsupported_claim",
+                "offending_sentence": "There is no relationship between these variables.",
+                "evidence": "While the p-value is high, the interpretation should acknowledge the observed correlation and the decision to not reject the null hypothesis.  The protected statistics explicitly states that the decision is 'do not reject'.",
+                "suggested_correction": "While the p-value is high, the results do not provide evidence of a relationship between these variables, and we do not reject the null hypothesis."
+              }
+            ],
+            "summary": "The report contains a critical numeric mismatch and an unsupported claim. The reported Pearson's r and confidence interval do not match the values in the protected statistics and stat_result. Additionally, the statement that 'there is no relationship' is too strong given the results and the decision to not reject the null hypothesis."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The analysis included 40 records. Pearson's r was -0.000 (95% CI -0.312 to 0.312), p = 1.0000.",
+                "evidence": "The report states Pearson's r was -0.000, while the protected statistics and stat_result show r = -1.249000902703301e-16. The report also states the CI as (-0.312 to 0.312) while the protected statistics and stat_result show (-0.31150934897669913, 0.3115093489766989).",
+                "suggested_correction": "The analysis included 40 records. Pearson's r was -1.249e-16 (95% CI -0.312 to 0.312), p = 1.0000."
+              },
+              {
+                "severity": "minor",
+                "category": "unsupported_claim",
+                "offending_sentence": "There is no relationship between these variables.",
+                "evidence": "While the p-value is high, the interpretation should acknowledge the observed correlation and the decision to not reject the null hypothesis.  The protected statistics explicitly states that the decision is 'do not reject'.",
+                "suggested_correction": "While the p-value is high, the results do not provide evidence of a relationship between these variables, and we do not reject the null hypothesis."
+              }
+            ],
+            "summary": "The report contains a critical numeric mismatch and an unsupported claim. The reported Pearson's r and confidence interval do not match the values in the protected statistics and stat_result. Additionally, the statement that 'there is no relationship' is too strong given the results and the decision to not reject the null hypothesis."
+          },
+          "elapsed_seconds": 13.343
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "pearson_clean_causal",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "The design_info section states 'allocation was not random.' The analysis plan confirms a non-random design. The report claims the analysis 'causes improvement', implying a causal relationship, which is not supported by the design.",
+                "suggested_correction": "Remove the sentence 'This analysis causes improvement.' or replace it with a statement acknowledging the correlational nature of the findings, such as 'This analysis demonstrates an association between the variables.'"
+              },
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Pearson's r was 0.993 (95% CI 0.982 to 0.997)",
+                "evidence": "The report states Pearson's r was 0.993, while the stat_result shows r = 0.9929163062333216. The report states the CI as 0.982 to 0.997, while the stat_result shows 0.9817728824045426 to 0.997256460890303.",
+                "suggested_correction": "Update the reported Pearson's r and confidence interval to match the values in the stat_result: 'Pearson's r was 0.993 (95% CI 0.982 to 0.997)'."
+              }
+            ],
+            "summary": "The report contains a critical causal claim and a minor numeric mismatch. The causal claim needs to be removed or rephrased to accurately reflect the non-randomized design. The reported Pearson's r and confidence interval should be updated to match the values in the stat_result."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "The design_info section states 'allocation was not random.' The analysis plan confirms a non-random design. The report claims the analysis 'causes improvement', implying a causal relationship, which is not supported by the design.",
+                "suggested_correction": "Remove the sentence 'This analysis causes improvement.' or replace it with a statement acknowledging the correlational nature of the findings, such as 'This analysis demonstrates an association between the variables.'"
+              },
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Pearson's r was 0.993 (95% CI 0.982 to 0.997)",
+                "evidence": "The report states Pearson's r was 0.993, while the stat_result shows r = 0.9929163062333216. The report states the CI as 0.982 to 0.997, while the stat_result shows 0.9817728824045426 to 0.997256460890303.",
+                "suggested_correction": "Update the reported Pearson's r and confidence interval to match the values in the stat_result: 'Pearson's r was 0.993 (95% CI 0.982 to 0.997)'."
+              }
+            ],
+            "summary": "The report contains a critical causal claim and a minor numeric mismatch. The causal claim needs to be removed or rephrased to accurately reflect the non-randomized design. The reported Pearson's r and confidence interval should be updated to match the values in the stat_result."
+          },
+          "elapsed_seconds": 12.289
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "pearson_clean_wrong_number",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": false,
+          "check": {
+            "report_version": "v1",
+            "passed": false,
+            "problems": [
+              {
+                "check": "missing_content",
+                "detail": "the interpretation must state ['p_value']"
+              },
+              {
+                "check": "literal_number",
+                "detail": "numbers must be placeholders, found ['0.123']"
+              }
+            ]
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Pearson's r was 0.993 (95% CI 0.982 to 0.997), p = 0.123.",
+                "evidence": "The report states Pearson's r = 0.993, while the stat_result shows r = 0.9929163062333216. The report states p = 0.123, while the stat_result shows p = 4.157109757767507e-18. The report states CI lower bound = 0.982, while the stat_result shows CI lower bound = 0.9817728824045426. The report states CI upper bound = 0.997, while the stat_result shows CI upper bound = 0.997256460890303.",
+                "suggested_correction": "Pearson's r was 0.993 (95% CI 0.982 to 0.997), p < 0.0001."
+              },
+              {
+                "severity": "critical",
+                "category": "contradiction",
+                "offending_sentence": "At alpha = 0.05, we reject H0.",
+                "evidence": "The report claims to reject H0 at alpha = 0.05, but the p-value (4.157109757767507e-18) is far less than alpha (0.05). Therefore, the decision should be to reject H0.",
+                "suggested_correction": "At alpha = 0.05, we reject H0."
+              }
+            ],
+            "summary": "The report contains a numeric mismatch and a contradiction regarding the p-value and the decision about H0. The reported p-value is incorrect, and the decision to reject H0 is consistent with the actual p-value."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Pearson's r was 0.993 (95% CI 0.982 to 0.997), p = 0.123.",
+                "evidence": "The report states Pearson's r = 0.993, while the stat_result shows r = 0.9929163062333216. The report states p = 0.123, while the stat_result shows p = 4.157109757767507e-18. The report states CI lower bound = 0.982, while the stat_result shows CI lower bound = 0.9817728824045426. The report states CI upper bound = 0.997, while the stat_result shows CI upper bound = 0.997256460890303.",
+                "suggested_correction": "Pearson's r was 0.993 (95% CI 0.982 to 0.997), p < 0.0001."
+              },
+              {
+                "severity": "critical",
+                "category": "contradiction",
+                "offending_sentence": "At alpha = 0.05, we reject H0.",
+                "evidence": "The report claims to reject H0 at alpha = 0.05, but the p-value (4.157109757767507e-18) is far less than alpha (0.05). Therefore, the decision should be to reject H0.",
+                "suggested_correction": "At alpha = 0.05, we reject H0."
+              }
+            ],
+            "summary": "The report contains a numeric mismatch and a contradiction regarding the p-value and the decision about H0. The reported p-value is incorrect, and the decision to reject H0 is consistent with the actual p-value."
+          },
+          "elapsed_seconds": 13.954
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "pearson_percent_misinterpretation",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This means the outcome increases by eighty percent.",
+                "evidence": "The report states that 'This means the outcome increases by eighty percent.' However, the design is not randomized (design_info: 'allocation was not random.'), so any observed relationship cannot be interpreted as a causal effect. The limitations section correctly states that the analysis describes an association and does not establish causation.",
+                "suggested_correction": "Remove the sentence 'This means the outcome increases by eighty percent.' or rephrase it to describe the association without implying causation, e.g., 'This indicates a strong positive association between the outcome and x.'"
+              },
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Pearson's r was 0.993 (95% CI 0.982 to 0.997)",
+                "evidence": "The report states Pearson's r was 0.993, while the stat_result shows r = 0.9929163062333216. The protected statistics shows r = 0.993. The CI in the report (0.982 to 0.997) matches the protected statistics (0.982 to 0.997).",
+                "suggested_correction": "Round the reported Pearson's r to match the protected statistics: 'Pearson's r was 0.993 (95% CI 0.982 to 0.997)'."
+              }
+            ],
+            "summary": "The report contains a critical issue related to an unsupported causal claim and a minor issue related to a slight numeric mismatch. The causal claim needs to be removed or rephrased to avoid implying causation. The reported Pearson's r should be rounded to match the protected statistics."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This means the outcome increases by eighty percent.",
+                "evidence": "The report states that 'This means the outcome increases by eighty percent.' However, the design is not randomized (design_info: 'allocation was not random.'), so any observed relationship cannot be interpreted as a causal effect. The limitations section correctly states that the analysis describes an association and does not establish causation.",
+                "suggested_correction": "Remove the sentence 'This means the outcome increases by eighty percent.' or rephrase it to describe the association without implying causation, e.g., 'This indicates a strong positive association between the outcome and x.'"
+              },
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Pearson's r was 0.993 (95% CI 0.982 to 0.997)",
+                "evidence": "The report states Pearson's r was 0.993, while the stat_result shows r = 0.9929163062333216. The protected statistics shows r = 0.993. The CI in the report (0.982 to 0.997) matches the protected statistics (0.982 to 0.997).",
+                "suggested_correction": "Round the reported Pearson's r to match the protected statistics: 'Pearson's r was 0.993 (95% CI 0.982 to 0.997)'."
+              }
+            ],
+            "summary": "The report contains a critical issue related to an unsupported causal claim and a minor issue related to a slight numeric mismatch. The causal claim needs to be removed or rephrased to avoid implying causation. The reported Pearson's r should be rounded to match the protected statistics."
+          },
+          "elapsed_seconds": 13.845
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "regression_clean_causal",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "report_draft.interpretation",
+                "suggested_correction": "This analysis describes an association and does not establish causation."
+              },
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p < 0.0001, and R-squared was 0.901.",
+                "evidence": "report_draft.interpretation",
+                "suggested_correction": "The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p < 0.0001, and R-squared was 0.901."
+              }
+            ],
+            "summary": "The report contains a critical causal claim and a minor numeric mismatch. The causal claim needs to be removed or rephrased to avoid implying causation when the design is not randomized. The numeric values are close enough to be considered acceptable."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "report_draft.interpretation",
+                "suggested_correction": "This analysis describes an association and does not establish causation."
+              },
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p < 0.0001, and R-squared was 0.901.",
+                "evidence": "report_draft.interpretation",
+                "suggested_correction": "The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p < 0.0001, and R-squared was 0.901."
+              }
+            ],
+            "summary": "The report contains a critical causal claim and a minor numeric mismatch. The causal claim needs to be removed or rephrased to avoid implying causation when the design is not randomized. The numeric values are close enough to be considered acceptable."
+          },
+          "elapsed_seconds": 13.249
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "regression_clean_wrong_number",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": false,
+          "check": {
+            "report_version": "v1",
+            "passed": false,
+            "problems": [
+              {
+                "check": "missing_content",
+                "detail": "the interpretation must state ['p_value']"
+              },
+              {
+                "check": "literal_number",
+                "detail": "numbers must be placeholders, found ['0.123']"
+              }
+            ]
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The analysis included 60 records. The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p = 0.123, and R-squared was 0.901.",
+                "evidence": "Report draft: The analysis included 60 records. The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p = 0.123, and R-squared was 0.901.\nProtected statistics: slope: 1.4750285494295663, ci_lower: 1.3464463876400463, ci_upper: 1.6036107112190863, t_statistic: 22.962675350253747, p_value: 8.433183004011742e-31, r_squared: 0.9009028873324268",
+                "suggested_correction": "The analysis included 60 records. The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p = 8.433e-31, and R-squared was 0.901."
+              },
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "At alpha = 0.05, we reject H0.",
+                "evidence": "Report draft: At alpha = 0.05, we reject H0.\nDesign info: assignment: Observational synthetic fixture; allocation was not random.\nAnalysis plan: null_hypothesis: H0: zero association",
+                "suggested_correction": "At alpha = 0.05, we reject the null hypothesis."
+              }
+            ],
+            "summary": "The report contains a numeric mismatch and makes an inappropriate causal claim."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The analysis included 60 records. The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p = 0.123, and R-squared was 0.901.",
+                "evidence": "Report draft: The analysis included 60 records. The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p = 0.123, and R-squared was 0.901.\nProtected statistics: slope: 1.4750285494295663, ci_lower: 1.3464463876400463, ci_upper: 1.6036107112190863, t_statistic: 22.962675350253747, p_value: 8.433183004011742e-31, r_squared: 0.9009028873324268",
+                "suggested_correction": "The analysis included 60 records. The estimated slope was 1.475 (95% CI 1.346 to 1.604), t(58) = 22.963, p = 8.433e-31, and R-squared was 0.901."
+              },
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "At alpha = 0.05, we reject H0.",
+                "evidence": "Report draft: At alpha = 0.05, we reject H0.\nDesign info: assignment: Observational synthetic fixture; allocation was not random.\nAnalysis plan: null_hypothesis: H0: zero association",
+                "suggested_correction": "At alpha = 0.05, we reject the null hypothesis."
+              }
+            ],
+            "summary": "The report contains a numeric mismatch and makes an inappropriate causal claim."
+          },
+          "elapsed_seconds": 19.318
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "regression_interval_probability",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "The report is well-written and consistent with the statistical results. All required limitations are present and accurately described. The interpretation correctly states the test result, decision about H0, and estimate with its confidence interval. There are no critical issues."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [],
+            "summary": "The report is well-written and consistent with the statistical results. All required limitations are present and accurately described. The interpretation correctly states the test result, decision about H0, and estimate with its confidence interval. There are no critical issues."
+          },
+          "elapsed_seconds": 6.971
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    },
+    {
+      "id": "welch_clean_causal",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "The report states 'This analysis causes improvement.' However, the design_info section explicitly states 'allocation was not random.' and the limitations section acknowledges that the analysis describes an association and does not establish causation.",
+                "suggested_correction": "Remove the sentence 'This analysis causes improvement.' or rephrase it to reflect an association rather than causation, e.g., 'This analysis suggests an improvement.' "
+              },
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Welch's test gave t(46.51) = 5.789, p < 0.0001.",
+                "evidence": "The report states t(46.51) = 5.789, while the stat_result shows t_statistic = 5.788718926593826 and df = 46.509888447698344.",
+                "suggested_correction": "Update the reported t-statistic and degrees of freedom to match the stat_result: 'Welch's test gave t(46.51) = 5.789, p < 0.0001.'"
+              }
+            ],
+            "summary": "The report contains a critical causal claim and a minor numeric mismatch. The causal claim needs to be removed or rephrased to avoid implying causation in a non-randomized design. The reported t-statistic and degrees of freedom should be updated to match the statistical results."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "causal_claim",
+                "offending_sentence": "This analysis causes improvement.",
+                "evidence": "The report states 'This analysis causes improvement.' However, the design_info section explicitly states 'allocation was not random.' and the limitations section acknowledges that the analysis describes an association and does not establish causation.",
+                "suggested_correction": "Remove the sentence 'This analysis causes improvement.' or rephrase it to reflect an association rather than causation, e.g., 'This analysis suggests an improvement.' "
+              },
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Welch's test gave t(46.51) = 5.789, p < 0.0001.",
+                "evidence": "The report states t(46.51) = 5.789, while the stat_result shows t_statistic = 5.788718926593826 and df = 46.509888447698344.",
+                "suggested_correction": "Update the reported t-statistic and degrees of freedom to match the stat_result: 'Welch's test gave t(46.51) = 5.789, p < 0.0001.'"
+              }
+            ],
+            "summary": "The report contains a critical causal claim and a minor numeric mismatch. The causal claim needs to be removed or rephrased to avoid implying causation in a non-randomized design. The reported t-statistic and degrees of freedom should be updated to match the statistical results."
+          },
+          "elapsed_seconds": 13.546
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "welch_clean_wrong_number",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": false,
+          "check": {
+            "report_version": "v1",
+            "passed": false,
+            "problems": [
+              {
+                "check": "missing_content",
+                "detail": "the interpretation must state ['p_value']"
+              },
+              {
+                "check": "literal_number",
+                "detail": "numbers must be placeholders, found ['0.123']"
+              }
+            ]
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": false,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Welch's test gave t(46.51) = 5.789, p = 0.123. At alpha = 0.05, we reject H0.",
+                "evidence": "The report states p = 0.123, but the protected statistics show p_value: < 0.0001 and the stat_result shows p_value: 5.796668336306442e-07.",
+                "suggested_correction": "Welch's test gave t(46.51) = 5.789, p < 0.0001. At alpha = 0.05, we reject H0."
+              },
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69).",
+                "evidence": "The report states a mean difference of 1.25, a CI lower bound of 0.82, and a CI upper bound of 1.69. The protected statistics show a mean difference of 1.25, a CI lower bound of 0.82, and a CI upper bound of 1.69. While the values match, the stat_result shows a mean difference of 1.253202036170138, a CI lower bound of 0.8175583600290748, and a CI upper bound of 1.688845712311201. The report should use the rounded values from the stat_result.",
+                "suggested_correction": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69)."
+              },
+              {
+                "severity": "critical",
+                "category": "contradiction",
+                "offending_sentence": "At alpha = 0.05, we reject H0.",
+                "evidence": "The report states that H0 is rejected at alpha = 0.05, but the protected statistics show a p-value of < 0.0001, which means that H0 should be rejected. The decision claim in the protected statistics is 'reject'.",
+                "suggested_correction": "No correction needed. The decision to reject H0 is consistent with the p-value."
+              }
+            ],
+            "summary": "The report contains critical errors including a numeric mismatch in the p-value and a contradiction in the decision about H0. The reported p-value is incorrect and should be updated to reflect the actual value. The reported confidence interval values are also slightly different from the stat_result and should be updated to match."
+          },
+          "verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "Welch's test gave t(46.51) = 5.789, p = 0.123. At alpha = 0.05, we reject H0.",
+                "evidence": "The report states p = 0.123, but the protected statistics show p_value: < 0.0001 and the stat_result shows p_value: 5.796668336306442e-07.",
+                "suggested_correction": "Welch's test gave t(46.51) = 5.789, p < 0.0001. At alpha = 0.05, we reject H0."
+              },
+              {
+                "severity": "critical",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69).",
+                "evidence": "The report states a mean difference of 1.25, a CI lower bound of 0.82, and a CI upper bound of 1.69. The protected statistics show a mean difference of 1.25, a CI lower bound of 0.82, and a CI upper bound of 1.69. While the values match, the stat_result shows a mean difference of 1.253202036170138, a CI lower bound of 0.8175583600290748, and a CI upper bound of 1.688845712311201. The report should use the rounded values from the stat_result.",
+                "suggested_correction": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69)."
+              },
+              {
+                "severity": "critical",
+                "category": "contradiction",
+                "offending_sentence": "At alpha = 0.05, we reject H0.",
+                "evidence": "The report states that H0 is rejected at alpha = 0.05, but the protected statistics show a p-value of < 0.0001, which means that H0 should be rejected. The decision claim in the protected statistics is 'reject'.",
+                "suggested_correction": "No correction needed. The decision to reject H0 is consistent with the p-value."
+              }
+            ],
+            "summary": "The report contains critical errors including a numeric mismatch in the p-value and a contradiction in the decision about H0. The reported p-value is incorrect and should be updated to reflect the actual value. The reported confidence interval values are also slightly different from the stat_result and should be updated to match."
+          },
+          "elapsed_seconds": 22.12
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": false
+        }
+      }
+    },
+    {
+      "id": "welch_wrong_method",
+      "expected_valid": false,
+      "detectors": {
+        "program": {
+          "status": "assessed",
+          "accepted": true,
+          "check": {
+            "report_version": "v1",
+            "passed": true,
+            "problems": []
+          }
+        },
+        "reviewer_b": {
+          "status": "assessed",
+          "accepted": true,
+          "raw_verdict": {
+            "passed": false,
+            "issues": [
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69).",
+                "evidence": "The report states the mean difference as 1.25, while the protected statistics show a mean difference of 1.253202036170138. The CI lower bound is reported as 0.82, while the protected statistics show 0.8175583600290748. The CI upper bound is reported as 1.69, while the protected statistics show 1.688845712311201.",
+                "suggested_correction": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69). (Note: values are rounded)"
+              },
+              {
+                "severity": "minor",
+                "category": "unsupported_claim",
+                "offending_sentence": "This is Pearson correlation.",
+                "evidence": "The analysis performed was a Welch's t-test, not a Pearson correlation. The tool call confirms this.",
+                "suggested_correction": "Remove the statement 'This is Pearson correlation.'"
+              }
+            ],
+            "summary": "The report contains minor issues related to numeric mismatches and an unsupported claim. The mean difference and confidence interval values are slightly different from the protected statistics, and the report incorrectly identifies the analysis as a Pearson correlation."
+          },
+          "verdict": {
+            "passed": true,
+            "issues": [
+              {
+                "severity": "minor",
+                "category": "numeric_mismatch",
+                "offending_sentence": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69).",
+                "evidence": "The report states the mean difference as 1.25, while the protected statistics show a mean difference of 1.253202036170138. The CI lower bound is reported as 0.82, while the protected statistics show 0.8175583600290748. The CI upper bound is reported as 1.69, while the protected statistics show 1.688845712311201.",
+                "suggested_correction": "The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69). (Note: values are rounded)"
+              },
+              {
+                "severity": "minor",
+                "category": "unsupported_claim",
+                "offending_sentence": "This is Pearson correlation.",
+                "evidence": "The analysis performed was a Welch's t-test, not a Pearson correlation. The tool call confirms this.",
+                "suggested_correction": "Remove the statement 'This is Pearson correlation.'"
+              }
+            ],
+            "summary": "The report contains minor issues related to numeric mismatches and an unsupported claim. The mean difference and confidence interval values are slightly different from the protected statistics, and the report incorrectly identifies the analysis as a Pearson correlation."
+          },
+          "elapsed_seconds": 12.95
+        },
+        "combined": {
+          "status": "assessed",
+          "accepted": true
+        }
+      }
+    }
+  ]
+}

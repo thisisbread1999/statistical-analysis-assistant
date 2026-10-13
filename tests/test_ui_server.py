@@ -25,6 +25,29 @@ CONFIGURATION = {
 }
 QUESTION = "Is the mean score different between tutoring groups?"
 PROJECT = Path(__file__).resolve().parents[1]
+
+
+@pytest.mark.parametrize("example_id,warning", [
+    ("regression_influential", "influential_observations"),
+    ("regression_heteroscedastic", "heteroscedasticity"),
+])
+def test_regression_examples_keep_target_and_expose_diagnostics(workspace, example_id, warning):
+    result = finish(workspace, {"action": "analyze", "mode": "mock", "example": example_id,
+                              "question": workspace.example(example_id)["question"]})
+    assert result["plan"]["x"] == "x" and result["plan"]["y"] == "y"
+    if result["status"] == "needs_clarification":
+        requests = result["clarification"]["requests"]
+        assert all("verify" in item["allowed_responses"] for item in requests)
+        result = finish(workspace, {"action": "resume", "session_id": result["session_id"],
+                                   "answers": [{"request_id": item["request_id"], "action": "verify",
+                                                "reason": "TEST FIXTURE: retain deliberately generated synthetic observations."}
+                                               for item in requests]})
+    assert result["status"] == "delivered", result
+    diagnostic = result["stats"]["regression_diagnostics"]
+    assert warning in {item["code"] for item in diagnostic["warnings"]}
+    assert warning in result["stats_block"]["required_limitations"]
+    assert len(diagnostic["observations"]) == 60
+    assert "Regression diagnostics" in result["report"]
 DESIGN = {
     "id_column": "student_id",
     "independence": "Independent observations explicitly confirmed for this synthetic example.",

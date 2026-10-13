@@ -297,6 +297,36 @@ function jsonSection(title, value, open = false) {
   section.append(el("summary", title), el("pre", JSON.stringify(value || {}, null, 2)));
   return section;
 }
+function regressionChecks(diagnostic) {
+  const section = el("section");
+  const number = (value) => value === null || value === undefined ? "Unavailable" : Number(value).toPrecision(5);
+  const bp = diagnostic.breusch_pagan, thresholds = diagnostic.thresholds;
+  section.append(el("h3", "OLS · regression diagnostics"),
+    el("p", "These screening flags identify records and model assumptions to review. No observations are automatically removed, and conventional OLS inference is unchanged.", "muted"));
+  const wrap = el("div", null, "table-wrap");
+  wrap.append(table(["Diagnostic", "Value", "Screening rule"], [
+    ["Maximum Cook's distance", number(diagnostic.max_cooks_distance), `Greater than ${number(thresholds.cooks_distance)} (4/n)`],
+    ["Maximum leverage", number(diagnostic.max_leverage), `Greater than ${number(thresholds.leverage)} (2p/n, p = 2)`],
+    ["Koenker Breusch–Pagan LM", number(bp.lm_statistic), "Asymptotic chi-square test, df = 1"],
+    ["Koenker Breusch–Pagan p-value", number(bp.p_value), "p < 0.05 flags possible unequal error variance"]
+  ]));
+  section.append(wrap, el("p", bp.note, "muted"));
+  if (diagnostic.warnings?.length) {
+    const warnings = el("ul");
+    for (const warning of diagnostic.warnings) warnings.append(el("li", warning.message));
+    section.append(warnings);
+  } else section.append(el("p", "No screening flags were raised. This does not establish that model assumptions hold.", "muted"));
+  const flagged = (diagnostic.observations || []).filter((row) =>
+    row.cooks_distance === null || diagnostic.influential_ids.includes(row.record_id) || diagnostic.high_leverage_ids.includes(row.record_id));
+  if (flagged.length) {
+    const records = el("div", null, "table-wrap");
+    records.append(table(["Record ID", "Source row", "Leverage", "Cook's distance"],
+      flagged.map((row) => [row.record_id, row.row_number, number(row.leverage), number(row.cooks_distance)])));
+    section.append(el("strong", "Flagged or unavailable observations"), records);
+  }
+  section.append(jsonSection("All regression diagnostic measurements", diagnostic));
+  return section;
+}
 function renderChecks(result) {
   const semantic = result.llm_diagnostics || {};
   const content = el("div");
@@ -318,6 +348,7 @@ function renderChecks(result) {
     if (diagnostic.method_findings?.length) {
       for (const finding of diagnostic.method_findings) content.append(el("p", finding.detail || textValue(finding), "error-text"));
     }
+    if (diagnostic.regression_diagnostics) content.append(regressionChecks(diagnostic.regression_diagnostics));
     content.append(jsonSection("Full diagnostic evidence", diagnostic));
   }
   if (result.errors?.length) content.append(jsonSection("Request errors", result.errors, true));

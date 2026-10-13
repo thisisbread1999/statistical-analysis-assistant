@@ -1,0 +1,47 @@
+{
+  "id": "chi_square_missing",
+  "category": "boundary",
+  "design_info": {
+    "variables": {
+      "category_a": {
+        "type": "categorical",
+        "levels": [
+          "A0",
+          "A1"
+        ],
+        "meaning": "Source text labels in category_a"
+      },
+      "category_b": {
+        "type": "categorical",
+        "levels": [
+          "B0",
+          "B1"
+        ],
+        "meaning": "Source text labels in category_b"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "result",
+  "expected_primary_behavior": "pause",
+  "fixture_answers": [
+    {
+      "record_id": "row 1",
+      "field": "category_a",
+      "check_prefix": "missing",
+      "action": "exclude",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation."
+    }
+  ],
+  "expected_method": "chi_square_independence",
+  "source_csv_sha256": "8ac391fad71f835d2b9bd316399ad232710b962a41a7c579b7f015a8cbf86e84",
+  "source_json_sha256": "242a33526b87194b17532605b5fec01a4225cfa477f008f706179a27a62faea5",
+  "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+}

@@ -1,0 +1,10 @@
+{
+  "id": "pearson_percent_misinterpretation",
+  "source_case": "pearson_clean",
+  "mutation": "percent_misinterpretation",
+  "expected_valid": false,
+  "note": "Describe a correlation coefficient as an eighty-percent increase using words.",
+  "label_source": "Authored controlled-test expectation; not a human rating.",
+  "source_attribution": "Challenge category adapted from teammate commit b7eff1c; no source score imported.",
+  "schema": "Interpretation challenge descriptor for this project's ReportDraft."
+}

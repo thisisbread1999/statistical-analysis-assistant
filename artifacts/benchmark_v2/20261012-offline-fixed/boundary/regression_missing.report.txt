@@ -1,0 +1,25 @@
+MOCK: rule-based agent stand-ins; Python calculations are real.
+
+Method: simple linear regression (one predictor, with intercept)  (data version v2; Python: NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95))
+H0: β1 = 0 versus H1: β1 ≠ 0 (slope of y on x); α = 0.05
+
+n = 59; slope = 1.490 (95% CI 1.358 to 1.622); intercept = 3.095; t(57) = 22.635; p < 0.0001; R-squared = 0.900
+Decision at α = 0.05: reject_H0
+
+Regression diagnostics (screening flags; no automatic record deletion):
+Maximum Cook's distance = 0.185282; screening threshold = 0.0677966.
+Maximum leverage = 0.0661017; screening threshold = 0.0677966.
+Koenker studentized Breusch–Pagan test: LM = 1.81457; p = 0.17796.
+Influential record IDs: row 8, row 20, row 52, row 58, row 60
+High-leverage record IDs: none flagged
+Diagnostic warning: Potential influential observations have Cook's distance > 4/n (0.0677966): row 8, row 20, row 52, row 58, row 60. No observations were excluded automatically.
+Distribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'residuals', 'n': 59, 'shapiro_wilk_p': 0.9796382470108365}, {'check': 'spread_check', 'variable': '|residual| vs fitted value', 'method': 'spearman', 'n': 59, 'spearman_rho': 0.1654003506721216, 'p_value': 0.2105972120375546}]
+
+The analysis included 59 records. The estimated slope was 1.490 (95% CI 1.358 to 1.622), t(57) = 22.635, p < 0.0001, and R-squared was 0.900. At alpha = 0.05, we reject H0.
+
+Limitations:
+- The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.
+- Random allocation was not established. This analysis describes an association and does not establish causation.
+- User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.
+- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.
+- Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed.

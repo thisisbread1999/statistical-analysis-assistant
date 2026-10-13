@@ -1,0 +1,895 @@
+{
+  "id": "chi_square_missing",
+  "category": "boundary",
+  "mode": "offline",
+  "mode_label": "MOCK: prespecified fixture plans and rule-based reports; mechanics only, NOT LLM accuracy",
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "source_question": "Compute chi-square independence between category_a and category_b.",
+  "source_expected_behavior": "result",
+  "adapted_expectation": {
+    "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+    "policy_version": "ours-v1",
+    "source_expected_behavior": "result",
+    "expected_primary_behavior": "pause",
+    "fixture_answers": [
+      {
+        "record_id": "row 1",
+        "field": "category_a",
+        "check_prefix": "missing",
+        "action": "exclude",
+        "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+        "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation."
+      }
+    ],
+    "expected_method": "chi_square_independence",
+    "source_csv_sha256": "8ac391fad71f835d2b9bd316399ad232710b962a41a7c579b7f015a8cbf86e84",
+    "source_json_sha256": "242a33526b87194b17532605b5fec01a4225cfa477f008f706179a27a62faea5",
+    "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+  },
+  "checks": {
+    "primary_safety_behavior": false,
+    "no_runner_exception": true,
+    "method": true,
+    "roles_and_contrast": true
+  },
+  "mechanical_pass": false,
+  "method_assessed": true,
+  "method_pass": true,
+  "safety_pass": false,
+  "numeric": {
+    "assessed": false,
+    "passed": null,
+    "reference": null,
+    "fields": {}
+  },
+  "interpretation_accepted": false,
+  "semantic_review": "unlabelled: no independent human review",
+  "report_delivery_status": "stopped",
+  "actual_status": "stopped",
+  "primary_state": {
+    "run_id": "benchmark-chi_square_missing-2fcb8bed702e475ea705c6763b7a34d2",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Compute chi-square independence between category_a and category_b.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "category_a": {
+          "type": "categorical",
+          "levels": [
+            "A0",
+            "A1"
+          ],
+          "meaning": "Source text labels in category_a"
+        },
+        "category_b": {
+          "type": "categorical",
+          "levels": [
+            "B0",
+            "B1"
+          ],
+          "meaning": "Source text labels in category_b"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_missing.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_missing.csv",
+    "data_version": "v1",
+    "data_fingerprint": "8ac391fad71f835d2b9bd316399ad232710b962a41a7c579b7f015a8cbf86e84",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "chi_square_independence",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "category_a",
+      "y": "category_b",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_missing.csv",
+      "method": "chi_square_independence",
+      "request_format": "v2",
+      "n_rows_in_file": 80,
+      "columns_found": [
+        "category_a",
+        "category_b"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 80,
+      "columns": [
+        {
+          "name": "category_a",
+          "role": "x",
+          "type": "categorical",
+          "n_blank": 1,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 3,
+          "levels_as_written": [
+            {
+              "label_as_written": "",
+              "quoted": "\"\"",
+              "n": 1
+            },
+            {
+              "label_as_written": "A0",
+              "quoted": "\"A0\"",
+              "n": 39
+            },
+            {
+              "label_as_written": "A1",
+              "quoted": "\"A1\"",
+              "n": 40
+            }
+          ]
+        },
+        {
+          "name": "category_b",
+          "role": "y",
+          "type": "categorical",
+          "n_blank": 0,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 2,
+          "levels_as_written": [
+            {
+              "label_as_written": "B0",
+              "quoted": "\"B0\"",
+              "n": 40
+            },
+            {
+              "label_as_written": "B1",
+              "quoted": "\"B1\"",
+              "n": 40
+            }
+          ]
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {
+        "category_a": [
+          "A0",
+          "A1"
+        ],
+        "category_b": [
+          "B0",
+          "B1"
+        ]
+      }
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned chi_square_independence matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "stopped",
+    "final_report": "No validated inferential report was delivered.\nCannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\chi_square_missing\\\\stat_io\\\\benchmark-chi_square_missing-2fcb8bed702e475ea705c6763b7a34d2-diagnostics-1_diagnostics_941902cf8870_request.json'",
+    "session_memory": {
+      "last_request_status": "stopped"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "type": "StatToolError",
+        "message": "Cannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\chi_square_missing\\\\stat_io\\\\benchmark-chi_square_missing-2fcb8bed702e475ea705c6763b7a34d2-diagnostics-1_diagnostics_941902cf8870_request.json'"
+      }
+    ],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860413.1921928,
+        "end": 1791860413.193283,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860413.1950343,
+        "end": 1791860413.211915,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860413.2126763,
+        "end": 1791860413.212726,
+        "thread": "ThreadPoolExecutor-10_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "error",
+        "start": 1791860413.2131002,
+        "end": 1791860413.2136545,
+        "thread": "ThreadPoolExecutor-10_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "skipped_after_error",
+        "start": 1791860413.2150748,
+        "end": 1791860413.2150788,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "issue_notice",
+        "status": "completed",
+        "start": 1791860413.2169697,
+        "end": 1791860413.2169747,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860413.2176528,
+        "end": 1791860413.2176628,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      }
+    ],
+    "observed_status": "stopped"
+  },
+  "final_state": {
+    "run_id": "benchmark-chi_square_missing-2fcb8bed702e475ea705c6763b7a34d2",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Compute chi-square independence between category_a and category_b.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "category_a": {
+          "type": "categorical",
+          "levels": [
+            "A0",
+            "A1"
+          ],
+          "meaning": "Source text labels in category_a"
+        },
+        "category_b": {
+          "type": "categorical",
+          "levels": [
+            "B0",
+            "B1"
+          ],
+          "meaning": "Source text labels in category_b"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_missing.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_missing.csv",
+    "data_version": "v1",
+    "data_fingerprint": "8ac391fad71f835d2b9bd316399ad232710b962a41a7c579b7f015a8cbf86e84",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "chi_square_independence",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "category_a",
+      "y": "category_b",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_missing.csv",
+      "method": "chi_square_independence",
+      "request_format": "v2",
+      "n_rows_in_file": 80,
+      "columns_found": [
+        "category_a",
+        "category_b"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 80,
+      "columns": [
+        {
+          "name": "category_a",
+          "role": "x",
+          "type": "categorical",
+          "n_blank": 1,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 3,
+          "levels_as_written": [
+            {
+              "label_as_written": "",
+              "quoted": "\"\"",
+              "n": 1
+            },
+            {
+              "label_as_written": "A0",
+              "quoted": "\"A0\"",
+              "n": 39
+            },
+            {
+              "label_as_written": "A1",
+              "quoted": "\"A1\"",
+              "n": 40
+            }
+          ]
+        },
+        {
+          "name": "category_b",
+          "role": "y",
+          "type": "categorical",
+          "n_blank": 0,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 2,
+          "levels_as_written": [
+            {
+              "label_as_written": "B0",
+              "quoted": "\"B0\"",
+              "n": 40
+            },
+            {
+              "label_as_written": "B1",
+              "quoted": "\"B1\"",
+              "n": 40
+            }
+          ]
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {
+        "category_a": [
+          "A0",
+          "A1"
+        ],
+        "category_b": [
+          "B0",
+          "B1"
+        ]
+      }
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned chi_square_independence matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "stopped",
+    "final_report": "No validated inferential report was delivered.\nCannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\chi_square_missing\\\\stat_io\\\\benchmark-chi_square_missing-2fcb8bed702e475ea705c6763b7a34d2-diagnostics-1_diagnostics_941902cf8870_request.json'",
+    "session_memory": {
+      "last_request_status": "stopped"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "type": "StatToolError",
+        "message": "Cannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\chi_square_missing\\\\stat_io\\\\benchmark-chi_square_missing-2fcb8bed702e475ea705c6763b7a34d2-diagnostics-1_diagnostics_941902cf8870_request.json'"
+      }
+    ],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860413.1921928,
+        "end": 1791860413.193283,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860413.1950343,
+        "end": 1791860413.211915,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860413.2126763,
+        "end": 1791860413.212726,
+        "thread": "ThreadPoolExecutor-10_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "error",
+        "start": 1791860413.2131002,
+        "end": 1791860413.2136545,
+        "thread": "ThreadPoolExecutor-10_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "skipped_after_error",
+        "start": 1791860413.2150748,
+        "end": 1791860413.2150788,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "issue_notice",
+        "status": "completed",
+        "start": 1791860413.2169697,
+        "end": 1791860413.2169747,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860413.2176528,
+        "end": 1791860413.2176628,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      }
+    ],
+    "observed_status": "stopped"
+  },
+  "warmup": null,
+  "stages": [
+    {
+      "stage": "primary",
+      "state": {
+        "run_id": "benchmark-chi_square_missing-2fcb8bed702e475ea705c6763b7a34d2",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Compute chi-square independence between category_a and category_b.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "category_a": {
+              "type": "categorical",
+              "levels": [
+                "A0",
+                "A1"
+              ],
+              "meaning": "Source text labels in category_a"
+            },
+            "category_b": {
+              "type": "categorical",
+              "levels": [
+                "B0",
+                "B1"
+              ],
+              "meaning": "Source text labels in category_b"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_missing.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_missing.csv",
+        "data_version": "v1",
+        "data_fingerprint": "8ac391fad71f835d2b9bd316399ad232710b962a41a7c579b7f015a8cbf86e84",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "analysis_plan": {
+          "method": "chi_square_independence",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "category_a",
+          "y": "category_b",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "ready",
+        "data_summary": {
+          "task": "summary",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_missing.csv",
+          "method": "chi_square_independence",
+          "request_format": "v2",
+          "n_rows_in_file": 80,
+          "columns_found": [
+            "category_a",
+            "category_b"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('summary', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 80,
+          "columns": [
+            {
+              "name": "category_a",
+              "role": "x",
+              "type": "categorical",
+              "n_blank": 1,
+              "n_parseable_numeric": 0,
+              "n_unique_as_written": 3,
+              "levels_as_written": [
+                {
+                  "label_as_written": "",
+                  "quoted": "\"\"",
+                  "n": 1
+                },
+                {
+                  "label_as_written": "A0",
+                  "quoted": "\"A0\"",
+                  "n": 39
+                },
+                {
+                  "label_as_written": "A1",
+                  "quoted": "\"A1\"",
+                  "n": 40
+                }
+              ]
+            },
+            {
+              "name": "category_b",
+              "role": "y",
+              "type": "categorical",
+              "n_blank": 0,
+              "n_parseable_numeric": 0,
+              "n_unique_as_written": 2,
+              "levels_as_written": [
+                {
+                  "label_as_written": "B0",
+                  "quoted": "\"B0\"",
+                  "n": 40
+                },
+                {
+                  "label_as_written": "B1",
+                  "quoted": "\"B1\"",
+                  "n": 40
+                }
+              ]
+            }
+          ],
+          "stated_ranges": {},
+          "stated_levels": {
+            "category_a": [
+              "A0",
+              "A1"
+            ],
+            "category_b": [
+              "B0",
+              "B1"
+            ]
+          }
+        },
+        "llm_diagnostics": {
+          "variable_meanings": "As described by the user.",
+          "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+          "goal_alignment": "The planned chi_square_independence matches the question.",
+          "distribution_notes": "See the statistical summary.",
+          "issues": [
+            {
+              "topic": "study_design",
+              "severity": "limitation",
+              "issue": "Groups or exposures are self-selected, not randomized.",
+              "evidence": "Observational synthetic fixture; allocation was not random.",
+              "suggested_action": "Report an association only."
+            }
+          ]
+        },
+        "stop_reasons": [],
+        "clarification_requests": [],
+        "clarification_answers": [],
+        "clarification_rounds": 0,
+        "rejected_answers": [],
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "report_draft": {},
+        "rendered_draft": {},
+        "program_check": {},
+        "review_verdict": {},
+        "revision_count": 0,
+        "final_status": "stopped",
+        "final_report": "No validated inferential report was delivered.\nCannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\chi_square_missing\\\\stat_io\\\\benchmark-chi_square_missing-2fcb8bed702e475ea705c6763b7a34d2-diagnostics-1_diagnostics_941902cf8870_request.json'",
+        "session_memory": {
+          "last_request_status": "stopped"
+        },
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "type": "StatToolError",
+            "message": "Cannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\chi_square_missing\\\\stat_io\\\\benchmark-chi_square_missing-2fcb8bed702e475ea705c6763b7a34d2-diagnostics-1_diagnostics_941902cf8870_request.json'"
+          }
+        ],
+        "model_calls": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "method": "plan",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          }
+        ],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791860413.1921928,
+            "end": 1791860413.193283,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791860413.1950343,
+            "end": 1791860413.211915,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791860413.2126763,
+            "end": 1791860413.212726,
+            "thread": "ThreadPoolExecutor-10_0",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "error",
+            "start": 1791860413.2131002,
+            "end": 1791860413.2136545,
+            "thread": "ThreadPoolExecutor-10_1",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "skipped_after_error",
+            "start": 1791860413.2150748,
+            "end": 1791860413.2150788,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 4
+          },
+          {
+            "request_number": 1,
+            "node": "issue_notice",
+            "status": "completed",
+            "start": 1791860413.2169697,
+            "end": 1791860413.2169747,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 5
+          },
+          {
+            "request_number": 1,
+            "node": "save_session",
+            "status": "completed",
+            "start": 1791860413.2176528,
+            "end": 1791860413.2176628,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 6
+          }
+        ],
+        "observed_status": "stopped"
+      }
+    }
+  ],
+  "clarification_requested": false,
+  "model_calls": [
+    {
+      "request_number": 1,
+      "node": "plan_analysis",
+      "method": "plan",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "llm_diagnostics",
+      "method": "diagnose",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    }
+  ],
+  "original_diagnostics": {},
+  "report_revisions": 0,
+  "regression_warning_codes": [],
+  "error": null,
+  "duration_seconds": 0.07032400008756667
+}

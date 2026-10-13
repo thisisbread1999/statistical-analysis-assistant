@@ -1,0 +1,2559 @@
+{
+  "id": "chi_square_2x3",
+  "category": "boundary",
+  "mode": "offline",
+  "mode_label": "MOCK: prespecified fixture plans and rule-based reports; mechanics only, NOT LLM accuracy",
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "source_question": "Test chi-square independence of category_a and category_b.",
+  "source_expected_behavior": "result",
+  "adapted_expectation": {
+    "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+    "policy_version": "ours-v1",
+    "source_expected_behavior": "result",
+    "expected_primary_behavior": "result",
+    "fixture_answers": [],
+    "expected_method": "chi_square_independence",
+    "source_csv_sha256": "7e8a332677e194ba35f88b4872454f593f23d5f49385786eebca4fb13ce3f5b2",
+    "source_json_sha256": "b2a176a15c0fb71777ffaf113173bdf359ec723e7e2d05079fa3ed860ad802a0",
+    "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+  },
+  "checks": {
+    "primary_safety_behavior": true,
+    "no_runner_exception": true,
+    "method": true,
+    "roles_and_contrast": true,
+    "independent_numbers": true
+  },
+  "mechanical_pass": true,
+  "method_assessed": true,
+  "method_pass": true,
+  "safety_pass": true,
+  "numeric": {
+    "assessed": true,
+    "passed": true,
+    "reference": {
+      "n_included": 60,
+      "n": 60,
+      "chi_square": 1.6,
+      "df": 2,
+      "p_value": 0.4493289641172217,
+      "cramers_v": 0.16329931618554522
+    },
+    "fields": {
+      "n_included": true,
+      "n": true,
+      "chi_square": true,
+      "df": true,
+      "p_value": true,
+      "cramers_v": true
+    },
+    "actual_data_version": "v1",
+    "actual_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+    "approved_excluded_ids": [],
+    "original_n": 60
+  },
+  "interpretation_accepted": true,
+  "semantic_review": "unlabelled: no independent human review",
+  "report_delivery_status": "delivered",
+  "actual_status": "delivered",
+  "primary_state": {
+    "run_id": "bench-546145d9fe3b4bf6",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Test chi-square independence of category_a and category_b.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "category_a": {
+          "type": "categorical",
+          "levels": [
+            "A0",
+            "A1"
+          ],
+          "meaning": "Source text labels in category_a"
+        },
+        "category_b": {
+          "type": "categorical",
+          "levels": [
+            "B0",
+            "B1",
+            "B2"
+          ],
+          "meaning": "Source text labels in category_b"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+    "data_version": "v1",
+    "data_fingerprint": "7e8a332677e194ba35f88b4872454f593f23d5f49385786eebca4fb13ce3f5b2",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "chi_square_independence",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "category_a",
+      "y": "category_b",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+      "method": "chi_square_independence",
+      "request_format": "v2",
+      "n_rows_in_file": 60,
+      "columns_found": [
+        "category_a",
+        "category_b"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 60,
+      "columns": [
+        {
+          "name": "category_a",
+          "role": "x",
+          "type": "categorical",
+          "n_blank": 0,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 2,
+          "levels_as_written": [
+            {
+              "label_as_written": "A0",
+              "quoted": "\"A0\"",
+              "n": 30
+            },
+            {
+              "label_as_written": "A1",
+              "quoted": "\"A1\"",
+              "n": 30
+            }
+          ]
+        },
+        {
+          "name": "category_b",
+          "role": "y",
+          "type": "categorical",
+          "n_blank": 0,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 3,
+          "levels_as_written": [
+            {
+              "label_as_written": "B0",
+              "quoted": "\"B0\"",
+              "n": 20
+            },
+            {
+              "label_as_written": "B1",
+              "quoted": "\"B1\"",
+              "n": 20
+            },
+            {
+              "label_as_written": "B2",
+              "quoted": "\"B2\"",
+              "n": 20
+            }
+          ]
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {
+        "category_a": [
+          "A0",
+          "A1"
+        ],
+        "category_b": [
+          "B0",
+          "B1",
+          "B2"
+        ]
+      }
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned chi_square_independence matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+      "method": "chi_square_independence",
+      "request_format": "v2",
+      "n_rows_in_file": 60,
+      "columns_found": [
+        "category_a",
+        "category_b"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 60,
+      "n_usable_rows": 60,
+      "findings": [],
+      "n_blocking": 0,
+      "n_verify": 0,
+      "method_checks_run": true,
+      "method_findings": [],
+      "distribution_checks_run": true,
+      "distribution_checks": [
+        {
+          "check": "expected_counts",
+          "min_expected_count": 10.0,
+          "share_cells_expected_below_5": 0.0,
+          "n_cells": 6
+        }
+      ],
+      "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+    },
+    "diagnostic_route": "proceed",
+    "diagnostic_assessment": {
+      "rationale": "No unresolved record-level problems remain; the planned test can run.",
+      "limitations": [],
+      "questions": []
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+      "method": "chi_square_independence",
+      "request_format": "v2",
+      "n_rows_in_file": 60,
+      "columns_found": [
+        "category_a",
+        "category_b"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 60,
+      "tool_warnings": [],
+      "method_label": "Pearson chi-square test of independence (uncorrected)",
+      "n": 60,
+      "chi_square": 1.6,
+      "df": 2,
+      "p_value": 0.4493289641172217,
+      "cramers_v": 0.16329931618554522,
+      "yates_correction": false,
+      "observed": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "col_labels": [
+          "B0",
+          "B1",
+          "B2"
+        ],
+        "counts": [
+          [
+            12,
+            10,
+            8
+          ],
+          [
+            8,
+            10,
+            12
+          ]
+        ]
+      },
+      "expected": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "col_labels": [
+          "B0",
+          "B1",
+          "B2"
+        ],
+        "counts": [
+          [
+            10.0,
+            10.0,
+            10.0
+          ],
+          [
+            10.0,
+            10.0,
+            10.0
+          ]
+        ]
+      },
+      "min_expected_count": 10.0,
+      "decision": "do_not_reject_H0"
+    },
+    "stats_block": {
+      "method": "chi_square_independence",
+      "method_label": "chi-square test of independence",
+      "data_version": "v1",
+      "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+      "values": {
+        "p_value": "0.4493",
+        "alpha": "0.05",
+        "null_value": "0",
+        "confidence_level": "95%",
+        "decision_claim": "do not reject",
+        "direction_claim": "not_applicable",
+        "n": "60",
+        "chi_square": "1.600",
+        "df": "2",
+        "cramers_v": "0.163"
+      },
+      "hypotheses": "H0: category_a and category_b are independent versus H1: they are associated",
+      "required_placeholders": [
+        "chi_square",
+        "df",
+        "p_value",
+        "cramers_v",
+        "n"
+      ],
+      "required_limitations": {
+        "no_effect_interval": "No confidence interval was computed for Cramer's V in this stage.",
+        "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      "direction": "not_applicable",
+      "decision": "do_not_reject_H0",
+      "distribution_checks": [
+        {
+          "check": "expected_counts",
+          "min_expected_count": 10.0,
+          "share_cells_expected_below_5": 0.0,
+          "n_cells": 6
+        }
+      ],
+      "regression_diagnostics": null,
+      "observed": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "col_labels": [
+          "B0",
+          "B1",
+          "B2"
+        ],
+        "counts": [
+          [
+            12,
+            10,
+            8
+          ],
+          [
+            8,
+            10,
+            12
+          ]
+        ]
+      },
+      "yates": false,
+      "tool_warnings": [],
+      "t_statistic_note": ""
+    },
+    "report_draft": {
+      "interpretation": "The analysis included {n} records. The chi-square test gave chi-square({df}) = {chi_square}, p = {p_value}, with Cramer's V = {cramers_v}. At alpha = {alpha}, we do not reject H0 of independence. This is not evidence that there is no difference or association.",
+      "limitations": [
+        {
+          "limitation_id": "no_effect_interval",
+          "text": "No confidence interval was computed for Cramer's V in this stage."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        }
+      ],
+      "direction_claim": "not_applicable",
+      "decision_claim": "do_not_reject_H0",
+      "version": "draft1"
+    },
+    "rendered_draft": {
+      "interpretation": "The analysis included 60 records. The chi-square test gave chi-square(2) = 1.600, p = 0.4493, with Cramer's V = 0.163. At alpha = 0.05, we do not reject H0 of independence. This is not evidence that there is no difference or association.",
+      "limitations": [
+        {
+          "limitation_id": "no_effect_interval",
+          "text": "No confidence interval was computed for Cramer's V in this stage."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        }
+      ],
+      "direction_claim": "not_applicable",
+      "decision_claim": "do_not_reject_H0",
+      "version": "draft1"
+    },
+    "program_check": {
+      "report_version": "draft1",
+      "passed": true,
+      "problems": []
+    },
+    "review_verdict": {
+      "passed": true,
+      "issues": [],
+      "summary": "Rule-based mock review: no issues found."
+    },
+    "revision_count": 0,
+    "final_status": "delivered",
+    "final_report": "MOCK: rule-based agent stand-ins; Python calculations are real.\n\nMethod: chi-square test of independence  (data version v1; Python: scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square)\nH0: category_a and category_b are independent versus H1: they are associated; α = 0.05\n\n| | B0 | B1 | B2 |\n|---|---|---|---|\n| A0 | 12 | 10 | 8 |\n| A1 | 8 | 10 | 12 |\n\nn = 60; chi-square(2) = 1.600; p = 0.4493; Cramer's V = 0.163 (no Yates continuity correction)\nDecision at α = 0.05: do_not_reject_H0\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'expected_counts', 'min_expected_count': 10.0, 'share_cells_expected_below_5': 0.0, 'n_cells': 6}]\n\nThe analysis included 60 records. The chi-square test gave chi-square(2) = 1.600, p = 0.4493, with Cramer's V = 0.163. At alpha = 0.05, we do not reject H0 of independence. This is not evidence that there is no difference or association.\n\nLimitations:\n- No confidence interval was computed for Cramer's V in this stage.\n- Random allocation was not established. This analysis describes an association and does not establish causation.",
+    "session_memory": {
+      "last_success": {
+        "research_question": "Test chi-square independence of category_a and category_b.",
+        "design_info": {
+          "variables": {
+            "category_a": {
+              "type": "categorical",
+              "levels": [
+                "A0",
+                "A1"
+              ],
+              "meaning": "Source text labels in category_a"
+            },
+            "category_b": {
+              "type": "categorical",
+              "levels": [
+                "B0",
+                "B1",
+                "B2"
+              ],
+              "meaning": "Source text labels in category_b"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+        "data_version": "v1",
+        "data_fingerprint": "7e8a332677e194ba35f88b4872454f593f23d5f49385786eebca4fb13ce3f5b2",
+        "analysis_plan": {
+          "method": "chi_square_independence",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "category_a",
+          "y": "category_b",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "conf_level": 0.95,
+        "stat_result": {
+          "task": "run_test",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+          "method": "chi_square_independence",
+          "request_format": "v2",
+          "n_rows_in_file": 60,
+          "columns_found": [
+            "category_a",
+            "category_b"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+          "status": "ok",
+          "alternative": "two-sided",
+          "conf_level": 0.95,
+          "alpha": 0.05,
+          "n_included": 60,
+          "tool_warnings": [],
+          "method_label": "Pearson chi-square test of independence (uncorrected)",
+          "n": 60,
+          "chi_square": 1.6,
+          "df": 2,
+          "p_value": 0.4493289641172217,
+          "cramers_v": 0.16329931618554522,
+          "yates_correction": false,
+          "observed": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "col_labels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "counts": [
+              [
+                12,
+                10,
+                8
+              ],
+              [
+                8,
+                10,
+                12
+              ]
+            ]
+          },
+          "expected": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "col_labels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "counts": [
+              [
+                10.0,
+                10.0,
+                10.0
+              ],
+              [
+                10.0,
+                10.0,
+                10.0
+              ]
+            ]
+          },
+          "min_expected_count": 10.0,
+          "decision": "do_not_reject_H0"
+        },
+        "stats_block": {
+          "method": "chi_square_independence",
+          "method_label": "chi-square test of independence",
+          "data_version": "v1",
+          "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+          "values": {
+            "p_value": "0.4493",
+            "alpha": "0.05",
+            "null_value": "0",
+            "confidence_level": "95%",
+            "decision_claim": "do not reject",
+            "direction_claim": "not_applicable",
+            "n": "60",
+            "chi_square": "1.600",
+            "df": "2",
+            "cramers_v": "0.163"
+          },
+          "hypotheses": "H0: category_a and category_b are independent versus H1: they are associated",
+          "required_placeholders": [
+            "chi_square",
+            "df",
+            "p_value",
+            "cramers_v",
+            "n"
+          ],
+          "required_limitations": {
+            "no_effect_interval": "No confidence interval was computed for Cramer's V in this stage.",
+            "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation."
+          },
+          "direction": "not_applicable",
+          "decision": "do_not_reject_H0",
+          "distribution_checks": [
+            {
+              "check": "expected_counts",
+              "min_expected_count": 10.0,
+              "share_cells_expected_below_5": 0.0,
+              "n_cells": 6
+            }
+          ],
+          "regression_diagnostics": null,
+          "observed": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "col_labels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "counts": [
+              [
+                12,
+                10,
+                8
+              ],
+              [
+                8,
+                10,
+                12
+              ]
+            ]
+          },
+          "yates": false,
+          "tool_warnings": [],
+          "t_statistic_note": ""
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+          "method": "chi_square_independence",
+          "request_format": "v2",
+          "n_rows_in_file": 60,
+          "columns_found": [
+            "category_a",
+            "category_b"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 60,
+          "n_usable_rows": 60,
+          "findings": [],
+          "n_blocking": 0,
+          "n_verify": 0,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "expected_counts",
+              "min_expected_count": 10.0,
+              "share_cells_expected_below_5": 0.0,
+              "n_cells": 6
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+        },
+        "request_number": 1
+      },
+      "last_request_status": "delivered"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "method": "draft",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "method": "review",
+        "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860698.7709322,
+        "end": 1791860698.7716074,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860698.7723837,
+        "end": 1791860698.7754648,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860698.776576,
+        "end": 1791860698.7766507,
+        "thread": "ThreadPoolExecutor-16_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791860698.7773867,
+        "end": 1791860698.7797034,
+        "thread": "ThreadPoolExecutor-16_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791860698.780199,
+        "end": 1791860698.7805195,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "run_statistical_test",
+        "status": "completed",
+        "start": 1791860698.7818925,
+        "end": 1791860698.786223,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "build_stats_block",
+        "status": "completed",
+        "start": 1791860698.7890196,
+        "end": 1791860698.789065,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "status": "completed",
+        "start": 1791860698.7909417,
+        "end": 1791860698.791014,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 7
+      },
+      {
+        "request_number": 1,
+        "node": "check_report",
+        "status": "completed",
+        "start": 1791860698.791791,
+        "end": 1791860698.7920084,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 8
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "status": "completed",
+        "start": 1791860698.7930174,
+        "end": 1791860698.793115,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 9
+      },
+      {
+        "request_number": 1,
+        "node": "deliver_report",
+        "status": "completed",
+        "start": 1791860698.7950068,
+        "end": 1791860698.7950492,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 10
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860698.7960837,
+        "end": 1791860698.796313,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 11
+      }
+    ],
+    "observed_status": "delivered"
+  },
+  "final_state": {
+    "run_id": "bench-546145d9fe3b4bf6",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Test chi-square independence of category_a and category_b.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "category_a": {
+          "type": "categorical",
+          "levels": [
+            "A0",
+            "A1"
+          ],
+          "meaning": "Source text labels in category_a"
+        },
+        "category_b": {
+          "type": "categorical",
+          "levels": [
+            "B0",
+            "B1",
+            "B2"
+          ],
+          "meaning": "Source text labels in category_b"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+    "data_version": "v1",
+    "data_fingerprint": "7e8a332677e194ba35f88b4872454f593f23d5f49385786eebca4fb13ce3f5b2",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "chi_square_independence",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "category_a",
+      "y": "category_b",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+      "method": "chi_square_independence",
+      "request_format": "v2",
+      "n_rows_in_file": 60,
+      "columns_found": [
+        "category_a",
+        "category_b"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 60,
+      "columns": [
+        {
+          "name": "category_a",
+          "role": "x",
+          "type": "categorical",
+          "n_blank": 0,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 2,
+          "levels_as_written": [
+            {
+              "label_as_written": "A0",
+              "quoted": "\"A0\"",
+              "n": 30
+            },
+            {
+              "label_as_written": "A1",
+              "quoted": "\"A1\"",
+              "n": 30
+            }
+          ]
+        },
+        {
+          "name": "category_b",
+          "role": "y",
+          "type": "categorical",
+          "n_blank": 0,
+          "n_parseable_numeric": 0,
+          "n_unique_as_written": 3,
+          "levels_as_written": [
+            {
+              "label_as_written": "B0",
+              "quoted": "\"B0\"",
+              "n": 20
+            },
+            {
+              "label_as_written": "B1",
+              "quoted": "\"B1\"",
+              "n": 20
+            },
+            {
+              "label_as_written": "B2",
+              "quoted": "\"B2\"",
+              "n": 20
+            }
+          ]
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {
+        "category_a": [
+          "A0",
+          "A1"
+        ],
+        "category_b": [
+          "B0",
+          "B1",
+          "B2"
+        ]
+      }
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned chi_square_independence matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+      "method": "chi_square_independence",
+      "request_format": "v2",
+      "n_rows_in_file": 60,
+      "columns_found": [
+        "category_a",
+        "category_b"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 60,
+      "n_usable_rows": 60,
+      "findings": [],
+      "n_blocking": 0,
+      "n_verify": 0,
+      "method_checks_run": true,
+      "method_findings": [],
+      "distribution_checks_run": true,
+      "distribution_checks": [
+        {
+          "check": "expected_counts",
+          "min_expected_count": 10.0,
+          "share_cells_expected_below_5": 0.0,
+          "n_cells": 6
+        }
+      ],
+      "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+    },
+    "diagnostic_route": "proceed",
+    "diagnostic_assessment": {
+      "rationale": "No unresolved record-level problems remain; the planned test can run.",
+      "limitations": [],
+      "questions": []
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+      "method": "chi_square_independence",
+      "request_format": "v2",
+      "n_rows_in_file": 60,
+      "columns_found": [
+        "category_a",
+        "category_b"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 60,
+      "tool_warnings": [],
+      "method_label": "Pearson chi-square test of independence (uncorrected)",
+      "n": 60,
+      "chi_square": 1.6,
+      "df": 2,
+      "p_value": 0.4493289641172217,
+      "cramers_v": 0.16329931618554522,
+      "yates_correction": false,
+      "observed": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "col_labels": [
+          "B0",
+          "B1",
+          "B2"
+        ],
+        "counts": [
+          [
+            12,
+            10,
+            8
+          ],
+          [
+            8,
+            10,
+            12
+          ]
+        ]
+      },
+      "expected": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "col_labels": [
+          "B0",
+          "B1",
+          "B2"
+        ],
+        "counts": [
+          [
+            10.0,
+            10.0,
+            10.0
+          ],
+          [
+            10.0,
+            10.0,
+            10.0
+          ]
+        ]
+      },
+      "min_expected_count": 10.0,
+      "decision": "do_not_reject_H0"
+    },
+    "stats_block": {
+      "method": "chi_square_independence",
+      "method_label": "chi-square test of independence",
+      "data_version": "v1",
+      "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+      "values": {
+        "p_value": "0.4493",
+        "alpha": "0.05",
+        "null_value": "0",
+        "confidence_level": "95%",
+        "decision_claim": "do not reject",
+        "direction_claim": "not_applicable",
+        "n": "60",
+        "chi_square": "1.600",
+        "df": "2",
+        "cramers_v": "0.163"
+      },
+      "hypotheses": "H0: category_a and category_b are independent versus H1: they are associated",
+      "required_placeholders": [
+        "chi_square",
+        "df",
+        "p_value",
+        "cramers_v",
+        "n"
+      ],
+      "required_limitations": {
+        "no_effect_interval": "No confidence interval was computed for Cramer's V in this stage.",
+        "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      "direction": "not_applicable",
+      "decision": "do_not_reject_H0",
+      "distribution_checks": [
+        {
+          "check": "expected_counts",
+          "min_expected_count": 10.0,
+          "share_cells_expected_below_5": 0.0,
+          "n_cells": 6
+        }
+      ],
+      "regression_diagnostics": null,
+      "observed": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "col_labels": [
+          "B0",
+          "B1",
+          "B2"
+        ],
+        "counts": [
+          [
+            12,
+            10,
+            8
+          ],
+          [
+            8,
+            10,
+            12
+          ]
+        ]
+      },
+      "yates": false,
+      "tool_warnings": [],
+      "t_statistic_note": ""
+    },
+    "report_draft": {
+      "interpretation": "The analysis included {n} records. The chi-square test gave chi-square({df}) = {chi_square}, p = {p_value}, with Cramer's V = {cramers_v}. At alpha = {alpha}, we do not reject H0 of independence. This is not evidence that there is no difference or association.",
+      "limitations": [
+        {
+          "limitation_id": "no_effect_interval",
+          "text": "No confidence interval was computed for Cramer's V in this stage."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        }
+      ],
+      "direction_claim": "not_applicable",
+      "decision_claim": "do_not_reject_H0",
+      "version": "draft1"
+    },
+    "rendered_draft": {
+      "interpretation": "The analysis included 60 records. The chi-square test gave chi-square(2) = 1.600, p = 0.4493, with Cramer's V = 0.163. At alpha = 0.05, we do not reject H0 of independence. This is not evidence that there is no difference or association.",
+      "limitations": [
+        {
+          "limitation_id": "no_effect_interval",
+          "text": "No confidence interval was computed for Cramer's V in this stage."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        }
+      ],
+      "direction_claim": "not_applicable",
+      "decision_claim": "do_not_reject_H0",
+      "version": "draft1"
+    },
+    "program_check": {
+      "report_version": "draft1",
+      "passed": true,
+      "problems": []
+    },
+    "review_verdict": {
+      "passed": true,
+      "issues": [],
+      "summary": "Rule-based mock review: no issues found."
+    },
+    "revision_count": 0,
+    "final_status": "delivered",
+    "final_report": "MOCK: rule-based agent stand-ins; Python calculations are real.\n\nMethod: chi-square test of independence  (data version v1; Python: scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square)\nH0: category_a and category_b are independent versus H1: they are associated; α = 0.05\n\n| | B0 | B1 | B2 |\n|---|---|---|---|\n| A0 | 12 | 10 | 8 |\n| A1 | 8 | 10 | 12 |\n\nn = 60; chi-square(2) = 1.600; p = 0.4493; Cramer's V = 0.163 (no Yates continuity correction)\nDecision at α = 0.05: do_not_reject_H0\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'expected_counts', 'min_expected_count': 10.0, 'share_cells_expected_below_5': 0.0, 'n_cells': 6}]\n\nThe analysis included 60 records. The chi-square test gave chi-square(2) = 1.600, p = 0.4493, with Cramer's V = 0.163. At alpha = 0.05, we do not reject H0 of independence. This is not evidence that there is no difference or association.\n\nLimitations:\n- No confidence interval was computed for Cramer's V in this stage.\n- Random allocation was not established. This analysis describes an association and does not establish causation.",
+    "session_memory": {
+      "last_success": {
+        "research_question": "Test chi-square independence of category_a and category_b.",
+        "design_info": {
+          "variables": {
+            "category_a": {
+              "type": "categorical",
+              "levels": [
+                "A0",
+                "A1"
+              ],
+              "meaning": "Source text labels in category_a"
+            },
+            "category_b": {
+              "type": "categorical",
+              "levels": [
+                "B0",
+                "B1",
+                "B2"
+              ],
+              "meaning": "Source text labels in category_b"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+        "data_version": "v1",
+        "data_fingerprint": "7e8a332677e194ba35f88b4872454f593f23d5f49385786eebca4fb13ce3f5b2",
+        "analysis_plan": {
+          "method": "chi_square_independence",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "category_a",
+          "y": "category_b",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "conf_level": 0.95,
+        "stat_result": {
+          "task": "run_test",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+          "method": "chi_square_independence",
+          "request_format": "v2",
+          "n_rows_in_file": 60,
+          "columns_found": [
+            "category_a",
+            "category_b"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+          "status": "ok",
+          "alternative": "two-sided",
+          "conf_level": 0.95,
+          "alpha": 0.05,
+          "n_included": 60,
+          "tool_warnings": [],
+          "method_label": "Pearson chi-square test of independence (uncorrected)",
+          "n": 60,
+          "chi_square": 1.6,
+          "df": 2,
+          "p_value": 0.4493289641172217,
+          "cramers_v": 0.16329931618554522,
+          "yates_correction": false,
+          "observed": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "col_labels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "counts": [
+              [
+                12,
+                10,
+                8
+              ],
+              [
+                8,
+                10,
+                12
+              ]
+            ]
+          },
+          "expected": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "col_labels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "counts": [
+              [
+                10.0,
+                10.0,
+                10.0
+              ],
+              [
+                10.0,
+                10.0,
+                10.0
+              ]
+            ]
+          },
+          "min_expected_count": 10.0,
+          "decision": "do_not_reject_H0"
+        },
+        "stats_block": {
+          "method": "chi_square_independence",
+          "method_label": "chi-square test of independence",
+          "data_version": "v1",
+          "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+          "values": {
+            "p_value": "0.4493",
+            "alpha": "0.05",
+            "null_value": "0",
+            "confidence_level": "95%",
+            "decision_claim": "do not reject",
+            "direction_claim": "not_applicable",
+            "n": "60",
+            "chi_square": "1.600",
+            "df": "2",
+            "cramers_v": "0.163"
+          },
+          "hypotheses": "H0: category_a and category_b are independent versus H1: they are associated",
+          "required_placeholders": [
+            "chi_square",
+            "df",
+            "p_value",
+            "cramers_v",
+            "n"
+          ],
+          "required_limitations": {
+            "no_effect_interval": "No confidence interval was computed for Cramer's V in this stage.",
+            "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation."
+          },
+          "direction": "not_applicable",
+          "decision": "do_not_reject_H0",
+          "distribution_checks": [
+            {
+              "check": "expected_counts",
+              "min_expected_count": 10.0,
+              "share_cells_expected_below_5": 0.0,
+              "n_cells": 6
+            }
+          ],
+          "regression_diagnostics": null,
+          "observed": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "col_labels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "counts": [
+              [
+                12,
+                10,
+                8
+              ],
+              [
+                8,
+                10,
+                12
+              ]
+            ]
+          },
+          "yates": false,
+          "tool_warnings": [],
+          "t_statistic_note": ""
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+          "method": "chi_square_independence",
+          "request_format": "v2",
+          "n_rows_in_file": 60,
+          "columns_found": [
+            "category_a",
+            "category_b"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 60,
+          "n_usable_rows": 60,
+          "findings": [],
+          "n_blocking": 0,
+          "n_verify": 0,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "expected_counts",
+              "min_expected_count": 10.0,
+              "share_cells_expected_below_5": 0.0,
+              "n_cells": 6
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+        },
+        "request_number": 1
+      },
+      "last_request_status": "delivered"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "method": "draft",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "method": "review",
+        "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860698.7709322,
+        "end": 1791860698.7716074,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860698.7723837,
+        "end": 1791860698.7754648,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860698.776576,
+        "end": 1791860698.7766507,
+        "thread": "ThreadPoolExecutor-16_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791860698.7773867,
+        "end": 1791860698.7797034,
+        "thread": "ThreadPoolExecutor-16_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791860698.780199,
+        "end": 1791860698.7805195,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "run_statistical_test",
+        "status": "completed",
+        "start": 1791860698.7818925,
+        "end": 1791860698.786223,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "build_stats_block",
+        "status": "completed",
+        "start": 1791860698.7890196,
+        "end": 1791860698.789065,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "status": "completed",
+        "start": 1791860698.7909417,
+        "end": 1791860698.791014,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 7
+      },
+      {
+        "request_number": 1,
+        "node": "check_report",
+        "status": "completed",
+        "start": 1791860698.791791,
+        "end": 1791860698.7920084,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 8
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "status": "completed",
+        "start": 1791860698.7930174,
+        "end": 1791860698.793115,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 9
+      },
+      {
+        "request_number": 1,
+        "node": "deliver_report",
+        "status": "completed",
+        "start": 1791860698.7950068,
+        "end": 1791860698.7950492,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 10
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860698.7960837,
+        "end": 1791860698.796313,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 11
+      }
+    ],
+    "observed_status": "delivered"
+  },
+  "warmup": null,
+  "stages": [
+    {
+      "stage": "primary",
+      "state": {
+        "run_id": "bench-546145d9fe3b4bf6",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Test chi-square independence of category_a and category_b.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "category_a": {
+              "type": "categorical",
+              "levels": [
+                "A0",
+                "A1"
+              ],
+              "meaning": "Source text labels in category_a"
+            },
+            "category_b": {
+              "type": "categorical",
+              "levels": [
+                "B0",
+                "B1",
+                "B2"
+              ],
+              "meaning": "Source text labels in category_b"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+        "data_version": "v1",
+        "data_fingerprint": "7e8a332677e194ba35f88b4872454f593f23d5f49385786eebca4fb13ce3f5b2",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "analysis_plan": {
+          "method": "chi_square_independence",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "category_a",
+          "y": "category_b",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "ready",
+        "data_summary": {
+          "task": "summary",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+          "method": "chi_square_independence",
+          "request_format": "v2",
+          "n_rows_in_file": 60,
+          "columns_found": [
+            "category_a",
+            "category_b"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('summary', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 60,
+          "columns": [
+            {
+              "name": "category_a",
+              "role": "x",
+              "type": "categorical",
+              "n_blank": 0,
+              "n_parseable_numeric": 0,
+              "n_unique_as_written": 2,
+              "levels_as_written": [
+                {
+                  "label_as_written": "A0",
+                  "quoted": "\"A0\"",
+                  "n": 30
+                },
+                {
+                  "label_as_written": "A1",
+                  "quoted": "\"A1\"",
+                  "n": 30
+                }
+              ]
+            },
+            {
+              "name": "category_b",
+              "role": "y",
+              "type": "categorical",
+              "n_blank": 0,
+              "n_parseable_numeric": 0,
+              "n_unique_as_written": 3,
+              "levels_as_written": [
+                {
+                  "label_as_written": "B0",
+                  "quoted": "\"B0\"",
+                  "n": 20
+                },
+                {
+                  "label_as_written": "B1",
+                  "quoted": "\"B1\"",
+                  "n": 20
+                },
+                {
+                  "label_as_written": "B2",
+                  "quoted": "\"B2\"",
+                  "n": 20
+                }
+              ]
+            }
+          ],
+          "stated_ranges": {},
+          "stated_levels": {
+            "category_a": [
+              "A0",
+              "A1"
+            ],
+            "category_b": [
+              "B0",
+              "B1",
+              "B2"
+            ]
+          }
+        },
+        "llm_diagnostics": {
+          "variable_meanings": "As described by the user.",
+          "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+          "goal_alignment": "The planned chi_square_independence matches the question.",
+          "distribution_notes": "See the statistical summary.",
+          "issues": [
+            {
+              "topic": "study_design",
+              "severity": "limitation",
+              "issue": "Groups or exposures are self-selected, not randomized.",
+              "evidence": "Observational synthetic fixture; allocation was not random.",
+              "suggested_action": "Report an association only."
+            }
+          ]
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+          "method": "chi_square_independence",
+          "request_format": "v2",
+          "n_rows_in_file": 60,
+          "columns_found": [
+            "category_a",
+            "category_b"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 60,
+          "n_usable_rows": 60,
+          "findings": [],
+          "n_blocking": 0,
+          "n_verify": 0,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "expected_counts",
+              "min_expected_count": 10.0,
+              "share_cells_expected_below_5": 0.0,
+              "n_cells": 6
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+        },
+        "diagnostic_route": "proceed",
+        "diagnostic_assessment": {
+          "rationale": "No unresolved record-level problems remain; the planned test can run.",
+          "limitations": [],
+          "questions": []
+        },
+        "stop_reasons": [],
+        "clarification_requests": [],
+        "clarification_answers": [],
+        "clarification_rounds": 0,
+        "rejected_answers": [],
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "stat_result": {
+          "task": "run_test",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+          "method": "chi_square_independence",
+          "request_format": "v2",
+          "n_rows_in_file": 60,
+          "columns_found": [
+            "category_a",
+            "category_b"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+          "status": "ok",
+          "alternative": "two-sided",
+          "conf_level": 0.95,
+          "alpha": 0.05,
+          "n_included": 60,
+          "tool_warnings": [],
+          "method_label": "Pearson chi-square test of independence (uncorrected)",
+          "n": 60,
+          "chi_square": 1.6,
+          "df": 2,
+          "p_value": 0.4493289641172217,
+          "cramers_v": 0.16329931618554522,
+          "yates_correction": false,
+          "observed": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "col_labels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "counts": [
+              [
+                12,
+                10,
+                8
+              ],
+              [
+                8,
+                10,
+                12
+              ]
+            ]
+          },
+          "expected": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "col_labels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "counts": [
+              [
+                10.0,
+                10.0,
+                10.0
+              ],
+              [
+                10.0,
+                10.0,
+                10.0
+              ]
+            ]
+          },
+          "min_expected_count": 10.0,
+          "decision": "do_not_reject_H0"
+        },
+        "stats_block": {
+          "method": "chi_square_independence",
+          "method_label": "chi-square test of independence",
+          "data_version": "v1",
+          "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+          "values": {
+            "p_value": "0.4493",
+            "alpha": "0.05",
+            "null_value": "0",
+            "confidence_level": "95%",
+            "decision_claim": "do not reject",
+            "direction_claim": "not_applicable",
+            "n": "60",
+            "chi_square": "1.600",
+            "df": "2",
+            "cramers_v": "0.163"
+          },
+          "hypotheses": "H0: category_a and category_b are independent versus H1: they are associated",
+          "required_placeholders": [
+            "chi_square",
+            "df",
+            "p_value",
+            "cramers_v",
+            "n"
+          ],
+          "required_limitations": {
+            "no_effect_interval": "No confidence interval was computed for Cramer's V in this stage.",
+            "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation."
+          },
+          "direction": "not_applicable",
+          "decision": "do_not_reject_H0",
+          "distribution_checks": [
+            {
+              "check": "expected_counts",
+              "min_expected_count": 10.0,
+              "share_cells_expected_below_5": 0.0,
+              "n_cells": 6
+            }
+          ],
+          "regression_diagnostics": null,
+          "observed": {
+            "row_labels": [
+              "A0",
+              "A1"
+            ],
+            "col_labels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "counts": [
+              [
+                12,
+                10,
+                8
+              ],
+              [
+                8,
+                10,
+                12
+              ]
+            ]
+          },
+          "yates": false,
+          "tool_warnings": [],
+          "t_statistic_note": ""
+        },
+        "report_draft": {
+          "interpretation": "The analysis included {n} records. The chi-square test gave chi-square({df}) = {chi_square}, p = {p_value}, with Cramer's V = {cramers_v}. At alpha = {alpha}, we do not reject H0 of independence. This is not evidence that there is no difference or association.",
+          "limitations": [
+            {
+              "limitation_id": "no_effect_interval",
+              "text": "No confidence interval was computed for Cramer's V in this stage."
+            },
+            {
+              "limitation_id": "nonrandom_design",
+              "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+            }
+          ],
+          "direction_claim": "not_applicable",
+          "decision_claim": "do_not_reject_H0",
+          "version": "draft1"
+        },
+        "rendered_draft": {
+          "interpretation": "The analysis included 60 records. The chi-square test gave chi-square(2) = 1.600, p = 0.4493, with Cramer's V = 0.163. At alpha = 0.05, we do not reject H0 of independence. This is not evidence that there is no difference or association.",
+          "limitations": [
+            {
+              "limitation_id": "no_effect_interval",
+              "text": "No confidence interval was computed for Cramer's V in this stage."
+            },
+            {
+              "limitation_id": "nonrandom_design",
+              "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+            }
+          ],
+          "direction_claim": "not_applicable",
+          "decision_claim": "do_not_reject_H0",
+          "version": "draft1"
+        },
+        "program_check": {
+          "report_version": "draft1",
+          "passed": true,
+          "problems": []
+        },
+        "review_verdict": {
+          "passed": true,
+          "issues": [],
+          "summary": "Rule-based mock review: no issues found."
+        },
+        "revision_count": 0,
+        "final_status": "delivered",
+        "final_report": "MOCK: rule-based agent stand-ins; Python calculations are real.\n\nMethod: chi-square test of independence  (data version v1; Python: scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square)\nH0: category_a and category_b are independent versus H1: they are associated; α = 0.05\n\n| | B0 | B1 | B2 |\n|---|---|---|---|\n| A0 | 12 | 10 | 8 |\n| A1 | 8 | 10 | 12 |\n\nn = 60; chi-square(2) = 1.600; p = 0.4493; Cramer's V = 0.163 (no Yates continuity correction)\nDecision at α = 0.05: do_not_reject_H0\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'expected_counts', 'min_expected_count': 10.0, 'share_cells_expected_below_5': 0.0, 'n_cells': 6}]\n\nThe analysis included 60 records. The chi-square test gave chi-square(2) = 1.600, p = 0.4493, with Cramer's V = 0.163. At alpha = 0.05, we do not reject H0 of independence. This is not evidence that there is no difference or association.\n\nLimitations:\n- No confidence interval was computed for Cramer's V in this stage.\n- Random allocation was not established. This analysis describes an association and does not establish causation.",
+        "session_memory": {
+          "last_success": {
+            "research_question": "Test chi-square independence of category_a and category_b.",
+            "design_info": {
+              "variables": {
+                "category_a": {
+                  "type": "categorical",
+                  "levels": [
+                    "A0",
+                    "A1"
+                  ],
+                  "meaning": "Source text labels in category_a"
+                },
+                "category_b": {
+                  "type": "categorical",
+                  "levels": [
+                    "B0",
+                    "B1",
+                    "B2"
+                  ],
+                  "meaning": "Source text labels in category_b"
+                }
+              },
+              "randomized": false,
+              "assignment": "Observational synthetic fixture; allocation was not random.",
+              "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+              "independent": true,
+              "independence": "The fixture declaration confirms independent observations."
+            },
+            "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+            "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+            "data_version": "v1",
+            "data_fingerprint": "7e8a332677e194ba35f88b4872454f593f23d5f49385786eebca4fb13ce3f5b2",
+            "analysis_plan": {
+              "method": "chi_square_independence",
+              "outcome": "",
+              "group": "",
+              "group_1_label": "",
+              "group_2_label": "",
+              "x": "category_a",
+              "y": "category_b",
+              "target_parameter": "Prespecified synthetic evaluation target",
+              "null_hypothesis": "H0: zero association",
+              "alternative_hypothesis": "H1: nonzero association",
+              "method_rationale": "MOCK prespecified fixture plan",
+              "design_notes": [
+                "The fixture declaration confirms independent observations."
+              ]
+            },
+            "excluded_ids": [],
+            "verified_ids": [],
+            "correction_log": [],
+            "conf_level": 0.95,
+            "stat_result": {
+              "task": "run_test",
+              "data_version": "v1",
+              "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+              "method": "chi_square_independence",
+              "request_format": "v2",
+              "n_rows_in_file": 60,
+              "columns_found": [
+                "category_a",
+                "category_b"
+              ],
+              "missing_required_columns": [],
+              "excluded_ids": [],
+              "request_warnings": [],
+              "python_version": "3.13.5",
+              "scipy_version": "1.18.1",
+              "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+              "status": "ok",
+              "alternative": "two-sided",
+              "conf_level": 0.95,
+              "alpha": 0.05,
+              "n_included": 60,
+              "tool_warnings": [],
+              "method_label": "Pearson chi-square test of independence (uncorrected)",
+              "n": 60,
+              "chi_square": 1.6,
+              "df": 2,
+              "p_value": 0.4493289641172217,
+              "cramers_v": 0.16329931618554522,
+              "yates_correction": false,
+              "observed": {
+                "row_labels": [
+                  "A0",
+                  "A1"
+                ],
+                "col_labels": [
+                  "B0",
+                  "B1",
+                  "B2"
+                ],
+                "counts": [
+                  [
+                    12,
+                    10,
+                    8
+                  ],
+                  [
+                    8,
+                    10,
+                    12
+                  ]
+                ]
+              },
+              "expected": {
+                "row_labels": [
+                  "A0",
+                  "A1"
+                ],
+                "col_labels": [
+                  "B0",
+                  "B1",
+                  "B2"
+                ],
+                "counts": [
+                  [
+                    10.0,
+                    10.0,
+                    10.0
+                  ],
+                  [
+                    10.0,
+                    10.0,
+                    10.0
+                  ]
+                ]
+              },
+              "min_expected_count": 10.0,
+              "decision": "do_not_reject_H0"
+            },
+            "stats_block": {
+              "method": "chi_square_independence",
+              "method_label": "chi-square test of independence",
+              "data_version": "v1",
+              "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+              "values": {
+                "p_value": "0.4493",
+                "alpha": "0.05",
+                "null_value": "0",
+                "confidence_level": "95%",
+                "decision_claim": "do not reject",
+                "direction_claim": "not_applicable",
+                "n": "60",
+                "chi_square": "1.600",
+                "df": "2",
+                "cramers_v": "0.163"
+              },
+              "hypotheses": "H0: category_a and category_b are independent versus H1: they are associated",
+              "required_placeholders": [
+                "chi_square",
+                "df",
+                "p_value",
+                "cramers_v",
+                "n"
+              ],
+              "required_limitations": {
+                "no_effect_interval": "No confidence interval was computed for Cramer's V in this stage.",
+                "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation."
+              },
+              "direction": "not_applicable",
+              "decision": "do_not_reject_H0",
+              "distribution_checks": [
+                {
+                  "check": "expected_counts",
+                  "min_expected_count": 10.0,
+                  "share_cells_expected_below_5": 0.0,
+                  "n_cells": 6
+                }
+              ],
+              "regression_diagnostics": null,
+              "observed": {
+                "row_labels": [
+                  "A0",
+                  "A1"
+                ],
+                "col_labels": [
+                  "B0",
+                  "B1",
+                  "B2"
+                ],
+                "counts": [
+                  [
+                    12,
+                    10,
+                    8
+                  ],
+                  [
+                    8,
+                    10,
+                    12
+                  ]
+                ]
+              },
+              "yates": false,
+              "tool_warnings": [],
+              "t_statistic_note": ""
+            },
+            "stat_diagnostics": {
+              "task": "diagnostics",
+              "data_version": "v1",
+              "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+              "method": "chi_square_independence",
+              "request_format": "v2",
+              "n_rows_in_file": 60,
+              "columns_found": [
+                "category_a",
+                "category_b"
+              ],
+              "missing_required_columns": [],
+              "excluded_ids": [],
+              "request_warnings": [],
+              "python_version": "3.13.5",
+              "scipy_version": "1.18.1",
+              "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+              "status": "ok",
+              "n_rows_in_analysis_set": 60,
+              "n_usable_rows": 60,
+              "findings": [],
+              "n_blocking": 0,
+              "n_verify": 0,
+              "method_checks_run": true,
+              "method_findings": [],
+              "distribution_checks_run": true,
+              "distribution_checks": [
+                {
+                  "check": "expected_counts",
+                  "min_expected_count": 10.0,
+                  "share_cells_expected_below_5": 0.0,
+                  "n_cells": 6
+                }
+              ],
+              "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+            },
+            "request_number": 1
+          },
+          "last_request_status": "delivered"
+        },
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [],
+        "model_calls": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "method": "plan",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "method": "merge",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "draft_report",
+            "method": "draft",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "review_report",
+            "method": "review",
+            "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+            "mode": "MOCK",
+            "status": "completed"
+          }
+        ],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791860698.7709322,
+            "end": 1791860698.7716074,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791860698.7723837,
+            "end": 1791860698.7754648,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791860698.776576,
+            "end": 1791860698.7766507,
+            "thread": "ThreadPoolExecutor-16_0",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "completed",
+            "start": 1791860698.7773867,
+            "end": 1791860698.7797034,
+            "thread": "ThreadPoolExecutor-16_1",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "completed",
+            "start": 1791860698.780199,
+            "end": 1791860698.7805195,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 4
+          },
+          {
+            "request_number": 1,
+            "node": "run_statistical_test",
+            "status": "completed",
+            "start": 1791860698.7818925,
+            "end": 1791860698.786223,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 5
+          },
+          {
+            "request_number": 1,
+            "node": "build_stats_block",
+            "status": "completed",
+            "start": 1791860698.7890196,
+            "end": 1791860698.789065,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 6
+          },
+          {
+            "request_number": 1,
+            "node": "draft_report",
+            "status": "completed",
+            "start": 1791860698.7909417,
+            "end": 1791860698.791014,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 7
+          },
+          {
+            "request_number": 1,
+            "node": "check_report",
+            "status": "completed",
+            "start": 1791860698.791791,
+            "end": 1791860698.7920084,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 8
+          },
+          {
+            "request_number": 1,
+            "node": "review_report",
+            "status": "completed",
+            "start": 1791860698.7930174,
+            "end": 1791860698.793115,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 9
+          },
+          {
+            "request_number": 1,
+            "node": "deliver_report",
+            "status": "completed",
+            "start": 1791860698.7950068,
+            "end": 1791860698.7950492,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 10
+          },
+          {
+            "request_number": 1,
+            "node": "save_session",
+            "status": "completed",
+            "start": 1791860698.7960837,
+            "end": 1791860698.796313,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 11
+          }
+        ],
+        "observed_status": "delivered"
+      }
+    }
+  ],
+  "clarification_requested": false,
+  "model_calls": [
+    {
+      "request_number": 1,
+      "node": "plan_analysis",
+      "method": "plan",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "llm_diagnostics",
+      "method": "diagnose",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "merge_diagnostics",
+      "method": "merge",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "draft_report",
+      "method": "draft",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "review_report",
+      "method": "review",
+      "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+      "mode": "MOCK",
+      "status": "completed"
+    }
+  ],
+  "original_diagnostics": {
+    "task": "diagnostics",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\chi_square_2x3.csv",
+    "method": "chi_square_independence",
+    "request_format": "v2",
+    "n_rows_in_file": 60,
+    "columns_found": [
+      "category_a",
+      "category_b"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+    "status": "ok",
+    "n_rows_in_analysis_set": 60,
+    "n_usable_rows": 60,
+    "findings": [],
+    "n_blocking": 0,
+    "n_verify": 0,
+    "method_checks_run": true,
+    "method_findings": [],
+    "distribution_checks_run": true,
+    "distribution_checks": [
+      {
+        "check": "expected_counts",
+        "min_expected_count": 10.0,
+        "share_cells_expected_below_5": 0.0,
+        "n_cells": 6
+      }
+    ],
+    "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+  },
+  "report_revisions": 0,
+  "regression_warning_codes": [],
+  "error": null,
+  "failure_class": null,
+  "runtime_audit_dir": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\d635686d\\59ce2928",
+  "duration_seconds": 0.1700559000018984
+}

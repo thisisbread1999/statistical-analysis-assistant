@@ -1,0 +1,30 @@
+{
+  "id": "regression_constant",
+  "category": "stop",
+  "design_info": {
+    "variables": {
+      "x": {
+        "type": "numeric",
+        "meaning": "Numeric source field x; units not supplied"
+      },
+      "y": {
+        "type": "numeric",
+        "meaning": "Numeric source field y; units not supplied"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "stop",
+  "expected_primary_behavior": "stop",
+  "fixture_answers": [],
+  "expected_method": "simple_linear_regression",
+  "source_csv_sha256": "d222f66a1e17924f0eda90b25cd6e83f5d591a3a63bdaa78eee6eba4a024c800",
+  "source_json_sha256": "b1f062525e593f806707d8c4ac08ba4a4a131e793b963bd0d31518540f24c7f7",
+  "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+}

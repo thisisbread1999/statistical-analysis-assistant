@@ -106,6 +106,18 @@ def format_stats_block(sb: dict) -> str:
                   f"intercept = {v['intercept']}; t({v['df']}) = {v['t_statistic']}; {p_clause}; "
                   f"R-squared = {v['r_squared']}"]
     lines += [f"Decision at α = {v['alpha']}: {sb['decision']}"]
+    diagnostic = sb.get("regression_diagnostics")
+    if diagnostic:
+        def number(value):
+            return "unavailable" if value is None else f"{value:.6g}"
+        bp, thresholds = diagnostic["breusch_pagan"], diagnostic["thresholds"]
+        lines += ["", "Regression diagnostics (screening flags; no automatic record deletion):",
+                  f"Maximum Cook's distance = {number(diagnostic['max_cooks_distance'])}; screening threshold = {number(thresholds['cooks_distance'])}.",
+                  f"Maximum leverage = {number(diagnostic['max_leverage'])}; screening threshold = {number(thresholds['leverage'])}.",
+                  f"Koenker studentized Breusch–Pagan test: LM = {number(bp['lm_statistic'])}; p = {number(bp['p_value'])}.",
+                  "Influential record IDs: " + (", ".join(diagnostic["influential_ids"]) or "none flagged"),
+                  "High-leverage record IDs: " + (", ".join(diagnostic["high_leverage_ids"]) or "none flagged")]
+        lines += ["Diagnostic warning: " + w["message"] for w in diagnostic["warnings"]]
     if sb.get("distribution_checks"):
         lines += [f"Distribution checks (descriptive only, never used to choose the method): {sb['distribution_checks']}"]
     if sb.get("tool_warnings"):

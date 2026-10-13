@@ -1,0 +1,30 @@
+{
+  "id": "pearson_constant",
+  "category": "stop",
+  "design_info": {
+    "variables": {
+      "x": {
+        "type": "numeric",
+        "meaning": "Numeric source field x; units not supplied"
+      },
+      "y": {
+        "type": "numeric",
+        "meaning": "Numeric source field y; units not supplied"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "stop",
+  "expected_primary_behavior": "stop",
+  "fixture_answers": [],
+  "expected_method": "pearson_correlation",
+  "source_csv_sha256": "d222f66a1e17924f0eda90b25cd6e83f5d591a3a63bdaa78eee6eba4a024c800",
+  "source_json_sha256": "058a2000b05862a8a36fdd259c5dd8a20119b36a38e665026aed1ec2fc4b8c54",
+  "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+}

@@ -1,0 +1,34 @@
+{
+  "id": "regression_2025",
+  "category": "followup",
+  "design_info": {
+    "variables": {
+      "x": {
+        "type": "numeric",
+        "meaning": "Numeric source field x; units not supplied"
+      },
+      "y": {
+        "type": "numeric",
+        "meaning": "Numeric source field y; units not supplied"
+      },
+      "date": {
+        "type": "date",
+        "meaning": "Calendar date as written in the source CSV"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "result",
+  "expected_primary_behavior": "unsupported_followup_stop",
+  "fixture_answers": [],
+  "expected_method": "simple_linear_regression",
+  "source_csv_sha256": "241082727125546dbec3a13c699f22b819c309a49161d206414260e28fab085b",
+  "source_json_sha256": "746efe6615d31db8ae7c2d107f13723d891f0986f7f92cd39e1effc5ecf033fb",
+  "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+}

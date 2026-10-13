@@ -1,0 +1,2475 @@
+{
+  "id": "pearson_missing",
+  "category": "boundary",
+  "mode": "offline",
+  "mode_label": "MOCK: prespecified fixture plans and rule-based reports; mechanics only, NOT LLM accuracy",
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "source_question": "Compute Pearson correlation between x and y.",
+  "source_expected_behavior": "result",
+  "source_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\pearson_missing.csv",
+  "source_csv_sha256": "955bb1899677e646c939e529e7311ec0501ada6726386fb8fd5475d674a10ff3",
+  "blinding": "Exact source bytes copied to neutral hashed runtime path before any agent/tool input; source labels retained only in evaluator evidence.",
+  "adapted_expectation": {
+    "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+    "policy_version": "ours-v1",
+    "source_expected_behavior": "result",
+    "expected_primary_behavior": "pause",
+    "fixture_answers": [
+      {
+        "record_id": "row 1",
+        "field": "y",
+        "check_prefix": "missing",
+        "action": "exclude",
+        "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+        "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation."
+      }
+    ],
+    "expected_method": "pearson_correlation",
+    "source_csv_sha256": "955bb1899677e646c939e529e7311ec0501ada6726386fb8fd5475d674a10ff3",
+    "source_json_sha256": "b32545d1bc02d217c552db11b72220fbfbab3bde46e4b0501a3a0b3e291b2cbc",
+    "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+  },
+  "checks": {
+    "primary_safety_behavior": true,
+    "no_runner_exception": true,
+    "no_core_errors": true,
+    "analysis_execution_valid": true,
+    "method": true,
+    "roles_and_contrast": true,
+    "independent_numbers": true
+  },
+  "mechanical_pass": true,
+  "method_assessed": true,
+  "method_pass": true,
+  "safety_assessed": true,
+  "safety_pass": true,
+  "numeric": {
+    "assessed": true,
+    "passed": true,
+    "reference": {
+      "n_included": 19,
+      "n": 19,
+      "r": 0.9917433463254334,
+      "t_statistic": 31.886366561023074,
+      "p_value": 1.3178625612910172e-16,
+      "df": 17,
+      "ci_lower": 0.9781510328252149,
+      "ci_upper": 0.9968931181204671
+    },
+    "fields": {
+      "n_included": true,
+      "n": true,
+      "r": true,
+      "t_statistic": true,
+      "p_value": true,
+      "df": true,
+      "ci_lower": true,
+      "ci_upper": true
+    },
+    "actual_data_version": "v2",
+    "actual_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+    "approved_excluded_ids": [
+      "row 1"
+    ],
+    "original_n": 20
+  },
+  "interpretation_accepted": true,
+  "semantic_review": "unlabelled: no independent human review",
+  "report_delivery_status": "delivered",
+  "actual_status": "delivered",
+  "primary_state": {
+    "run_id": "bench-e95e0ff786c943d8",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Compute Pearson correlation between x and y.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        },
+        "date": {
+          "type": "date",
+          "meaning": "Calendar date as written in the source CSV"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+    "data_version": "v1",
+    "data_fingerprint": "955bb1899677e646c939e529e7311ec0501ada6726386fb8fd5475d674a10ff3",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "pearson_correlation",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+      "method": "pearson_correlation",
+      "request_format": "v2",
+      "n_rows_in_file": 20,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 20,
+      "columns": [
+        {
+          "name": "x",
+          "role": "x",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 20,
+          "n_unique_as_written": 20,
+          "quantiles": {
+            "min": 0.0,
+            "p05": 0.9500000000000001,
+            "p25": 4.75,
+            "p50": 9.5,
+            "p75": 14.25,
+            "p95": 18.05,
+            "max": 19.0
+          },
+          "mean": 9.5,
+          "sd": 5.916079783099616
+        },
+        {
+          "name": "y",
+          "role": "y",
+          "type": "numeric",
+          "n_blank": 1,
+          "n_parseable_numeric": 19,
+          "n_unique_as_written": 20,
+          "quantiles": {
+            "min": 1.8414709848078965,
+            "p05": 2.8025147826239034,
+            "p25": 4.880830113568968,
+            "p50": 9.45597888911063,
+            "p75": 15.320447597925993,
+            "p95": 17.439099198871784,
+            "max": 19.149877209662954
+          },
+          "mean": 10.004488243878535,
+          "sd": 5.510318713347303
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {}
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned pearson_correlation matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+      "method": "pearson_correlation",
+      "request_format": "v2",
+      "n_rows_in_file": 20,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 20,
+      "n_usable_rows": 19,
+      "findings": [
+        {
+          "record_id": "row 1",
+          "row_number": 1,
+          "field": "y",
+          "value_as_written": "",
+          "check": "missing_value",
+          "severity": "blocking",
+          "detail": "y is missing"
+        }
+      ],
+      "n_blocking": 1,
+      "n_verify": 0,
+      "method_checks_run": false,
+      "method_findings": [],
+      "distribution_checks_run": false,
+      "distribution_checks": [],
+      "distribution_checks_note": "Deferred: resolve blocking record-level problems and method requirements before distribution checks."
+    },
+    "diagnostic_route": "needs_clarification",
+    "diagnostic_assessment": {
+      "rationale": "1 record(s) need the user's verification before testing.",
+      "limitations": [],
+      "questions": [
+        {
+          "request_id": "row 1:y:missing_value:1:",
+          "question": "Record row 1: y = \"\" (y is missing). Allowed responses: correct, exclude, stop."
+        }
+      ]
+    },
+    "stop_reasons": [],
+    "clarification_requests": [
+      {
+        "record_id": "row 1",
+        "row_number": 1,
+        "field": "y",
+        "value_as_written": "",
+        "check": "missing_value",
+        "severity": "blocking",
+        "detail": "y is missing",
+        "request_id": "row 1:y:missing_value:1:",
+        "allowed_responses": [
+          "correct",
+          "exclude",
+          "stop"
+        ],
+        "field_type": "numeric",
+        "valid_range": null,
+        "valid_levels": null,
+        "question": "Record row 1: y = \"\" (y is missing). Allowed responses: correct, exclude, stop."
+      }
+    ],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "running",
+    "final_report": "",
+    "session_memory": {},
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791861135.0168161,
+        "end": 1791861135.0198689,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791861135.0264544,
+        "end": 1791861135.0533938,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791861135.0611272,
+        "end": 1791861135.061553,
+        "thread": "ThreadPoolExecutor-10_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791861135.0678496,
+        "end": 1791861135.0866702,
+        "thread": "ThreadPoolExecutor-10_2",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791861135.092271,
+        "end": 1791861135.095789,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      }
+    ],
+    "observed_status": "paused"
+  },
+  "final_state": {
+    "run_id": "bench-e95e0ff786c943d8",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Compute Pearson correlation between x and y.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        },
+        "date": {
+          "type": "date",
+          "meaning": "Calendar date as written in the source CSV"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+    "data_version": "v2",
+    "data_fingerprint": "955bb1899677e646c939e529e7311ec0501ada6726386fb8fd5475d674a10ff3",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "pearson_correlation",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v2",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+      "method": "pearson_correlation",
+      "request_format": "v2",
+      "n_rows_in_file": 20,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [
+        "row 1"
+      ],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 19,
+      "columns": [
+        {
+          "name": "x",
+          "role": "x",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 19,
+          "n_unique_as_written": 19,
+          "quantiles": {
+            "min": 1.0,
+            "p05": 1.9,
+            "p25": 5.5,
+            "p50": 10.0,
+            "p75": 14.5,
+            "p95": 18.099999999999998,
+            "max": 19.0
+          },
+          "mean": 10.0,
+          "sd": 5.627314338711377
+        },
+        {
+          "name": "y",
+          "role": "y",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 19,
+          "n_unique_as_written": 19,
+          "quantiles": {
+            "min": 1.8414709848078965,
+            "p05": 2.8025147826239034,
+            "p25": 4.880830113568968,
+            "p50": 9.45597888911063,
+            "p75": 15.320447597925993,
+            "p95": 17.439099198871784,
+            "max": 19.149877209662954
+          },
+          "mean": 10.004488243878535,
+          "sd": 5.510318713347303
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {}
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned pearson_correlation matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stat_diagnostics": {
+      "task": "diagnostics",
+      "data_version": "v2",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+      "method": "pearson_correlation",
+      "request_format": "v2",
+      "n_rows_in_file": 20,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [
+        "row 1"
+      ],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 19,
+      "n_usable_rows": 19,
+      "findings": [],
+      "n_blocking": 0,
+      "n_verify": 0,
+      "method_checks_run": true,
+      "method_findings": [],
+      "distribution_checks_run": true,
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "x",
+          "role": "x",
+          "n": 19,
+          "shapiro_wilk_p": 0.5896505755975048
+        },
+        {
+          "check": "shapiro_wilk",
+          "variable": "y",
+          "role": "y",
+          "n": 19,
+          "shapiro_wilk_p": 0.22104420234481736
+        }
+      ],
+      "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+    },
+    "diagnostic_route": "proceed",
+    "diagnostic_assessment": {
+      "rationale": "No unresolved record-level problems remain; the planned test can run.",
+      "limitations": [],
+      "questions": []
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [
+      {
+        "request_id": "row 1:y:missing_value:1:",
+        "action": "exclude",
+        "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation."
+      }
+    ],
+    "clarification_rounds": 1,
+    "rejected_answers": [],
+    "excluded_ids": [
+      "row 1"
+    ],
+    "verified_ids": [],
+    "correction_log": [
+      {
+        "request_id": "row 1:y:missing_value:1:",
+        "action": "exclude",
+        "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation.",
+        "record_id": "row 1",
+        "field": "y",
+        "check": "missing_value",
+        "old_value": "",
+        "new_value": null,
+        "from_version": "v1",
+        "to_version": "v2",
+        "request_number": 1,
+        "source": "explicit user answer",
+        "rows_affected": 1
+      }
+    ],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v2",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+      "method": "pearson_correlation",
+      "request_format": "v2",
+      "n_rows_in_file": 20,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [
+        "row 1"
+      ],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 19,
+      "tool_warnings": [],
+      "perfect_correlation": false,
+      "method_label": "Pearson product-moment correlation",
+      "n": 19,
+      "r": 0.9917433463254334,
+      "ci_lower": 0.9781510328252149,
+      "ci_upper": 0.9968931181204671,
+      "t_statistic": 31.886366561023074,
+      "df": 17,
+      "p_value": 1.3178625612910172e-16,
+      "ci_method": "Fisher z normal approximation",
+      "decision": "reject_H0"
+    },
+    "stats_block": {
+      "method": "pearson_correlation",
+      "method_label": "Pearson correlation test (two-sided)",
+      "data_version": "v2",
+      "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+      "values": {
+        "p_value": "< 0.0001",
+        "alpha": "0.05",
+        "null_value": "0",
+        "confidence_level": "95%",
+        "decision_claim": "reject",
+        "direction_claim": "positive",
+        "n": "19",
+        "r": "0.992",
+        "ci_lower": "0.978",
+        "ci_upper": "0.997",
+        "t_statistic": "31.886",
+        "df": "17"
+      },
+      "hypotheses": "H0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of x and y)",
+      "required_placeholders": [
+        "r",
+        "ci_lower",
+        "ci_upper",
+        "p_value",
+        "n"
+      ],
+      "required_limitations": {
+        "linear_association_only": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.",
+        "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+        "missing_data": "User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.",
+        "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      },
+      "direction": "positive",
+      "decision": "reject_H0",
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "x",
+          "role": "x",
+          "n": 19,
+          "shapiro_wilk_p": 0.5896505755975048
+        },
+        {
+          "check": "shapiro_wilk",
+          "variable": "y",
+          "role": "y",
+          "n": 19,
+          "shapiro_wilk_p": 0.22104420234481736
+        }
+      ],
+      "regression_diagnostics": null,
+      "observed": null,
+      "yates": false,
+      "tool_warnings": [],
+      "t_statistic_note": ""
+    },
+    "report_draft": {
+      "interpretation": "The analysis included {n} records. Pearson's r was {r} ({confidence_level} CI {ci_lower} to {ci_upper}), p = {p_value}. At alpha = {alpha}, we reject H0.",
+      "limitations": [
+        {
+          "limitation_id": "linear_association_only",
+          "text": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "missing_data",
+          "text": "User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        }
+      ],
+      "direction_claim": "positive",
+      "decision_claim": "reject_H0",
+      "version": "draft1"
+    },
+    "rendered_draft": {
+      "interpretation": "The analysis included 19 records. Pearson's r was 0.992 (95% CI 0.978 to 0.997), p < 0.0001. At alpha = 0.05, we reject H0.",
+      "limitations": [
+        {
+          "limitation_id": "linear_association_only",
+          "text": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "missing_data",
+          "text": "User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        }
+      ],
+      "direction_claim": "positive",
+      "decision_claim": "reject_H0",
+      "version": "draft1"
+    },
+    "program_check": {
+      "report_version": "draft1",
+      "passed": true,
+      "problems": []
+    },
+    "review_verdict": {
+      "passed": true,
+      "issues": [],
+      "summary": "Rule-based mock review: no issues found."
+    },
+    "revision_count": 0,
+    "final_status": "delivered",
+    "final_report": "MOCK: rule-based agent stand-ins; Python calculations are real.\n\nMethod: Pearson correlation test (two-sided)  (data version v2; Python: scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95))\nH0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of x and y); α = 0.05\n\nn = 19; r = 0.992 (95% CI 0.978 to 0.997); t(17) = 31.886; p < 0.0001\nDecision at α = 0.05: reject_H0\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'x', 'role': 'x', 'n': 19, 'shapiro_wilk_p': 0.5896505755975048}, {'check': 'shapiro_wilk', 'variable': 'y', 'role': 'y', 'n': 19, 'shapiro_wilk_p': 0.22104420234481736}]\n\nThe analysis included 19 records. Pearson's r was 0.992 (95% CI 0.978 to 0.997), p < 0.0001. At alpha = 0.05, we reject H0.\n\nLimitations:\n- Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.\n- Random allocation was not established. This analysis describes an association and does not establish causation.\n- User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+    "session_memory": {
+      "last_success": {
+        "research_question": "Compute Pearson correlation between x and y.",
+        "design_info": {
+          "variables": {
+            "x": {
+              "type": "numeric",
+              "meaning": "Numeric source field x; units not supplied"
+            },
+            "y": {
+              "type": "numeric",
+              "meaning": "Numeric source field y; units not supplied"
+            },
+            "date": {
+              "type": "date",
+              "meaning": "Calendar date as written in the source CSV"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+        "data_version": "v2",
+        "data_fingerprint": "955bb1899677e646c939e529e7311ec0501ada6726386fb8fd5475d674a10ff3",
+        "analysis_plan": {
+          "method": "pearson_correlation",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "x",
+          "y": "y",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "excluded_ids": [
+          "row 1"
+        ],
+        "verified_ids": [],
+        "correction_log": [
+          {
+            "request_id": "row 1:y:missing_value:1:",
+            "action": "exclude",
+            "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation.",
+            "record_id": "row 1",
+            "field": "y",
+            "check": "missing_value",
+            "old_value": "",
+            "new_value": null,
+            "from_version": "v1",
+            "to_version": "v2",
+            "request_number": 1,
+            "source": "explicit user answer",
+            "rows_affected": 1
+          }
+        ],
+        "conf_level": 0.95,
+        "stat_result": {
+          "task": "run_test",
+          "data_version": "v2",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+          "method": "pearson_correlation",
+          "request_format": "v2",
+          "n_rows_in_file": 20,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [
+            "row 1"
+          ],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+          "status": "ok",
+          "alternative": "two-sided",
+          "conf_level": 0.95,
+          "alpha": 0.05,
+          "n_included": 19,
+          "tool_warnings": [],
+          "perfect_correlation": false,
+          "method_label": "Pearson product-moment correlation",
+          "n": 19,
+          "r": 0.9917433463254334,
+          "ci_lower": 0.9781510328252149,
+          "ci_upper": 0.9968931181204671,
+          "t_statistic": 31.886366561023074,
+          "df": 17,
+          "p_value": 1.3178625612910172e-16,
+          "ci_method": "Fisher z normal approximation",
+          "decision": "reject_H0"
+        },
+        "stats_block": {
+          "method": "pearson_correlation",
+          "method_label": "Pearson correlation test (two-sided)",
+          "data_version": "v2",
+          "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+          "values": {
+            "p_value": "< 0.0001",
+            "alpha": "0.05",
+            "null_value": "0",
+            "confidence_level": "95%",
+            "decision_claim": "reject",
+            "direction_claim": "positive",
+            "n": "19",
+            "r": "0.992",
+            "ci_lower": "0.978",
+            "ci_upper": "0.997",
+            "t_statistic": "31.886",
+            "df": "17"
+          },
+          "hypotheses": "H0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of x and y)",
+          "required_placeholders": [
+            "r",
+            "ci_lower",
+            "ci_upper",
+            "p_value",
+            "n"
+          ],
+          "required_limitations": {
+            "linear_association_only": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.",
+            "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+            "missing_data": "User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.",
+            "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+          },
+          "direction": "positive",
+          "decision": "reject_H0",
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "x",
+              "role": "x",
+              "n": 19,
+              "shapiro_wilk_p": 0.5896505755975048
+            },
+            {
+              "check": "shapiro_wilk",
+              "variable": "y",
+              "role": "y",
+              "n": 19,
+              "shapiro_wilk_p": 0.22104420234481736
+            }
+          ],
+          "regression_diagnostics": null,
+          "observed": null,
+          "yates": false,
+          "tool_warnings": [],
+          "t_statistic_note": ""
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v2",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+          "method": "pearson_correlation",
+          "request_format": "v2",
+          "n_rows_in_file": 20,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [
+            "row 1"
+          ],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 19,
+          "n_usable_rows": 19,
+          "findings": [],
+          "n_blocking": 0,
+          "n_verify": 0,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "x",
+              "role": "x",
+              "n": 19,
+              "shapiro_wilk_p": 0.5896505755975048
+            },
+            {
+              "check": "shapiro_wilk",
+              "variable": "y",
+              "role": "y",
+              "n": 19,
+              "shapiro_wilk_p": 0.22104420234481736
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+        },
+        "request_number": 1
+      },
+      "last_request_status": "delivered"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "method": "draft",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "method": "review",
+        "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791861135.0168161,
+        "end": 1791861135.0198689,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791861135.0264544,
+        "end": 1791861135.0533938,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791861135.0611272,
+        "end": 1791861135.061553,
+        "thread": "ThreadPoolExecutor-10_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791861135.0678496,
+        "end": 1791861135.0866702,
+        "thread": "ThreadPoolExecutor-10_2",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791861135.092271,
+        "end": 1791861135.095789,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "request_clarification",
+        "status": "completed",
+        "start": 1791861135.2474134,
+        "end": 1791861135.2475903,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "apply_corrections",
+        "status": "completed",
+        "start": 1791861135.257977,
+        "end": 1791861135.2696538,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791861135.2755485,
+        "end": 1791861135.3047197,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 7
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791861135.311104,
+        "end": 1791861135.311549,
+        "thread": "ThreadPoolExecutor-11_0",
+        "data_version": "v2",
+        "step": 8
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1791861135.3156395,
+        "end": 1791861135.342045,
+        "thread": "ThreadPoolExecutor-11_1",
+        "data_version": "v2",
+        "step": 8
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1791861135.3467128,
+        "end": 1791861135.3485625,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 9
+      },
+      {
+        "request_number": 1,
+        "node": "run_statistical_test",
+        "status": "completed",
+        "start": 1791861135.352773,
+        "end": 1791861135.375464,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 10
+      },
+      {
+        "request_number": 1,
+        "node": "build_stats_block",
+        "status": "completed",
+        "start": 1791861135.3786507,
+        "end": 1791861135.3787944,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 11
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "status": "completed",
+        "start": 1791861135.3837104,
+        "end": 1791861135.3845406,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 12
+      },
+      {
+        "request_number": 1,
+        "node": "check_report",
+        "status": "completed",
+        "start": 1791861135.3872898,
+        "end": 1791861135.3879912,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 13
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "status": "completed",
+        "start": 1791861135.3902082,
+        "end": 1791861135.3904138,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 14
+      },
+      {
+        "request_number": 1,
+        "node": "deliver_report",
+        "status": "completed",
+        "start": 1791861135.3951435,
+        "end": 1791861135.3952582,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 15
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791861135.39738,
+        "end": 1791861135.3979516,
+        "thread": "MainThread",
+        "data_version": "v2",
+        "step": 16
+      }
+    ],
+    "observed_status": "delivered"
+  },
+  "warmup": null,
+  "stages": [
+    {
+      "stage": "primary",
+      "state": {
+        "run_id": "bench-e95e0ff786c943d8",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Compute Pearson correlation between x and y.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "x": {
+              "type": "numeric",
+              "meaning": "Numeric source field x; units not supplied"
+            },
+            "y": {
+              "type": "numeric",
+              "meaning": "Numeric source field y; units not supplied"
+            },
+            "date": {
+              "type": "date",
+              "meaning": "Calendar date as written in the source CSV"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+        "data_version": "v1",
+        "data_fingerprint": "955bb1899677e646c939e529e7311ec0501ada6726386fb8fd5475d674a10ff3",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "analysis_plan": {
+          "method": "pearson_correlation",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "x",
+          "y": "y",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "ready",
+        "data_summary": {
+          "task": "summary",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+          "method": "pearson_correlation",
+          "request_format": "v2",
+          "n_rows_in_file": 20,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('summary', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 20,
+          "columns": [
+            {
+              "name": "x",
+              "role": "x",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 20,
+              "n_unique_as_written": 20,
+              "quantiles": {
+                "min": 0.0,
+                "p05": 0.9500000000000001,
+                "p25": 4.75,
+                "p50": 9.5,
+                "p75": 14.25,
+                "p95": 18.05,
+                "max": 19.0
+              },
+              "mean": 9.5,
+              "sd": 5.916079783099616
+            },
+            {
+              "name": "y",
+              "role": "y",
+              "type": "numeric",
+              "n_blank": 1,
+              "n_parseable_numeric": 19,
+              "n_unique_as_written": 20,
+              "quantiles": {
+                "min": 1.8414709848078965,
+                "p05": 2.8025147826239034,
+                "p25": 4.880830113568968,
+                "p50": 9.45597888911063,
+                "p75": 15.320447597925993,
+                "p95": 17.439099198871784,
+                "max": 19.149877209662954
+              },
+              "mean": 10.004488243878535,
+              "sd": 5.510318713347303
+            }
+          ],
+          "stated_ranges": {},
+          "stated_levels": {}
+        },
+        "llm_diagnostics": {
+          "variable_meanings": "As described by the user.",
+          "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+          "goal_alignment": "The planned pearson_correlation matches the question.",
+          "distribution_notes": "See the statistical summary.",
+          "issues": [
+            {
+              "topic": "study_design",
+              "severity": "limitation",
+              "issue": "Groups or exposures are self-selected, not randomized.",
+              "evidence": "Observational synthetic fixture; allocation was not random.",
+              "suggested_action": "Report an association only."
+            }
+          ]
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+          "method": "pearson_correlation",
+          "request_format": "v2",
+          "n_rows_in_file": 20,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 20,
+          "n_usable_rows": 19,
+          "findings": [
+            {
+              "record_id": "row 1",
+              "row_number": 1,
+              "field": "y",
+              "value_as_written": "",
+              "check": "missing_value",
+              "severity": "blocking",
+              "detail": "y is missing"
+            }
+          ],
+          "n_blocking": 1,
+          "n_verify": 0,
+          "method_checks_run": false,
+          "method_findings": [],
+          "distribution_checks_run": false,
+          "distribution_checks": [],
+          "distribution_checks_note": "Deferred: resolve blocking record-level problems and method requirements before distribution checks."
+        },
+        "diagnostic_route": "needs_clarification",
+        "diagnostic_assessment": {
+          "rationale": "1 record(s) need the user's verification before testing.",
+          "limitations": [],
+          "questions": [
+            {
+              "request_id": "row 1:y:missing_value:1:",
+              "question": "Record row 1: y = \"\" (y is missing). Allowed responses: correct, exclude, stop."
+            }
+          ]
+        },
+        "stop_reasons": [],
+        "clarification_requests": [
+          {
+            "record_id": "row 1",
+            "row_number": 1,
+            "field": "y",
+            "value_as_written": "",
+            "check": "missing_value",
+            "severity": "blocking",
+            "detail": "y is missing",
+            "request_id": "row 1:y:missing_value:1:",
+            "allowed_responses": [
+              "correct",
+              "exclude",
+              "stop"
+            ],
+            "field_type": "numeric",
+            "valid_range": null,
+            "valid_levels": null,
+            "question": "Record row 1: y = \"\" (y is missing). Allowed responses: correct, exclude, stop."
+          }
+        ],
+        "clarification_answers": [],
+        "clarification_rounds": 0,
+        "rejected_answers": [],
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "report_draft": {},
+        "rendered_draft": {},
+        "program_check": {},
+        "review_verdict": {},
+        "revision_count": 0,
+        "final_status": "running",
+        "final_report": "",
+        "session_memory": {},
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [],
+        "model_calls": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "method": "plan",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "method": "merge",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          }
+        ],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791861135.0168161,
+            "end": 1791861135.0198689,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791861135.0264544,
+            "end": 1791861135.0533938,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791861135.0611272,
+            "end": 1791861135.061553,
+            "thread": "ThreadPoolExecutor-10_0",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "completed",
+            "start": 1791861135.0678496,
+            "end": 1791861135.0866702,
+            "thread": "ThreadPoolExecutor-10_2",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "completed",
+            "start": 1791861135.092271,
+            "end": 1791861135.095789,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 4
+          }
+        ],
+        "observed_status": "paused"
+      }
+    },
+    {
+      "stage": "TEST FIXTURE continuation 1",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "answers": [
+        {
+          "request_id": "row 1:y:missing_value:1:",
+          "action": "exclude",
+          "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation."
+        }
+      ],
+      "state": {
+        "run_id": "bench-e95e0ff786c943d8",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Compute Pearson correlation between x and y.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "x": {
+              "type": "numeric",
+              "meaning": "Numeric source field x; units not supplied"
+            },
+            "y": {
+              "type": "numeric",
+              "meaning": "Numeric source field y; units not supplied"
+            },
+            "date": {
+              "type": "date",
+              "meaning": "Calendar date as written in the source CSV"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+        "data_version": "v2",
+        "data_fingerprint": "955bb1899677e646c939e529e7311ec0501ada6726386fb8fd5475d674a10ff3",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "analysis_plan": {
+          "method": "pearson_correlation",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "x",
+          "y": "y",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "ready",
+        "data_summary": {
+          "task": "summary",
+          "data_version": "v2",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+          "method": "pearson_correlation",
+          "request_format": "v2",
+          "n_rows_in_file": 20,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [
+            "row 1"
+          ],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('summary', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 19,
+          "columns": [
+            {
+              "name": "x",
+              "role": "x",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 19,
+              "n_unique_as_written": 19,
+              "quantiles": {
+                "min": 1.0,
+                "p05": 1.9,
+                "p25": 5.5,
+                "p50": 10.0,
+                "p75": 14.5,
+                "p95": 18.099999999999998,
+                "max": 19.0
+              },
+              "mean": 10.0,
+              "sd": 5.627314338711377
+            },
+            {
+              "name": "y",
+              "role": "y",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 19,
+              "n_unique_as_written": 19,
+              "quantiles": {
+                "min": 1.8414709848078965,
+                "p05": 2.8025147826239034,
+                "p25": 4.880830113568968,
+                "p50": 9.45597888911063,
+                "p75": 15.320447597925993,
+                "p95": 17.439099198871784,
+                "max": 19.149877209662954
+              },
+              "mean": 10.004488243878535,
+              "sd": 5.510318713347303
+            }
+          ],
+          "stated_ranges": {},
+          "stated_levels": {}
+        },
+        "llm_diagnostics": {
+          "variable_meanings": "As described by the user.",
+          "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+          "goal_alignment": "The planned pearson_correlation matches the question.",
+          "distribution_notes": "See the statistical summary.",
+          "issues": [
+            {
+              "topic": "study_design",
+              "severity": "limitation",
+              "issue": "Groups or exposures are self-selected, not randomized.",
+              "evidence": "Observational synthetic fixture; allocation was not random.",
+              "suggested_action": "Report an association only."
+            }
+          ]
+        },
+        "stat_diagnostics": {
+          "task": "diagnostics",
+          "data_version": "v2",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+          "method": "pearson_correlation",
+          "request_format": "v2",
+          "n_rows_in_file": 20,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [
+            "row 1"
+          ],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 19,
+          "n_usable_rows": 19,
+          "findings": [],
+          "n_blocking": 0,
+          "n_verify": 0,
+          "method_checks_run": true,
+          "method_findings": [],
+          "distribution_checks_run": true,
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "x",
+              "role": "x",
+              "n": 19,
+              "shapiro_wilk_p": 0.5896505755975048
+            },
+            {
+              "check": "shapiro_wilk",
+              "variable": "y",
+              "role": "y",
+              "n": 19,
+              "shapiro_wilk_p": 0.22104420234481736
+            }
+          ],
+          "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+        },
+        "diagnostic_route": "proceed",
+        "diagnostic_assessment": {
+          "rationale": "No unresolved record-level problems remain; the planned test can run.",
+          "limitations": [],
+          "questions": []
+        },
+        "stop_reasons": [],
+        "clarification_requests": [],
+        "clarification_answers": [
+          {
+            "request_id": "row 1:y:missing_value:1:",
+            "action": "exclude",
+            "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation."
+          }
+        ],
+        "clarification_rounds": 1,
+        "rejected_answers": [],
+        "excluded_ids": [
+          "row 1"
+        ],
+        "verified_ids": [],
+        "correction_log": [
+          {
+            "request_id": "row 1:y:missing_value:1:",
+            "action": "exclude",
+            "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation.",
+            "record_id": "row 1",
+            "field": "y",
+            "check": "missing_value",
+            "old_value": "",
+            "new_value": null,
+            "from_version": "v1",
+            "to_version": "v2",
+            "request_number": 1,
+            "source": "explicit user answer",
+            "rows_affected": 1
+          }
+        ],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "stat_result": {
+          "task": "run_test",
+          "data_version": "v2",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+          "method": "pearson_correlation",
+          "request_format": "v2",
+          "n_rows_in_file": 20,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [
+            "row 1"
+          ],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+          "status": "ok",
+          "alternative": "two-sided",
+          "conf_level": 0.95,
+          "alpha": 0.05,
+          "n_included": 19,
+          "tool_warnings": [],
+          "perfect_correlation": false,
+          "method_label": "Pearson product-moment correlation",
+          "n": 19,
+          "r": 0.9917433463254334,
+          "ci_lower": 0.9781510328252149,
+          "ci_upper": 0.9968931181204671,
+          "t_statistic": 31.886366561023074,
+          "df": 17,
+          "p_value": 1.3178625612910172e-16,
+          "ci_method": "Fisher z normal approximation",
+          "decision": "reject_H0"
+        },
+        "stats_block": {
+          "method": "pearson_correlation",
+          "method_label": "Pearson correlation test (two-sided)",
+          "data_version": "v2",
+          "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+          "values": {
+            "p_value": "< 0.0001",
+            "alpha": "0.05",
+            "null_value": "0",
+            "confidence_level": "95%",
+            "decision_claim": "reject",
+            "direction_claim": "positive",
+            "n": "19",
+            "r": "0.992",
+            "ci_lower": "0.978",
+            "ci_upper": "0.997",
+            "t_statistic": "31.886",
+            "df": "17"
+          },
+          "hypotheses": "H0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of x and y)",
+          "required_placeholders": [
+            "r",
+            "ci_lower",
+            "ci_upper",
+            "p_value",
+            "n"
+          ],
+          "required_limitations": {
+            "linear_association_only": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.",
+            "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+            "missing_data": "User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.",
+            "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+          },
+          "direction": "positive",
+          "decision": "reject_H0",
+          "distribution_checks": [
+            {
+              "check": "shapiro_wilk",
+              "variable": "x",
+              "role": "x",
+              "n": 19,
+              "shapiro_wilk_p": 0.5896505755975048
+            },
+            {
+              "check": "shapiro_wilk",
+              "variable": "y",
+              "role": "y",
+              "n": 19,
+              "shapiro_wilk_p": 0.22104420234481736
+            }
+          ],
+          "regression_diagnostics": null,
+          "observed": null,
+          "yates": false,
+          "tool_warnings": [],
+          "t_statistic_note": ""
+        },
+        "report_draft": {
+          "interpretation": "The analysis included {n} records. Pearson's r was {r} ({confidence_level} CI {ci_lower} to {ci_upper}), p = {p_value}. At alpha = {alpha}, we reject H0.",
+          "limitations": [
+            {
+              "limitation_id": "linear_association_only",
+              "text": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship."
+            },
+            {
+              "limitation_id": "nonrandom_design",
+              "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+            },
+            {
+              "limitation_id": "missing_data",
+              "text": "User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited."
+            },
+            {
+              "limitation_id": "analysis_assumptions",
+              "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+            }
+          ],
+          "direction_claim": "positive",
+          "decision_claim": "reject_H0",
+          "version": "draft1"
+        },
+        "rendered_draft": {
+          "interpretation": "The analysis included 19 records. Pearson's r was 0.992 (95% CI 0.978 to 0.997), p < 0.0001. At alpha = 0.05, we reject H0.",
+          "limitations": [
+            {
+              "limitation_id": "linear_association_only",
+              "text": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship."
+            },
+            {
+              "limitation_id": "nonrandom_design",
+              "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+            },
+            {
+              "limitation_id": "missing_data",
+              "text": "User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited."
+            },
+            {
+              "limitation_id": "analysis_assumptions",
+              "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+            }
+          ],
+          "direction_claim": "positive",
+          "decision_claim": "reject_H0",
+          "version": "draft1"
+        },
+        "program_check": {
+          "report_version": "draft1",
+          "passed": true,
+          "problems": []
+        },
+        "review_verdict": {
+          "passed": true,
+          "issues": [],
+          "summary": "Rule-based mock review: no issues found."
+        },
+        "revision_count": 0,
+        "final_status": "delivered",
+        "final_report": "MOCK: rule-based agent stand-ins; Python calculations are real.\n\nMethod: Pearson correlation test (two-sided)  (data version v2; Python: scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95))\nH0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of x and y); α = 0.05\n\nn = 19; r = 0.992 (95% CI 0.978 to 0.997); t(17) = 31.886; p < 0.0001\nDecision at α = 0.05: reject_H0\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'x', 'role': 'x', 'n': 19, 'shapiro_wilk_p': 0.5896505755975048}, {'check': 'shapiro_wilk', 'variable': 'y', 'role': 'y', 'n': 19, 'shapiro_wilk_p': 0.22104420234481736}]\n\nThe analysis included 19 records. Pearson's r was 0.992 (95% CI 0.978 to 0.997), p < 0.0001. At alpha = 0.05, we reject H0.\n\nLimitations:\n- Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.\n- Random allocation was not established. This analysis describes an association and does not establish causation.\n- User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+        "session_memory": {
+          "last_success": {
+            "research_question": "Compute Pearson correlation between x and y.",
+            "design_info": {
+              "variables": {
+                "x": {
+                  "type": "numeric",
+                  "meaning": "Numeric source field x; units not supplied"
+                },
+                "y": {
+                  "type": "numeric",
+                  "meaning": "Numeric source field y; units not supplied"
+                },
+                "date": {
+                  "type": "date",
+                  "meaning": "Calendar date as written in the source CSV"
+                }
+              },
+              "randomized": false,
+              "assignment": "Observational synthetic fixture; allocation was not random.",
+              "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+              "independent": true,
+              "independence": "The fixture declaration confirms independent observations."
+            },
+            "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+            "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+            "data_version": "v2",
+            "data_fingerprint": "955bb1899677e646c939e529e7311ec0501ada6726386fb8fd5475d674a10ff3",
+            "analysis_plan": {
+              "method": "pearson_correlation",
+              "outcome": "",
+              "group": "",
+              "group_1_label": "",
+              "group_2_label": "",
+              "x": "x",
+              "y": "y",
+              "target_parameter": "Prespecified synthetic evaluation target",
+              "null_hypothesis": "H0: zero association",
+              "alternative_hypothesis": "H1: nonzero association",
+              "method_rationale": "MOCK prespecified fixture plan",
+              "design_notes": [
+                "The fixture declaration confirms independent observations."
+              ]
+            },
+            "excluded_ids": [
+              "row 1"
+            ],
+            "verified_ids": [],
+            "correction_log": [
+              {
+                "request_id": "row 1:y:missing_value:1:",
+                "action": "exclude",
+                "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation.",
+                "record_id": "row 1",
+                "field": "y",
+                "check": "missing_value",
+                "old_value": "",
+                "new_value": null,
+                "from_version": "v1",
+                "to_version": "v2",
+                "request_number": 1,
+                "source": "explicit user answer",
+                "rows_affected": 1
+              }
+            ],
+            "conf_level": 0.95,
+            "stat_result": {
+              "task": "run_test",
+              "data_version": "v2",
+              "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+              "method": "pearson_correlation",
+              "request_format": "v2",
+              "n_rows_in_file": 20,
+              "columns_found": [
+                "x",
+                "y",
+                "date"
+              ],
+              "missing_required_columns": [],
+              "excluded_ids": [
+                "row 1"
+              ],
+              "request_warnings": [],
+              "python_version": "3.13.5",
+              "scipy_version": "1.18.1",
+              "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+              "status": "ok",
+              "alternative": "two-sided",
+              "conf_level": 0.95,
+              "alpha": 0.05,
+              "n_included": 19,
+              "tool_warnings": [],
+              "perfect_correlation": false,
+              "method_label": "Pearson product-moment correlation",
+              "n": 19,
+              "r": 0.9917433463254334,
+              "ci_lower": 0.9781510328252149,
+              "ci_upper": 0.9968931181204671,
+              "t_statistic": 31.886366561023074,
+              "df": 17,
+              "p_value": 1.3178625612910172e-16,
+              "ci_method": "Fisher z normal approximation",
+              "decision": "reject_H0"
+            },
+            "stats_block": {
+              "method": "pearson_correlation",
+              "method_label": "Pearson correlation test (two-sided)",
+              "data_version": "v2",
+              "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+              "values": {
+                "p_value": "< 0.0001",
+                "alpha": "0.05",
+                "null_value": "0",
+                "confidence_level": "95%",
+                "decision_claim": "reject",
+                "direction_claim": "positive",
+                "n": "19",
+                "r": "0.992",
+                "ci_lower": "0.978",
+                "ci_upper": "0.997",
+                "t_statistic": "31.886",
+                "df": "17"
+              },
+              "hypotheses": "H0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of x and y)",
+              "required_placeholders": [
+                "r",
+                "ci_lower",
+                "ci_upper",
+                "p_value",
+                "n"
+              ],
+              "required_limitations": {
+                "linear_association_only": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.",
+                "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+                "missing_data": "User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited.",
+                "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+              },
+              "direction": "positive",
+              "decision": "reject_H0",
+              "distribution_checks": [
+                {
+                  "check": "shapiro_wilk",
+                  "variable": "x",
+                  "role": "x",
+                  "n": 19,
+                  "shapiro_wilk_p": 0.5896505755975048
+                },
+                {
+                  "check": "shapiro_wilk",
+                  "variable": "y",
+                  "role": "y",
+                  "n": 19,
+                  "shapiro_wilk_p": 0.22104420234481736
+                }
+              ],
+              "regression_diagnostics": null,
+              "observed": null,
+              "yates": false,
+              "tool_warnings": [],
+              "t_statistic_note": ""
+            },
+            "stat_diagnostics": {
+              "task": "diagnostics",
+              "data_version": "v2",
+              "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\data_versions\\54f926d4c0f141a88ad3d91614562c68_v2.csv",
+              "method": "pearson_correlation",
+              "request_format": "v2",
+              "n_rows_in_file": 20,
+              "columns_found": [
+                "x",
+                "y",
+                "date"
+              ],
+              "missing_required_columns": [],
+              "excluded_ids": [
+                "row 1"
+              ],
+              "request_warnings": [],
+              "python_version": "3.13.5",
+              "scipy_version": "1.18.1",
+              "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+              "status": "ok",
+              "n_rows_in_analysis_set": 19,
+              "n_usable_rows": 19,
+              "findings": [],
+              "n_blocking": 0,
+              "n_verify": 0,
+              "method_checks_run": true,
+              "method_findings": [],
+              "distribution_checks_run": true,
+              "distribution_checks": [
+                {
+                  "check": "shapiro_wilk",
+                  "variable": "x",
+                  "role": "x",
+                  "n": 19,
+                  "shapiro_wilk_p": 0.5896505755975048
+                },
+                {
+                  "check": "shapiro_wilk",
+                  "variable": "y",
+                  "role": "y",
+                  "n": 19,
+                  "shapiro_wilk_p": 0.22104420234481736
+                }
+              ],
+              "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+            },
+            "request_number": 1
+          },
+          "last_request_status": "delivered"
+        },
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [],
+        "model_calls": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "method": "plan",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "method": "merge",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "method": "merge",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "draft_report",
+            "method": "draft",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "review_report",
+            "method": "review",
+            "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+            "mode": "MOCK",
+            "status": "completed"
+          }
+        ],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791861135.0168161,
+            "end": 1791861135.0198689,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791861135.0264544,
+            "end": 1791861135.0533938,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791861135.0611272,
+            "end": 1791861135.061553,
+            "thread": "ThreadPoolExecutor-10_0",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "completed",
+            "start": 1791861135.0678496,
+            "end": 1791861135.0866702,
+            "thread": "ThreadPoolExecutor-10_2",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "completed",
+            "start": 1791861135.092271,
+            "end": 1791861135.095789,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 4
+          },
+          {
+            "request_number": 1,
+            "node": "request_clarification",
+            "status": "completed",
+            "start": 1791861135.2474134,
+            "end": 1791861135.2475903,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 5
+          },
+          {
+            "request_number": 1,
+            "node": "apply_corrections",
+            "status": "completed",
+            "start": 1791861135.257977,
+            "end": 1791861135.2696538,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 6
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791861135.2755485,
+            "end": 1791861135.3047197,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 7
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791861135.311104,
+            "end": 1791861135.311549,
+            "thread": "ThreadPoolExecutor-11_0",
+            "data_version": "v2",
+            "step": 8
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "completed",
+            "start": 1791861135.3156395,
+            "end": 1791861135.342045,
+            "thread": "ThreadPoolExecutor-11_1",
+            "data_version": "v2",
+            "step": 8
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "completed",
+            "start": 1791861135.3467128,
+            "end": 1791861135.3485625,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 9
+          },
+          {
+            "request_number": 1,
+            "node": "run_statistical_test",
+            "status": "completed",
+            "start": 1791861135.352773,
+            "end": 1791861135.375464,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 10
+          },
+          {
+            "request_number": 1,
+            "node": "build_stats_block",
+            "status": "completed",
+            "start": 1791861135.3786507,
+            "end": 1791861135.3787944,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 11
+          },
+          {
+            "request_number": 1,
+            "node": "draft_report",
+            "status": "completed",
+            "start": 1791861135.3837104,
+            "end": 1791861135.3845406,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 12
+          },
+          {
+            "request_number": 1,
+            "node": "check_report",
+            "status": "completed",
+            "start": 1791861135.3872898,
+            "end": 1791861135.3879912,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 13
+          },
+          {
+            "request_number": 1,
+            "node": "review_report",
+            "status": "completed",
+            "start": 1791861135.3902082,
+            "end": 1791861135.3904138,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 14
+          },
+          {
+            "request_number": 1,
+            "node": "deliver_report",
+            "status": "completed",
+            "start": 1791861135.3951435,
+            "end": 1791861135.3952582,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 15
+          },
+          {
+            "request_number": 1,
+            "node": "save_session",
+            "status": "completed",
+            "start": 1791861135.39738,
+            "end": 1791861135.3979516,
+            "thread": "MainThread",
+            "data_version": "v2",
+            "step": 16
+          }
+        ],
+        "observed_status": "delivered"
+      }
+    }
+  ],
+  "clarification_requested": true,
+  "model_calls": [
+    {
+      "request_number": 1,
+      "node": "plan_analysis",
+      "method": "plan",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "llm_diagnostics",
+      "method": "diagnose",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "merge_diagnostics",
+      "method": "merge",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "llm_diagnostics",
+      "method": "diagnose",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "merge_diagnostics",
+      "method": "merge",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "draft_report",
+      "method": "draft",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "review_report",
+      "method": "review",
+      "model": "MOCK stand-in for Model B (rule-based, no LLM)",
+      "mode": "MOCK",
+      "status": "completed"
+    }
+  ],
+  "original_diagnostics": {
+    "task": "diagnostics",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a\\input.csv",
+    "method": "pearson_correlation",
+    "request_format": "v2",
+    "n_rows_in_file": 20,
+    "columns_found": [
+      "x",
+      "y",
+      "date"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+    "status": "ok",
+    "n_rows_in_analysis_set": 20,
+    "n_usable_rows": 19,
+    "findings": [
+      {
+        "record_id": "row 1",
+        "row_number": 1,
+        "field": "y",
+        "value_as_written": "",
+        "check": "missing_value",
+        "severity": "blocking",
+        "detail": "y is missing"
+      }
+    ],
+    "n_blocking": 1,
+    "n_verify": 0,
+    "method_checks_run": false,
+    "method_findings": [],
+    "distribution_checks_run": false,
+    "distribution_checks": [],
+    "distribution_checks_note": "Deferred: resolve blocking record-level problems and method requirements before distribution checks."
+  },
+  "report_revisions": 0,
+  "regression_warning_codes": [],
+  "error": null,
+  "failure_class": null,
+  "suite": "frozen_source_31",
+  "runtime_audit_dir": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\artifacts\\runtime\\bench\\35008eb1\\d561726a",
+  "duration_seconds": 0.7054854999296367
+}

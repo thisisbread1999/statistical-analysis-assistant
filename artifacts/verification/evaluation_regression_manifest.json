@@ -1,0 +1,38 @@
+{
+  "verification_scope": "192 software checks; 31 offline workflow cases; 5 separate offline followups; 16 offline and live controlled interpretation challenges. Full live workflow benchmark records remain separate.",
+  "source_teammate_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "files": {
+    "benchmark_suite.py": "80a55a6a5dfa068b5e64375d66a506dfbbf3a846d4c6d7b7abd76c0bc8bd593b",
+    "interpretation_benchmark.py": "32ea7b0f7034c46dbe8c64c179793788fdf89182ca0e958b07734166f76e6122",
+    "stat_assistant/agents.py": "fbe6dd2776421e8eab77a2ffb6855b123768dd6c971b6924a723cd8e1e32c2cf",
+    "stat_assistant/nodes.py": "70ca954a851b49099c95821819a4acc89f009de2425a1dfab31fe32717b6ec90",
+    "stat_assistant/tools.py": "fb20c32d7ff6b2ef5e1710a46dd6f673e0c2b4df986394090f9f0e41165c992d",
+    "stat_assistant/report.py": "5916ae9f3d2d19aaa6d54e8e825045014c310aa9d32f139edf6ce821240d8765",
+    "stat_assistant/workflow.py": "e7f849b81f46ea10ce10e1c290b600d9872035a4257231b975f3600584e609ce",
+    "ui_server.py": "dcb8aabc7554011273900a2cbe80c645c2501fcef3c0e045d3c18350fec22898",
+    "ui/app.js": "bcafb77932a53c9654e2f3f41cfaa17bae7fee8ce5d9df479172ebcaf92f3569",
+    "build_notebook.py": "a4e159959b89bfc2a5c3cde40f405cca7392a02dc9ae34f784709ce490037640",
+    "requirements-lock.txt": "7d2a1ccf29b4f42af4c2302ecee935985e1d6170c71e1b3b127aa5c0996f603c"
+  },
+  "human_ratings": "not performed; blank CSV sheets and rubric generated",
+  "software_tests": 192,
+  "notebooks": {
+    "project_code_cells_completed": 14,
+    "standalone_code_cells_completed": 15,
+    "mode": "mock"
+  },
+  "local_models": [
+    {
+      "name": "gemma3:12b",
+      "digest": "b92b218582c521ba287f38f1d6057dcd3c6cbff036f13cac97b5d861f5e58ec3",
+      "size": 8164039732,
+      "modified_at": "2026-10-09T06:28:02.9721847-05:00"
+    },
+    {
+      "name": "qwen3:8b",
+      "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+      "size": 5225388164,
+      "modified_at": "2026-10-09T06:24:48.5120551-05:00"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "id": "regression_heteroscedastic",
+  "category": "boundary",
+  "design_info": {
+    "variables": {
+      "x": {
+        "type": "numeric",
+        "meaning": "Numeric source field x; units not supplied"
+      },
+      "y": {
+        "type": "numeric",
+        "meaning": "Numeric source field y; units not supplied"
+      },
+      "date": {
+        "type": "date",
+        "meaning": "Calendar date as written in the source CSV"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "result",
+  "expected_primary_behavior": "pause",
+  "fixture_answers": [
+    {
+      "record_id": "row 45",
+      "field": "y",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    },
+    {
+      "record_id": "row 46",
+      "field": "y",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    },
+    {
+      "record_id": "row 47",
+      "field": "y",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    },
+    {
+      "record_id": "row 51",
+      "field": "y",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    },
+    {
+      "record_id": "row 54",
+      "field": "y",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    },
+    {
+      "record_id": "row 55",
+      "field": "y",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    },
+    {
+      "record_id": "row 56",
+      "field": "y",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    },
+    {
+      "record_id": "row 57",
+      "field": "y",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    },
+    {
+      "record_id": "row 58",
+      "field": "y",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    }
+  ],
+  "expected_method": "simple_linear_regression",
+  "source_csv_sha256": "f9843edd0d01dda7cc451ada2073589ff0a385ada3ca783554255b53d766b2e3",
+  "source_json_sha256": "f40401eb7f133c70c85ead8a10f70d0b6cb3b8dc7ccbdc32e5eec5f465863c21",
+  "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+}

@@ -1,0 +1,34 @@
+{
+  "id": "correlation_2025",
+  "category": "followup",
+  "design_info": {
+    "variables": {
+      "x": {
+        "type": "numeric",
+        "meaning": "Numeric source field x; units not supplied"
+      },
+      "y": {
+        "type": "numeric",
+        "meaning": "Numeric source field y; units not supplied"
+      },
+      "date": {
+        "type": "date",
+        "meaning": "Calendar date as written in the source CSV"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "result",
+  "expected_primary_behavior": "unsupported_followup_stop",
+  "fixture_answers": [],
+  "expected_method": "pearson_correlation",
+  "source_csv_sha256": "75ae8c3bdf1163da643d2d0d4d24289172e8d5b781b67fa76d8fda2b0e821a92",
+  "source_json_sha256": "21185b82477b20cac54f2f650703fd51da85ad2c3f53621f8ea4bf20aef63b75",
+  "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+}

@@ -1,0 +1,1312 @@
+{
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "cases": [
+    {
+      "id": "welch_clean",
+      "category": "normal",
+      "design_info": {
+        "variables": {
+          "group": {
+            "type": "categorical",
+            "levels": [
+              "treatment",
+              "control"
+            ],
+            "meaning": "Source text labels in group"
+          },
+          "outcome": {
+            "type": "numeric",
+            "meaning": "Numeric source field outcome; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations.",
+        "comparison_order": "Requested contrast: treatment minus control."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "pause",
+        "fixture_answers": [
+          {
+            "record_id": "row 31",
+            "field": "outcome",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          }
+        ],
+        "expected_method": "welch_t_test",
+        "source_csv_sha256": "cd3159142b57b9674c81ad348a71e0a3f97ca1ac25e40855f46afe6e9200e1ae",
+        "source_json_sha256": "00e1dc77b172a6df41983feef6b1e4c7c656105646f7ac99967b3cfe5e4e8630",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "pearson_clean",
+      "category": "normal",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "result",
+        "fixture_answers": [],
+        "expected_method": "pearson_correlation",
+        "source_csv_sha256": "75ae8c3bdf1163da643d2d0d4d24289172e8d5b781b67fa76d8fda2b0e821a92",
+        "source_json_sha256": "4ca6b822fc3493831a69cfcc9251bd00eb9f72d3626f1b497bff0eedbe002090",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "chi_square_2x2",
+      "category": "normal",
+      "design_info": {
+        "variables": {
+          "category_a": {
+            "type": "categorical",
+            "levels": [
+              "A0",
+              "A1"
+            ],
+            "meaning": "Source text labels in category_a"
+          },
+          "category_b": {
+            "type": "categorical",
+            "levels": [
+              "B0",
+              "B1"
+            ],
+            "meaning": "Source text labels in category_b"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "result",
+        "fixture_answers": [],
+        "expected_method": "chi_square_independence",
+        "source_csv_sha256": "1cd5b9e526437224e4fdfcd778f9a492cc08893852142639213a082d7143e236",
+        "source_json_sha256": "999e62ef96d4a6e7970bf2bb828915a5ed68050957eda839a79ce0780fd5f903",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "regression_clean",
+      "category": "normal",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "result",
+        "fixture_answers": [],
+        "expected_method": "simple_linear_regression",
+        "source_csv_sha256": "241082727125546dbec3a13c699f22b819c309a49161d206414260e28fab085b",
+        "source_json_sha256": "9d5b6b90116f684f9bbff46e74afa7fd5d85517f1adb4e79e9b4653862afe89b",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "welch_unequal_variance",
+      "category": "boundary",
+      "design_info": {
+        "variables": {
+          "group": {
+            "type": "categorical",
+            "levels": [
+              "treatment",
+              "control"
+            ],
+            "meaning": "Source text labels in group"
+          },
+          "outcome": {
+            "type": "numeric",
+            "meaning": "Numeric source field outcome; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations.",
+        "comparison_order": "Requested contrast: treatment minus control."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "pause",
+        "fixture_answers": [
+          {
+            "record_id": "row 31",
+            "field": "outcome",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          }
+        ],
+        "expected_method": "welch_t_test",
+        "source_csv_sha256": "b50bd505a2f2d96c78f5843d7102ee0676cd3ea2a36a519cbde2f9187e06d5b5",
+        "source_json_sha256": "fac1d93ae216bc10330c43ae6b14ec577eb5730195021d688d2c25766e8532a6",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "welch_missing",
+      "category": "boundary",
+      "design_info": {
+        "variables": {
+          "group": {
+            "type": "categorical",
+            "levels": [
+              "treatment",
+              "control"
+            ],
+            "meaning": "Source text labels in group"
+          },
+          "outcome": {
+            "type": "numeric",
+            "meaning": "Numeric source field outcome; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations.",
+        "comparison_order": "Requested contrast: treatment minus control."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "pause",
+        "fixture_answers": [
+          {
+            "record_id": "row 1",
+            "field": "outcome",
+            "check_prefix": "missing",
+            "action": "exclude",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation."
+          },
+          {
+            "record_id": "row 31",
+            "field": "outcome",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          }
+        ],
+        "expected_method": "welch_t_test",
+        "source_csv_sha256": "af3a42a936a239acaab543401cc559f07bdb25d6dd816608219f61b4618922f3",
+        "source_json_sha256": "023faf57a538089a7eddea3db6452464f625516951a146a10ba8cc9c6b2113d4",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "pearson_missing",
+      "category": "boundary",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "pause",
+        "fixture_answers": [
+          {
+            "record_id": "row 1",
+            "field": "y",
+            "check_prefix": "missing",
+            "action": "exclude",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation."
+          }
+        ],
+        "expected_method": "pearson_correlation",
+        "source_csv_sha256": "955bb1899677e646c939e529e7311ec0501ada6726386fb8fd5475d674a10ff3",
+        "source_json_sha256": "b32545d1bc02d217c552db11b72220fbfbab3bde46e4b0501a3a0b3e291b2cbc",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "chi_square_missing",
+      "category": "boundary",
+      "design_info": {
+        "variables": {
+          "category_a": {
+            "type": "categorical",
+            "levels": [
+              "A0",
+              "A1"
+            ],
+            "meaning": "Source text labels in category_a"
+          },
+          "category_b": {
+            "type": "categorical",
+            "levels": [
+              "B0",
+              "B1"
+            ],
+            "meaning": "Source text labels in category_b"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "pause",
+        "fixture_answers": [
+          {
+            "record_id": "row 1",
+            "field": "category_a",
+            "check_prefix": "missing",
+            "action": "exclude",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation."
+          }
+        ],
+        "expected_method": "chi_square_independence",
+        "source_csv_sha256": "8ac391fad71f835d2b9bd316399ad232710b962a41a7c579b7f015a8cbf86e84",
+        "source_json_sha256": "242a33526b87194b17532605b5fec01a4225cfa477f008f706179a27a62faea5",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "regression_missing",
+      "category": "boundary",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "pause",
+        "fixture_answers": [
+          {
+            "record_id": "row 1",
+            "field": "y",
+            "check_prefix": "missing",
+            "action": "exclude",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: source benchmark deliberately planted a missing cell; exclude that record for secondary complete-case calculation."
+          }
+        ],
+        "expected_method": "simple_linear_regression",
+        "source_csv_sha256": "fafafa49222bea044dda05ae55bbb6370bfc261e41e961c9e394ee3036498802",
+        "source_json_sha256": "6084d1d155fb98f77d2208e3c1a715bef369862af9bd3e1e1414f305378f60e0",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "chi_square_2x3",
+      "category": "boundary",
+      "design_info": {
+        "variables": {
+          "category_a": {
+            "type": "categorical",
+            "levels": [
+              "A0",
+              "A1"
+            ],
+            "meaning": "Source text labels in category_a"
+          },
+          "category_b": {
+            "type": "categorical",
+            "levels": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "meaning": "Source text labels in category_b"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "result",
+        "fixture_answers": [],
+        "expected_method": "chi_square_independence",
+        "source_csv_sha256": "7e8a332677e194ba35f88b4872454f593f23d5f49385786eebca4fb13ce3f5b2",
+        "source_json_sha256": "b2a176a15c0fb71777ffaf113173bdf359ec723e7e2d05079fa3ed860ad802a0",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "pearson_nonlinear",
+      "category": "boundary",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "result",
+        "fixture_answers": [],
+        "expected_method": "pearson_correlation",
+        "source_csv_sha256": "be0f1794b0247eaabdf8baf1b5469b4ac0c240db9f7b5fb37ad15e7d7fbdeb6e",
+        "source_json_sha256": "a95a44962e01e44d2bb662ea2c993b0c02d28c4dae99ab4068b0b2dd5da62007",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "regression_influential",
+      "category": "boundary",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "pause",
+        "fixture_answers": [
+          {
+            "record_id": "row 60",
+            "field": "y",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          }
+        ],
+        "expected_method": "simple_linear_regression",
+        "source_csv_sha256": "ee828d3a903ec56fe1fb08f60e62834f0f7ad02d15928c59127fea873502fddc",
+        "source_json_sha256": "7a93b50099dfd9341e7b7fcdb4ebb655d6d0d6e2536c2b2c9e09e100c944aeb3",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "regression_heteroscedastic",
+      "category": "boundary",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "pause",
+        "fixture_answers": [
+          {
+            "record_id": "row 45",
+            "field": "y",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          },
+          {
+            "record_id": "row 46",
+            "field": "y",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          },
+          {
+            "record_id": "row 47",
+            "field": "y",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          },
+          {
+            "record_id": "row 51",
+            "field": "y",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          },
+          {
+            "record_id": "row 54",
+            "field": "y",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          },
+          {
+            "record_id": "row 55",
+            "field": "y",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          },
+          {
+            "record_id": "row 56",
+            "field": "y",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          },
+          {
+            "record_id": "row 57",
+            "field": "y",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          },
+          {
+            "record_id": "row 58",
+            "field": "y",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          }
+        ],
+        "expected_method": "simple_linear_regression",
+        "source_csv_sha256": "f9843edd0d01dda7cc451ada2073589ff0a385ada3ca783554255b53d766b2e3",
+        "source_json_sha256": "f40401eb7f133c70c85ead8a10f70d0b6cb3b8dc7ccbdc32e5eec5f465863c21",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "regression_negative_slope",
+      "category": "boundary",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "result",
+        "fixture_answers": [],
+        "expected_method": "simple_linear_regression",
+        "source_csv_sha256": "de24a66106166bcc81554d98e0b971368f28382ff20df5632b6208df451dc379",
+        "source_json_sha256": "0df88649f47a9804c279e24beeefa1f7198e4e73e8107683959c66f943c047c0",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "unknown_design",
+      "category": "clarification",
+      "design_info": {
+        "variables": {
+          "group": {
+            "type": "categorical",
+            "levels": [
+              "treatment",
+              "control"
+            ],
+            "meaning": "Source text labels in group"
+          },
+          "outcome": {
+            "type": "numeric",
+            "meaning": "Numeric source field outcome; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independence": "Unknown; independence has not been confirmed.",
+        "comparison_order": "Requested contrast: treatment minus control."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [
+          {
+            "record_id": "row 31",
+            "field": "outcome",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          }
+        ],
+        "expected_method": "welch_t_test",
+        "source_csv_sha256": "cd3159142b57b9674c81ad348a71e0a3f97ca1ac25e40855f46afe6e9200e1ae",
+        "source_json_sha256": "67976b4a5673698667273dd5462ffc1a93e4b675786fd2057b8a5dc718f940f8",
+        "adaptation_note": "Our design check stops immediately; source answer is never invented."
+      }
+    },
+    {
+      "id": "ambiguous_outcome",
+      "category": "clarification",
+      "design_info": {
+        "variables": {
+          "group": {
+            "type": "categorical",
+            "levels": [
+              "treatment",
+              "control"
+            ],
+            "meaning": "Source text labels in group"
+          },
+          "before": {
+            "type": "numeric",
+            "meaning": "Numeric source field before; units not supplied"
+          },
+          "after": {
+            "type": "numeric",
+            "meaning": "Numeric source field after; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations.",
+        "analysis_target": "The user has not chosen the outcome or direction. Obtain a concrete target before analysis.",
+        "comparison_order": "Requested contrast: treatment minus control."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "interrupt",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [],
+        "expected_method": "welch_t_test",
+        "source_csv_sha256": "c3b42f26e2aa9111ebf7a68c7b1e0073b2e701fb99c6a6fec5321a9a39bf4f72",
+        "source_json_sha256": "44e383e7151d23df4ef7f5684778627e6fb97cb46a4ec39081f901548bd0be31",
+        "adaptation_note": "Safely stop with target unresolved; an arbitrary outcome is a failure."
+      }
+    },
+    {
+      "id": "ambiguous_last_year",
+      "category": "clarification",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "interrupt",
+        "expected_primary_behavior": "unsupported_followup_stop",
+        "fixture_answers": [],
+        "expected_method": "pearson_correlation",
+        "source_csv_sha256": "75ae8c3bdf1163da643d2d0d4d24289172e8d5b781b67fa76d8fda2b0e821a92",
+        "source_json_sha256": "654d17b5346ebc294df883805b5c8b59ffb7d26d9f9d8e8c601db8926f0dd655",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "regression_direction",
+      "category": "clarification",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations.",
+        "analysis_target": "The user has not chosen the outcome or direction. Obtain a concrete target before analysis."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "interrupt",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [],
+        "expected_method": "simple_linear_regression",
+        "source_csv_sha256": "241082727125546dbec3a13c699f22b819c309a49161d206414260e28fab085b",
+        "source_json_sha256": "073d3cc2c0bdbe15d082d89106f7399ce1947a5fba5a756abdd9a7af78974f3d",
+        "adaptation_note": "Safely stop with direction unresolved; an arbitrary direction is a failure."
+      }
+    },
+    {
+      "id": "paired_design",
+      "category": "stop",
+      "design_info": {
+        "variables": {
+          "group": {
+            "type": "categorical",
+            "levels": [
+              "treatment",
+              "control"
+            ],
+            "meaning": "Source text labels in group"
+          },
+          "outcome": {
+            "type": "numeric",
+            "meaning": "Numeric source field outcome; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": false,
+        "independence": "Paired observations declared by the fixture.",
+        "comparison_order": "Requested contrast: treatment minus control."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "stop",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [
+          {
+            "record_id": "row 31",
+            "field": "outcome",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          }
+        ],
+        "expected_method": "welch_t_test",
+        "source_csv_sha256": "cd3159142b57b9674c81ad348a71e0a3f97ca1ac25e40855f46afe6e9200e1ae",
+        "source_json_sha256": "32e00b8185a572f780413a373e4066cd3783c5273a014229c65666f51a3b354e",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "chi_square_sparse",
+      "category": "stop",
+      "design_info": {
+        "variables": {
+          "category_a": {
+            "type": "categorical",
+            "levels": [
+              "A0",
+              "A1"
+            ],
+            "meaning": "Source text labels in category_a"
+          },
+          "category_b": {
+            "type": "categorical",
+            "levels": [
+              "B0",
+              "B1"
+            ],
+            "meaning": "Source text labels in category_b"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "stop",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [],
+        "expected_method": "chi_square_independence",
+        "source_csv_sha256": "3545373c30aaa52b55d0a5e4d591876fa1bf784df24e19c170139ab78f651f63",
+        "source_json_sha256": "b46e5eb689f043fcb3acd4a52b23afb2700c31949ad76f0b0894aea75e3ed14f",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "chi_square_one_category",
+      "category": "stop",
+      "design_info": {
+        "variables": {
+          "category_a": {
+            "type": "categorical",
+            "levels": [
+              "one"
+            ],
+            "meaning": "Source text labels in category_a"
+          },
+          "category_b": {
+            "type": "categorical",
+            "levels": [
+              "B0",
+              "B1"
+            ],
+            "meaning": "Source text labels in category_b"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "stop",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [],
+        "expected_method": "chi_square_independence",
+        "source_csv_sha256": "e065ed7fc3627c9294c9b011265a7bb085efd5ed15b192fe19f5734a427f711e",
+        "source_json_sha256": "a2f8a44c77b4c16186c700e38cc2dced3009d809f09b58f2dc7c05b6703303ce",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "chi_square_numeric_codes",
+      "category": "stop",
+      "design_info": {
+        "variables": {
+          "category_a": {
+            "type": "numeric",
+            "meaning": "Numeric codes; categorical meaning and preprocessing not confirmed"
+          },
+          "category_b": {
+            "type": "numeric",
+            "meaning": "Numeric codes; categorical meaning and preprocessing not confirmed"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "stop",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [],
+        "expected_method": "chi_square_independence",
+        "source_csv_sha256": "4463fc4e7a3702991eb6d0274f037ec104d5f984cdbb338a907eaf7bb5f9eaac",
+        "source_json_sha256": "92b12d1fa7ea5df863a1923a020e3d0a8b2010cf217acb0c03e834ee5d582fe0",
+        "adaptation_note": "Codes are numeric without confirmed category semantics; require clarification/new metadata, never inject gold labels."
+      }
+    },
+    {
+      "id": "pearson_constant",
+      "category": "stop",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "stop",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [],
+        "expected_method": "pearson_correlation",
+        "source_csv_sha256": "d222f66a1e17924f0eda90b25cd6e83f5d591a3a63bdaa78eee6eba4a024c800",
+        "source_json_sha256": "058a2000b05862a8a36fdd259c5dd8a20119b36a38e665026aed1ec2fc4b8c54",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "pearson_too_few",
+      "category": "stop",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "stop",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [],
+        "expected_method": "pearson_correlation",
+        "source_csv_sha256": "4b3f5d30bb6a1b8535db547afd20c462f589c029bb593fc2fd6a3880b743fda7",
+        "source_json_sha256": "f5e0aa213f405af88cd151aadf3e31e51176b88733ab62f77e091ea6c3d83299",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "regression_constant",
+      "category": "stop",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "stop",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [],
+        "expected_method": "simple_linear_regression",
+        "source_csv_sha256": "d222f66a1e17924f0eda90b25cd6e83f5d591a3a63bdaa78eee6eba4a024c800",
+        "source_json_sha256": "b1f062525e593f806707d8c4ac08ba4a4a131e793b963bd0d31518540f24c7f7",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "regression_too_few",
+      "category": "stop",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "stop",
+        "expected_primary_behavior": "result",
+        "fixture_answers": [],
+        "expected_method": "simple_linear_regression",
+        "source_csv_sha256": "26b97f3a65f7af11609e5f48c95b54d6fb749fe75e8f066e390cd609ef3e3e27",
+        "source_json_sha256": "828c510a2ff25ceea1e55a73da8f0ae6f05111a4969e811bb04dc5c725df5534",
+        "adaptation_note": "Source has four rows; ours permits identifiable regression with at least three. Expected computation is adapted, not a disabled check."
+      }
+    },
+    {
+      "id": "regression_perfect",
+      "category": "stop",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "stop",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [],
+        "expected_method": "simple_linear_regression",
+        "source_csv_sha256": "dc8fc8b87d4499ee894df10b87e77813274ce9621dc0385d2adcae0e75573bed",
+        "source_json_sha256": "f647512aab861494662cd74c016f5973cd90ace538ed68d554be1138df7b2815",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "welch_extreme_small_group",
+      "category": "stop",
+      "design_info": {
+        "variables": {
+          "group": {
+            "type": "categorical",
+            "levels": [
+              "treatment",
+              "control"
+            ],
+            "meaning": "Source text labels in group"
+          },
+          "outcome": {
+            "type": "numeric",
+            "meaning": "Numeric source field outcome; units not supplied"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations.",
+        "comparison_order": "Requested contrast: treatment minus control."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "stop",
+        "expected_primary_behavior": "pause",
+        "fixture_answers": [
+          {
+            "record_id": "row 31",
+            "field": "outcome",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          },
+          {
+            "record_id": "row 1",
+            "field": "outcome",
+            "check_prefix": "boxplot_flag",
+            "action": "verify",
+            "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+            "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+          }
+        ],
+        "expected_method": "welch_t_test",
+        "source_csv_sha256": "a2abde3321728cd83c0a4bbd7113aeb1fc473d7ffcf2b81db024aec00e81243a",
+        "source_json_sha256": "f2022ea33e5c833a424ae541709bebd70f440cdd341eaf7ca3c440da8878ef18",
+        "adaptation_note": "Source actually contains 25 rows per group; ours asks about the IQR flag instead of a different small-sample rule."
+      }
+    },
+    {
+      "id": "unsupported_multivariable",
+      "category": "stop",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "stop",
+        "expected_primary_behavior": "stop",
+        "fixture_answers": [],
+        "expected_method": "no_supported_method",
+        "source_csv_sha256": "241082727125546dbec3a13c699f22b819c309a49161d206414260e28fab085b",
+        "source_json_sha256": "44020b70ece38405f497e35cc51b8254cb3ed73e9ac8b6949fc8968be42ae22c",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "correlation_2025",
+      "category": "followup",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "unsupported_followup_stop",
+        "fixture_answers": [],
+        "expected_method": "pearson_correlation",
+        "source_csv_sha256": "75ae8c3bdf1163da643d2d0d4d24289172e8d5b781b67fa76d8fda2b0e821a92",
+        "source_json_sha256": "21185b82477b20cac54f2f650703fd51da85ad2c3f53621f8ea4bf20aef63b75",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    },
+    {
+      "id": "regression_2025",
+      "category": "followup",
+      "design_info": {
+        "variables": {
+          "x": {
+            "type": "numeric",
+            "meaning": "Numeric source field x; units not supplied"
+          },
+          "y": {
+            "type": "numeric",
+            "meaning": "Numeric source field y; units not supplied"
+          },
+          "date": {
+            "type": "date",
+            "meaning": "Calendar date as written in the source CSV"
+          }
+        },
+        "randomized": false,
+        "assignment": "Observational synthetic fixture; allocation was not random.",
+        "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+        "independent": true,
+        "independence": "The fixture declaration confirms independent observations."
+      },
+      "adapter": {
+        "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+        "policy_version": "ours-v1",
+        "source_expected_behavior": "result",
+        "expected_primary_behavior": "unsupported_followup_stop",
+        "fixture_answers": [],
+        "expected_method": "simple_linear_regression",
+        "source_csv_sha256": "241082727125546dbec3a13c699f22b819c309a49161d206414260e28fab085b",
+        "source_json_sha256": "746efe6615d31db8ae7c2d107f13723d891f0986f7f92cd39e1effc5ecf033fb",
+        "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+      }
+    }
+  ],
+  "configuration": {
+    "mode": "mock",
+    "label": "MOCK: prespecified fixture plans and rule-based reports; mechanics only, NOT LLM accuracy"
+  }
+}

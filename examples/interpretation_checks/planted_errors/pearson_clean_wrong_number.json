@@ -1,0 +1,10 @@
+{
+  "id": "pearson_clean_wrong_number",
+  "source_case": "pearson_clean",
+  "mutation": "wrong_number",
+  "expected_valid": false,
+  "note": "Replace the protected p-value placeholder with an unsupported numerical literal.",
+  "label_source": "Authored controlled-test expectation; not a human rating.",
+  "source_attribution": "Challenge category adapted from teammate commit b7eff1c; no source score imported.",
+  "schema": "Interpretation challenge descriptor for this project's ReportDraft."
+}

@@ -1,0 +1,52 @@
+{
+  "id": "welch_extreme_small_group",
+  "category": "stop",
+  "design_info": {
+    "variables": {
+      "group": {
+        "type": "categorical",
+        "levels": [
+          "treatment",
+          "control"
+        ],
+        "meaning": "Source text labels in group"
+      },
+      "outcome": {
+        "type": "numeric",
+        "meaning": "Numeric source field outcome; units not supplied"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations.",
+    "comparison_order": "Requested contrast: treatment minus control."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "stop",
+  "expected_primary_behavior": "pause",
+  "fixture_answers": [
+    {
+      "record_id": "row 31",
+      "field": "outcome",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    },
+    {
+      "record_id": "row 1",
+      "field": "outcome",
+      "check_prefix": "boxplot_flag",
+      "action": "verify",
+      "label": "TEST FIXTURE: synthetic generator provenance; not a human response or human semantic label",
+      "reason": "TEST FIXTURE: value is retained exactly as generated in the frozen synthetic CSV; this is not a real user verification."
+    }
+  ],
+  "expected_method": "welch_t_test",
+  "source_csv_sha256": "a2abde3321728cd83c0a4bbd7113aeb1fc473d7ffcf2b81db024aec00e81243a",
+  "source_json_sha256": "f2022ea33e5c833a424ae541709bebd70f440cdd341eaf7ca3c440da8878ef18",
+  "adaptation_note": "Source actually contains 25 rows per group; ours asks about the IQR flag instead of a different small-sample rule."
+}

@@ -1,0 +1,6 @@
+﻿case_id,category,mode,report_stage,report_sha256,frozen_report_file,human_method_label,human_numeric_label,human_semantic_label,human_notes,reviewer,review_date
+ours_ci99,supplemental,offline,final,47aa504dcb89f28efda1400bc83c65823c17284c1358fffc0429c86e7ecc9852,supplemental/ours_ci99.report.txt,,,,,,
+ours_reexplain,supplemental,offline,final,efc766587827515d85def8daa81942730be386bdf5f5c3bdb59dba43872f2ec0,supplemental/ours_reexplain.report.txt,,,,,,
+ours_missing_ci99,supplemental,offline,final,2409acbcd8271ee87b5f301042c8587d6958918a621af64aa645ee182e0902d8,supplemental/ours_missing_ci99.report.txt,,,,,,
+ours_missing_reexplain,supplemental,offline,final,830843b752cd6a02f31973d9155c285805c8487c311c9d80d9ff58aa7bbbffa5,supplemental/ours_missing_reexplain.report.txt,,,,,,
+ours_replaced_data_ci99,supplemental,offline,final,d5bd619e0746059790c330cd95765ec69a089a5074f61165600f33f6a9e22ae7,supplemental/ours_replaced_data_ci99.report.txt,,,,,,

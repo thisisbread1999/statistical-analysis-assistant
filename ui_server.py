@@ -59,11 +59,23 @@ def _examples():
         ("paired", "Unsupported paired study design", "clean", "Compare the mean score before and after for the same students.", paired,
          "Stop before model calls: paired or repeated observations require a method outside this prototype."),
     ]
-    return {key: {"id": key, "title": title, "description": expected, "question": question,
+    examples = {key: {"id": key, "title": title, "description": expected, "question": question,
                   "design_info": copy.deepcopy(design), "expected": expected,
                   "followup": "Explain the result in simpler words.",
                   "filename": "students_synthetic.csv" if data == "students" else f"tutoring_scores_{data}_synthetic.csv"}
             for key, title, data, question, design, expected in definitions}
+    regression_design = {"id_column": None, "independence": "Independent observations, explicitly stated for this synthetic fixture.",
+                         "randomized": False, "assignment": "Synthetic observational regression example.",
+                         "variables": {"x": {"type": "numeric", "meaning": "Predictor"},
+                                       "y": {"type": "numeric", "meaning": "Outcome"}}}
+    for key, title, expected in [
+        ("regression_influential", "Regression with an influential observation", "Inspect Cook's distance and leverage after resolving any data verification flags. No automatic deletion."),
+        ("regression_heteroscedastic", "Regression with unequal error variance", "Inspect the Koenker Breusch–Pagan diagnostic and the limitations of ordinary OLS inference.")]:
+        examples[key] = {"id": key, "title": title, "description": expected, "expected": expected,
+                         "question": "Fit simple regression with predictor x and outcome y.", "design_info": copy.deepcopy(regression_design),
+                         "followup": "Explain the regression diagnostics and their limitations.",
+                         "filename": f"benchmark_v2/boundary/{key}.csv"}
+    return examples
 
 
 EXAMPLES = _examples()

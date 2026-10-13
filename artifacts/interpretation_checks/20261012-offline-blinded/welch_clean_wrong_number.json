@@ -1,0 +1,503 @@
+{
+  "id": "welch_clean_wrong_number",
+  "source_case": "welch_clean",
+  "mutation": "wrong_number",
+  "expected_valid": false,
+  "note": "Replace the protected p-value placeholder with an unsupported numerical literal.",
+  "label_source": "Authored controlled-test expectation; not a human rating.",
+  "source_attribution": "Challenge category adapted from teammate commit b7eff1c; no source score imported.",
+  "schema": "Interpretation challenge descriptor for this project's ReportDraft.",
+  "question": "Compare mean outcome between treatment and control.",
+  "analysis_plan": {
+    "method": "welch_t_test",
+    "outcome": "outcome",
+    "group": "group",
+    "group_1_label": "treatment",
+    "group_2_label": "control",
+    "x": "",
+    "y": "",
+    "target_parameter": "Mean outcome: treatment minus control",
+    "null_hypothesis": "H0: zero association",
+    "alternative_hypothesis": "H1: nonzero association",
+    "method_rationale": "MOCK prespecified fixture plan",
+    "design_notes": [
+      "The fixture declaration confirms independent observations."
+    ]
+  },
+  "design_info": {
+    "variables": {
+      "group": {
+        "type": "categorical",
+        "levels": [
+          "treatment",
+          "control"
+        ],
+        "meaning": "Source text labels in group"
+      },
+      "outcome": {
+        "type": "numeric",
+        "meaning": "Numeric source field outcome; units not supplied"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations.",
+    "comparison_order": "Requested contrast: treatment minus control."
+  },
+  "stat_result": {
+    "task": "run_test",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\welch_clean.csv",
+    "method": "welch_t_test",
+    "request_format": "v2",
+    "n_rows_in_file": 50,
+    "columns_found": [
+      "group",
+      "outcome"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+    "status": "ok",
+    "alternative": "two-sided",
+    "conf_level": 0.95,
+    "alpha": 0.05,
+    "n_included": 50,
+    "tool_warnings": [],
+    "method_label": "Welch independent-samples t-test",
+    "var_equal": false,
+    "group_1": {
+      "label": "treatment",
+      "n": 25,
+      "mean": 1.2178120485780803,
+      "sd": 0.6935327750700924
+    },
+    "group_2": {
+      "label": "control",
+      "n": 25,
+      "mean": -0.035389987592057665,
+      "sd": 0.8310923822923664
+    },
+    "mean_difference": 1.253202036170138,
+    "ci_lower": 0.8175583600290748,
+    "ci_upper": 1.688845712311201,
+    "t_statistic": 5.788718926593826,
+    "df": 46.509888447698344,
+    "p_value": 5.796668336306442e-07,
+    "decision": "reject_H0"
+  },
+  "stat_diagnostics": {
+    "task": "diagnostics",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\welch_clean.csv",
+    "method": "welch_t_test",
+    "request_format": "v2",
+    "n_rows_in_file": 50,
+    "columns_found": [
+      "group",
+      "outcome"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+    "status": "ok",
+    "n_rows_in_analysis_set": 50,
+    "n_usable_rows": 50,
+    "findings": [
+      {
+        "record_id": "row 31",
+        "row_number": 31,
+        "field": "outcome",
+        "value_as_written": "3.1416476008704612",
+        "check": "boxplot_flag",
+        "severity": "verify",
+        "detail": "Outside 1.5*IQR fences for group 'treatment'; verify, do not automatically exclude"
+      }
+    ],
+    "n_blocking": 0,
+    "n_verify": 1,
+    "method_checks_run": true,
+    "method_findings": [],
+    "distribution_checks_run": true,
+    "distribution_checks": [
+      {
+        "check": "shapiro_wilk",
+        "variable": "outcome",
+        "group": "treatment",
+        "n": 25,
+        "shapiro_wilk_p": 0.16838955839373165
+      },
+      {
+        "check": "shapiro_wilk",
+        "variable": "outcome",
+        "group": "control",
+        "n": 25,
+        "shapiro_wilk_p": 0.5649965949945559
+      }
+    ],
+    "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+  },
+  "statistical_request": {
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\welch_clean.csv",
+    "data_version": "v1",
+    "excluded_ids": [],
+    "id_column": null,
+    "method": "welch_t_test",
+    "roles": {
+      "outcome": "outcome",
+      "group": "group"
+    },
+    "group_labels": [
+      "treatment",
+      "control"
+    ],
+    "valid_ranges": {},
+    "valid_levels": {
+      "group": [
+        "treatment",
+        "control"
+      ]
+    },
+    "conf_level": 0.95,
+    "alpha": 0.05
+  },
+  "stats_block": {
+    "method": "welch_t_test",
+    "method_label": "two-sided Welch independent-samples t-test",
+    "data_version": "v1",
+    "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+    "values": {
+      "p_value": "< 0.0001",
+      "alpha": "0.05",
+      "null_value": "0",
+      "confidence_level": "95%",
+      "decision_claim": "reject",
+      "direction_claim": "positive",
+      "group_1": "treatment",
+      "group_2": "control",
+      "n_group_1": "25",
+      "n_group_2": "25",
+      "mean_group_1": "1.22",
+      "mean_group_2": "-0.04",
+      "sd_group_1": "0.69",
+      "sd_group_2": "0.83",
+      "mean_difference": "1.25",
+      "ci_lower": "0.82",
+      "ci_upper": "1.69",
+      "t_statistic": "5.789",
+      "df": "46.51",
+      "n_included": "50"
+    },
+    "hypotheses": "H0: Δ = 0 versus H1: Δ ≠ 0, where Δ = μ(group = treatment) − μ(group = control) for the mean of outcome",
+    "required_placeholders": [
+      "t_statistic",
+      "df",
+      "p_value",
+      "mean_difference",
+      "ci_lower",
+      "ci_upper"
+    ],
+    "required_limitations": {
+      "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+      "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+    },
+    "direction": "positive",
+    "decision": "reject_H0",
+    "distribution_checks": [
+      {
+        "check": "shapiro_wilk",
+        "variable": "outcome",
+        "group": "treatment",
+        "n": 25,
+        "shapiro_wilk_p": 0.16838955839373165
+      },
+      {
+        "check": "shapiro_wilk",
+        "variable": "outcome",
+        "group": "control",
+        "n": 25,
+        "shapiro_wilk_p": 0.5649965949945559
+      }
+    ],
+    "observed": null,
+    "yates": false,
+    "tool_warnings": [],
+    "t_statistic_note": ""
+  },
+  "correction_log": [],
+  "original_draft": {
+    "interpretation": "The analysis included {n_group_1} records in group {group_1} and {n_group_2} in group {group_2}. Welch's test gave t({df}) = {t_statistic}, p = {p_value}. At alpha = {alpha}, we reject H0. The estimated mean difference ({group_1} minus {group_2}) was {mean_difference} ({confidence_level} CI {ci_lower} to {ci_upper}).",
+    "limitations": [
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      {
+        "limitation_id": "analysis_assumptions",
+        "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      }
+    ],
+    "direction_claim": "positive",
+    "decision_claim": "reject_H0",
+    "version": "v1"
+  },
+  "controlled_execution": {
+    "scope": "Interpretation template test; not an end-to-end run or clarification-policy test.",
+    "record_verification": "No human record verification was performed or fabricated.",
+    "verification_flags_retained": 1
+  },
+  "provenance": {
+    "source_commit": "b7eff1c",
+    "source_file": "interpretation_benchmark.py",
+    "adaptation": "Challenge categories and authored mutations adapted to this project's ReportDraft and Python tools.",
+    "label_kind": "authored fixture expectation; not human review",
+    "draft_origin": "MockAnalysisAgentA controlled template, with an optional authored mutation"
+  },
+  "draft": {
+    "interpretation": "The analysis included {n_group_1} records in group {group_1} and {n_group_2} in group {group_2}. Welch's test gave t({df}) = {t_statistic}, p = 0.123. At alpha = {alpha}, we reject H0. The estimated mean difference ({group_1} minus {group_2}) was {mean_difference} ({confidence_level} CI {ci_lower} to {ci_upper}).",
+    "limitations": [
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      {
+        "limitation_id": "analysis_assumptions",
+        "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      }
+    ],
+    "direction_claim": "positive",
+    "decision_claim": "reject_H0",
+    "version": "v1"
+  },
+  "review_evidence": {
+    "report_draft": {
+      "interpretation": "The analysis included 25 records in group treatment and 25 in group control. Welch's test gave t(46.51) = 5.789, p = 0.123. At alpha = 0.05, we reject H0. The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69).",
+      "limitations": [
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        }
+      ],
+      "direction_claim": "positive",
+      "decision_claim": "reject_H0",
+      "version": "v1"
+    },
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v1",
+      "method": "welch_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 50,
+      "columns_found": [
+        "group",
+        "outcome"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 50,
+      "tool_warnings": [],
+      "method_label": "Welch independent-samples t-test",
+      "var_equal": false,
+      "group_1": {
+        "label": "treatment",
+        "n": 25,
+        "mean": 1.2178120485780803,
+        "sd": 0.6935327750700924
+      },
+      "group_2": {
+        "label": "control",
+        "n": 25,
+        "mean": -0.035389987592057665,
+        "sd": 0.8310923822923664
+      },
+      "mean_difference": 1.253202036170138,
+      "ci_lower": 0.8175583600290748,
+      "ci_upper": 1.688845712311201,
+      "t_statistic": 5.788718926593826,
+      "df": 46.509888447698344,
+      "p_value": 5.796668336306442e-07,
+      "decision": "reject_H0"
+    },
+    "protected_statistics": {
+      "method": "welch_t_test",
+      "method_label": "two-sided Welch independent-samples t-test",
+      "data_version": "v1",
+      "tool_call": "scipy.stats.ttest_ind(group_1='treatment', group_2='control', equal_var=False, alternative='two-sided'); confidence_interval(confidence_level=0.95)",
+      "values": {
+        "p_value": "< 0.0001",
+        "alpha": "0.05",
+        "null_value": "0",
+        "confidence_level": "95%",
+        "decision_claim": "reject",
+        "direction_claim": "positive",
+        "group_1": "treatment",
+        "group_2": "control",
+        "n_group_1": "25",
+        "n_group_2": "25",
+        "mean_group_1": "1.22",
+        "mean_group_2": "-0.04",
+        "sd_group_1": "0.69",
+        "sd_group_2": "0.83",
+        "mean_difference": "1.25",
+        "ci_lower": "0.82",
+        "ci_upper": "1.69",
+        "t_statistic": "5.789",
+        "df": "46.51",
+        "n_included": "50"
+      },
+      "hypotheses": "H0: Δ = 0 versus H1: Δ ≠ 0, where Δ = μ(group = treatment) − μ(group = control) for the mean of outcome",
+      "required_placeholders": [
+        "t_statistic",
+        "df",
+        "p_value",
+        "mean_difference",
+        "ci_lower",
+        "ci_upper"
+      ],
+      "required_limitations": {
+        "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+        "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      },
+      "direction": "positive",
+      "decision": "reject_H0",
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "outcome",
+          "group": "treatment",
+          "n": 25,
+          "shapiro_wilk_p": 0.16838955839373165
+        },
+        {
+          "check": "shapiro_wilk",
+          "variable": "outcome",
+          "group": "control",
+          "n": 25,
+          "shapiro_wilk_p": 0.5649965949945559
+        }
+      ],
+      "observed": null,
+      "yates": false,
+      "tool_warnings": [],
+      "t_statistic_note": ""
+    },
+    "analysis_plan": {
+      "method": "welch_t_test",
+      "outcome": "outcome",
+      "group": "group",
+      "group_1_label": "treatment",
+      "group_2_label": "control",
+      "x": "",
+      "y": "",
+      "target_parameter": "Mean outcome: treatment minus control",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "design_info": {
+      "variables": {
+        "group": {
+          "type": "categorical",
+          "levels": [
+            "treatment",
+            "control"
+          ],
+          "meaning": "Source text labels in group"
+        },
+        "outcome": {
+          "type": "numeric",
+          "meaning": "Numeric source field outcome; units not supplied"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations.",
+      "comparison_order": "Requested contrast: treatment minus control."
+    },
+    "correction_log": [],
+    "required_limitations": {
+      "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+      "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+    }
+  },
+  "rendered_draft": {
+    "interpretation": "The analysis included 25 records in group treatment and 25 in group control. Welch's test gave t(46.51) = 5.789, p = 0.123. At alpha = 0.05, we reject H0. The estimated mean difference (treatment minus control) was 1.25 (95% CI 0.82 to 1.69).",
+    "limitations": [
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      {
+        "limitation_id": "analysis_assumptions",
+        "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      }
+    ],
+    "direction_claim": "positive",
+    "decision_claim": "reject_H0",
+    "version": "v1"
+  },
+  "detectors": {
+    "program": {
+      "status": "assessed",
+      "accepted": false,
+      "check": {
+        "report_version": "v1",
+        "passed": false,
+        "problems": [
+          {
+            "check": "missing_content",
+            "detail": "the interpretation must state ['p_value']"
+          },
+          {
+            "check": "literal_number",
+            "detail": "numbers must be placeholders, found ['0.123']"
+          }
+        ]
+      }
+    },
+    "reviewer_b": {
+      "status": "assessed",
+      "accepted": true,
+      "raw_verdict": {
+        "passed": true,
+        "issues": [],
+        "summary": "Rule-based mock review: no issues found."
+      },
+      "verdict": {
+        "passed": true,
+        "issues": [],
+        "summary": "Rule-based mock review: no issues found."
+      },
+      "elapsed_seconds": 0.0
+    },
+    "combined": {
+      "status": "assessed",
+      "accepted": false
+    }
+  }
+}

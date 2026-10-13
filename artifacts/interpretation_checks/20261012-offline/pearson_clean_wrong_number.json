@@ -1,0 +1,468 @@
+{
+  "id": "pearson_clean_wrong_number",
+  "source_case": "pearson_clean",
+  "mutation": "wrong_number",
+  "expected_valid": false,
+  "note": "Replace the protected p-value placeholder with an unsupported numerical literal.",
+  "label_source": "Authored controlled-test expectation; not a human rating.",
+  "source_attribution": "Challenge category adapted from teammate commit b7eff1c; no source score imported.",
+  "schema": "Interpretation challenge descriptor for this project's ReportDraft.",
+  "question": "Measure Pearson linear correlation between x and y.",
+  "analysis_plan": {
+    "method": "pearson_correlation",
+    "outcome": "",
+    "group": "",
+    "group_1_label": "",
+    "group_2_label": "",
+    "x": "x",
+    "y": "y",
+    "target_parameter": "Prespecified synthetic evaluation target",
+    "null_hypothesis": "H0: zero association",
+    "alternative_hypothesis": "H1: nonzero association",
+    "method_rationale": "MOCK prespecified fixture plan",
+    "design_notes": [
+      "The fixture declaration confirms independent observations."
+    ]
+  },
+  "design_info": {
+    "variables": {
+      "x": {
+        "type": "numeric",
+        "meaning": "Numeric source field x; units not supplied"
+      },
+      "y": {
+        "type": "numeric",
+        "meaning": "Numeric source field y; units not supplied"
+      },
+      "date": {
+        "type": "date",
+        "meaning": "Calendar date as written in the source CSV"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "stat_result": {
+    "task": "run_test",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\pearson_clean.csv",
+    "method": "pearson_correlation",
+    "request_format": "v2",
+    "n_rows_in_file": 20,
+    "columns_found": [
+      "x",
+      "y",
+      "date"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+    "status": "ok",
+    "alternative": "two-sided",
+    "conf_level": 0.95,
+    "alpha": 0.05,
+    "n_included": 20,
+    "tool_warnings": [],
+    "perfect_correlation": false,
+    "method_label": "Pearson product-moment correlation",
+    "n": 20,
+    "r": 0.9929163062333216,
+    "ci_lower": 0.9817728824045426,
+    "ci_upper": 0.997256460890303,
+    "t_statistic": 35.45475398357403,
+    "df": 18,
+    "p_value": 4.157109757767507e-18,
+    "ci_method": "Fisher z normal approximation",
+    "decision": "reject_H0"
+  },
+  "stat_diagnostics": {
+    "task": "diagnostics",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\pearson_clean.csv",
+    "method": "pearson_correlation",
+    "request_format": "v2",
+    "n_rows_in_file": 20,
+    "columns_found": [
+      "x",
+      "y",
+      "date"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+    "status": "ok",
+    "n_rows_in_analysis_set": 20,
+    "n_usable_rows": 20,
+    "findings": [],
+    "n_blocking": 0,
+    "n_verify": 0,
+    "method_checks_run": true,
+    "method_findings": [],
+    "distribution_checks_run": true,
+    "distribution_checks": [
+      {
+        "check": "shapiro_wilk",
+        "variable": "x",
+        "role": "x",
+        "n": 20,
+        "shapiro_wilk_p": 0.5513717430400781
+      },
+      {
+        "check": "shapiro_wilk",
+        "variable": "y",
+        "role": "y",
+        "n": 20,
+        "shapiro_wilk_p": 0.3222096145126395
+      }
+    ],
+    "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+  },
+  "statistical_request": {
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\pearson_clean.csv",
+    "data_version": "v1",
+    "excluded_ids": [],
+    "id_column": null,
+    "method": "pearson_correlation",
+    "roles": {
+      "x": "x",
+      "y": "y"
+    },
+    "group_labels": null,
+    "valid_ranges": {},
+    "valid_levels": {},
+    "conf_level": 0.95,
+    "alpha": 0.05
+  },
+  "stats_block": {
+    "method": "pearson_correlation",
+    "method_label": "Pearson correlation test (two-sided)",
+    "data_version": "v1",
+    "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+    "values": {
+      "p_value": "< 0.0001",
+      "alpha": "0.05",
+      "null_value": "0",
+      "confidence_level": "95%",
+      "decision_claim": "reject",
+      "direction_claim": "positive",
+      "n": "20",
+      "r": "0.993",
+      "ci_lower": "0.982",
+      "ci_upper": "0.997",
+      "t_statistic": "35.455",
+      "df": "18"
+    },
+    "hypotheses": "H0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of x and y)",
+    "required_placeholders": [
+      "r",
+      "ci_lower",
+      "ci_upper",
+      "p_value",
+      "n"
+    ],
+    "required_limitations": {
+      "linear_association_only": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.",
+      "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+      "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+    },
+    "direction": "positive",
+    "decision": "reject_H0",
+    "distribution_checks": [
+      {
+        "check": "shapiro_wilk",
+        "variable": "x",
+        "role": "x",
+        "n": 20,
+        "shapiro_wilk_p": 0.5513717430400781
+      },
+      {
+        "check": "shapiro_wilk",
+        "variable": "y",
+        "role": "y",
+        "n": 20,
+        "shapiro_wilk_p": 0.3222096145126395
+      }
+    ],
+    "observed": null,
+    "yates": false,
+    "tool_warnings": [],
+    "t_statistic_note": ""
+  },
+  "correction_log": [],
+  "original_draft": {
+    "interpretation": "The analysis included {n} records. Pearson's r was {r} ({confidence_level} CI {ci_lower} to {ci_upper}), p = {p_value}. At alpha = {alpha}, we reject H0.",
+    "limitations": [
+      {
+        "limitation_id": "linear_association_only",
+        "text": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship."
+      },
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      {
+        "limitation_id": "analysis_assumptions",
+        "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      }
+    ],
+    "direction_claim": "positive",
+    "decision_claim": "reject_H0",
+    "version": "controlled_template"
+  },
+  "controlled_execution": {
+    "scope": "Interpretation template test; not an end-to-end run or clarification-policy test.",
+    "record_verification": "No human record verification was performed or fabricated.",
+    "verification_flags_retained": 0
+  },
+  "provenance": {
+    "source_commit": "b7eff1c",
+    "source_file": "interpretation_benchmark.py",
+    "adaptation": "Challenge categories and authored mutations adapted to this project's ReportDraft and Python tools.",
+    "label_kind": "authored fixture expectation; not human review",
+    "draft_origin": "MockAnalysisAgentA controlled template, with an optional authored mutation"
+  },
+  "draft": {
+    "interpretation": "The analysis included {n} records. Pearson's r was {r} ({confidence_level} CI {ci_lower} to {ci_upper}), p = 0.123. At alpha = {alpha}, we reject H0.",
+    "limitations": [
+      {
+        "limitation_id": "linear_association_only",
+        "text": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship."
+      },
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      {
+        "limitation_id": "analysis_assumptions",
+        "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      }
+    ],
+    "direction_claim": "positive",
+    "decision_claim": "reject_H0",
+    "version": "pearson_clean_wrong_number"
+  },
+  "review_evidence": {
+    "report_draft": {
+      "interpretation": "The analysis included 20 records. Pearson's r was 0.993 (95% CI 0.982 to 0.997), p = 0.123. At alpha = 0.05, we reject H0.",
+      "limitations": [
+        {
+          "limitation_id": "linear_association_only",
+          "text": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        },
+        {
+          "limitation_id": "analysis_assumptions",
+          "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+        }
+      ],
+      "direction_claim": "positive",
+      "decision_claim": "reject_H0",
+      "version": "pearson_clean_wrong_number"
+    },
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\pearson_clean.csv",
+      "method": "pearson_correlation",
+      "request_format": "v2",
+      "n_rows_in_file": 20,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 20,
+      "tool_warnings": [],
+      "perfect_correlation": false,
+      "method_label": "Pearson product-moment correlation",
+      "n": 20,
+      "r": 0.9929163062333216,
+      "ci_lower": 0.9817728824045426,
+      "ci_upper": 0.997256460890303,
+      "t_statistic": 35.45475398357403,
+      "df": 18,
+      "p_value": 4.157109757767507e-18,
+      "ci_method": "Fisher z normal approximation",
+      "decision": "reject_H0"
+    },
+    "protected_statistics": {
+      "method": "pearson_correlation",
+      "method_label": "Pearson correlation test (two-sided)",
+      "data_version": "v1",
+      "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+      "values": {
+        "p_value": "< 0.0001",
+        "alpha": "0.05",
+        "null_value": "0",
+        "confidence_level": "95%",
+        "decision_claim": "reject",
+        "direction_claim": "positive",
+        "n": "20",
+        "r": "0.993",
+        "ci_lower": "0.982",
+        "ci_upper": "0.997",
+        "t_statistic": "35.455",
+        "df": "18"
+      },
+      "hypotheses": "H0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of x and y)",
+      "required_placeholders": [
+        "r",
+        "ci_lower",
+        "ci_upper",
+        "p_value",
+        "n"
+      ],
+      "required_limitations": {
+        "linear_association_only": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.",
+        "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+        "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      },
+      "direction": "positive",
+      "decision": "reject_H0",
+      "distribution_checks": [
+        {
+          "check": "shapiro_wilk",
+          "variable": "x",
+          "role": "x",
+          "n": 20,
+          "shapiro_wilk_p": 0.5513717430400781
+        },
+        {
+          "check": "shapiro_wilk",
+          "variable": "y",
+          "role": "y",
+          "n": 20,
+          "shapiro_wilk_p": 0.3222096145126395
+        }
+      ],
+      "observed": null,
+      "yates": false,
+      "tool_warnings": [],
+      "t_statistic_note": ""
+    },
+    "analysis_plan": {
+      "method": "pearson_correlation",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        },
+        "date": {
+          "type": "date",
+          "meaning": "Calendar date as written in the source CSV"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "correction_log": [],
+    "required_limitations": {
+      "linear_association_only": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.",
+      "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation.",
+      "analysis_assumptions": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+    }
+  },
+  "rendered_draft": {
+    "interpretation": "The analysis included 20 records. Pearson's r was 0.993 (95% CI 0.982 to 0.997), p = 0.123. At alpha = 0.05, we reject H0.",
+    "limitations": [
+      {
+        "limitation_id": "linear_association_only",
+        "text": "Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship."
+      },
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      {
+        "limitation_id": "analysis_assumptions",
+        "text": "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
+      }
+    ],
+    "direction_claim": "positive",
+    "decision_claim": "reject_H0",
+    "version": "pearson_clean_wrong_number"
+  },
+  "detectors": {
+    "program": {
+      "status": "assessed",
+      "accepted": false,
+      "check": {
+        "report_version": "pearson_clean_wrong_number",
+        "passed": false,
+        "problems": [
+          {
+            "check": "missing_content",
+            "detail": "the interpretation must state ['p_value']"
+          },
+          {
+            "check": "literal_number",
+            "detail": "numbers must be placeholders, found ['0.123']"
+          }
+        ]
+      }
+    },
+    "reviewer_b": {
+      "status": "assessed",
+      "accepted": true,
+      "raw_verdict": {
+        "passed": true,
+        "issues": [],
+        "summary": "Rule-based mock review: no issues found."
+      },
+      "verdict": {
+        "passed": true,
+        "issues": [],
+        "summary": "Rule-based mock review: no issues found."
+      },
+      "elapsed_seconds": 0.0
+    },
+    "combined": {
+      "status": "assessed",
+      "accepted": false
+    }
+  }
+}

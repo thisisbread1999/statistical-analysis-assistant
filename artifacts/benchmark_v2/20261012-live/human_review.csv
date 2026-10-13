@@ -1,0 +1,4 @@
+﻿case_id,category,mode,report_stage,report_sha256,frozen_report_file,human_method_label,human_numeric_label,human_semantic_label,human_notes,reviewer,review_date
+welch_clean,normal,live,final,4449a2c996146bae85d2a76e8f774856a31ad3a0e20d3c56d632a614726d714e,normal/welch_clean.report.txt,,,,,,
+pearson_clean,normal,live,final,6e3c80ff2da910d8c2b3c74cda5b5a403aec8c1f0c58e3a211329051eb3e2e6d,normal/pearson_clean.report.txt,,,,,,
+chi_square_2x2,normal,live,final,b32f98e4f346bcac744a495186d7dfb9b2bd60784a9acce653c81a177f69b1a3,normal/chi_square_2x2.report.txt,,,,,,

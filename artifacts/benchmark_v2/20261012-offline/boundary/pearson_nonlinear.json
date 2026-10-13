@@ -1,0 +1,814 @@
+{
+  "id": "pearson_nonlinear",
+  "category": "boundary",
+  "mode": "offline",
+  "mode_label": "MOCK: prespecified fixture plans and rule-based reports; mechanics only, NOT LLM accuracy",
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "source_question": "Assess the relationship between x and y using Pearson linear correlation.",
+  "source_expected_behavior": "result",
+  "adapted_expectation": {
+    "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+    "policy_version": "ours-v1",
+    "source_expected_behavior": "result",
+    "expected_primary_behavior": "result",
+    "fixture_answers": [],
+    "expected_method": "pearson_correlation",
+    "source_csv_sha256": "be0f1794b0247eaabdf8baf1b5469b4ac0c240db9f7b5fb37ad15e7d7fbdeb6e",
+    "source_json_sha256": "a95a44962e01e44d2bb662ea2c993b0c02d28c4dae99ab4068b0b2dd5da62007",
+    "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+  },
+  "checks": {
+    "primary_safety_behavior": false,
+    "no_runner_exception": true,
+    "method": true,
+    "roles_and_contrast": true
+  },
+  "mechanical_pass": false,
+  "method_assessed": true,
+  "method_pass": true,
+  "safety_pass": false,
+  "numeric": {
+    "assessed": false,
+    "passed": null,
+    "reference": null,
+    "fields": {}
+  },
+  "interpretation_accepted": false,
+  "semantic_review": "unlabelled: no independent human review",
+  "report_delivery_status": "stopped",
+  "actual_status": "stopped",
+  "primary_state": {
+    "run_id": "benchmark-pearson_nonlinear-7934db8ce24b4fcc9baa0b167340d8e9",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Assess the relationship between x and y using Pearson linear correlation.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\pearson_nonlinear.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\pearson_nonlinear.csv",
+    "data_version": "v1",
+    "data_fingerprint": "be0f1794b0247eaabdf8baf1b5469b4ac0c240db9f7b5fb37ad15e7d7fbdeb6e",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "pearson_correlation",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\pearson_nonlinear.csv",
+      "method": "pearson_correlation",
+      "request_format": "v2",
+      "n_rows_in_file": 40,
+      "columns_found": [
+        "x",
+        "y"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 40,
+      "columns": [
+        {
+          "name": "x",
+          "role": "x",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 40,
+          "n_unique_as_written": 40,
+          "quantiles": {
+            "min": -2.0,
+            "p05": -1.8,
+            "p25": -1.0,
+            "p50": -1.1102230246251565e-16,
+            "p75": 1.0,
+            "p95": 1.7999999999999996,
+            "max": 2.0
+          },
+          "mean": -6.661338147750939e-17,
+          "sd": 1.1990207122564227
+        },
+        {
+          "name": "y",
+          "role": "y",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 40,
+          "n_unique_as_written": 29,
+          "quantiles": {
+            "min": 0.002629848783694919,
+            "p05": 0.022616699539776436,
+            "p25": 0.2919132149901379,
+            "p50": 1.0545693622616699,
+            "p75": 2.2905982905982905,
+            "p95": 3.62024983563445,
+            "max": 4.0
+          },
+          "mean": 1.4017094017094016,
+          "sd": 1.2685070451317977
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {}
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned pearson_correlation matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "stopped",
+    "final_report": "No validated inferential report was delivered.\nCannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\pearson_nonlinear\\\\stat_io\\\\benchmark-pearson_nonlinear-7934db8ce24b4fcc9baa0b167340d8e9-diagnostics-1_diagnostics_aefdccd686ef_request.json'",
+    "session_memory": {
+      "last_request_status": "stopped"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "type": "StatToolError",
+        "message": "Cannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\pearson_nonlinear\\\\stat_io\\\\benchmark-pearson_nonlinear-7934db8ce24b4fcc9baa0b167340d8e9-diagnostics-1_diagnostics_aefdccd686ef_request.json'"
+      }
+    ],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860417.6192372,
+        "end": 1791860417.6202908,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860417.6212628,
+        "end": 1791860417.6377416,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860417.6402297,
+        "end": 1791860417.6403682,
+        "thread": "ThreadPoolExecutor-13_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "error",
+        "start": 1791860417.6413229,
+        "end": 1791860417.6428611,
+        "thread": "ThreadPoolExecutor-13_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "skipped_after_error",
+        "start": 1791860417.644244,
+        "end": 1791860417.6442478,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "issue_notice",
+        "status": "completed",
+        "start": 1791860417.647079,
+        "end": 1791860417.6470907,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860417.6486883,
+        "end": 1791860417.6487074,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      }
+    ],
+    "observed_status": "stopped"
+  },
+  "final_state": {
+    "run_id": "benchmark-pearson_nonlinear-7934db8ce24b4fcc9baa0b167340d8e9",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Assess the relationship between x and y using Pearson linear correlation.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\pearson_nonlinear.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\pearson_nonlinear.csv",
+    "data_version": "v1",
+    "data_fingerprint": "be0f1794b0247eaabdf8baf1b5469b4ac0c240db9f7b5fb37ad15e7d7fbdeb6e",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "pearson_correlation",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\pearson_nonlinear.csv",
+      "method": "pearson_correlation",
+      "request_format": "v2",
+      "n_rows_in_file": 40,
+      "columns_found": [
+        "x",
+        "y"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 40,
+      "columns": [
+        {
+          "name": "x",
+          "role": "x",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 40,
+          "n_unique_as_written": 40,
+          "quantiles": {
+            "min": -2.0,
+            "p05": -1.8,
+            "p25": -1.0,
+            "p50": -1.1102230246251565e-16,
+            "p75": 1.0,
+            "p95": 1.7999999999999996,
+            "max": 2.0
+          },
+          "mean": -6.661338147750939e-17,
+          "sd": 1.1990207122564227
+        },
+        {
+          "name": "y",
+          "role": "y",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 40,
+          "n_unique_as_written": 29,
+          "quantiles": {
+            "min": 0.002629848783694919,
+            "p05": 0.022616699539776436,
+            "p25": 0.2919132149901379,
+            "p50": 1.0545693622616699,
+            "p75": 2.2905982905982905,
+            "p95": 3.62024983563445,
+            "max": 4.0
+          },
+          "mean": 1.4017094017094016,
+          "sd": 1.2685070451317977
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {}
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned pearson_correlation matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "stopped",
+    "final_report": "No validated inferential report was delivered.\nCannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\pearson_nonlinear\\\\stat_io\\\\benchmark-pearson_nonlinear-7934db8ce24b4fcc9baa0b167340d8e9-diagnostics-1_diagnostics_aefdccd686ef_request.json'",
+    "session_memory": {
+      "last_request_status": "stopped"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "type": "StatToolError",
+        "message": "Cannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\pearson_nonlinear\\\\stat_io\\\\benchmark-pearson_nonlinear-7934db8ce24b4fcc9baa0b167340d8e9-diagnostics-1_diagnostics_aefdccd686ef_request.json'"
+      }
+    ],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860417.6192372,
+        "end": 1791860417.6202908,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860417.6212628,
+        "end": 1791860417.6377416,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860417.6402297,
+        "end": 1791860417.6403682,
+        "thread": "ThreadPoolExecutor-13_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "error",
+        "start": 1791860417.6413229,
+        "end": 1791860417.6428611,
+        "thread": "ThreadPoolExecutor-13_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "skipped_after_error",
+        "start": 1791860417.644244,
+        "end": 1791860417.6442478,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "issue_notice",
+        "status": "completed",
+        "start": 1791860417.647079,
+        "end": 1791860417.6470907,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860417.6486883,
+        "end": 1791860417.6487074,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      }
+    ],
+    "observed_status": "stopped"
+  },
+  "warmup": null,
+  "stages": [
+    {
+      "stage": "primary",
+      "state": {
+        "run_id": "benchmark-pearson_nonlinear-7934db8ce24b4fcc9baa0b167340d8e9",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Assess the relationship between x and y using Pearson linear correlation.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "x": {
+              "type": "numeric",
+              "meaning": "Numeric source field x; units not supplied"
+            },
+            "y": {
+              "type": "numeric",
+              "meaning": "Numeric source field y; units not supplied"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\pearson_nonlinear.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\pearson_nonlinear.csv",
+        "data_version": "v1",
+        "data_fingerprint": "be0f1794b0247eaabdf8baf1b5469b4ac0c240db9f7b5fb37ad15e7d7fbdeb6e",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "analysis_plan": {
+          "method": "pearson_correlation",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "x",
+          "y": "y",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "ready",
+        "data_summary": {
+          "task": "summary",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\boundary\\pearson_nonlinear.csv",
+          "method": "pearson_correlation",
+          "request_format": "v2",
+          "n_rows_in_file": 40,
+          "columns_found": [
+            "x",
+            "y"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('summary', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 40,
+          "columns": [
+            {
+              "name": "x",
+              "role": "x",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 40,
+              "n_unique_as_written": 40,
+              "quantiles": {
+                "min": -2.0,
+                "p05": -1.8,
+                "p25": -1.0,
+                "p50": -1.1102230246251565e-16,
+                "p75": 1.0,
+                "p95": 1.7999999999999996,
+                "max": 2.0
+              },
+              "mean": -6.661338147750939e-17,
+              "sd": 1.1990207122564227
+            },
+            {
+              "name": "y",
+              "role": "y",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 40,
+              "n_unique_as_written": 29,
+              "quantiles": {
+                "min": 0.002629848783694919,
+                "p05": 0.022616699539776436,
+                "p25": 0.2919132149901379,
+                "p50": 1.0545693622616699,
+                "p75": 2.2905982905982905,
+                "p95": 3.62024983563445,
+                "max": 4.0
+              },
+              "mean": 1.4017094017094016,
+              "sd": 1.2685070451317977
+            }
+          ],
+          "stated_ranges": {},
+          "stated_levels": {}
+        },
+        "llm_diagnostics": {
+          "variable_meanings": "As described by the user.",
+          "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+          "goal_alignment": "The planned pearson_correlation matches the question.",
+          "distribution_notes": "See the statistical summary.",
+          "issues": [
+            {
+              "topic": "study_design",
+              "severity": "limitation",
+              "issue": "Groups or exposures are self-selected, not randomized.",
+              "evidence": "Observational synthetic fixture; allocation was not random.",
+              "suggested_action": "Report an association only."
+            }
+          ]
+        },
+        "stop_reasons": [],
+        "clarification_requests": [],
+        "clarification_answers": [],
+        "clarification_rounds": 0,
+        "rejected_answers": [],
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "report_draft": {},
+        "rendered_draft": {},
+        "program_check": {},
+        "review_verdict": {},
+        "revision_count": 0,
+        "final_status": "stopped",
+        "final_report": "No validated inferential report was delivered.\nCannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\pearson_nonlinear\\\\stat_io\\\\benchmark-pearson_nonlinear-7934db8ce24b4fcc9baa0b167340d8e9-diagnostics-1_diagnostics_aefdccd686ef_request.json'",
+        "session_memory": {
+          "last_request_status": "stopped"
+        },
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "type": "StatToolError",
+            "message": "Cannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\pearson_nonlinear\\\\stat_io\\\\benchmark-pearson_nonlinear-7934db8ce24b4fcc9baa0b167340d8e9-diagnostics-1_diagnostics_aefdccd686ef_request.json'"
+          }
+        ],
+        "model_calls": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "method": "plan",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          }
+        ],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791860417.6192372,
+            "end": 1791860417.6202908,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791860417.6212628,
+            "end": 1791860417.6377416,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791860417.6402297,
+            "end": 1791860417.6403682,
+            "thread": "ThreadPoolExecutor-13_0",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "error",
+            "start": 1791860417.6413229,
+            "end": 1791860417.6428611,
+            "thread": "ThreadPoolExecutor-13_1",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "skipped_after_error",
+            "start": 1791860417.644244,
+            "end": 1791860417.6442478,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 4
+          },
+          {
+            "request_number": 1,
+            "node": "issue_notice",
+            "status": "completed",
+            "start": 1791860417.647079,
+            "end": 1791860417.6470907,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 5
+          },
+          {
+            "request_number": 1,
+            "node": "save_session",
+            "status": "completed",
+            "start": 1791860417.6486883,
+            "end": 1791860417.6487074,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 6
+          }
+        ],
+        "observed_status": "stopped"
+      }
+    }
+  ],
+  "clarification_requested": false,
+  "model_calls": [
+    {
+      "request_number": 1,
+      "node": "plan_analysis",
+      "method": "plan",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "llm_diagnostics",
+      "method": "diagnose",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    }
+  ],
+  "original_diagnostics": {},
+  "report_revisions": 0,
+  "regression_warning_codes": [],
+  "error": null,
+  "duration_seconds": 0.07652300002519041
+}

@@ -1,0 +1,30 @@
+{
+  "id": "chi_square_numeric_codes",
+  "category": "stop",
+  "design_info": {
+    "variables": {
+      "category_a": {
+        "type": "numeric",
+        "meaning": "Numeric codes; categorical meaning and preprocessing not confirmed"
+      },
+      "category_b": {
+        "type": "numeric",
+        "meaning": "Numeric codes; categorical meaning and preprocessing not confirmed"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "stop",
+  "expected_primary_behavior": "stop",
+  "fixture_answers": [],
+  "expected_method": "chi_square_independence",
+  "source_csv_sha256": "4463fc4e7a3702991eb6d0274f037ec104d5f984cdbb338a907eaf7bb5f9eaac",
+  "source_json_sha256": "92b12d1fa7ea5df863a1923a020e3d0a8b2010cf217acb0c03e834ee5d582fe0",
+  "adaptation_note": "Codes are numeric without confirmed category semantics; require clarification/new metadata, never inject gold labels."
+}

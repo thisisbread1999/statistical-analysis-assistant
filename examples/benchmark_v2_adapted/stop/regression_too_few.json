@@ -1,0 +1,34 @@
+{
+  "id": "regression_too_few",
+  "category": "stop",
+  "design_info": {
+    "variables": {
+      "x": {
+        "type": "numeric",
+        "meaning": "Numeric source field x; units not supplied"
+      },
+      "y": {
+        "type": "numeric",
+        "meaning": "Numeric source field y; units not supplied"
+      },
+      "date": {
+        "type": "date",
+        "meaning": "Calendar date as written in the source CSV"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "stop",
+  "expected_primary_behavior": "result",
+  "fixture_answers": [],
+  "expected_method": "simple_linear_regression",
+  "source_csv_sha256": "26b97f3a65f7af11609e5f48c95b54d6fb749fe75e8f066e390cd609ef3e3e27",
+  "source_json_sha256": "828c510a2ff25ceea1e55a73da8f0ae6f05111a4969e811bb04dc5c725df5534",
+  "adaptation_note": "Source has four rows; ours permits identifiable regression with at least three. Expected computation is adapted, not a disabled check."
+}

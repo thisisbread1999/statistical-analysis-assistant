@@ -1,0 +1,10 @@
+{
+  "id": "regression_clean_causal",
+  "source_case": "regression_clean",
+  "mutation": "causal",
+  "expected_valid": false,
+  "note": "Append an unqualified causal assertion to an observational analysis.",
+  "label_source": "Authored controlled-test expectation; not a human rating.",
+  "source_attribution": "Challenge category adapted from teammate commit b7eff1c; no source score imported.",
+  "schema": "Interpretation challenge descriptor for this project's ReportDraft."
+}

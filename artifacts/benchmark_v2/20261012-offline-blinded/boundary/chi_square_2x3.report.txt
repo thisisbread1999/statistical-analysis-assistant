@@ -1,0 +1,19 @@
+MOCK: rule-based agent stand-ins; Python calculations are real.
+
+Method: chi-square test of independence  (data version v1; Python: scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square)
+H0: category_a and category_b are independent versus H1: they are associated; α = 0.05
+
+| | B0 | B1 | B2 |
+|---|---|---|---|
+| A0 | 12 | 10 | 8 |
+| A1 | 8 | 10 | 12 |
+
+n = 60; chi-square(2) = 1.600; p = 0.4493; Cramer's V = 0.163 (no Yates continuity correction)
+Decision at α = 0.05: do_not_reject_H0
+Distribution checks (descriptive only, never used to choose the method): [{'check': 'expected_counts', 'min_expected_count': 10.0, 'share_cells_expected_below_5': 0.0, 'n_cells': 6}]
+
+The analysis included 60 records. The chi-square test gave chi-square(2) = 1.600, p = 0.4493, with Cramer's V = 0.163. At alpha = 0.05, we do not reject H0 of independence. This is not evidence that there is no difference or association.
+
+Limitations:
+- No confidence interval was computed for Cramer's V in this stage.
+- Random allocation was not established. This analysis describes an association and does not establish causation.

@@ -1,0 +1,19 @@
+REAL: two distinct models; statistics computed with Python.
+
+Method: chi-square test of independence  (data version v1; Python: scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square)
+H0: category_a and category_b are independent versus H1: they are associated; α = 0.05
+
+| | B0 | B1 |
+|---|---|---|
+| A0 | 30 | 10 |
+| A1 | 10 | 30 |
+
+n = 80; chi-square(1) = 20.000; p < 0.0001; Cramer's V = 0.500 (no Yates continuity correction)
+Decision at α = 0.05: reject_H0
+Distribution checks (descriptive only, never used to choose the method): [{'check': 'expected_counts', 'min_expected_count': 20.0, 'share_cells_expected_below_5': 0.0, 'n_cells': 4}]
+
+A total of 80 records were analysed. The test result: chi-square(1) = 20.000, p < 0.0001. The decision at 0.05: we reject H0 (independence). The strength of association as Cramer's V = 0.500, indicating a moderate to strong association between category_a and category_b. That association does not establish causation.
+
+Limitations:
+- No confidence interval was computed for Cramer's V in this stage.
+- Random allocation was not established. This analysis describes an association and does not establish causation.

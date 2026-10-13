@@ -1,9 +1,16 @@
 # Synthetic examples
 
-This folder follows the teammate's `examples/` convention. All five CSVs are this
+This folder follows the teammate's `examples/` convention. The five root CSVs are this
 project's own synthetic teaching data, copied byte for byte from the preserved `data/`
 files during the layout refactor. No real student records are included. Original filenames
 remain descriptive so datasets can be identified across the v1 and Python notebooks.
+
+The subfolders `benchmark_v2/`, `benchmark_v2_adapted/` and `interpretation_checks/`
+now hold evaluation inputs and adapters. The frozen 31-case source comes from the
+teammate's `b7eff1c` checkout; its original CSV/JSON bytes are preserved, with source
+checksums and Git line-ending protection. The sixteen interpretation descriptors are
+adapted to our report schema. No teammate evaluation scores are reused. See
+`docs/BENCHMARK_V2.md` and `docs/INTERPRETATION_EVALUATION.md`.
 
 | File | Current use | Provenance |
 |---|---|---|

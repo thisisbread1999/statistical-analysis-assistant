@@ -1,0 +1,556 @@
+{
+  "id": "chi_square_2x2_causal",
+  "source_case": "chi_square_2x2",
+  "mutation": "causal",
+  "expected_valid": false,
+  "note": "Append an unqualified causal assertion to an observational analysis.",
+  "label_source": "Authored controlled-test expectation; not a human rating.",
+  "source_attribution": "Challenge category adapted from teammate commit b7eff1c; no source score imported.",
+  "schema": "Interpretation challenge descriptor for this project's ReportDraft.",
+  "question": "Use chi-square independence to test association between category_a and category_b, both categorical labels.",
+  "analysis_plan": {
+    "method": "chi_square_independence",
+    "outcome": "",
+    "group": "",
+    "group_1_label": "",
+    "group_2_label": "",
+    "x": "category_a",
+    "y": "category_b",
+    "target_parameter": "Prespecified synthetic evaluation target",
+    "null_hypothesis": "H0: zero association",
+    "alternative_hypothesis": "H1: nonzero association",
+    "method_rationale": "MOCK prespecified fixture plan",
+    "design_notes": [
+      "The fixture declaration confirms independent observations."
+    ]
+  },
+  "design_info": {
+    "variables": {
+      "category_a": {
+        "type": "categorical",
+        "levels": [
+          "A0",
+          "A1"
+        ],
+        "meaning": "Source text labels in category_a"
+      },
+      "category_b": {
+        "type": "categorical",
+        "levels": [
+          "B0",
+          "B1"
+        ],
+        "meaning": "Source text labels in category_b"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "stat_result": {
+    "task": "run_test",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\chi_square_2x2.csv",
+    "method": "chi_square_independence",
+    "request_format": "v2",
+    "n_rows_in_file": 80,
+    "columns_found": [
+      "category_a",
+      "category_b"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+    "status": "ok",
+    "alternative": "two-sided",
+    "conf_level": 0.95,
+    "alpha": 0.05,
+    "n_included": 80,
+    "tool_warnings": [],
+    "method_label": "Pearson chi-square test of independence (uncorrected)",
+    "n": 80,
+    "chi_square": 20.0,
+    "df": 1,
+    "p_value": 7.744216431044088e-06,
+    "cramers_v": 0.5,
+    "yates_correction": false,
+    "observed": {
+      "row_labels": [
+        "A0",
+        "A1"
+      ],
+      "col_labels": [
+        "B0",
+        "B1"
+      ],
+      "counts": [
+        [
+          30,
+          10
+        ],
+        [
+          10,
+          30
+        ]
+      ]
+    },
+    "expected": {
+      "row_labels": [
+        "A0",
+        "A1"
+      ],
+      "col_labels": [
+        "B0",
+        "B1"
+      ],
+      "counts": [
+        [
+          20.0,
+          20.0
+        ],
+        [
+          20.0,
+          20.0
+        ]
+      ]
+    },
+    "min_expected_count": 20.0,
+    "decision": "reject_H0"
+  },
+  "stat_diagnostics": {
+    "task": "diagnostics",
+    "data_version": "v1",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\chi_square_2x2.csv",
+    "method": "chi_square_independence",
+    "request_format": "v2",
+    "n_rows_in_file": 80,
+    "columns_found": [
+      "category_a",
+      "category_b"
+    ],
+    "missing_required_columns": [],
+    "excluded_ids": [],
+    "request_warnings": [],
+    "python_version": "3.13.5",
+    "scipy_version": "1.18.1",
+    "tool_call": "stat_assistant.tools.execute('diagnostics', request)",
+    "status": "ok",
+    "n_rows_in_analysis_set": 80,
+    "n_usable_rows": 80,
+    "findings": [],
+    "n_blocking": 0,
+    "n_verify": 0,
+    "method_checks_run": true,
+    "method_findings": [],
+    "distribution_checks_run": true,
+    "distribution_checks": [
+      {
+        "check": "expected_counts",
+        "min_expected_count": 20.0,
+        "share_cells_expected_below_5": 0.0,
+        "n_cells": 4
+      }
+    ],
+    "distribution_checks_note": "Descriptive diagnostics only; they never switch the method. A large Shapiro-Wilk p-value does not prove normality, and a small one alone does not rule out the planned test. Shapiro runs only for 3 <= n <= 5000."
+  },
+  "statistical_request": {
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\chi_square_2x2.csv",
+    "data_version": "v1",
+    "excluded_ids": [],
+    "id_column": null,
+    "method": "chi_square_independence",
+    "roles": {
+      "x": "category_a",
+      "y": "category_b"
+    },
+    "group_labels": null,
+    "valid_ranges": {},
+    "valid_levels": {
+      "category_a": [
+        "A0",
+        "A1"
+      ],
+      "category_b": [
+        "B0",
+        "B1"
+      ]
+    },
+    "conf_level": 0.95,
+    "alpha": 0.05
+  },
+  "stats_block": {
+    "method": "chi_square_independence",
+    "method_label": "chi-square test of independence",
+    "data_version": "v1",
+    "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+    "values": {
+      "p_value": "< 0.0001",
+      "alpha": "0.05",
+      "null_value": "0",
+      "confidence_level": "95%",
+      "decision_claim": "reject",
+      "direction_claim": "not_applicable",
+      "n": "80",
+      "chi_square": "20.000",
+      "df": "1",
+      "cramers_v": "0.500"
+    },
+    "hypotheses": "H0: category_a and category_b are independent versus H1: they are associated",
+    "required_placeholders": [
+      "chi_square",
+      "df",
+      "p_value",
+      "cramers_v",
+      "n"
+    ],
+    "required_limitations": {
+      "no_effect_interval": "No confidence interval was computed for Cramer's V in this stage.",
+      "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation."
+    },
+    "direction": "not_applicable",
+    "decision": "reject_H0",
+    "distribution_checks": [
+      {
+        "check": "expected_counts",
+        "min_expected_count": 20.0,
+        "share_cells_expected_below_5": 0.0,
+        "n_cells": 4
+      }
+    ],
+    "observed": {
+      "row_labels": [
+        "A0",
+        "A1"
+      ],
+      "col_labels": [
+        "B0",
+        "B1"
+      ],
+      "counts": [
+        [
+          30,
+          10
+        ],
+        [
+          10,
+          30
+        ]
+      ]
+    },
+    "yates": false,
+    "tool_warnings": [],
+    "t_statistic_note": ""
+  },
+  "correction_log": [],
+  "original_draft": {
+    "interpretation": "The analysis included {n} records. The chi-square test gave chi-square({df}) = {chi_square}, p = {p_value}, with Cramer's V = {cramers_v}. At alpha = {alpha}, we reject H0 of independence.",
+    "limitations": [
+      {
+        "limitation_id": "no_effect_interval",
+        "text": "No confidence interval was computed for Cramer's V in this stage."
+      },
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      }
+    ],
+    "direction_claim": "not_applicable",
+    "decision_claim": "reject_H0",
+    "version": "controlled_template"
+  },
+  "controlled_execution": {
+    "scope": "Interpretation template test; not an end-to-end run or clarification-policy test.",
+    "record_verification": "No human record verification was performed or fabricated.",
+    "verification_flags_retained": 0
+  },
+  "provenance": {
+    "source_commit": "b7eff1c",
+    "source_file": "interpretation_benchmark.py",
+    "adaptation": "Challenge categories and authored mutations adapted to this project's ReportDraft and Python tools.",
+    "label_kind": "authored fixture expectation; not human review",
+    "draft_origin": "MockAnalysisAgentA controlled template, with an optional authored mutation"
+  },
+  "draft": {
+    "interpretation": "The analysis included {n} records. The chi-square test gave chi-square({df}) = {chi_square}, p = {p_value}, with Cramer's V = {cramers_v}. At alpha = {alpha}, we reject H0 of independence. This analysis causes improvement.",
+    "limitations": [
+      {
+        "limitation_id": "no_effect_interval",
+        "text": "No confidence interval was computed for Cramer's V in this stage."
+      },
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      }
+    ],
+    "direction_claim": "not_applicable",
+    "decision_claim": "reject_H0",
+    "version": "chi_square_2x2_causal"
+  },
+  "review_evidence": {
+    "report_draft": {
+      "interpretation": "The analysis included 80 records. The chi-square test gave chi-square(1) = 20.000, p < 0.0001, with Cramer's V = 0.500. At alpha = 0.05, we reject H0 of independence. This analysis causes improvement.",
+      "limitations": [
+        {
+          "limitation_id": "no_effect_interval",
+          "text": "No confidence interval was computed for Cramer's V in this stage."
+        },
+        {
+          "limitation_id": "nonrandom_design",
+          "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+        }
+      ],
+      "direction_claim": "not_applicable",
+      "decision_claim": "reject_H0",
+      "version": "chi_square_2x2_causal"
+    },
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\normal\\chi_square_2x2.csv",
+      "method": "chi_square_independence",
+      "request_format": "v2",
+      "n_rows_in_file": 80,
+      "columns_found": [
+        "category_a",
+        "category_b"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 80,
+      "tool_warnings": [],
+      "method_label": "Pearson chi-square test of independence (uncorrected)",
+      "n": 80,
+      "chi_square": 20.0,
+      "df": 1,
+      "p_value": 7.744216431044088e-06,
+      "cramers_v": 0.5,
+      "yates_correction": false,
+      "observed": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "col_labels": [
+          "B0",
+          "B1"
+        ],
+        "counts": [
+          [
+            30,
+            10
+          ],
+          [
+            10,
+            30
+          ]
+        ]
+      },
+      "expected": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "col_labels": [
+          "B0",
+          "B1"
+        ],
+        "counts": [
+          [
+            20.0,
+            20.0
+          ],
+          [
+            20.0,
+            20.0
+          ]
+        ]
+      },
+      "min_expected_count": 20.0,
+      "decision": "reject_H0"
+    },
+    "protected_statistics": {
+      "method": "chi_square_independence",
+      "method_label": "chi-square test of independence",
+      "data_version": "v1",
+      "tool_call": "scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square",
+      "values": {
+        "p_value": "< 0.0001",
+        "alpha": "0.05",
+        "null_value": "0",
+        "confidence_level": "95%",
+        "decision_claim": "reject",
+        "direction_claim": "not_applicable",
+        "n": "80",
+        "chi_square": "20.000",
+        "df": "1",
+        "cramers_v": "0.500"
+      },
+      "hypotheses": "H0: category_a and category_b are independent versus H1: they are associated",
+      "required_placeholders": [
+        "chi_square",
+        "df",
+        "p_value",
+        "cramers_v",
+        "n"
+      ],
+      "required_limitations": {
+        "no_effect_interval": "No confidence interval was computed for Cramer's V in this stage.",
+        "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      },
+      "direction": "not_applicable",
+      "decision": "reject_H0",
+      "distribution_checks": [
+        {
+          "check": "expected_counts",
+          "min_expected_count": 20.0,
+          "share_cells_expected_below_5": 0.0,
+          "n_cells": 4
+        }
+      ],
+      "observed": {
+        "row_labels": [
+          "A0",
+          "A1"
+        ],
+        "col_labels": [
+          "B0",
+          "B1"
+        ],
+        "counts": [
+          [
+            30,
+            10
+          ],
+          [
+            10,
+            30
+          ]
+        ]
+      },
+      "yates": false,
+      "tool_warnings": [],
+      "t_statistic_note": ""
+    },
+    "analysis_plan": {
+      "method": "chi_square_independence",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "category_a",
+      "y": "category_b",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "design_info": {
+      "variables": {
+        "category_a": {
+          "type": "categorical",
+          "levels": [
+            "A0",
+            "A1"
+          ],
+          "meaning": "Source text labels in category_a"
+        },
+        "category_b": {
+          "type": "categorical",
+          "levels": [
+            "B0",
+            "B1"
+          ],
+          "meaning": "Source text labels in category_b"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "correction_log": [],
+    "required_limitations": {
+      "no_effect_interval": "No confidence interval was computed for Cramer's V in this stage.",
+      "nonrandom_design": "Random allocation was not established. This analysis describes an association and does not establish causation."
+    }
+  },
+  "rendered_draft": {
+    "interpretation": "The analysis included 80 records. The chi-square test gave chi-square(1) = 20.000, p < 0.0001, with Cramer's V = 0.500. At alpha = 0.05, we reject H0 of independence. This analysis causes improvement.",
+    "limitations": [
+      {
+        "limitation_id": "no_effect_interval",
+        "text": "No confidence interval was computed for Cramer's V in this stage."
+      },
+      {
+        "limitation_id": "nonrandom_design",
+        "text": "Random allocation was not established. This analysis describes an association and does not establish causation."
+      }
+    ],
+    "direction_claim": "not_applicable",
+    "decision_claim": "reject_H0",
+    "version": "chi_square_2x2_causal"
+  },
+  "detectors": {
+    "program": {
+      "status": "assessed",
+      "accepted": true,
+      "check": {
+        "report_version": "chi_square_2x2_causal",
+        "passed": true,
+        "problems": []
+      }
+    },
+    "reviewer_b": {
+      "status": "assessed",
+      "accepted": false,
+      "raw_verdict": {
+        "passed": false,
+        "issues": [
+          {
+            "severity": "critical",
+            "category": "causal_claim",
+            "offending_sentence": "This analysis causes improvement.",
+            "evidence": "The report states that the analysis 'causes improvement', implying a causal relationship. However, the design is observational (non-randomized), and the analysis plan and design info confirm this. The limitations section also explicitly states that the analysis describes an association and does not establish causation.",
+            "suggested_correction": "Remove the sentence 'This analysis causes improvement.' or replace it with a statement acknowledging the association without implying causation, such as 'This analysis demonstrates an association between category_a and category_b.'"
+          }
+        ],
+        "summary": "The report makes an unsupported causal claim, which is critical given the observational design. The sentence 'This analysis causes improvement' needs to be removed or rephrased to avoid implying causation."
+      },
+      "verdict": {
+        "passed": false,
+        "issues": [
+          {
+            "severity": "critical",
+            "category": "causal_claim",
+            "offending_sentence": "This analysis causes improvement.",
+            "evidence": "The report states that the analysis 'causes improvement', implying a causal relationship. However, the design is observational (non-randomized), and the analysis plan and design info confirm this. The limitations section also explicitly states that the analysis describes an association and does not establish causation.",
+            "suggested_correction": "Remove the sentence 'This analysis causes improvement.' or replace it with a statement acknowledging the association without implying causation, such as 'This analysis demonstrates an association between category_a and category_b.'"
+          }
+        ],
+        "summary": "The report makes an unsupported causal claim, which is critical given the observational design. The sentence 'This analysis causes improvement' needs to be removed or rephrased to avoid implying causation."
+      },
+      "elapsed_seconds": 7.092
+    },
+    "combined": {
+      "status": "assessed",
+      "accepted": false
+    }
+  }
+}

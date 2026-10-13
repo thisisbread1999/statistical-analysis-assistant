@@ -1,0 +1,10 @@
+{
+  "id": "regression_interval_probability",
+  "source_case": "regression_clean",
+  "mutation": "interval_probability",
+  "expected_valid": false,
+  "note": "Assign a frequentist probability to the fixed true slope inside this observed interval.",
+  "label_source": "Authored controlled-test expectation; not a human rating.",
+  "source_attribution": "Challenge category adapted from teammate commit b7eff1c; no source score imported.",
+  "schema": "Interpretation challenge descriptor for this project's ReportDraft."
+}

@@ -1,0 +1,10 @@
+{
+  "id": "regression_clean_valid",
+  "source_case": "regression_clean",
+  "mutation": "none",
+  "expected_valid": true,
+  "note": "Correct controlled template using this project's tool placeholders and required limitations.",
+  "label_source": "Authored controlled-test expectation; not a human rating.",
+  "source_attribution": "Challenge category adapted from teammate commit b7eff1c; no source score imported.",
+  "schema": "Interpretation challenge descriptor for this project's ReportDraft."
+}

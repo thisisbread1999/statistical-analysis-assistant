@@ -1,0 +1,6 @@
+﻿case_id,category,mode,report_stage,report_sha256,frozen_report_file,human_method_label,human_numeric_label,human_semantic_label,human_notes,reviewer,review_date
+welch_clean,normal,offline,final,ea4c304e119f75ee690e598fdc19119f885f4ccc1a720781071b0a224ded83bd,normal/welch_clean.report.txt,,,,,,
+pearson_clean,normal,offline,final,4b126cb0ccd138481426a713e989308c7808f0585b6517974f29eb6c36a96fcb,normal/pearson_clean.report.txt,,,,,,
+chi_square_2x2,normal,offline,final,f578aff719ef862a6a3ca80bcd65c267a4f1a4f124fccb61947ff8377d52d1d0,normal/chi_square_2x2.report.txt,,,,,,
+welch_missing,boundary,offline,final,6ba723dd20e60c4cb411e51ba47b2b7d153a27de5ceb0958b9038fe8cd757804,boundary/welch_missing.report.txt,,,,,,
+chi_square_2x3,boundary,offline,final,50ad033c995ed119e1a147890e01493535dbdabb950f32aec34c3f3e853ee696,boundary/chi_square_2x3.report.txt,,,,,,

@@ -1,0 +1,30 @@
+{
+  "id": "pearson_nonlinear",
+  "category": "boundary",
+  "design_info": {
+    "variables": {
+      "x": {
+        "type": "numeric",
+        "meaning": "Numeric source field x; units not supplied"
+      },
+      "y": {
+        "type": "numeric",
+        "meaning": "Numeric source field y; units not supplied"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "result",
+  "expected_primary_behavior": "result",
+  "fixture_answers": [],
+  "expected_method": "pearson_correlation",
+  "source_csv_sha256": "be0f1794b0247eaabdf8baf1b5469b4ac0c240db9f7b5fb37ad15e7d7fbdeb6e",
+  "source_json_sha256": "a95a44962e01e44d2bb662ea2c993b0c02d28c4dae99ab4068b0b2dd5da62007",
+  "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+}

@@ -1,0 +1,1085 @@
+{
+  "id": "regression_2025",
+  "category": "followup",
+  "mode": "offline",
+  "mode_label": "MOCK: prespecified fixture plans and rule-based reports; mechanics only, NOT LLM accuracy",
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "source_question": "Repeat that same analysis only for calendar year 2025.",
+  "source_expected_behavior": "result",
+  "adapted_expectation": {
+    "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+    "policy_version": "ours-v1",
+    "source_expected_behavior": "result",
+    "expected_primary_behavior": "unsupported_followup_stop",
+    "fixture_answers": [],
+    "expected_method": "simple_linear_regression",
+    "source_csv_sha256": "241082727125546dbec3a13c699f22b819c309a49161d206414260e28fab085b",
+    "source_json_sha256": "746efe6615d31db8ae7c2d107f13723d891f0986f7f92cd39e1effc5ecf033fb",
+    "adaptation_note": "Missing cells and IQR flags pause before computation. Date filtering is unsupported. Source declarations remain frozen."
+  },
+  "checks": {
+    "primary_safety_behavior": false,
+    "no_runner_exception": true,
+    "method": true,
+    "roles_and_contrast": true
+  },
+  "mechanical_pass": false,
+  "method_assessed": true,
+  "method_pass": true,
+  "safety_pass": false,
+  "numeric": {
+    "assessed": false,
+    "passed": null,
+    "reference": null,
+    "fields": {}
+  },
+  "interpretation_accepted": false,
+  "semantic_review": "unlabelled: no independent human review",
+  "report_delivery_status": "stopped",
+  "actual_status": "stopped",
+  "primary_state": {
+    "run_id": "benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Fit simple linear regression with x as predictor and y as outcome.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        },
+        "date": {
+          "type": "date",
+          "meaning": "Calendar date as written in the source CSV"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+    "data_version": "v1",
+    "data_fingerprint": "241082727125546dbec3a13c699f22b819c309a49161d206414260e28fab085b",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "simple_linear_regression",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 60,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 60,
+      "columns": [
+        {
+          "name": "x",
+          "role": "x",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 60,
+          "n_unique_as_written": 60,
+          "quantiles": {
+            "min": -3.0,
+            "p05": -2.6999999999999997,
+            "p25": -1.4999999999999998,
+            "p50": 2.220446049250313e-16,
+            "p75": 1.5000000000000004,
+            "p95": 2.7000000000000006,
+            "max": 3.0
+          },
+          "mean": 1.7763568394002506e-16,
+          "sd": 1.776025342024371
+        },
+        {
+          "name": "y",
+          "role": "y",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 60,
+          "n_unique_as_written": 60,
+          "quantiles": {
+            "min": -1.5764426834875567,
+            "p05": -0.9534428259893203,
+            "p25": 0.75344866927157,
+            "p50": 3.645419661522771,
+            "p75": 5.299366450996273,
+            "p95": 7.227916587214055,
+            "max": 9.316400558530667
+          },
+          "mean": 3.1102806751444314,
+          "sd": 2.7600096165212467
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {}
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned simple_linear_regression matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "stopped",
+    "final_report": "No validated inferential report was delivered.\nCannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\regression_2025\\\\stat_io\\\\benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85-diagnostics-1_diagnostics_7f23c6c03396_request.json'",
+    "session_memory": {
+      "last_request_status": "stopped"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "type": "StatToolError",
+        "message": "Cannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\regression_2025\\\\stat_io\\\\benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85-diagnostics-1_diagnostics_7f23c6c03396_request.json'"
+      }
+    ],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860462.4711761,
+        "end": 1791860462.4718747,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860462.473005,
+        "end": 1791860462.4804275,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860462.4820316,
+        "end": 1791860462.4821181,
+        "thread": "ThreadPoolExecutor-33_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "error",
+        "start": 1791860462.4829185,
+        "end": 1791860462.483974,
+        "thread": "ThreadPoolExecutor-33_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "skipped_after_error",
+        "start": 1791860462.484741,
+        "end": 1791860462.484743,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "issue_notice",
+        "status": "completed",
+        "start": 1791860462.4871607,
+        "end": 1791860462.4871714,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860462.487774,
+        "end": 1791860462.487784,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      }
+    ],
+    "observed_status": "stopped"
+  },
+  "final_state": {
+    "run_id": "benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Fit simple linear regression with x as predictor and y as outcome.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        },
+        "date": {
+          "type": "date",
+          "meaning": "Calendar date as written in the source CSV"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+    "data_version": "v1",
+    "data_fingerprint": "241082727125546dbec3a13c699f22b819c309a49161d206414260e28fab085b",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "simple_linear_regression",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 60,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 60,
+      "columns": [
+        {
+          "name": "x",
+          "role": "x",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 60,
+          "n_unique_as_written": 60,
+          "quantiles": {
+            "min": -3.0,
+            "p05": -2.6999999999999997,
+            "p25": -1.4999999999999998,
+            "p50": 2.220446049250313e-16,
+            "p75": 1.5000000000000004,
+            "p95": 2.7000000000000006,
+            "max": 3.0
+          },
+          "mean": 1.7763568394002506e-16,
+          "sd": 1.776025342024371
+        },
+        {
+          "name": "y",
+          "role": "y",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 60,
+          "n_unique_as_written": 60,
+          "quantiles": {
+            "min": -1.5764426834875567,
+            "p05": -0.9534428259893203,
+            "p25": 0.75344866927157,
+            "p50": 3.645419661522771,
+            "p75": 5.299366450996273,
+            "p95": 7.227916587214055,
+            "max": 9.316400558530667
+          },
+          "mean": 3.1102806751444314,
+          "sd": 2.7600096165212467
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {}
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned simple_linear_regression matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "stopped",
+    "final_report": "No validated inferential report was delivered.\nCannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\regression_2025\\\\stat_io\\\\benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85-diagnostics-1_diagnostics_7f23c6c03396_request.json'",
+    "session_memory": {
+      "last_request_status": "stopped"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "type": "StatToolError",
+        "message": "Cannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\regression_2025\\\\stat_io\\\\benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85-diagnostics-1_diagnostics_7f23c6c03396_request.json'"
+      }
+    ],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860462.4711761,
+        "end": 1791860462.4718747,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860462.473005,
+        "end": 1791860462.4804275,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860462.4820316,
+        "end": 1791860462.4821181,
+        "thread": "ThreadPoolExecutor-33_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "error",
+        "start": 1791860462.4829185,
+        "end": 1791860462.483974,
+        "thread": "ThreadPoolExecutor-33_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "skipped_after_error",
+        "start": 1791860462.484741,
+        "end": 1791860462.484743,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "issue_notice",
+        "status": "completed",
+        "start": 1791860462.4871607,
+        "end": 1791860462.4871714,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860462.487774,
+        "end": 1791860462.487784,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      }
+    ],
+    "observed_status": "stopped"
+  },
+  "warmup": {
+    "run_id": "benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85",
+    "request_number": 1,
+    "request_kind": "new_analysis",
+    "research_question": "Fit simple linear regression with x as predictor and y as outcome.",
+    "followup_focus": "",
+    "design_info": {
+      "variables": {
+        "x": {
+          "type": "numeric",
+          "meaning": "Numeric source field x; units not supplied"
+        },
+        "y": {
+          "type": "numeric",
+          "meaning": "Numeric source field y; units not supplied"
+        },
+        "date": {
+          "type": "date",
+          "meaning": "Calendar date as written in the source CSV"
+        }
+      },
+      "randomized": false,
+      "assignment": "Observational synthetic fixture; allocation was not random.",
+      "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+      "independent": true,
+      "independence": "The fixture declaration confirms independent observations."
+    },
+    "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+    "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+    "data_version": "v1",
+    "data_fingerprint": "241082727125546dbec3a13c699f22b819c309a49161d206414260e28fab085b",
+    "followup_data_changed": false,
+    "followup_design_changed": false,
+    "followup_dataset_replaced": false,
+    "analysis_plan": {
+      "method": "simple_linear_regression",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x",
+      "y": "y",
+      "target_parameter": "Prespecified synthetic evaluation target",
+      "null_hypothesis": "H0: zero association",
+      "alternative_hypothesis": "H1: nonzero association",
+      "method_rationale": "MOCK prespecified fixture plan",
+      "design_notes": [
+        "The fixture declaration confirms independent observations."
+      ]
+    },
+    "plan_feedback": [],
+    "plan_revision_count": 0,
+    "plan_route": "ready",
+    "data_summary": {
+      "task": "summary",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 60,
+      "columns_found": [
+        "x",
+        "y",
+        "date"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "stat_assistant.tools.execute('summary', request)",
+      "status": "ok",
+      "n_rows_in_analysis_set": 60,
+      "columns": [
+        {
+          "name": "x",
+          "role": "x",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 60,
+          "n_unique_as_written": 60,
+          "quantiles": {
+            "min": -3.0,
+            "p05": -2.6999999999999997,
+            "p25": -1.4999999999999998,
+            "p50": 2.220446049250313e-16,
+            "p75": 1.5000000000000004,
+            "p95": 2.7000000000000006,
+            "max": 3.0
+          },
+          "mean": 1.7763568394002506e-16,
+          "sd": 1.776025342024371
+        },
+        {
+          "name": "y",
+          "role": "y",
+          "type": "numeric",
+          "n_blank": 0,
+          "n_parseable_numeric": 60,
+          "n_unique_as_written": 60,
+          "quantiles": {
+            "min": -1.5764426834875567,
+            "p05": -0.9534428259893203,
+            "p25": 0.75344866927157,
+            "p50": 3.645419661522771,
+            "p75": 5.299366450996273,
+            "p95": 7.227916587214055,
+            "max": 9.316400558530667
+          },
+          "mean": 3.1102806751444314,
+          "sd": 2.7600096165212467
+        }
+      ],
+      "stated_ranges": {},
+      "stated_levels": {}
+    },
+    "llm_diagnostics": {
+      "variable_meanings": "As described by the user.",
+      "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+      "goal_alignment": "The planned simple_linear_regression matches the question.",
+      "distribution_notes": "See the statistical summary.",
+      "issues": [
+        {
+          "topic": "study_design",
+          "severity": "limitation",
+          "issue": "Groups or exposures are self-selected, not randomized.",
+          "evidence": "Observational synthetic fixture; allocation was not random.",
+          "suggested_action": "Report an association only."
+        }
+      ]
+    },
+    "stop_reasons": [],
+    "clarification_requests": [],
+    "clarification_answers": [],
+    "clarification_rounds": 0,
+    "rejected_answers": [],
+    "excluded_ids": [],
+    "verified_ids": [],
+    "correction_log": [],
+    "user_requested_stop": false,
+    "conf_level": 0.95,
+    "report_draft": {},
+    "rendered_draft": {},
+    "program_check": {},
+    "review_verdict": {},
+    "revision_count": 0,
+    "final_status": "stopped",
+    "final_report": "No validated inferential report was delivered.\nCannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\regression_2025\\\\stat_io\\\\benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85-diagnostics-1_diagnostics_7f23c6c03396_request.json'",
+    "session_memory": {
+      "last_request_status": "stopped"
+    },
+    "test_fault": null,
+    "max_model_calls": 15,
+    "errors": [
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "type": "StatToolError",
+        "message": "Cannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\regression_2025\\\\stat_io\\\\benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85-diagnostics-1_diagnostics_7f23c6c03396_request.json'"
+      }
+    ],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+        "mode": "MOCK",
+        "status": "completed"
+      }
+    ],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1791860462.4711761,
+        "end": 1791860462.4718747,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1791860462.473005,
+        "end": 1791860462.4804275,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1791860462.4820316,
+        "end": 1791860462.4821181,
+        "thread": "ThreadPoolExecutor-33_0",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "error",
+        "start": 1791860462.4829185,
+        "end": 1791860462.483974,
+        "thread": "ThreadPoolExecutor-33_1",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "skipped_after_error",
+        "start": 1791860462.484741,
+        "end": 1791860462.484743,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "issue_notice",
+        "status": "completed",
+        "start": 1791860462.4871607,
+        "end": 1791860462.4871714,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1791860462.487774,
+        "end": 1791860462.487784,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 6
+      }
+    ],
+    "observed_status": "stopped"
+  },
+  "stages": [
+    {
+      "stage": "warmup_primary",
+      "state": {
+        "run_id": "benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85",
+        "request_number": 1,
+        "request_kind": "new_analysis",
+        "research_question": "Fit simple linear regression with x as predictor and y as outcome.",
+        "followup_focus": "",
+        "design_info": {
+          "variables": {
+            "x": {
+              "type": "numeric",
+              "meaning": "Numeric source field x; units not supplied"
+            },
+            "y": {
+              "type": "numeric",
+              "meaning": "Numeric source field y; units not supplied"
+            },
+            "date": {
+              "type": "date",
+              "meaning": "Calendar date as written in the source CSV"
+            }
+          },
+          "randomized": false,
+          "assignment": "Observational synthetic fixture; allocation was not random.",
+          "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+          "independent": true,
+          "independence": "The fixture declaration confirms independent observations."
+        },
+        "original_data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+        "data_version": "v1",
+        "data_fingerprint": "241082727125546dbec3a13c699f22b819c309a49161d206414260e28fab085b",
+        "followup_data_changed": false,
+        "followup_design_changed": false,
+        "followup_dataset_replaced": false,
+        "analysis_plan": {
+          "method": "simple_linear_regression",
+          "outcome": "",
+          "group": "",
+          "group_1_label": "",
+          "group_2_label": "",
+          "x": "x",
+          "y": "y",
+          "target_parameter": "Prespecified synthetic evaluation target",
+          "null_hypothesis": "H0: zero association",
+          "alternative_hypothesis": "H1: nonzero association",
+          "method_rationale": "MOCK prespecified fixture plan",
+          "design_notes": [
+            "The fixture declaration confirms independent observations."
+          ]
+        },
+        "plan_feedback": [],
+        "plan_revision_count": 0,
+        "plan_route": "ready",
+        "data_summary": {
+          "task": "summary",
+          "data_version": "v1",
+          "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\benchmark_v2\\followup\\regression_2025.csv",
+          "method": "simple_linear_regression",
+          "request_format": "v2",
+          "n_rows_in_file": 60,
+          "columns_found": [
+            "x",
+            "y",
+            "date"
+          ],
+          "missing_required_columns": [],
+          "excluded_ids": [],
+          "request_warnings": [],
+          "python_version": "3.13.5",
+          "scipy_version": "1.18.1",
+          "tool_call": "stat_assistant.tools.execute('summary', request)",
+          "status": "ok",
+          "n_rows_in_analysis_set": 60,
+          "columns": [
+            {
+              "name": "x",
+              "role": "x",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 60,
+              "n_unique_as_written": 60,
+              "quantiles": {
+                "min": -3.0,
+                "p05": -2.6999999999999997,
+                "p25": -1.4999999999999998,
+                "p50": 2.220446049250313e-16,
+                "p75": 1.5000000000000004,
+                "p95": 2.7000000000000006,
+                "max": 3.0
+              },
+              "mean": 1.7763568394002506e-16,
+              "sd": 1.776025342024371
+            },
+            {
+              "name": "y",
+              "role": "y",
+              "type": "numeric",
+              "n_blank": 0,
+              "n_parseable_numeric": 60,
+              "n_unique_as_written": 60,
+              "quantiles": {
+                "min": -1.5764426834875567,
+                "p05": -0.9534428259893203,
+                "p25": 0.75344866927157,
+                "p50": 3.645419661522771,
+                "p75": 5.299366450996273,
+                "p95": 7.227916587214055,
+                "max": 9.316400558530667
+              },
+              "mean": 3.1102806751444314,
+              "sd": 2.7600096165212467
+            }
+          ],
+          "stated_ranges": {},
+          "stated_levels": {}
+        },
+        "llm_diagnostics": {
+          "variable_meanings": "As described by the user.",
+          "design_assessment": "Observational synthetic fixture; allocation was not random.; The fixture declaration confirms independent observations.",
+          "goal_alignment": "The planned simple_linear_regression matches the question.",
+          "distribution_notes": "See the statistical summary.",
+          "issues": [
+            {
+              "topic": "study_design",
+              "severity": "limitation",
+              "issue": "Groups or exposures are self-selected, not randomized.",
+              "evidence": "Observational synthetic fixture; allocation was not random.",
+              "suggested_action": "Report an association only."
+            }
+          ]
+        },
+        "stop_reasons": [],
+        "clarification_requests": [],
+        "clarification_answers": [],
+        "clarification_rounds": 0,
+        "rejected_answers": [],
+        "excluded_ids": [],
+        "verified_ids": [],
+        "correction_log": [],
+        "user_requested_stop": false,
+        "conf_level": 0.95,
+        "report_draft": {},
+        "rendered_draft": {},
+        "program_check": {},
+        "review_verdict": {},
+        "revision_count": 0,
+        "final_status": "stopped",
+        "final_report": "No validated inferential report was delivered.\nCannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\regression_2025\\\\stat_io\\\\benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85-diagnostics-1_diagnostics_7f23c6c03396_request.json'",
+        "session_memory": {
+          "last_request_status": "stopped"
+        },
+        "test_fault": null,
+        "max_model_calls": 15,
+        "errors": [
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "type": "StatToolError",
+            "message": "Cannot record strict-JSON statistical request: [Errno 2] No such file or directory: 'C:\\\\Users\\\\62703\\\\OneDrive\\\\Desktop\\\\SMU\\\\26fall\\\\agentic ai\\\\langgraph_visualization\\\\artifacts\\\\benchmark_v2\\\\20261012-offline\\\\runtime\\\\regression_2025\\\\stat_io\\\\benchmark-regression_2025-5d7705fc52d3436c9b18c51f23f8ed85-diagnostics-1_diagnostics_7f23c6c03396_request.json'"
+          }
+        ],
+        "model_calls": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "method": "plan",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "method": "diagnose",
+            "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+            "mode": "MOCK",
+            "status": "completed"
+          }
+        ],
+        "trace": [
+          {
+            "request_number": 1,
+            "node": "plan_analysis",
+            "status": "completed",
+            "start": 1791860462.4711761,
+            "end": 1791860462.4718747,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 1
+          },
+          {
+            "request_number": 1,
+            "node": "prepare_data_summary",
+            "status": "completed",
+            "start": 1791860462.473005,
+            "end": 1791860462.4804275,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 2
+          },
+          {
+            "request_number": 1,
+            "node": "llm_diagnostics",
+            "status": "completed",
+            "start": 1791860462.4820316,
+            "end": 1791860462.4821181,
+            "thread": "ThreadPoolExecutor-33_0",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "stat_diagnostics",
+            "status": "error",
+            "start": 1791860462.4829185,
+            "end": 1791860462.483974,
+            "thread": "ThreadPoolExecutor-33_1",
+            "data_version": "v1",
+            "step": 3
+          },
+          {
+            "request_number": 1,
+            "node": "merge_diagnostics",
+            "status": "skipped_after_error",
+            "start": 1791860462.484741,
+            "end": 1791860462.484743,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 4
+          },
+          {
+            "request_number": 1,
+            "node": "issue_notice",
+            "status": "completed",
+            "start": 1791860462.4871607,
+            "end": 1791860462.4871714,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 5
+          },
+          {
+            "request_number": 1,
+            "node": "save_session",
+            "status": "completed",
+            "start": 1791860462.487774,
+            "end": 1791860462.487784,
+            "thread": "MainThread",
+            "data_version": "v1",
+            "step": 6
+          }
+        ],
+        "observed_status": "stopped"
+      }
+    },
+    {
+      "stage": "followup_unassessed",
+      "reason": "Warmup paused or failed; no user answers were invented."
+    }
+  ],
+  "clarification_requested": false,
+  "model_calls": [
+    {
+      "request_number": 1,
+      "node": "plan_analysis",
+      "method": "plan",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    },
+    {
+      "request_number": 1,
+      "node": "llm_diagnostics",
+      "method": "diagnose",
+      "model": "MOCK Model A: prespecified gold plans + rule-based report stand-in",
+      "mode": "MOCK",
+      "status": "completed"
+    }
+  ],
+  "original_diagnostics": {},
+  "report_revisions": 0,
+  "regression_warning_codes": [],
+  "error": null,
+  "duration_seconds": 0.07815799990203232
+}

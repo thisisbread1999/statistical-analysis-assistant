@@ -1,0 +1,5 @@
+# Preserve frozen source inputs and hashed evaluation evidence byte for byte.
+# The reference checkout uses CRLF; hashes must survive Linux and Windows clones.
+examples/benchmark_v2/** -text
+artifacts/benchmark_v2/** -text
+artifacts/interpretation_checks/** -text

@@ -412,12 +412,25 @@ class Nodes:
             limitations["tool_warnings"] = "The statistical tool reported additional warnings, shown with the protected results; these warnings must be considered when interpreting the estimate."
         if method == "pearson_correlation" and result.get("t_statistic") is None:
             limitations["perfect_correlation"] = "The sample correlation lies at the boundary of its possible range. Its reported interval is degenerate; this does not establish a perfect relationship in the population."
+        regression = result.get("regression_diagnostics") or {}
+        diagnostic_codes = {w["code"] for w in regression.get("warnings", [])}
+        regression_limitations = {
+            "influential_observations": "Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed.",
+            "high_leverage": "High-leverage observations were flagged. Their predictor values are unusual; leverage alone does not establish that they are errors or influential.",
+            "heteroscedasticity": "The heteroscedasticity diagnostic flagged unequal error variance. Conventional ordinary least squares standard errors, p-values and confidence intervals may be unreliable; no robust covariance correction was applied.",
+        }
+        for code, text in regression_limitations.items():
+            if code in diagnostic_codes:
+                limitations[code] = text
+        if any(code.endswith("_unavailable") for code in diagnostic_codes):
+            limitations["regression_diagnostics_unavailable"] = "Some regression diagnostic measures could not be calculated reliably. Their absence is not evidence that no influential observations or unequal variance exist."
         sb = {"method": method, "method_label": METHODS[method].label, "data_version": s["data_version"],
               "tool_call": result["tool_call"], "values": protected_values(method, result, s["conf_level"]),
               "hypotheses": hypotheses(method, request["roles"], request["group_labels"]),
               "required_placeholders": list(METHODS[method].required), "required_limitations": limitations,
               "direction": direction_of(method, result), "decision": "reject_H0" if result["p_value"] < settings.ALPHA else "do_not_reject_H0",
               "distribution_checks": s["stat_diagnostics"].get("distribution_checks", {}),
+              "regression_diagnostics": result.get("regression_diagnostics"),
               "observed": result.get("observed"), "yates": result.get("yates_correction", False),
               "tool_warnings": result.get("tool_warnings", []), "t_statistic_note": result.get("t_statistic_note", "")}
         return {"stats_block": sb}

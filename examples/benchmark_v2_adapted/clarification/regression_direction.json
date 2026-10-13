@@ -1,0 +1,35 @@
+{
+  "id": "regression_direction",
+  "category": "clarification",
+  "design_info": {
+    "variables": {
+      "x": {
+        "type": "numeric",
+        "meaning": "Numeric source field x; units not supplied"
+      },
+      "y": {
+        "type": "numeric",
+        "meaning": "Numeric source field y; units not supplied"
+      },
+      "date": {
+        "type": "date",
+        "meaning": "Calendar date as written in the source CSV"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations.",
+    "analysis_target": "The user has not chosen the outcome or direction. Obtain a concrete target before analysis."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "interrupt",
+  "expected_primary_behavior": "stop",
+  "fixture_answers": [],
+  "expected_method": "simple_linear_regression",
+  "source_csv_sha256": "241082727125546dbec3a13c699f22b819c309a49161d206414260e28fab085b",
+  "source_json_sha256": "073d3cc2c0bdbe15d082d89106f7399ce1947a5fba5a756abdd9a7af78974f3d",
+  "adaptation_note": "Safely stop with direction unresolved; an arbitrary direction is a failure."
+}

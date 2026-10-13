@@ -113,6 +113,8 @@ def test_ols_independent_formula_and99(tmp_path):
     assert output["slope_se"] == pytest.approx(se)
     assert output["r_squared"] == pytest.approx(1-sse/np.sum((y-np.mean(y))**2))
     assert output["ci_lower"] == pytest.approx(coefficients[1]-stats.t.ppf(.975, 4)*se)
+    assert output["p_value"] == pytest.approx(2*stats.t.sf(abs(coefficients[1]/se), 4))
+    assert output["regression_diagnostics"] == execute("diagnostics", req)["regression_diagnostics"]
     result99 = execute("run_test", {**req, "conf_level": .99})
     assert result99["ci_upper"] == pytest.approx(coefficients[1]+stats.t.ppf(.995, 4)*se)
     assert result99["ci_upper"] > output["ci_upper"]

@@ -1,0 +1,40 @@
+{
+  "id": "ambiguous_outcome",
+  "category": "clarification",
+  "design_info": {
+    "variables": {
+      "group": {
+        "type": "categorical",
+        "levels": [
+          "treatment",
+          "control"
+        ],
+        "meaning": "Source text labels in group"
+      },
+      "before": {
+        "type": "numeric",
+        "meaning": "Numeric source field before; units not supplied"
+      },
+      "after": {
+        "type": "numeric",
+        "meaning": "Numeric source field after; units not supplied"
+      }
+    },
+    "randomized": false,
+    "assignment": "Observational synthetic fixture; allocation was not random.",
+    "metadata_provenance": "Evaluation adapter: source design declaration and CSV column representations",
+    "independent": true,
+    "independence": "The fixture declaration confirms independent observations.",
+    "analysis_target": "The user has not chosen the outcome or direction. Obtain a concrete target before analysis.",
+    "comparison_order": "Requested contrast: treatment minus control."
+  },
+  "source_commit": "b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5",
+  "policy_version": "ours-v1",
+  "source_expected_behavior": "interrupt",
+  "expected_primary_behavior": "stop",
+  "fixture_answers": [],
+  "expected_method": "welch_t_test",
+  "source_csv_sha256": "c3b42f26e2aa9111ebf7a68c7b1e0073b2e701fb99c6a6fec5321a9a39bf4f72",
+  "source_json_sha256": "44e383e7151d23df4ef7f5684778627e6fb97cb46a4ec39081f901548bd0be31",
+  "adaptation_note": "Safely stop with target unresolved; an arbitrary outcome is a failure."
+}
