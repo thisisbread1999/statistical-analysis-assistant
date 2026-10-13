@@ -1,0 +1,30 @@
+{
+  "scope": "Compact displayed bootstrap; actual workflow unchanged; explicit mock execution",
+  "previous_bootstrap_lines": 540,
+  "visible_bootstrap_lines": 27,
+  "metadata_codec": "zlib+base64",
+  "embedded_payload_sha256": "41db437b5deb242179773d357c9f3465a3748b36e608046ad06d938f0d0761a7",
+  "executed_code_cells": 5,
+  "total_cells": 10,
+  "independent_working_directory_files": [
+    "LangGraph_Submission.ipynb",
+    "graph.png"
+  ],
+  "embedded_python_files": 12,
+  "embedded_csv_files": 1,
+  "html_displayed_bootstrap_lines": 27,
+  "no_encoded_bundle_in_visible_html": true,
+  "renamed_notebook_override_passed": true,
+  "project_demo_unchanged": true,
+  "image_unchanged_and_matches_displayed_png": true,
+  "optional_smoke_output": "Status: delivered\nMethod: welch_t_test\nChecks: True True\nExecuted nodes: plan_analysis → prepare_data_summary → llm_diagnostics → stat_diagnostics → merge_diagnostics → run_statistical_test → build_stats_block → draft_report → check_report → review_report → deliver_report → save_session\n",
+  "zip_entries": [
+    "LangGraph_Submission.ipynb",
+    "graph.png"
+  ],
+  "sha256": {
+    "LangGraph_Submission.ipynb": "3cd65b3521de4609bf6e562bb3f0bf83002c32bb061595627ce470ba48dd81a6",
+    "graph.png": "686eb9547965c5e0068d3e5dcd448ee396b14db1843503461a9d4491e2948985",
+    "LangGraph_Visualization_Current.zip": "533336d8fca9d759136cf932b6f2d2469b2089048b4b0b2ec1cc5b558e6e22bd"
+  }
+}

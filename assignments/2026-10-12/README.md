@@ -31,10 +31,13 @@ text does not specifically authorize a ZIP as the submission format.
 
 Open the notebook in Jupyter or a compatible notebook viewer. Its opening instructions
 include the pinned installation command for Python 3.13, so a separate requirements file
-is not needed in the two-file upload. Run cells in order. The notebook embeds this project's
-Python implementation and one clean synthetic CSV, materializes them in a temporary folder,
-and displays the actual graph source and diagram. It needs neither project source folders,
-API keys nor Ollama. Diagram regeneration needs network access to the Mermaid renderer;
+is not needed in the two-file upload. Save `LangGraph_Submission.ipynb` in the notebook
+kernel's working directory, then run cells in order. Its metadata embeds this project's
+Python implementation and one clean synthetic CSV; the 27-line setup cell reads the saved
+notebook and materializes them in a temporary folder. The subsequent cells display the
+actual graph source and diagram. If the saved notebook has a different name or location,
+set `STAT_ASSISTANT_NOTEBOOK` to that notebook's path before running. It needs neither
+project source folders, API keys nor Ollama. Diagram regeneration needs network access to the Mermaid renderer;
 the executed notebook and PNG already include the generated image for offline inspection.
 
 From the repository, regenerate and execute with:
@@ -45,9 +48,10 @@ python scripts/run_notebook.py --mode mock --submission
 ```
 
 The builder refreshes both the full project notebook and the lean standalone submission,
-clearing their saved outputs. The runner's `--output` option can save an alternate executed
-notebook instead of replacing the canonical one. `--mode real --submission` is rejected
-explicitly; run real models through the project notebook/UI rather than this mock-only
+clearing their saved outputs. The submission runner creates a fresh working directory
+containing only copies of the notebook and PNG, then executes there. Its `--output` option can save an alternate
+executed notebook instead of replacing the canonical one. `--mode real --submission`
+is rejected explicitly; run real models through the project notebook/UI rather than this mock-only
 coursework artifact.
 
 ## Midterm deliverables

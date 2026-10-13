@@ -1,8 +1,8 @@
 """Keep the full project demo and generate a focused, self-contained assignment."""
 import base64
 import copy
+import hashlib
 import json
-import textwrap
 import zlib
 from pathlib import Path
 
@@ -21,19 +21,32 @@ def standalone_notebook(project, notebook):
     }
     payload.update({f"examples/{name}": (project / "examples" / name).read_text(encoding="utf-8")
                     for name in EXAMPLE_FILES})
-    encoded = base64.b64encode(zlib.compress(json.dumps(payload).encode("utf-8"), 9)).decode("ascii")
-    wrapped = "\n".join(textwrap.wrap(encoded, width=100))
-    bootstrap = '''# Collapsed bundle: the real Python package and one synthetic CSV; no credentials.
-import base64, json, os, sys, tempfile, zlib
+    payload_bytes = json.dumps(payload).encode("utf-8")
+    bundle = {
+        "codec": "zlib+base64",
+        "sha256": hashlib.sha256(payload_bytes).hexdigest(),
+        "data": base64.b64encode(zlib.compress(payload_bytes, 9)).decode("ascii"),
+    }
+    bootstrap = '''# Load real source embedded in this saved notebook's metadata.
+import base64, hashlib, json, os, sys, tempfile, zlib
 from pathlib import Path
 
+_notebook = Path(os.getenv("STAT_ASSISTANT_NOTEBOOK", "LangGraph_Submission.ipynb"))
+if not _notebook.is_file():
+    raise FileNotFoundError("Save this notebook in the kernel working directory first.")
+_metadata = json.loads(_notebook.read_text(encoding="utf-8"))["metadata"]
+_bundle = _metadata["stat_assistant"]["embedded_runtime"]
+if _bundle["codec"] != "zlib+base64":
+    raise ValueError("Unsupported embedded runtime format.")
+_payload = zlib.decompress(base64.b64decode(_bundle["data"]))
+if hashlib.sha256(_payload).hexdigest() != _bundle["sha256"]:
+    raise ValueError("Embedded runtime checksum does not match.")
+_files = json.loads(_payload)
 for _name in tuple(sys.modules):
     if _name == "stat_assistant" or _name.startswith("stat_assistant."):
         del sys.modules[_name]
 _submission_workspace = tempfile.TemporaryDirectory(prefix="sa_")
 PROJECT = Path(_submission_workspace.name)
-_encoded_files = """ENCODED_PAYLOAD"""
-_files = json.loads(zlib.decompress(base64.b64decode(_encoded_files)))
 for _relative_path, _content in _files.items():
     _target = PROJECT / _relative_path
     _target.parent.mkdir(parents=True, exist_ok=True)
@@ -41,7 +54,7 @@ for _relative_path, _content in _files.items():
 sys.path.insert(0, str(PROJECT))
 os.environ.setdefault("LLM_MODE", "mock")
 print("Embedded project source ready; no external project files required.")
-'''.replace("ENCODED_PAYLOAD", wrapped)
+'''
     intro = '''# Agentic Statistical Analysis Assistant — LangGraph Visualization
 **Jingcheng Zhou and Junliang Lyu · Module 6**
 
@@ -60,8 +73,12 @@ Run in order. This focused submission uses **explicit mock agents**, the real gr
 real Python/SciPy statistics. No LLM service or API key is required. Leave `LLM_MODE`
 unset or set it to `mock`; other modes are rejected to prevent accidental provider calls.
 The PNG-rendering cell uses Mermaid's rendering service and needs internet access.
-The collapsed next cell bundles our actual runtime source so this notebook works without
-the repository. It contains no credentials, user uploads or benchmark scores. The graph
+The next short cell loads our actual runtime source from this notebook's metadata;
+the source and one synthetic CSV are embedded here, so no repository is required.
+**Before Run All, save this notebook as `LangGraph_Submission.ipynb` in the kernel's
+working directory.** If it is saved elsewhere, set `STAT_ASSISTANT_NOTEBOOK` to the
+path of this same notebook before running. No external source file is needed.
+The embedded files contain no credentials, user uploads or benchmark scores. The graph
 builder itself is displayed separately below. Mock execution checks control flow, not
 the accuracy of a real LLM.
 '''
@@ -164,7 +181,7 @@ print("Executed nodes:", " → ".join(item["node"] for item in example["trace"])
     result.metadata = copy.deepcopy(notebook.metadata)
     result.cells = [
         nbformat.v4.new_markdown_cell(intro),
-        nbformat.v4.new_code_cell(bootstrap, metadata={"jupyter": {"source_hidden": True}, "collapsed": True}),
+        nbformat.v4.new_code_cell(bootstrap),
         nbformat.v4.new_markdown_cell(source_intro),
         nbformat.v4.new_code_cell(source_cell),
         nbformat.v4.new_code_cell(compile_cell),
@@ -174,7 +191,12 @@ print("Executed nodes:", " → ".join(item["node"] for item in example["trace"])
         nbformat.v4.new_markdown_cell(example_intro),
         nbformat.v4.new_code_cell(example_cell),
     ]
-    result.metadata["stat_assistant"] = {"layout": "standalone", "source": "demo.ipynb", "purpose": "langgraph_visualization"}
+    result.metadata["stat_assistant"] = {
+        "layout": "standalone",
+        "source": "demo.ipynb",
+        "purpose": "langgraph_visualization",
+        "embedded_runtime": bundle,
+    }
     return result
 
 

@@ -302,3 +302,26 @@ and `graph.png`, with entry bytes verified against the canonical files. It is a 
 convenience; the assignment specifies uploading the notebook and image. Detailed
 execution, counts, hashes and archive checks are recorded in
 `artifacts/verification/langgraph_submission_lean.json`.
+
+### Compact displayed bootstrap (2026-10-12)
+
+The user's notebook viewer did not honor the previous collapsed-source metadata.
+The 540-line encoded-source cell was therefore replaced with **27 lines of readable
+setup code**. The same complete runtime source and one clean CSV now reside in
+`metadata.stat_assistant.embedded_runtime`, with format and SHA256 integrity checks.
+No encoded payload remains in displayed cell source. The notebook must be saved in
+its kernel working directory, or `STAT_ASSISTANT_NOTEBOOK` must point to that same
+saved notebook; no additional source file is required.
+
+The submission runner staged only the notebook and PNG in a fresh directory.
+All five code cells executed there successfully in explicit mock mode, and the optional
+Welch run delivered with passing program and mock review checks. Exported HTML displays
+exactly 27 setup-code lines and no encoded payload. Loading a renamed notebook through
+the documented path override also passed. An initial supplemental path check encountered
+the sandbox's default temporary-directory permissions; repeating with the project's
+authorized temporary directory passed. The full notebook execution itself had no failures.
+
+All twelve embedded Python files match current source. The full project demo and PNG
+are byte-for-byte unchanged, and the PNG matches the displayed compiled-graph image.
+The updated two-file ZIP was verified against the canonical notebook/image bytes.
+Evidence and current hashes are in `artifacts/verification/langgraph_submission_compact.json`.

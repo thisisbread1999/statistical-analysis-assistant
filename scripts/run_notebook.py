@@ -5,6 +5,7 @@ from pathlib import Path
 import nbformat
 from nbclient import NotebookClient
 import sys
+import shutil
 
 root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(root))
@@ -33,8 +34,16 @@ nb = nbformat.read(path, as_version=4)
 from jupyter_client import KernelManager
 km = KernelManager(kernel_name='python3')
 km.kernel_spec.argv = [os.sys.executable, '-m', 'ipykernel_launcher', '-f', '{connection_file}']
-working_directory = runtime_dir / 'standalone_cwd' if args.submission else root
-working_directory.mkdir(parents=True, exist_ok=True)
+if args.submission:
+    # Reproduce the two-file upload: the notebook reads its own embedded metadata.
+    working_directory = Path(tempfile.mkdtemp(prefix='nb_', dir=runtime_dir))
+    shutil.copy2(path, working_directory / path.name)
+    image_path = path.parent / 'graph.png'
+    if image_path.exists():
+        shutil.copy2(image_path, working_directory / image_path.name)
+    os.environ.pop('STAT_ASSISTANT_NOTEBOOK', None)
+else:
+    working_directory = root
 client = NotebookClient(nb, km=km, timeout=900, allow_errors=False,
                         resources={'metadata': {'path': str(working_directory)}})
 def save_progress(cell, cell_index, **kwargs):
