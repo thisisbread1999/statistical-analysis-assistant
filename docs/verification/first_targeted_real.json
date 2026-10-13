@@ -1,0 +1,579 @@
+{
+  "executed_at": "2026-10-12T23:54:19.459731+00:00",
+  "configuration": {
+    "mode": "real",
+    "model_a": "ollama:qwen3:8b",
+    "model_b": "ollama:gemma3:12b"
+  },
+  "cases": {
+    "pearson": {
+      "status": "stopped",
+      "request_number": 1,
+      "method": "pearson_correlation",
+      "revisions": 1,
+      "program_check": {
+        "report_version": "draft2",
+        "passed": false,
+        "problems": [
+          {
+            "check": "unknown_placeholder",
+            "detail": "not available: ['decision_claim', 'direction_claim']; use only ['alpha', 'ci_lower', 'ci_upper', 'confidence_level', 'df', 'n', 'null_value', 'p_value', 'r', 't_statistic']"
+          },
+          {
+            "check": "decision_wording",
+            "detail": "the statistical result rejects H0; the text must say that H0 is rejected"
+          }
+        ]
+      },
+      "review": {
+        "passed": true,
+        "issues": [],
+        "summary": "The report is accurate and well-written. All claims are supported by the evidence, and the limitations are appropriately addressed."
+      },
+      "result": {
+        "task": "run_test",
+        "data_version": "v1",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\data\\students_synthetic.csv",
+        "method": "pearson_correlation",
+        "request_format": "v2",
+        "n_rows_in_file": 120,
+        "columns_found": [
+          "student_id",
+          "tutoring",
+          "study_hours",
+          "score",
+          "passed"
+        ],
+        "missing_required_columns": [],
+        "excluded_ids": [],
+        "request_warnings": [
+          "valid_levels.tutoring was not applied: column has no analysis role",
+          "valid_levels.passed was not applied: column has no analysis role"
+        ],
+        "python_version": "3.13.5",
+        "scipy_version": "1.18.1",
+        "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+        "status": "ok",
+        "alternative": "two-sided",
+        "conf_level": 0.95,
+        "alpha": 0.05,
+        "n_included": 120,
+        "tool_warnings": [],
+        "perfect_correlation": false,
+        "method_label": "Pearson product-moment correlation",
+        "n": 120,
+        "r": 0.7171343035936131,
+        "ci_lower": 0.6172320406939709,
+        "ci_upper": 0.7942789382913792,
+        "t_statistic": 11.177617068509793,
+        "df": 118,
+        "p_value": 3.1828210558707106e-20,
+        "ci_method": "Fisher z normal approximation",
+        "decision": "reject_H0"
+      },
+      "final_report": "No validated inferential report was delivered.\nThe report did not pass the program checks and review within the revision limit.",
+      "trace": [
+        {
+          "request_number": 1,
+          "node": "plan_analysis",
+          "status": "completed",
+          "start": 1791849106.843922,
+          "end": 1791849116.3516376,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 1
+        },
+        {
+          "request_number": 1,
+          "node": "prepare_data_summary",
+          "status": "completed",
+          "start": 1791849116.3524637,
+          "end": 1791849116.3550062,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 2
+        },
+        {
+          "request_number": 1,
+          "node": "llm_diagnostics",
+          "status": "completed",
+          "start": 1791849116.3557284,
+          "end": 1791849124.9191263,
+          "thread": "ThreadPoolExecutor-1_0",
+          "data_version": "v1",
+          "step": 3
+        },
+        {
+          "request_number": 1,
+          "node": "stat_diagnostics",
+          "status": "completed",
+          "start": 1791849116.3579433,
+          "end": 1791849116.3604975,
+          "thread": "ThreadPoolExecutor-1_1",
+          "data_version": "v1",
+          "step": 3
+        },
+        {
+          "request_number": 1,
+          "node": "merge_diagnostics",
+          "status": "completed",
+          "start": 1791849124.919751,
+          "end": 1791849127.360586,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 4
+        },
+        {
+          "request_number": 1,
+          "node": "run_statistical_test",
+          "status": "completed",
+          "start": 1791849127.3611796,
+          "end": 1791849127.3643596,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 5
+        },
+        {
+          "request_number": 1,
+          "node": "build_stats_block",
+          "status": "completed",
+          "start": 1791849127.3647842,
+          "end": 1791849127.3648045,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 6
+        },
+        {
+          "request_number": 1,
+          "node": "draft_report",
+          "status": "completed",
+          "start": 1791849127.3655012,
+          "end": 1791849130.1307468,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 7
+        },
+        {
+          "request_number": 1,
+          "node": "check_report",
+          "status": "completed",
+          "start": 1791849130.131316,
+          "end": 1791849130.1320674,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 8
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "status": "completed",
+          "start": 1791849130.1324987,
+          "end": 1791849147.7556367,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 9
+        },
+        {
+          "request_number": 1,
+          "node": "revise_report",
+          "status": "completed",
+          "start": 1791849147.7562375,
+          "end": 1791849158.8116407,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 10
+        },
+        {
+          "request_number": 1,
+          "node": "check_report",
+          "status": "completed",
+          "start": 1791849158.8120902,
+          "end": 1791849158.8122263,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 11
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "status": "completed",
+          "start": 1791849158.8125362,
+          "end": 1791849170.7387033,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 12
+        },
+        {
+          "request_number": 1,
+          "node": "issue_notice",
+          "status": "completed",
+          "start": 1791849170.7393239,
+          "end": 1791849170.739328,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 13
+        },
+        {
+          "request_number": 1,
+          "node": "save_session",
+          "status": "completed",
+          "start": 1791849170.739646,
+          "end": 1791849170.7396522,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 14
+        }
+      ],
+      "model_calls": [
+        {
+          "request_number": 1,
+          "node": "plan_analysis",
+          "method": "plan",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "llm_diagnostics",
+          "method": "diagnose",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "merge_diagnostics",
+          "method": "merge",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "draft_report",
+          "method": "draft",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "method": "review",
+          "model": "ollama:gemma3:12b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "revise_report",
+          "method": "revise",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "method": "review",
+          "model": "ollama:gemma3:12b",
+          "mode": "REAL",
+          "status": "completed"
+        }
+      ],
+      "errors": []
+    },
+    "regression": {
+      "status": "stopped",
+      "request_number": 1,
+      "method": "simple_linear_regression",
+      "revisions": 1,
+      "program_check": {
+        "report_version": "draft2",
+        "passed": false,
+        "problems": [
+          {
+            "check": "field_binding",
+            "detail": "slope was labelled with {null_value}; use {slope}."
+          }
+        ]
+      },
+      "review": {
+        "passed": true,
+        "issues": [
+          {
+            "severity": "minor",
+            "category": "numeric_mismatch",
+            "offending_sentence": "The estimated slope is 1.704 (change in score per one additional study hour) with a 95% confidence interval ranging from 1.402 to 2.006, t(118) = 11.178, p < 0.0001.",
+            "evidence": "Report draft: 'The estimated slope is 1.704...'; Protected statistics: 'slope': '1.704'",
+            "suggested_correction": "The estimated slope is 1.704 (change in score per one additional study hour) with a 95% confidence interval ranging from 1.402 to 2.006, t(118) = 11.178, p < 0.0001."
+          },
+          {
+            "severity": "minor",
+            "category": "numeric_mismatch",
+            "offending_sentence": "R-squared = 0.514 indicates that 0.514 of the variation in score is explained by study hours.",
+            "evidence": "Report draft: 'R-squared = 0.514...'; Protected statistics: 'r_squared': '0.514'",
+            "suggested_correction": "R-squared = 0.514 indicates that 0.514 of the variation in score is explained by study hours."
+          }
+        ],
+        "summary": "The report contains minor numeric mismatches. The reported slope and R-squared values are slightly different from the protected statistics, although the difference is minimal and likely due to rounding. These differences should be corrected for consistency."
+      },
+      "result": {
+        "task": "run_test",
+        "data_version": "v1",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\data\\students_synthetic.csv",
+        "method": "simple_linear_regression",
+        "request_format": "v2",
+        "n_rows_in_file": 120,
+        "columns_found": [
+          "student_id",
+          "tutoring",
+          "study_hours",
+          "score",
+          "passed"
+        ],
+        "missing_required_columns": [],
+        "excluded_ids": [],
+        "request_warnings": [
+          "valid_levels.tutoring was not applied: column has no analysis role",
+          "valid_levels.passed was not applied: column has no analysis role"
+        ],
+        "python_version": "3.13.5",
+        "scipy_version": "1.18.1",
+        "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+        "status": "ok",
+        "alternative": "two-sided",
+        "conf_level": 0.95,
+        "alpha": 0.05,
+        "n_included": 120,
+        "tool_warnings": [],
+        "method_label": "Ordinary least squares (one predictor, with intercept)",
+        "n": 120,
+        "slope": 1.7044644645356775,
+        "slope_se": 0.1524890729471838,
+        "intercept": 46.91398306903854,
+        "ci_lower": 1.402494585061007,
+        "ci_upper": 2.006434344010348,
+        "t_statistic": 11.177617068509798,
+        "df": 118,
+        "p_value": 3.182821055870635e-20,
+        "r_squared": 0.5142816093906964,
+        "decision": "reject_H0"
+      },
+      "final_report": "No validated inferential report was delivered.\nThe report did not pass the program checks and review within the revision limit.",
+      "trace": [
+        {
+          "request_number": 1,
+          "node": "plan_analysis",
+          "status": "completed",
+          "start": 1791849170.750866,
+          "end": 1791849181.096345,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 1
+        },
+        {
+          "request_number": 1,
+          "node": "prepare_data_summary",
+          "status": "completed",
+          "start": 1791849181.096967,
+          "end": 1791849181.0996819,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 2
+        },
+        {
+          "request_number": 1,
+          "node": "llm_diagnostics",
+          "status": "completed",
+          "start": 1791849181.1002834,
+          "end": 1791849191.590545,
+          "thread": "ThreadPoolExecutor-2_0",
+          "data_version": "v1",
+          "step": 3
+        },
+        {
+          "request_number": 1,
+          "node": "stat_diagnostics",
+          "status": "completed",
+          "start": 1791849181.1025212,
+          "end": 1791849181.117821,
+          "thread": "ThreadPoolExecutor-2_1",
+          "data_version": "v1",
+          "step": 3
+        },
+        {
+          "request_number": 1,
+          "node": "merge_diagnostics",
+          "status": "completed",
+          "start": 1791849191.5911896,
+          "end": 1791849195.588018,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 4
+        },
+        {
+          "request_number": 1,
+          "node": "run_statistical_test",
+          "status": "completed",
+          "start": 1791849195.588627,
+          "end": 1791849195.6028142,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 5
+        },
+        {
+          "request_number": 1,
+          "node": "build_stats_block",
+          "status": "completed",
+          "start": 1791849195.6033409,
+          "end": 1791849195.603366,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 6
+        },
+        {
+          "request_number": 1,
+          "node": "draft_report",
+          "status": "completed",
+          "start": 1791849195.6040938,
+          "end": 1791849201.3908129,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 7
+        },
+        {
+          "request_number": 1,
+          "node": "check_report",
+          "status": "completed",
+          "start": 1791849201.3913155,
+          "end": 1791849201.39151,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 8
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "status": "completed",
+          "start": 1791849201.3920922,
+          "end": 1791849224.2645524,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 9
+        },
+        {
+          "request_number": 1,
+          "node": "revise_report",
+          "status": "completed",
+          "start": 1791849224.2653718,
+          "end": 1791849237.1986847,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 10
+        },
+        {
+          "request_number": 1,
+          "node": "check_report",
+          "status": "completed",
+          "start": 1791849237.1992645,
+          "end": 1791849237.199489,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 11
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "status": "completed",
+          "start": 1791849237.1999252,
+          "end": 1791849259.450255,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 12
+        },
+        {
+          "request_number": 1,
+          "node": "issue_notice",
+          "status": "completed",
+          "start": 1791849259.4509578,
+          "end": 1791849259.450962,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 13
+        },
+        {
+          "request_number": 1,
+          "node": "save_session",
+          "status": "completed",
+          "start": 1791849259.4512932,
+          "end": 1791849259.4513,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 14
+        }
+      ],
+      "model_calls": [
+        {
+          "request_number": 1,
+          "node": "plan_analysis",
+          "method": "plan",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "llm_diagnostics",
+          "method": "diagnose",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "merge_diagnostics",
+          "method": "merge",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "draft_report",
+          "method": "draft",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "method": "review",
+          "model": "ollama:gemma3:12b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "revise_report",
+          "method": "revise",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "method": "review",
+          "model": "ollama:gemma3:12b",
+          "mode": "REAL",
+          "status": "completed"
+        }
+      ],
+      "errors": []
+    }
+  },
+  "reason": "Retest after replacing literal hypothesis zero in sentence plans with protected null_value."
+}

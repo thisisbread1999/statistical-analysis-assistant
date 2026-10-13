@@ -1,0 +1,48 @@
+"""The Python -> R bridge: write a request JSON, run Rscript, read the result JSON.
+
+R does every statistical computation; Python never recomputes it. RStudio is only the environment in which
+the R script is developed; the workflow calls Rscript directly.
+"""
+import glob
+import json
+import os
+import shutil
+import subprocess
+from pathlib import Path
+
+from . import settings
+
+
+class RToolError(RuntimeError):
+    """Rscript failed (non-zero exit), timed out, or wrote no result."""
+
+
+def find_rscript() -> str:
+    """Locate Rscript: env var RSCRIPT_PATH, then PATH, then the default Windows install folder."""
+    if os.getenv("RSCRIPT_PATH"):
+        return os.environ["RSCRIPT_PATH"]
+    on_path = shutil.which("Rscript")
+    if on_path:
+        return on_path
+    candidates = sorted(glob.glob(r"C:\Program Files\R\R-*\bin\Rscript.exe"))
+    if candidates:
+        return candidates[-1]
+    raise RToolError("Rscript not found. Install R (with the jsonlite package) or set RSCRIPT_PATH.")
+
+
+def run_r_tool(task: str, request: dict, tag: str) -> dict:
+    """Run one R task. Python writes request JSON -> Rscript computes -> Python reads result JSON."""
+    io_dir = Path(settings.OUTPUT_DIR) / "r_io"
+    io_dir.mkdir(parents=True, exist_ok=True)
+    request_path = io_dir / f"{tag}_{task}_request.json"
+    result_path = io_dir / f"{tag}_{task}_result.json"
+    request_path.write_text(json.dumps(request, indent=2), encoding="utf-8")
+    result_path.unlink(missing_ok=True)
+    try:
+        proc = subprocess.run([find_rscript(), str(settings.R_SCRIPT), task, str(request_path), str(result_path)],
+                              capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
+    except subprocess.TimeoutExpired:
+        raise RToolError(f"R task '{task}' timed out after 180 s")
+    if proc.returncode != 0 or not result_path.exists():
+        raise RToolError(f"R task '{task}' failed: {proc.stderr.strip()[-800:]}")
+    return json.loads(result_path.read_text(encoding="utf-8"))

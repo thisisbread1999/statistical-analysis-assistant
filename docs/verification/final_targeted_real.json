@@ -1,0 +1,504 @@
+{
+  "executed_at": "2026-10-12T23:58:00.715990+00:00",
+  "configuration": {
+    "mode": "real",
+    "model_a": "ollama:qwen3:8b",
+    "model_b": "ollama:gemma3:12b"
+  },
+  "cases": {
+    "pearson": {
+      "status": "delivered",
+      "request_number": 1,
+      "method": "pearson_correlation",
+      "revisions": 1,
+      "program_check": {
+        "report_version": "draft2",
+        "passed": true,
+        "problems": []
+      },
+      "review": {
+        "passed": true,
+        "issues": [],
+        "summary": "The report is accurate and well-written. All claims are supported by the evidence, and the limitations are appropriately addressed."
+      },
+      "result": {
+        "task": "run_test",
+        "data_version": "v1",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\data\\students_synthetic.csv",
+        "method": "pearson_correlation",
+        "request_format": "v2",
+        "n_rows_in_file": 120,
+        "columns_found": [
+          "student_id",
+          "tutoring",
+          "study_hours",
+          "score",
+          "passed"
+        ],
+        "missing_required_columns": [],
+        "excluded_ids": [],
+        "request_warnings": [
+          "valid_levels.tutoring was not applied: column has no analysis role",
+          "valid_levels.passed was not applied: column has no analysis role"
+        ],
+        "python_version": "3.13.5",
+        "scipy_version": "1.18.1",
+        "tool_call": "scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95)",
+        "status": "ok",
+        "alternative": "two-sided",
+        "conf_level": 0.95,
+        "alpha": 0.05,
+        "n_included": 120,
+        "tool_warnings": [],
+        "perfect_correlation": false,
+        "method_label": "Pearson product-moment correlation",
+        "n": 120,
+        "r": 0.7171343035936131,
+        "ci_lower": 0.6172320406939709,
+        "ci_upper": 0.7942789382913792,
+        "t_statistic": 11.177617068509793,
+        "df": 118,
+        "p_value": 3.1828210558707106e-20,
+        "ci_method": "Fisher z normal approximation",
+        "decision": "reject_H0"
+      },
+      "final_report": "REAL: two distinct models; statistics computed with Python.\n\nMethod: Pearson correlation test (two-sided)  (data version v1; Python: scipy.stats.pearsonr(x, y, alternative='two-sided'); Fisher-z interval(confidence_level=0.95))\nH0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of study_hours and score); α = 0.05\n\nn = 120; r = 0.717 (95% CI 0.617 to 0.794); t(118) = 11.178; p < 0.0001\nDecision at α = 0.05: reject_H0\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'study_hours', 'role': 'x', 'n': 120, 'shapiro_wilk_p': 0.0018522590638066123}, {'check': 'shapiro_wilk', 'variable': 'score', 'role': 'y', 'n': 120, 'shapiro_wilk_p': 0.2879297450158085}]\n\nA total of 120 records were analysed. Pearson's r = 0.717 with its 95% CI [0.617, 0.794] and p < 0.0001. The decision at 0.05 is to reject H0 (rho = 0). The data suggest a positive linear association between study hours and score. Correlation does not establish causation.\n\nLimitations:\n- Pearson's r measures only linear association; a weak r does not rule out a non-linear relationship.\n- Random allocation was not established. This analysis describes an association and does not establish causation.\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+      "trace": [
+        {
+          "request_number": 1,
+          "node": "plan_analysis",
+          "status": "completed",
+          "start": 1791849354.439071,
+          "end": 1791849364.3209777,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 1
+        },
+        {
+          "request_number": 1,
+          "node": "prepare_data_summary",
+          "status": "completed",
+          "start": 1791849364.3216755,
+          "end": 1791849364.3240595,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 2
+        },
+        {
+          "request_number": 1,
+          "node": "llm_diagnostics",
+          "status": "completed",
+          "start": 1791849364.3247368,
+          "end": 1791849372.912125,
+          "thread": "ThreadPoolExecutor-1_0",
+          "data_version": "v1",
+          "step": 3
+        },
+        {
+          "request_number": 1,
+          "node": "stat_diagnostics",
+          "status": "completed",
+          "start": 1791849364.3267276,
+          "end": 1791849364.3289518,
+          "thread": "ThreadPoolExecutor-1_1",
+          "data_version": "v1",
+          "step": 3
+        },
+        {
+          "request_number": 1,
+          "node": "merge_diagnostics",
+          "status": "completed",
+          "start": 1791849372.9127305,
+          "end": 1791849375.3566542,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 4
+        },
+        {
+          "request_number": 1,
+          "node": "run_statistical_test",
+          "status": "completed",
+          "start": 1791849375.357256,
+          "end": 1791849375.360429,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 5
+        },
+        {
+          "request_number": 1,
+          "node": "build_stats_block",
+          "status": "completed",
+          "start": 1791849375.3608925,
+          "end": 1791849375.3609128,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 6
+        },
+        {
+          "request_number": 1,
+          "node": "draft_report",
+          "status": "completed",
+          "start": 1791849375.3616767,
+          "end": 1791849378.21944,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 7
+        },
+        {
+          "request_number": 1,
+          "node": "check_report",
+          "status": "completed",
+          "start": 1791849378.219929,
+          "end": 1791849378.2205927,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 8
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "status": "completed",
+          "start": 1791849378.2209442,
+          "end": 1791849410.7384348,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 9
+        },
+        {
+          "request_number": 1,
+          "node": "revise_report",
+          "status": "completed",
+          "start": 1791849410.7390842,
+          "end": 1791849424.048131,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 10
+        },
+        {
+          "request_number": 1,
+          "node": "check_report",
+          "status": "completed",
+          "start": 1791849424.0485873,
+          "end": 1791849424.0487304,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 11
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "status": "completed",
+          "start": 1791849424.0490594,
+          "end": 1791849435.844339,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 12
+        },
+        {
+          "request_number": 1,
+          "node": "deliver_report",
+          "status": "completed",
+          "start": 1791849435.8449998,
+          "end": 1791849435.845026,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 13
+        },
+        {
+          "request_number": 1,
+          "node": "save_session",
+          "status": "completed",
+          "start": 1791849435.845383,
+          "end": 1791849435.845495,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 14
+        }
+      ],
+      "model_calls": [
+        {
+          "request_number": 1,
+          "node": "plan_analysis",
+          "method": "plan",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "llm_diagnostics",
+          "method": "diagnose",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "merge_diagnostics",
+          "method": "merge",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "draft_report",
+          "method": "draft",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "method": "review",
+          "model": "ollama:gemma3:12b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "revise_report",
+          "method": "revise",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "method": "review",
+          "model": "ollama:gemma3:12b",
+          "mode": "REAL",
+          "status": "completed"
+        }
+      ],
+      "errors": []
+    },
+    "regression": {
+      "status": "delivered",
+      "request_number": 1,
+      "method": "simple_linear_regression",
+      "revisions": 0,
+      "program_check": {
+        "report_version": "draft1",
+        "passed": true,
+        "problems": []
+      },
+      "review": {
+        "passed": true,
+        "issues": [],
+        "summary": "The report is well-written and accurately reflects the statistical results. All limitations are appropriately stated and the interpretation is consistent with the design and analysis plan. No critical issues were found."
+      },
+      "result": {
+        "task": "run_test",
+        "data_version": "v1",
+        "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\data\\students_synthetic.csv",
+        "method": "simple_linear_regression",
+        "request_format": "v2",
+        "n_rows_in_file": 120,
+        "columns_found": [
+          "student_id",
+          "tutoring",
+          "study_hours",
+          "score",
+          "passed"
+        ],
+        "missing_required_columns": [],
+        "excluded_ids": [],
+        "request_warnings": [
+          "valid_levels.tutoring was not applied: column has no analysis role",
+          "valid_levels.passed was not applied: column has no analysis role"
+        ],
+        "python_version": "3.13.5",
+        "scipy_version": "1.18.1",
+        "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+        "status": "ok",
+        "alternative": "two-sided",
+        "conf_level": 0.95,
+        "alpha": 0.05,
+        "n_included": 120,
+        "tool_warnings": [],
+        "method_label": "Ordinary least squares (one predictor, with intercept)",
+        "n": 120,
+        "slope": 1.7044644645356775,
+        "slope_se": 0.1524890729471838,
+        "intercept": 46.91398306903854,
+        "ci_lower": 1.402494585061007,
+        "ci_upper": 2.006434344010348,
+        "t_statistic": 11.177617068509798,
+        "df": 118,
+        "p_value": 3.182821055870635e-20,
+        "r_squared": 0.5142816093906964,
+        "decision": "reject_H0"
+      },
+      "final_report": "REAL: two distinct models; statistics computed with Python.\n\nMethod: simple linear regression (one predictor, with intercept)  (data version v1; Python: NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95))\nH0: β1 = 0 versus H1: β1 ≠ 0 (slope of score on study_hours); α = 0.05\n\nn = 120; slope = 1.704 (95% CI 1.402 to 2.006); intercept = 46.914; t(118) = 11.178; p < 0.0001; R-squared = 0.514\nDecision at α = 0.05: reject_H0\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'residuals', 'n': 120, 'shapiro_wilk_p': 0.016567815841387865}, {'check': 'spread_check', 'variable': '|residual| vs fitted value', 'method': 'spearman', 'n': 120, 'spearman_rho': -0.05001093837626436, 'p_value': 0.587510075831167}]\n\nA total of 120 records were analysed. The estimated slope is 1.704 (change in score per one additional study hour) with a 95% confidence interval ranging from 1.402 to 2.006, t(118) = 11.178, p < 0.0001. The decision at 0.05 is to reject H0 (slope = 0), indicating a statistically significant linear relationship between study hours and score. R-squared = 0.514 indicates that 0.514 of the variation in score is explained by study hours. That the slope describes an association, not the effect of changing study hours.\n\nLimitations:\n- The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.\n- Random allocation was not established. This analysis describes an association and does not establish causation.\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+      "trace": [
+        {
+          "request_number": 1,
+          "node": "plan_analysis",
+          "status": "completed",
+          "start": 1791849435.8573847,
+          "end": 1791849446.2326102,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 1
+        },
+        {
+          "request_number": 1,
+          "node": "prepare_data_summary",
+          "status": "completed",
+          "start": 1791849446.233487,
+          "end": 1791849446.2366915,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 2
+        },
+        {
+          "request_number": 1,
+          "node": "llm_diagnostics",
+          "status": "completed",
+          "start": 1791849446.2375698,
+          "end": 1791849456.9197047,
+          "thread": "ThreadPoolExecutor-2_0",
+          "data_version": "v1",
+          "step": 3
+        },
+        {
+          "request_number": 1,
+          "node": "stat_diagnostics",
+          "status": "completed",
+          "start": 1791849446.2402358,
+          "end": 1791849446.2473736,
+          "thread": "ThreadPoolExecutor-2_2",
+          "data_version": "v1",
+          "step": 3
+        },
+        {
+          "request_number": 1,
+          "node": "merge_diagnostics",
+          "status": "completed",
+          "start": 1791849456.9204352,
+          "end": 1791849460.9181445,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 4
+        },
+        {
+          "request_number": 1,
+          "node": "run_statistical_test",
+          "status": "completed",
+          "start": 1791849460.9188964,
+          "end": 1791849460.9335272,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 5
+        },
+        {
+          "request_number": 1,
+          "node": "build_stats_block",
+          "status": "completed",
+          "start": 1791849460.9341974,
+          "end": 1791849460.9342272,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 6
+        },
+        {
+          "request_number": 1,
+          "node": "draft_report",
+          "status": "completed",
+          "start": 1791849460.935038,
+          "end": 1791849466.6398475,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 7
+        },
+        {
+          "request_number": 1,
+          "node": "check_report",
+          "status": "completed",
+          "start": 1791849466.640348,
+          "end": 1791849466.6406603,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 8
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "status": "completed",
+          "start": 1791849466.6410594,
+          "end": 1791849480.7021823,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 9
+        },
+        {
+          "request_number": 1,
+          "node": "deliver_report",
+          "status": "completed",
+          "start": 1791849480.7030458,
+          "end": 1791849480.703082,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 10
+        },
+        {
+          "request_number": 1,
+          "node": "save_session",
+          "status": "completed",
+          "start": 1791849480.703591,
+          "end": 1791849480.7037535,
+          "thread": "MainThread",
+          "data_version": "v1",
+          "step": 11
+        }
+      ],
+      "model_calls": [
+        {
+          "request_number": 1,
+          "node": "plan_analysis",
+          "method": "plan",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "llm_diagnostics",
+          "method": "diagnose",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "merge_diagnostics",
+          "method": "merge",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "draft_report",
+          "method": "draft",
+          "model": "ollama:qwen3:8b",
+          "mode": "REAL",
+          "status": "completed"
+        },
+        {
+          "request_number": 1,
+          "node": "review_report",
+          "method": "review",
+          "model": "ollama:gemma3:12b",
+          "mode": "REAL",
+          "status": "completed"
+        }
+      ],
+      "errors": []
+    }
+  },
+  "reason": "Retest after adding protected null/decision/direction fields and distinguishing null hypotheses from estimated slopes."
+}

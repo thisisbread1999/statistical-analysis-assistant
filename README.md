@@ -1,91 +1,100 @@
-# Agentic Statistical Analysis Assistant: Multi-Agent LangGraph (Module 6)
+# Agentic Statistical Analysis Assistant — Python v2
 
-This folder holds the deliverables for *Visualize Your Multi-Agent LangGraph*:
+A course-scale statistical assistant with **two distinct LLMs**, **17 real LangGraph nodes**,
+and **Python/SciPy statistical tools**. Model A plans and explains; Model B reviews against
+original evidence. The user resolves data issues before inference. No R installation is
+required for v2. No model training or paid API is required when using installed local Ollama models.
 
-| File | What it is |
+## Open these files
+
+| File | Purpose |
 |---|---|
-| `stats_assistant_graph.ipynb` | Main notebook: dependencies, State, nodes, routers, graph build + compile, diagram, explanation, examples |
-| `stats_assistant_langgraph.png` | Diagram rendered by `graph.get_graph().draw_mermaid_png()` from the compiled graph object |
-| `r/stats_tools.R` | R tool called through `Rscript` (tasks: `summary`, `diagnostics`, `welch_test`) |
-| `r/make_synthetic_data.R` | Recreates the synthetic CSV files |
-| `data/*.csv` | Four synthetic datasets: messy, clean, no difference, unequal variances (see `data/README.md`) |
-| `tests/run_checks.py` | Automated control-flow checks of the notebook's graph (labelled test inputs, mock mode) |
-| `tests/check_real_mode_payloads.py` | Offline check that the real-mode requests for both providers can be built (nothing is sent) |
-| `requirements.txt`, `.env.example` | Python dependencies (exact versions used) and model/key settings |
-| `outputs/` | Created at run time: R request/result JSON, new data versions, session records, Mermaid text |
+| `stats_assistant_v2.ipynb` | Main v2 deliverable: executable graph, actual diagram, node/edge/handoff explanation and examples |
+| `stats_assistant_v2_langgraph.png` | LangGraph-rendered image from the same graph that runs the examples |
+| `stats_assistant/` | Python package: agents, graph, statistics, report guards and session helpers |
+| `docs/TEAM_ALIGNMENT.md` | Verified alignment with the teammate's repository and intentional differences |
+| `docs/PYTHON_TOOLS_SPEC.md` | Tool contract and specific statistical/data checks |
+| `docs/VERIFICATION.md` | What was actually tested, including limitations of the evidence |
+| `tests/test_*.py` | Offline pytest tests; LLMs are explicitly mocked |
+| `scripts/` | Reproducible synthetic-data generation, notebook generation and headless execution |
 
-## How Python and R work together
+The original Module 6 v1 is preserved at Git tag `module6-submission-v1`. Its notebook,
+diagram, four original CSV files and R tool are retained. `docs/V1_README.md` is its historical
+setup guide. The unfinished R v2 extension and bridge are archived in `legacy/`; active v2
+code does not import or execute them.
 
-LangGraph runs in Python. A node that needs statistics writes a request JSON file and runs
-`Rscript r/stats_tools.R <task> request.json result.json`; R computes the result and writes a result JSON file; Python reads it back into the graph state.
-RStudio is used only to develop and test the R script. The workflow itself never calls RStudio.
+## Run on Windows
 
-## Setup on Windows (PowerShell)
+From this project folder:
 
-Run these from this folder (`...\agentic ai\langgraph_visualization`).
+```powershell
+py -m venv "$env:USERPROFILE\.venvs\langgraph-viz"
+& "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" -m pip install -r requirements.txt
+```
 
-1. **R** (4.x) with `jsonlite`. If `Rscript` is not on PATH, use its full path:
-   ```powershell
-   & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" -e "install.packages('jsonlite', repos='https://cloud.r-project.org')"
-   ```
-2. **Python environment.** Create it in a short path; long OneDrive paths can hit the Windows path-length limit during `pip install`:
-   ```powershell
-   py -m venv "$env:USERPROFILE\.venvs\langgraph-viz"
-   & "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" -m pip install -r requirements.txt
-   ```
-3. **Models.** Copy `.env.example` to `.env`. Model A and Model B are configured separately (`MODEL_A`, `MODEL_B`). The notebook refuses to run if both settings resolve to the same provider and model. Choose one option:
-   * **Local models via Ollama** (free, no key; the default in `.env.example`). Install Ollama, for example with `winget install Ollama.Ollama`, then download the two models (about 13.4 GB in total):
-     ```powershell
-     ollama pull qwen3:8b
-     ollama pull gemma3:12b
-     ```
-     That gives `MODEL_A=ollama:qwen3:8b` (Alibaba Qwen) and `MODEL_B=ollama:gemma3:12b` (Google Gemma). The Ollama app must be running when you use the notebook. Their "thinking" mode is off by default for speed; set `OLLAMA_THINKING=on` in `.env` to enable it.
-   * **Cloud APIs.** Set `MODEL_A=openai:gpt-4.1-mini` and `MODEL_B=anthropic:claude-sonnet-5-5`, and fill in `OPENAI_API_KEY` and `ANTHROPIC_API_KEY`.
+If that environment already exists, reuse it. Copy `.env.example` to `.env` only if `.env`
+does not already exist. Never upload API keys. Choose:
 
-   If no usable model is configured, `LLM_MODE=auto` falls back to **mock mode**: rule-based stand-ins that test the control flow only.
-4. *(Optional)* Recreate the synthetic data:
-   ```powershell
-   & "C:\Program Files\R\R-4.4.1\bin\Rscript.exe" r/make_synthetic_data.R
-   ```
-5. *(Optional)* Run the automated checks (mock mode, about 2 minutes) and the offline real-mode payload check:
-   ```powershell
-   & "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" tests/run_checks.py
-   & "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" tests/check_real_mode_payloads.py
-   ```
-6. **Open and run the notebook** in JupyterLab, then use *Run → Run All Cells*:
-   ```powershell
-   & "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" -m jupyter lab stats_assistant_graph.ipynb
-   ```
-   The diagram cell needs internet access, because `draw_mermaid_png()` uses the mermaid.ink service.
-   Example 4 stops and asks you to type an answer, with a reason, for each flagged record. That is the human-in-the-loop step. Examples 1–3 are normal paths that end with a delivered report.
+- `LLM_MODE=mock`: fully offline orchestration tests using named rule-based stand-ins. Statistical calculations remain real.
+- `LLM_MODE=real`: two actual models. The defaults are `ollama:qwen3:8b` for A and `ollama:gemma3:12b` for B. Start Ollama and install those models (`ollama pull qwen3:8b`, `ollama pull gemma3:12b`) if needed.
+- `LLM_MODE=auto`: use real when the configured model setup is available, otherwise mock. The notebook displays the selected mode explicitly; it never silently substitutes a mock after a real call fails.
 
-## What was verified, and what was not
+Model names, local endpoint, context size, output token cap and timeout are configurable in
+`.env.example`. Identical provider/model names, default-tag aliases and identical Ollama
+weight digests are rejected for the A/B pair. Cloud provider adapters are optional and have
+not been validated with live cloud calls in this v2 run. Google support additionally needs
+its provider package; it is not part of the pinned course runtime.
 
-* **Mock mode.** The graph compiles, and the PNG is drawn from the same compiled object that runs the examples. `tests/run_checks.py` (18 checks, all passing on 2026-10-09) shows that every control-flow path reaches its expected end:
-  * the three normal paths: significant difference, non-significant difference, unequal group sizes and variances
-  * pause → answers (scripted TEST INPUT) → new data version → re-diagnosis → delivery
-  * user "stop"
-  * rejected answers shown again, and the round limit
-  * stop for a missing column
-  * a whole group with mis-cased labels is asked about, not stopped
-  * duplicate IDs
-  * exclusion reasons in the limitations
-  * review fail → one revision → pass
-  * review fail → one revision → stop
-  * the program check's field, sign, rounding, required-content, decision-wording and limitation checks
-* **Real local models** (Ollama: `qwen3:8b` as Model A, `gemma3:12b` as Model B), in the saved notebook run of 2026-10-09:
-  * Examples 1–3 were delivered on the first draft.
-  * Example 4 went through clarification → new data version v2 → re-diagnosis → delivery.
-  * Example 5: Model B flagged the injected causal sentence (TEST INPUT), and Model A removed it in its single revision, after which the report was delivered.
-  * Example 6: the injected wrong number (TEST INPUT) was caught by Model B and by the program check, and the run stopped after one revision.
-  * Example 7 stopped at the diagnostics.
-* **Adjustments made after watching the local models**, each found in a real run:
-  * α is a fixed project setting added by the program, because `qwen3:8b` kept writing α = 0.
-  * Model A gets the list of supported methods, because without it `qwen3:8b` planned a normality-based switch to Mann-Whitney.
-  * Model B's rubric defines causal claims, missing results and unsupported claims, because `gemma3:12b` flagged plain "association" wording as causal.
-  * A report can fail review only through a critical issue.
-  * The program checks that the interpretation states t, p, the estimate and its CI, and that the limitations are exactly the required ones, because a draft once omitted the results and added an unsupported "normality" limitation.
-  * The revision prompt lists the exact sentences to fix, because Model A once kept the flagged sentence.
-* These are single runs with small local models, not an evaluation of their accuracy.
-* In Example 4 of the saved notebook, the answers the user confirmed (on 2026-10-09, in chat) were entered at the notebook's input prompts by the assistant on the user's behalf. Re-run it in Jupyter to type the answers yourself.
-* The **cloud API** path (OpenAI / Anthropic) was only checked offline: `tests/check_real_mode_payloads.py` builds the requests for every structured-output schema without sending them. No cloud API call has been made yet.
+```powershell
+& "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" -m jupyter lab stats_assistant_v2.ipynb
+```
+
+Use **Restart Kernel and Run All** for a fresh run; examples use fixed thread IDs and cannot
+be started twice in the same graph session. The diagram cell requires internet access for
+Mermaid rendering. The notebook's messy-data example remains paused in headless mode.
+Set `INTERACTIVE = True` in that cell to enter your own verified answers in Jupyter.
+
+```powershell
+# Offline tests; the explicit temporary folder also works in restricted Windows sandboxes.
+& "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" -m pytest -q --basetemp=outputs/pytest
+# Execute and save all notebook outputs (select mock or real explicitly).
+& "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" scripts/run_notebook.py --mode mock
+& "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" scripts/run_notebook.py --mode real
+```
+
+`python scripts/build_notebook.py` rebuilds notebook source and **clears saved outputs**.
+Use it only when intentionally updating the notebook, then rerun it. CI is configured for
+Python 3.13 and mock pytest; it has not run on GitHub until the branch is pushed.
+
+## What the assistant does
+
+1. **Plan:** map the question to variable roles, estimand and hypotheses. Supported methods are two-sided Welch t, Pearson correlation, chi-square independence and simple OLS with an intercept.
+2. **Diagnose in parallel:** Model A checks semantics/design/goal alignment from a shared descriptive summary; Python checks raw values and method-specific computability. The branches join before routing.
+3. **Clarify if needed:** missing scores, invalid labels, impossible values or unusual observations are shown to the user. Each correction/exclusion/verification needs an explicit answer and reason. The original file stays unchanged. The system never fills in missing values or drops rows silently.
+4. **Compute and explain:** Python produces the numerical result. Model A writes a placeholder-based explanation. A program checks required values, common field bindings and decision consistency; Model B checks the rendered meaning against original evidence. One report revision is allowed, then delivery or an issue notice.
+5. **Follow up:** a changed confidence level reruns statistics; re-explanation reuses validated numbers; a new question replans and rechecks. A changed file cannot reuse stale diagnostics. Metadata-only changes keep the correction history. Memory currently lasts only for the running graph process.
+
+At most one plan revision, one report revision, two answered clarification rounds and fifteen
+model calls per request are permitted. Invalid clarification input is re-asked without changing
+data. A tool/model exception is recorded and routed to an issue notice. These limits are policy
+settings, not statistical validity guarantees.
+
+The method is chosen from the question and data roles, not from whether its p-value is
+significant. Welch does not assume equal variances. Normality diagnostics are descriptive,
+not a switch to a rank test. A sparse contingency table stops because an exact-test fallback
+is outside this stage. Correlations and observational group differences do not establish
+causation. A new confidence level does not change alpha (fixed at 0.05).
+
+## Scope and evaluation
+
+This is a runnable course prototype, not a general statistical consulting product. It does
+not implement automatic filtering, missing-data imputation, paired/clustered models, multiple
+regression, arbitrary code generation, causal adjustment or persistent multi-user storage.
+For “only last year's data”, supply a new CSV and run a new analysis.
+
+Placeholder checks constrain numeric output, but cannot prove arbitrary prose is correct.
+Two different LLMs can still share errors. Keep a separate human-scored benchmark with clean,
+ambiguous and failing cases, checking method/estimand alignment, effect and uncertainty,
+missingness disclosure, non-significance wording and causal restraint. Human evaluation scores
+the whole system; it does not train either model. See the verification record for measured
+results rather than assuming these demos establish accuracy.
