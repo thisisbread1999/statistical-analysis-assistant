@@ -9,7 +9,7 @@ import shutil
 
 root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(root))
-from scripts.notebook_artifacts import ASSIGNMENT_DIRECTORY, write_notebooks
+from scripts.notebook_artifacts import ASSIGNMENT_DIRECTORY
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--mode', choices=['mock', 'real'], required=True)
@@ -17,6 +17,7 @@ parser.add_argument('--output', help='Optional executed-notebook path; default o
 parser.add_argument('--submission', action='store_true', help='Execute the standalone assignment from an empty working directory.')
 args = parser.parse_args()
 os.environ['LLM_MODE'] = args.mode
+os.environ['STAT_ASSISTANT_DEMO_MODE'] = args.mode
 os.environ['PYTHONUTF8'] = '1'
 runtime_dir = root / 'artifacts' / 'runtime' / 'jupyter_runtime'
 runtime_dir.mkdir(parents=True, exist_ok=True)
@@ -56,9 +57,7 @@ finally:
     nbformat.write(nb, output_path)
     if km.has_kernel:
         km.shutdown_kernel(now=True)
-if not args.output and not args.submission:
-    write_notebooks(root, nb)
-elif not args.output and args.submission:
+if not args.output and args.submission:
     import base64
     images = [output['data']['image/png'] for cell in nb.cells if cell.cell_type == 'code'
               for output in cell.get('outputs', []) if 'image/png' in output.get('data', {})]

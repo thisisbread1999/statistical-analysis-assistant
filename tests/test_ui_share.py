@@ -28,7 +28,7 @@ CONFIGURATION = {"model_a": "ollama:qwen3:8b", "model_b": "ollama:gemma3:12b"}
 @pytest.fixture
 def workspace(tmp_path, monkeypatch):
     monkeypatch.setattr(settings, "OUTPUT_DIR", tmp_path / "core")
-    instance = Workspace(runtime_dir=tmp_path / "ui", configuration=CONFIGURATION)
+    instance = Workspace(runtime_dir=tmp_path / "ui", configuration=CONFIGURATION, require_plan_confirmation=False)
     try:
         yield instance
     finally:

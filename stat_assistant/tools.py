@@ -30,11 +30,14 @@ METHOD_ROLES = {
     "pearson_correlation": {"x": "numeric", "y": "numeric"},
     "chi_square_independence": {"x": "categorical", "y": "categorical"},
     "simple_linear_regression": {"x": "numeric", "y": "numeric"},
+    "paired_t_test": {"x": "numeric", "y": "numeric"},
+    "fisher_exact": {"x": "categorical", "y": "categorical"},
 }
 METHOD_ALIASES = {
     "welch": "welch_t_test", "welch_ttest": "welch_t_test",
     "pearson": "pearson_correlation", "chi_square": "chi_square_independence",
     "linear_regression": "simple_linear_regression",
+    "paired_t": "paired_t_test", "fisher": "fisher_exact",
 }
 
 
@@ -364,7 +367,10 @@ class _Analysis:
         for role in ("x", "y"):
             observed = set(self.labels[role][self.usable])
             declared = self.req["valid_levels"].get(self.roles[role])
-            level_lists.append([v for v in declared if v in observed] if declared else sorted(observed))
+            # Fisher's odds ratio has an explicit, reproducible orientation:
+            # x supplies rows, y supplies columns, both sorted as written.
+            level_lists.append(sorted(observed) if self.method == "fisher_exact" else
+                               [v for v in declared if v in observed] if declared else sorted(observed))
         rows, cols = level_lists
         counts = np.zeros((len(rows), len(cols)), dtype=int)
         for x, y in zip(self.labels["x"][self.usable], self.labels["y"][self.usable]):
@@ -405,6 +411,22 @@ class _Analysis:
                         add("numeric_instability", f"Group {label!r} variance is not representable; rescale verified data explicitly")
                     elif variance <= 0:
                         add("no_variation", f"Group {label!r} has zero or numerically degenerate variance")
+        elif self.method == "paired_t_test":
+            if n < 2:
+                add("too_few_pairs", f"A paired t-test needs at least 2 complete independent pairs (found {n})")
+            else:
+                with np.errstate(all="ignore"):
+                    differences = self.numeric["y"][self.usable] - self.numeric["x"][self.usable]
+                    variance = np.var(differences, ddof=1)
+                    standard_error = np.sqrt(variance / n)
+                    scale = np.max(np.abs(differences))
+                    relative_variance = np.var(differences / scale, ddof=1) if scale > 0 else 0
+                if not np.all(np.isfinite(differences)) or not np.isfinite(variance):
+                    add("numeric_instability", "Paired differences (y minus x) or their variance are not finite; rescale verified data explicitly")
+                elif variance <= 0 or relative_variance <= 100 * np.finfo(float).eps ** 2:
+                    add("no_difference_variation", "Paired differences (y minus x) have zero or numerically degenerate variance; no usual paired t-test or interval is reported")
+                elif not np.isfinite(standard_error) or standard_error <= 0:
+                    add("numeric_instability", "The paired-difference standard error is non-finite or underflows to zero; rescale verified data explicitly")
         elif self.method in {"pearson_correlation", "simple_linear_regression"}:
             minimum = 4 if self.method == "pearson_correlation" else 3
             if n < minimum:
@@ -426,6 +448,11 @@ class _Analysis:
                     tolerance = 100 * np.finfo(float).eps ** 2 * fit["syy"]
                     if fit["sse"] <= tolerance or fit["slope_se"] <= 0:
                         add("zero_residual_variance", "Residual variance is zero or numerically degenerate; a usual slope t-test and interval are not reported")
+        elif self.method == "fisher_exact":
+            rows, cols, _ = self.table()
+            for role, levels in (("x", rows), ("y", cols)):
+                if len(levels) != 2:
+                    add("requires_two_by_two", f"Fisher's exact test requires exactly 2 observed levels for {self.roles[role]} (found {len(levels)})")
         else:
             rows, cols, counts = self.table()
             for role, levels in (("x", rows), ("y", cols)):
@@ -434,7 +461,7 @@ class _Analysis:
             if not findings:
                 expected = stats.contingency.expected_freq(counts)
                 if np.min(expected) < 1 or np.mean(expected < 5) > .2:
-                    add("expected_counts_too_small", f"Cochran rule failed: min expected = {np.min(expected):.4g}, share below 5 = {np.mean(expected < 5):.1%}; require none below 1 and at most 20% below 5. Fisher's exact test is not supported in this stage.")
+                    add("expected_counts_too_small", f"Cochran rule failed: min expected = {np.min(expected):.4g}, share below 5 = {np.mean(expected < 5):.1%}; require none below 1 and at most 20% below 5. Fisher's exact test requires an explicit 2x2 method plan; it is never substituted automatically.")
         return findings
 
     def distribution_checks(self):
@@ -444,6 +471,11 @@ class _Analysis:
                      "n": int(np.sum(mask)), "shapiro_wilk_p": _shapiro(self.numeric["outcome"][mask])}
                     for label in self.req["group_labels"]
                     for mask in [self.usable & (self.labels["group"] == label)]]
+        if self.method == "paired_t_test":
+            differences = self.numeric["y"][self.usable] - self.numeric["x"][self.usable]
+            return [{"check": "shapiro_wilk", "variable": f"{self.roles['y']} minus {self.roles['x']}",
+                     "role": "paired_difference", "n": n, "shapiro_wilk_p": _shapiro(differences),
+                     "note": "Describes the within-pair differences, not either marginal distribution; does not establish normality or independence of pairs."}]
         if self.method == "pearson_correlation":
             return [{"check": "shapiro_wilk", "variable": self.roles[role], "role": role, "n": n,
                      "shapiro_wilk_p": _shapiro(self.numeric[role][self.usable])} for role in ("x", "y")]
@@ -597,6 +629,18 @@ class _Analysis:
                 mean_difference=np.mean(x1)-np.mean(x2), ci_lower=interval.low, ci_upper=interval.high,
                 t_statistic=test.statistic, df=test.df, p_value=test.pvalue,
                 tool_call=f"scipy.stats.ttest_ind(group_1={g1!r}, group_2={g2!r}, equal_var=False, alternative='two-sided'); confidence_interval(confidence_level={conf})")
+        elif self.method == "paired_t_test":
+            x, y = self.numeric["x"], self.numeric["y"]
+            differences = y - x
+            test = stats.ttest_rel(y, x, nan_policy="raise", alternative="two-sided")
+            interval = test.confidence_interval(confidence_level=conf)
+            result.update(method_label="Paired-samples t-test (second minus first)", n=n, n_pairs=n,
+                x_column=self.roles["x"], y_column=self.roles["y"],
+                pairing_definition="Each included row is one independent pair; the requested contrast is y minus x, without assuming time order.",
+                mean_x=np.mean(x), mean_y=np.mean(y), mean_difference=np.mean(differences),
+                sd_difference=np.std(differences, ddof=1), ci_lower=interval.low, ci_upper=interval.high,
+                t_statistic=test.statistic, df=test.df, p_value=test.pvalue,
+                tool_call=f"scipy.stats.ttest_rel(y, x, nan_policy='raise', alternative='two-sided'); confidence_interval(confidence_level={conf}); difference = y minus x")
         elif self.method == "pearson_correlation":
             x, y = self.numeric["x"], self.numeric["y"]
             test = stats.pearsonr(x, y, alternative="two-sided")
@@ -630,6 +674,24 @@ class _Analysis:
                 expected={"row_labels": rows, "col_labels": cols, "counts": test.expected_freq.tolist()},
                 min_expected_count=np.min(test.expected_freq),
                 tool_call="scipy.stats.chi2_contingency(observed, correction=False); Cramer's V uses the same uncorrected chi-square")
+        elif self.method == "fisher_exact":
+            rows, cols, counts = self.table()
+            test = stats.fisher_exact(counts, alternative="two-sided")
+            odds_ratio = float(test.statistic)
+            odds_ratio_status = "finite" if math.isfinite(odds_ratio) else "infinite" if math.isinf(odds_ratio) else "undefined"
+            orientation = (f"Odds of {self.roles['y']}={cols[0]!r} versus {cols[1]!r} for "
+                           f"{self.roles['x']}={rows[0]!r}, divided by the same odds for {rows[1]!r}; "
+                           "sample odds ratio = a*d/(b*c) for the displayed table [[a,b],[c,d]].")
+            result.update(method_label="Fisher's exact test (two-sided, 2x2)", n=n,
+                x_column=self.roles["x"], y_column=self.roles["y"],
+                odds_ratio=odds_ratio if math.isfinite(odds_ratio) else None,
+                odds_ratio_status=odds_ratio_status, odds_ratio_orientation=orientation,
+                odds_ratio_estimator="sample (unconditional maximum likelihood), not conditional maximum likelihood",
+                p_value=test.pvalue, observed={"row_labels": rows, "col_labels": cols, "counts": counts.tolist()},
+                level_order="Rows are x levels and columns are y levels, each sorted as written.",
+                tool_call="scipy.stats.fisher_exact(observed_2x2, alternative='two-sided'); sample odds ratio a*d/(b*c); probability-ordering two-sided exact p-value")
+            if odds_ratio_status != "finite":
+                result["tool_warnings"].append("A zero cell gives an infinite or undefined sample odds ratio; it is encoded by odds_ratio=null plus odds_ratio_status, with no continuity correction.")
         else:
             fit = self.regression()
             degrees = n-2

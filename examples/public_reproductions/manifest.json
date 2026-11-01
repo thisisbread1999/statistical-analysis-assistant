@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "fixture_version": "public-reproductions-v2",
+  "accessed_utc": "2026-11-01T20:51:24.038123+00:00",
+  "license": {
+    "dataset_package": "R datasets: License: Part of R",
+    "r_distribution": "GPL-2 | GPL-3",
+    "url": "https://www.r-project.org/Licenses/",
+    "included_notice": "sources/COPYRIGHTS-R.txt",
+    "included_license": "sources/LICENSE-R-GPL-2.txt",
+    "note": "No standalone CC0 license is asserted for these R snapshots. Source notices are preserved; article rights are separate."
+  },
+  "sources": [
+    {
+      "file": "sources/sleep.R",
+      "url": "https://svn.r-project.org/R/trunk/src/library/datasets/data/sleep.R",
+      "sha256": "998f363abb36342a6e5cd1d508d2ac2d044146832b617b18649b5b8ce21ab7f2",
+      "bytes": 183,
+      "accessed_utc": "2026-11-01T20:37:24.174160+00:00",
+      "source_version": "R SVN trunk; exact downloaded bytes identified by SHA-256"
+    },
+    {
+      "file": "sources/UCBAdmissions.R",
+      "url": "https://svn.r-project.org/R/trunk/src/library/datasets/data/UCBAdmissions.R",
+      "sha256": "86a5801b122ec1f172098303de35c9df9a8c4c09f2f81dc9f03bfafdde102d5e",
+      "bytes": 446,
+      "accessed_utc": "2026-11-01T20:37:24.174160+00:00",
+      "source_version": "R SVN trunk; exact downloaded bytes identified by SHA-256"
+    },
+    {
+      "file": "sources/anscombe.R",
+      "url": "https://svn.r-project.org/R/trunk/src/library/datasets/data/anscombe.R",
+      "sha256": "02f29379f282fcf909ff988b3fde2be2d5591975ba27ed0efd8714a91629223e",
+      "bytes": 514,
+      "accessed_utc": "2026-11-01T20:51:24.038123+00:00",
+      "source_version": "R SVN trunk; exact downloaded bytes identified by SHA-256"
+    },
+    {
+      "file": "sources/LICENSE-R-GPL-2.txt",
+      "url": "https://svn.r-project.org/R/trunk/COPYING",
+      "sha256": "e6d6a009505e345fe949e1310334fcb0747f28dae2856759de102ab66b722cb4",
+      "bytes": 18011,
+      "accessed_utc": "2026-11-01T20:37:24.174160+00:00",
+      "source_version": "R SVN trunk; exact downloaded bytes identified by SHA-256"
+    },
+    {
+      "file": "sources/COPYRIGHTS-R.txt",
+      "url": "https://svn.r-project.org/R/trunk/doc/COPYRIGHTS",
+      "sha256": "3d69fcec00d9358261d85aa3933224d53091187dd2fb66b3d9fd19ff440b27d7",
+      "bytes": 33113,
+      "accessed_utc": "2026-11-01T20:37:24.174160+00:00",
+      "source_version": "R SVN trunk; exact downloaded bytes identified by SHA-256"
+    },
+    {
+      "file": "sources/DESCRIPTION-R-datasets.in",
+      "url": "https://svn.r-project.org/R/trunk/src/library/datasets/DESCRIPTION.in",
+      "sha256": "e58b793cb90e167d9f4c9a23b7b63a2344bbdab6b7d36049fd9fd84190daf99d",
+      "bytes": 319,
+      "accessed_utc": "2026-11-01T20:37:24.174160+00:00",
+      "source_version": "R SVN trunk; exact downloaded bytes identified by SHA-256"
+    }
+  ],
+  "cases": [
+    {
+      "id": "student_sleep",
+      "title": "Student's sleep data: preserve the patient pairs",
+      "data_file": "student_sleep.csv",
+      "design_file": "student_sleep.design.json",
+      "source_file": "sources/sleep.R",
+      "source_name": "R datasets::sleep",
+      "source_url": "https://svn.r-project.org/R/trunk/src/library/datasets/data/sleep.R",
+      "documentation_url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html",
+      "paper_doi": "https://doi.org/10.2307/2331554",
+      "paper_url": "https://ocw.mit.edu/courses/esd-86-models-data-and-inference-for-socio-technical-systems-spring-2007/1dabbcb2c2fa46e67fb3655a35ec11fc_gosset_1908.pdf",
+      "citation": "Student (1908). The probable error of a mean. Biometrika 6(1), 1–25; data from Cushny and Peebles (1905).",
+      "question": "Use a two-sided paired t-test to compare the mean within-patient difference drug_2 minus drug_1, in additional hours of sleep.",
+      "method": "paired_t_test",
+      "roles": {
+        "x": "drug_1",
+        "y": "drug_2"
+      },
+      "unit": "One wide row per historical patient, matched using the original R ID.",
+      "derivation": "Reshape the two ten-value drug vectors by their repeated patient IDs; retain every value. Drug labels are the R labels, with no reconstructed treatment order.",
+      "claim_supported": "Modern two-sided reanalysis of the paired historical values; reproduce the published mean difference of 1.58 hours.",
+      "claim_not_supported": "A modern randomized clinical trial, current treatment guidance, or an exact reproduction of Student's historical probability wording.",
+      "reference": {
+        "n": 10,
+        "n_pairs": 10,
+        "mean_difference": 1.58,
+        "t_statistic": 4.062127683382037,
+        "df": 9,
+        "p_value": 0.00283289019738427,
+        "ci_lower": 0.7001142367012769,
+        "ci_upper": 2.459885763298723
+      },
+      "fixture_version": "public-reproductions-v2",
+      "data_sha256": "f84fecde653a275e23096c0ab57ad0141b773f9ab90bac968584fe1b548f91ec",
+      "source_sha256": "998f363abb36342a6e5cd1d508d2ac2d044146832b617b18649b5b8ce21ab7f2",
+      "reference_method": "Independent modern SciPy calculation from the preserved values; not an LLM output or original-paper p-value. Two-sided tests; 95% CI; Pearson chi-square correction=False; OLS with intercept.",
+      "tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "p_value_atol": 1e-30
+      }
+    },
+    {
+      "id": "berkeley_admissions",
+      "title": "Berkeley admissions: what pooling conceals",
+      "data_file": "berkeley_frequency_expanded.csv",
+      "count_file": "berkeley_counts.csv",
+      "design_file": "berkeley_admissions.design.json",
+      "source_file": "sources/UCBAdmissions.R",
+      "source_name": "R datasets::UCBAdmissions",
+      "source_url": "https://svn.r-project.org/R/trunk/src/library/datasets/data/UCBAdmissions.R",
+      "documentation_url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/UCBAdmissions.html",
+      "paper_doi": "https://doi.org/10.1126/science.187.4175.398",
+      "paper_url": "https://pubmed.ncbi.nlm.nih.gov/17835295/",
+      "citation": "Bickel PJ, Hammel EA, O'Connell JW (1975). Sex bias in graduate admissions: data from Berkeley. Science 187(4175), 398–404.",
+      "question": "Use Pearson chi-square independence without continuity correction to test the pooled association between sex and admission across these six departments. Department-specific rates are descriptive context.",
+      "method": "chi_square_independence",
+      "roles": {
+        "x": "sex",
+        "y": "admission"
+      },
+      "unit": "Source: twenty-four aggregate frequency cells for six departments, not original individual records.",
+      "derivation": "Preserve all source cells in berkeley_counts.csv. Deterministically repeat each cell by its frequency for the current categorical tool; derived_record_id is a generated label, not an applicant identifier.",
+      "claim_supported": "Reproduce the six-department pooled association and the department-specific descriptive admission-rate pattern.",
+      "claim_not_supported": "The original paper's whole-university adjusted significance, a causal account of discrimination, or a universal within-department reversal.",
+      "reference": {
+        "n": 4526,
+        "chi_square": 92.20528041152764,
+        "df": 1,
+        "p_value": 7.813600388994667e-22,
+        "cramers_v": 0.14273176020608103
+      },
+      "fixture_version": "public-reproductions-v2",
+      "data_sha256": "1714c2e085b25e10dc60c031bd08b26edb899b09ce638a1280baab5eff9cc885",
+      "source_sha256": "86a5801b122ec1f172098303de35c9df9a8c4c09f2f81dc9f03bfafdde102d5e",
+      "reference_method": "Independent modern SciPy calculation from the preserved values; not an LLM output or original-paper p-value. Two-sided tests; 95% CI; Pearson chi-square correction=False; OLS with intercept.",
+      "tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "p_value_atol": 1e-30
+      }
+    },
+    {
+      "id": "anscombe_quartet",
+      "title": "Anscombe's quartet: similar summaries, different plots",
+      "data_file": "anscombe_quartet.csv",
+      "design_file": "anscombe_quartet.design.json",
+      "source_file": "sources/anscombe.R",
+      "source_name": "R datasets::anscombe",
+      "source_url": "https://svn.r-project.org/R/trunk/src/library/datasets/data/anscombe.R",
+      "documentation_url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/anscombe.html",
+      "paper_doi": "https://doi.org/10.1080/00031305.1973.10478966",
+      "paper_url": "https://personal.us.es/vararey/anscombe1973.pdf",
+      "citation": "Anscombe FJ (1973). Graphs in Statistical Analysis. The American Statistician 27(1), 17–21. R documentation credits Tufte (1990), pp. 13–14, as its data source.",
+      "question": "Fit one simple linear regression with x1 as predictor and y1 as outcome, including an intercept. Report the slope and its two-sided 95% confidence interval. This run analyses only the first constructed dataset.",
+      "method": "simple_linear_regression",
+      "roles": {
+        "x": "x1",
+        "y": "y1"
+      },
+      "data_kind": "published_pedagogically_constructed_data",
+      "unit": "One indexed pair per constructed dataset, aligned by published row position. These are illustrative constructed values, not real observed subjects.",
+      "derivation": "Preserve all four x/y vectors in an eleven-row wide CSV; add only an illustrative row label. The graph analyses x1 and y1 once; the four-panel comparison is deterministic descriptive visualization, not a four-test agent batch.",
+      "claim_supported": "Reproduce the first dataset's ordinary least-squares summary and show the quartet's nearly identical summaries despite very different plotted patterns.",
+      "claim_not_supported": "Empirical population evidence, a causal relationship, identical unrounded statistics across all four sets, or automatic workflow analysis of all four regressions.",
+      "reference": {
+        "n": 11,
+        "slope": 0.5000909090909091,
+        "intercept": 3.0000909090909103,
+        "r_squared": 0.6665424595087749,
+        "t_statistic": 4.241455288892832,
+        "df": 9,
+        "p_value": 0.002169628873078799,
+        "ci_lower": 0.23337013638518744,
+        "ci_upper": 0.7668116817966308
+      },
+      "fixture_version": "public-reproductions-v2",
+      "data_sha256": "7297f5406acd1819ed6bbd53bd662ba173e32b6ca8b13e9d57b2617882232dda",
+      "source_sha256": "02f29379f282fcf909ff988b3fde2be2d5591975ba27ed0efd8714a91629223e",
+      "reference_method": "Independent modern SciPy calculation from the preserved values; not an LLM output or original-paper p-value. Two-sided tests; 95% CI; Pearson chi-square correction=False; OLS with intercept.",
+      "tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "p_value_atol": 1e-30
+      }
+    }
+  ],
+  "previous_manifest": {
+    "file": "manifests/public-reproductions-v1.json",
+    "fixture_version": "public-reproductions-v1",
+    "sha256": "3b8135028a9d6bdf9dcd9d00575db75cfd9087a914ef94a477a17f9c56c18410",
+    "note": "Exact prior canonical manifest retained for historical run hashes."
+  }
+}

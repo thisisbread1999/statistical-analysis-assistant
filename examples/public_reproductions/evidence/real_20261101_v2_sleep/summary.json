@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "run_id": "real_20261101_v2_sleep",
+  "created_utc": "2026-11-01T20:49:21.658022+00:00",
+  "fixture_version": "public-reproductions-v1",
+  "source_manifest_sha256": "3b8135028a9d6bdf9dcd9d00575db75cfd9087a914ef94a477a17f9c56c18410",
+  "software": {
+    "python": "3.13.5",
+    "scipy": "1.18.1"
+  },
+  "mode": "real",
+  "noninteractive_benchmark": true,
+  "mock_note": null,
+  "cases": [
+    {
+      "id": "student_sleep",
+      "independent_reference_status": "passed",
+      "numerical_tool_status": "ok",
+      "numerical_tool_comparison": "passed",
+      "workflow_status": "delivered",
+      "report_file": "student_sleep.json"
+    }
+  ],
+  "note": "Numerical correctness, workflow delivery, and real-model performance are separate outcomes. A pause is not a delivered analysis."
+}

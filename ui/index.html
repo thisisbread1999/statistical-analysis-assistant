@@ -16,7 +16,7 @@
     <section class="intro">
       <div class="eyebrow">LOCAL RESEARCH WORKSPACE · LANGGRAPH</div>
       <h1>From a question<br>to an auditable analysis.</h1>
-      <p>Upload data. Ask a question. Inspect the plan, checks, calculations and review. Compare two group means, examine correlation or categorical association, or fit a simple regression.</p>
+      <p>Upload data. Ask a question. Confirm the plan, then inspect the checks, calculations and review. Compare independent or paired means, examine associations, or fit a simple regression.</p>
     </section>
     <div class="workspace">
       <aside>
@@ -43,7 +43,7 @@
           <p class="muted">The CSV cannot establish independence or random assignment. Review the example metadata, or enter your own study facts and variable definitions below.</p>
           <label for="designInfo">Design metadata (JSON)</label>
           <textarea id="designInfo" rows="12" spellcheck="false" aria-describedby="designHelp"></textarea>
-          <p id="designHelp" class="muted">Use numeric or categorical variable types. Declare valid ranges or levels when known. For paired, repeated or clustered observations, describe that design honestly; this MVP will stop.</p>
+          <p id="designHelp" class="muted">Use numeric or categorical variable types. For a paired comparison, each row must contain one pair; explicitly set independent_pairs to true and paired_columns to the two ordered measurement columns. Other repeated or clustered designs remain unsupported.</p>
           <label id="designConfirmLabel" class="checkbox-label" hidden>
             <input id="designConfirm" type="checkbox">
             <span>I confirm that the metadata describes my study and variables. I have not assumed independence from the CSV.</span>
@@ -60,16 +60,36 @@
       </aside>
       <article>
         <div class="section-label">02 / ANALYSIS</div>
+        <details id="caseIllustration" hidden>
+          <summary>Explore the source dataset</summary>
+          <img id="sourcePlot" alt="" style="max-width:100%;height:auto;display:block">
+          <p class="muted">Source-data illustration. Changes made during an analysis are not shown in this chart.</p>
+        </details>
         <div id="empty">
           <h2>Every conclusion has a trail.</h2>
           <p>Start with the clean two-group example. Then try the messy dataset to see the workflow pause for your decisions.</p>
-          <div class="mini-flow">Plan → Parallel diagnostics → Python statistics → Model A draft → Program checks + Model B review</div>
+          <div class="mini-flow">Clarify question → Retrieve guidance → Confirm plan → Parallel checks → Calculate → Draft → Review</div>
           <p class="muted">A data issue does not authorize an automatic correction or exclusion. Choose an action for each finding; supporting notes are optional.</p>
         </div>
         <div id="output" hidden>
           <div class="result-head"><h2 id="status"></h2><span id="modeBadge" class="badge"></span></div>
           <p id="resultContext" class="muted"></p>
           <div id="notice" role="alert"></div>
+          <section id="planningDecision" hidden>
+            <h3 id="planningTitle">Confirm the analysis plan</h3>
+            <p id="planningMessage"></p>
+            <div id="planningChoices"></div>
+            <div id="approvalPlan"></div>
+            <ol id="planningSteps"></ol>
+            <label for="planningQuestion">Research question (edit to request a new plan)</label>
+            <textarea id="planningQuestion" rows="3"></textarea>
+            <div class="button-row">
+              <button id="approvePlan" class="primary" type="button">Approve plan & continue →</button>
+              <button id="changePlan" type="button">Request a new plan</button>
+              <button id="stopPlan" type="button">Stop</button>
+            </div>
+            <p id="planningProgress" role="status" aria-live="polite"></p>
+          </section>
           <section id="clarify" hidden>
             <h3>Your input is needed</h3>
             <p>Choose an action for each flagged record. Source or reason is optional. Corrections require a replacement value. No action is selected for you.</p>
@@ -92,6 +112,7 @@
             <button id="downloadReport" type="button">Download report (.txt)</button>
           </section>
           <details open><summary>Analysis plan</summary><div id="plan"></div></details>
+          <details><summary>Retrieved method guidance & tool selection</summary><div id="references"></div></details>
           <details><summary>Checks & warnings</summary><div id="checks"></div></details>
           <details id="reviewDetails"><summary>Report validation & independent review</summary><div id="reviewContent"></div></details>
           <details open><summary>Actual execution trail</summary><ol id="trace"></ol></details>

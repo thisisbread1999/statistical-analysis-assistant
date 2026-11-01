@@ -37,6 +37,7 @@ def check_report(stats_block: dict, draft: dict) -> dict:
         "p_value": r"\bp(?:[-_ ]value)?\s*(?:=|is|was|of)\s*\{(\w+)\}",
         "r": r"\br\s*(?:=|is|was|of)\s*\{(\w+)\}",
         "mean_difference": r"\bmean difference\s*(?:=|is|was|of)\s*\{(\w+)\}",
+        "odds_ratio": r"\bodds ratio\s*(?:=|is|was|of)\s*\{(\w+)\}",
         "slope": r"\bslope\s*(?:=|is|was|of)\s*\{(\w+)\}",
         "r_squared": r"\bR[- ]squared\s*(?:=|is|was|of)\s*\{(\w+)\}",
         "t_statistic": r"\bt\(\{df\}\)\s*=\s*\{(\w+)\}",
@@ -44,12 +45,21 @@ def check_report(stats_block: dict, draft: dict) -> dict:
     for field, pattern in field_patterns.items():
         for match in re.finditer(pattern, text, re.I):
             actual = match.group(1)
-            null_fields = {"simple_linear_regression": "slope", "pearson_correlation": "r", "welch_t_test": "mean_difference"}
+            null_fields = {"simple_linear_regression": "slope", "pearson_correlation": "r",
+                           "welch_t_test": "mean_difference", "paired_t_test": "mean_difference", "fisher_exact": "odds_ratio"}
             if (actual == "null_value" and field == null_fields.get(stats_block.get("method"))
-                    and re.search(r"\bH0\s*(?:\(|:)\s*$", text[:match.start()], re.I)):
+                    and re.search(r"\bH0\s*(?:\(|:)\s*(?:population\s+)?$", text[:match.start()], re.I)):
                 continue  # A stated null value is not the sample estimate.
             if actual != field:
                 problems.append({"check": "field_binding", "detail": f"{field} was labelled with {{{actual}}}; use {{{field}}}."})
+    if stats_block.get("method") == "fisher_exact":
+        for sentence in re.split(r"[.!?]+", text):
+            if (re.search(r"\b(confidence interval|CI)\b", sentence, re.I)
+                    and not re.search(r"\b(no|not|without|unavailable|uncomputed)\b", sentence, re.I)):
+                problems.append({"check": "unsupported_interval", "detail": "No odds-ratio confidence interval was computed for Fisher's exact test."})
+    if (stats_block.get("method") == "paired_t_test"
+            and re.search(r"\{x_column\}\s*(?:minus|−|-)\s*\{y_column\}", text, re.I)):
+        problems.append({"check": "difference_orientation", "detail": "Paired differences are second (y) minus first (x); use {y_column} minus {x_column}."})
     bare = HYPOTHESIS_NAMES.sub("", LIST_MARKER.sub(r"\1", PLACEHOLDER.sub("", text + " " + limitation_text)))
     literals = LITERAL_NUMBER.findall(bare)
     if literals:
@@ -89,18 +99,29 @@ def format_stats_block(sb: dict) -> str:
                   f"| {v['group_2']} | {v['n_group_2']} | {v['mean_group_2']} | {v['sd_group_2']} |", "",
                   f"Mean difference = {v['mean_difference']} ({v['confidence_level']} CI {v['ci_lower']} to "
                   f"{v['ci_upper']}); t({v['df']}) = {v['t_statistic']}; {p_clause}"]
+    elif sb["method"] == "paired_t_test":
+        lines += [f"Complete independent pairs: n = {v['n']}; each row pairs {v['x_column']} with {v['y_column']}.",
+                  f"Mean difference ({v['y_column']} minus {v['x_column']}) = {v['mean_difference']} "
+                  f"({v['confidence_level']} CI {v['ci_lower']} to {v['ci_upper']}); "
+                  f"SD of differences = {v['sd_difference']}; t({v['df']}) = {v['t_statistic']}; {p_clause}"]
     elif sb["method"] == "pearson_correlation":
         lines += [f"n = {v['n']}; r = {v['r']} ({v['confidence_level']} CI {v['ci_lower']} to {v['ci_upper']}); "
                   f"t({v['df']}) = {v['t_statistic']}; {p_clause}"]
-    elif sb["method"] == "chi_square_independence":
+    elif sb["method"] in {"chi_square_independence", "fisher_exact"}:
         table = sb.get("observed") or {}
         if table:
             lines += ["| | " + " | ".join(table["col_labels"]) + " |", "|---" * (len(table["col_labels"]) + 1) + "|"]
             lines += [f"| {row} | " + " | ".join(str(c) for c in counts) + " |"
                       for row, counts in zip(table["row_labels"], table["counts"])]
             lines += [""]
-        lines += [f"n = {v['n']}; chi-square({v['df']}) = {v['chi_square']}; {p_clause}; "
-                  f"Cramer's V = {v['cramers_v']}" + (" (Yates continuity correction, 2x2)" if sb.get("yates") else " (no Yates continuity correction)")]
+        if sb["method"] == "fisher_exact":
+            lines += [f"n = {v['n']}; two-sided Fisher exact {p_clause}; sample odds ratio = {v['odds_ratio']}.",
+                      f"Rows: {v['x_column']}; columns: {v['y_column']}; levels sorted as written. "
+                      f"Odds of {v['col_1']} versus {v['col_2']} for {v['row_1']}, divided by those odds for {v['row_2']}.",
+                      "No odds-ratio confidence interval was computed; no continuity correction was applied."]
+        else:
+            lines += [f"n = {v['n']}; chi-square({v['df']}) = {v['chi_square']}; {p_clause}; "
+                      f"Cramer's V = {v['cramers_v']}" + (" (Yates continuity correction, 2x2)" if sb.get("yates") else " (no Yates continuity correction)")]
     else:
         lines += [f"n = {v['n']}; slope = {v['slope']} ({v['confidence_level']} CI {v['ci_lower']} to {v['ci_upper']}); "
                   f"intercept = {v['intercept']}; t({v['df']}) = {v['t_statistic']}; {p_clause}; "

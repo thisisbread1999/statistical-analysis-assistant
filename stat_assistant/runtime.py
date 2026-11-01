@@ -27,11 +27,12 @@ def _fresh_request(request_number, test_fault, max_model_calls):
             "user_requested_stop": False, "stop_reasons": [], "final_status": "running", "final_report": "",
             "followup_focus": "", "followup_data_changed": False, "followup_design_changed": False,
             "followup_dataset_replaced": False, "program_check": {}, "review_verdict": {},
-            "report_draft": {}, "rendered_draft": {}}
+            "report_draft": {}, "rendered_draft": {}, "scope_revision_count": 0, "scope_selection_count": 0,
+            "retrieved_references": [], "selected_tool_call": {}, "plan_approval": {}}
 
 
 def new_run(graph, data_path, question, design_info, *, thread_id=None, test_fault=None,
-            max_model_calls=settings.MAX_MODEL_CALLS_PER_REQUEST):
+            max_model_calls=settings.MAX_MODEL_CALLS_PER_REQUEST, require_plan_confirmation=False):
     thread_id = thread_id or uuid.uuid4().hex
     if graph.get_state(config_for(thread_id)).values:
         raise ValueError("This thread already exists; use ask_followup or choose a new thread_id.")
@@ -40,6 +41,7 @@ def new_run(graph, data_path, question, design_info, *, thread_id=None, test_fau
              "original_data_path": str(data_path), "data_path": str(data_path), "data_version": "v1",
              "data_fingerprint": fingerprint(data_path), "excluded_ids": [], "verified_ids": [], "correction_log": [],
              "conf_level": settings.DEFAULT_CONF_LEVEL, "session_memory": {}, "errors": [], "trace": [], "model_calls": []}
+    state["require_plan_confirmation"] = require_plan_confirmation
     return graph.invoke(state, config_for(thread_id))
 
 
@@ -70,6 +72,16 @@ def resume_answers(graph, thread_id, answers):
     if "request_clarification" not in snapshot.next:
         raise ValueError("This thread is not waiting for clarification answers.")
     return graph.invoke(Command(resume=answers), config_for(thread_id))
+
+
+def resume_plan(graph, thread_id, decision):
+    """Resume only an outstanding scope/plan decision; never invent approval."""
+    snapshot = graph.get_state(config_for(thread_id))
+    if not {"approve_analysis_plan", "request_scope_confirmation"}.intersection(snapshot.next):
+        raise ValueError("This thread is not waiting for a plan or question selection.")
+    if not isinstance(decision, dict):
+        raise ValueError("A plan decision must be an object.")
+    return graph.invoke(Command(resume=decision), config_for(thread_id))
 
 
 def collect_answers(open_items, input_fn=input):

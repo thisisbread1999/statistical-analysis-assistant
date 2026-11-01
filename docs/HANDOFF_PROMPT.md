@@ -16,7 +16,9 @@ requirements in `HANDOFF_PROMPT_ORIGINAL_R.md` are retained as context.
 
 ## Implemented architecture and names
 
-`stat_assistant/` implements the 17-node graph, four NumPy/SciPy methods, parallel semantic
+The November extension is documented in `COURSE_ALIGNMENT_2026-11-01.md` and `PUBLIC_REPRODUCTIONS.md`. It adds local lexical method-card retrieval, native Model A tool calls, plan confirmation in UI/interactive CLI, and selection of one target from multi-question requests. `new_run` keeps its original programmatic default; interactive clients set `require_plan_confirmation=True`. Paired t and explicitly planned Fisher exact are available. Native results use matching `ToolMessage` IDs. Three successful prespecified live reproductions are demonstrations, not a general model score.
+
+`stat_assistant/` implements the 21-node graph, six NumPy/SciPy methods, parallel semantic
 and statistical diagnostics, explicit human interrupts, bounded revisions, protected
 statistical fields, model-call limits and same-thread follow-ups. Two distinct underlying
 models remain required; evaluation has not replaced the graph or reviewer. Public workflow

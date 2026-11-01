@@ -1,0 +1,18 @@
+{
+  "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\public_reproductions\\anscombe_quartet.csv",
+  "data_version": "v1",
+  "excluded_ids": [],
+  "id_column": "illustrative_row_id",
+  "method": "simple_linear_regression",
+  "roles": {
+    "x": "x1",
+    "y": "y1"
+  },
+  "group_labels": null,
+  "valid_ranges": {},
+  "valid_levels": {},
+  "conf_level": 0.95,
+  "alpha": 0.05,
+  "provider_tool_call_id": "e5ce064f-39c9-4084-a890-af5311e6af74",
+  "provider_tool_name": "simple_linear_regression"
+}

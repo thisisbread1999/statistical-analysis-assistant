@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from stat_assistant.models import create_agents
-from stat_assistant.runtime import collect_answers, new_run, resume_answers
+from stat_assistant.runtime import collect_answers, new_run, resume_answers, resume_plan
 from stat_assistant.settings import DATA_DIR
 from stat_assistant.workflow import build_graph
 
@@ -39,13 +39,26 @@ def main():
     agent_a, agent_b, configuration = create_agents()
     print(json.dumps(configuration, indent=2))
     graph = build_graph(agent_a, agent_b, mode=mode)
-    state = new_run(graph, args.csv or DATA_DIR / "tutoring_scores_clean_synthetic.csv", args.question, design)
+    state = new_run(graph, args.csv or DATA_DIR / "tutoring_scores_clean_synthetic.csv", args.question, design,
+                    require_plan_confirmation=True)
     while state.get("__interrupt__"):
         prompt = state["__interrupt__"][0].value
         print(json.dumps(prompt, indent=2, ensure_ascii=False))
         if not args.interactive:
-            print("Paused for user clarification. No answers were supplied automatically.")
+            print("Paused for an explicit user decision. No approval or data-handling answer was supplied automatically.")
             return
+        if prompt.get("kind") == "plan_approval":
+            choice = input("Approve this exact plan? (yes / change / stop): ").strip().lower()
+            decision = ({"action": "approve", "plan_id": prompt["plan_id"]} if choice == "yes" else
+                        {"action": "change_question", "question": input("Revised research question: ")} if choice == "change" else
+                        {"action": "stop"})
+            state = resume_plan(graph, state["run_id"], decision)
+            continue
+        if prompt.get("kind") == "scope_selection":
+            choice = input("Choose a task_id (or stop): ").strip()
+            decision = {"action": "stop"} if choice == "stop" else {"action": "select", "task_id": choice}
+            state = resume_plan(graph, state["run_id"], decision)
+            continue
         answers = collect_answers(prompt["requests"])
         if answers is None:
             return

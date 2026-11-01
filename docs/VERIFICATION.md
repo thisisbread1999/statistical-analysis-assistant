@@ -1,5 +1,47 @@
 # Verification record
 
+## Current extension: 2026-11-01
+
+The active package now has 21 nodes and six methods. The current graph exports
+were regenerated from that compiled graph; the older dated assignment graph and
+embedded notebook remain unchanged. Measurements below this section retain
+their original dates and apply to their historical versions.
+
+- Software checks: **262 passed**, no failures, in 19.52 seconds. Command:
+  `python -m pytest -q --basetemp=artifacts/runtime/pytest_november_release`.
+  Model responses in these tests are mocks or controlled doubles; Python statistics are real.
+- JavaScript syntax and authored-change whitespace checks passed. Byte-exact R source/license snapshots retain upstream whitespace and are checked by their hashes, not reformatted.
+- The current `demo.ipynb` executed all seven code cells in explicit mock mode with no saved errors. It paused for plan approval; no approval or data answer was invented. The generator and runner do not rewrite dated assignments.
+- The local browser was exercised through plan approval and inspected with the public dataset plots.
+- A separate real-model run used **Qwen3 8B and Gemma3 12B** on three prespecified
+  public reproduction tasks. All three delivered after the existing checks, and
+  each computed target agreed with an independent reference. This is three examples,
+  not a general-accuracy estimate and not independent human scoring.
+
+| Prespecified task | Final real workflow | Numerical comparison |
+|---|---|---|
+| Student sleep, paired drug two minus drug one | Delivered | Passed; ten pairs, mean difference 1.58 hours |
+| Berkeley six-department pooled categorical association | Delivered after one report revision | Passed; n = 4,526 |
+| Anscombe first dataset, OLS y1 on x1 | Delivered after one report revision | Passed; eleven constructed pairs |
+
+The reproduction harness approved only exact predefined method/role combinations
+under the explicit `--noninteractive-benchmark` flag. It records **human_approval=false**
+and never answers data-handling questions. Native tool IDs and recorded calls are
+retained with the reproduction evidence. The first live attempt stopped because
+the original tool schemas required unused roles; that evidence remains intact.
+Method-specific schemas corrected that contract before the later run.
+
+Gemma's final sleep review still included a minor numeric-mismatch comment even
+though its cited numbers matched. That false-positive comment is retained; delivery
+does not imply that every reviewer statement was correct. Independent human scoring
+and a fresh broad model benchmark remain future work. The 31-case adapter now marks
+its policy `ours-v2-confirmed-plans`: unresolved target cases may stop or explicitly
+pause for scope clarification. Earlier `27/31` evidence is not relabeled or recomputed.
+
+Machine-readable record: [extension verification](../artifacts/verification/extension_2026-11-01.json).
+Real run: [three-case summary](../examples/public_reproductions/evidence/real_20261101_final/summary.json).
+Sources and comparison boundaries: [public reproductions](PUBLIC_REPRODUCTIONS.md).
+
 Date: 2026-10-12. This record distinguishes executed checks from pending verification. Mock agents and scripted answers are test inputs, not evidence of real model accuracy or actual user decisions.
 
 ## Naming/layout refactor verification

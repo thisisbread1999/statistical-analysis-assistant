@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "run_id": "real_20261101_v2_berkeley",
+  "created_utc": "2026-11-01T20:53:42.591624+00:00",
+  "fixture_version": "public-reproductions-v2",
+  "source_manifest_sha256": "7f1cfe6b8c675b1beb36d673033ca166b2c23091821792632e639e263a10d224",
+  "software": {
+    "python": "3.13.5",
+    "scipy": "1.18.1"
+  },
+  "mode": "real",
+  "noninteractive_benchmark": true,
+  "mock_note": null,
+  "cases": [
+    {
+      "id": "berkeley_admissions",
+      "independent_reference_status": "passed",
+      "numerical_tool_status": "ok",
+      "numerical_tool_comparison": "passed",
+      "workflow_status": "delivered",
+      "report_file": "berkeley_admissions.json"
+    }
+  ],
+  "note": "Numerical correctness, workflow delivery, and real-model performance are separate outcomes. A pause is not a delivered analysis."
+}

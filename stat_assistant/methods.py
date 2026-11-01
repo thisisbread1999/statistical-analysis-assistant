@@ -87,6 +87,36 @@ METHODS = {
         limitation={"no_extrapolation": "The slope describes the linear association within the observed range of "
                                         "the predictor and should not be extrapolated beyond it."},
     ),
+    "paired_t_test": MethodSpec(
+        label="paired-samples t-test (two-sided, second minus first)",
+        answers="mean within-pair difference y minus x, with one independent pair per row; temporal order is not assumed",
+        roles={"x": "numeric", "y": "numeric"},
+        placeholders=("n", "n_pairs", "x_column", "y_column", "mean_x", "mean_y", "mean_difference",
+                      "sd_difference", "ci_lower", "ci_upper", "t_statistic", "df", "p_value", "alpha", "confidence_level"),
+        required=("n", "x_column", "y_column", "mean_difference", "t_statistic", "df", "p_value", "ci_lower", "ci_upper"),
+        direction_field="mean_difference",
+        sentence_plan=("how many complete independent pairs were analysed",
+                       "the paired test result: t({df}) = {t_statistic}, p = {p_value}",
+                       "the decision at {alpha}: we reject H0 / we do not reject H0; a failure to reject does not establish no change",
+                       "the estimated mean difference ({y_column} minus {x_column}) with its {confidence_level} CI, and whether the sample change was an increase or decrease",
+                       "that pairing alone does not establish causation"),
+        limitation={"paired_difference_assumptions": "Each row must be a correctly matched pair and pairs must be independent. "
+                    "The paired t-test assumes approximately normal within-pair differences for small samples; descriptive normality checks do not establish this assumption."},
+    ),
+    "fisher_exact": MethodSpec(
+        label="Fisher's exact test (two-sided, fixed-margin 2x2)",
+        answers="association between two categorical variables with exactly two observed levels each",
+        roles={"x": "categorical", "y": "categorical"},
+        placeholders=("n", "odds_ratio", "row_1", "row_2", "col_1", "col_2", "x_column", "y_column", "p_value", "alpha"),
+        required=("n", "p_value", "odds_ratio", "row_1", "row_2", "col_1", "col_2"),
+        direction_field=None,
+        sentence_plan=("how many independent records were analysed and the two-sided Fisher exact p = {p_value}",
+                       "the decision at {alpha}: we reject H0 (population odds ratio = {null_value}) / we do not reject H0",
+                       "the sample odds ratio = {odds_ratio}: odds of {col_1} versus {col_2} in row {row_1}, divided by those odds in row {row_2}; levels are sorted as written",
+                       "that this odds ratio describes association and does not establish causation"),
+        limitation={"no_odds_ratio_interval": "The reported odds ratio is the sample (unconditional maximum likelihood) estimate. "
+                    "No confidence interval was computed for the odds ratio. Zero cells can produce zero, infinite, or undefined estimates; no continuity correction was applied."},
+    ),
 }
 
 NO_METHOD = "no_supported_method"
@@ -112,6 +142,10 @@ def hypotheses(method: str, roles: dict, group_labels: list | None) -> str:
         return f"H0: ρ = 0 versus H1: ρ ≠ 0 (population Pearson correlation of {roles['x']} and {roles['y']})"
     if method == "chi_square_independence":
         return f"H0: {roles['x']} and {roles['y']} are independent versus H1: they are associated"
+    if method == "paired_t_test":
+        return f"H0: μd = 0 versus H1: μd ≠ 0, where d = {roles['y']} − {roles['x']}, one independent pair per row"
+    if method == "fisher_exact":
+        return f"H0: population odds ratio = 1 versus H1: population odds ratio ≠ 1 for {roles['x']} and {roles['y']}, conditional on the observed margins"
     return f"H0: β1 = 0 versus H1: β1 ≠ 0 (slope of {roles['y']} on {roles['x']})"
 
 
@@ -138,6 +172,20 @@ def protected_values(method: str, r: dict, conf_level: float) -> dict:
     elif method == "chi_square_independence":
         values |= {"n": str(r["n"]), "chi_square": f"{r['chi_square']:.3f}", "df": f"{r['df']:g}",
                    "cramers_v": f"{r['cramers_v']:.3f}"}
+    elif method == "paired_t_test":
+        values |= {"n": str(r["n"]), "n_pairs": str(r["n_pairs"]),
+                   "x_column": r["x_column"], "y_column": r["y_column"],
+                   "mean_x": f"{r['mean_x']:.2f}", "mean_y": f"{r['mean_y']:.2f}",
+                   "mean_difference": f"{r['mean_difference']:.2f}", "sd_difference": f"{r['sd_difference']:.2f}",
+                   "ci_lower": f"{r['ci_lower']:.2f}", "ci_upper": f"{r['ci_upper']:.2f}",
+                   "t_statistic": f"{r['t_statistic']:.3f}", "df": f"{r['df']:g}"}
+    elif method == "fisher_exact":
+        rows, cols = r["observed"]["row_labels"], r["observed"]["col_labels"]
+        ratio = r["odds_ratio"]
+        ratio_text = f"{ratio:.6g}" if ratio is not None else "infinite" if r["odds_ratio_status"] == "infinite" else "undefined"
+        values |= {"n": str(r["n"]), "odds_ratio": ratio_text, "row_1": rows[0], "row_2": rows[1],
+                   "col_1": cols[0], "col_2": cols[1], "null_value": "1",
+                   "x_column": r["x_column"], "y_column": r["y_column"]}
     else:
         values |= {"n": str(r["n"]), "slope": f"{r['slope']:.3f}", "intercept": f"{r['intercept']:.3f}",
                    "ci_lower": f"{r['ci_lower']:.3f}", "ci_upper": f"{r['ci_upper']:.3f}",

@@ -1,4 +1,4 @@
-"""Seventeen real workflow nodes and explicit labelled conditional edges."""
+"""Explicit planning, retrieval, human approval, tools and independent review."""
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
 
@@ -37,7 +37,11 @@ def followup_route(s):
 
 
 ROLES = {
+    "scope_request": "Analysis Agent A separates statistical targets",
+    "request_scope_confirmation": "Human chooses one target or clarifies the question",
+    "retrieve_method_guidance": "Local lexical retrieval of sourced method cards",
     "plan_analysis": "Analysis Agent A planning",
+    "approve_analysis_plan": "Human approves the method, target and ordered steps",
     "prepare_data_summary": "Python descriptive tool",
     "llm_diagnostics": "Analysis Agent A semantic diagnosis",
     "stat_diagnostics": "Python statistical diagnostic tool",
@@ -75,8 +79,15 @@ def build_graph(agent_a=None, agent_b=None, *, mode="mock", checkpointer=None, t
     builder = StateGraph(AnalysisState)
     for name, role in ROLES.items():
         builder.add_node(name, nodes.guarded(name), metadata={"role": role})
-    builder.add_conditional_edges(START, entry_route, {"new_analysis": "plan_analysis", "followup": "handle_followup"})
-    builder.add_conditional_edges("plan_analysis", plan_route, {"ready": "prepare_data_summary", "revise_plan_once": "plan_analysis", "stop": "issue_notice", "error": "issue_notice"})
+    builder.add_conditional_edges(START, entry_route, {"new_analysis": "scope_request", "followup": "handle_followup"})
+    builder.add_conditional_edges("scope_request", lambda s: "error" if current_errors(s) else s["scope_route"],
+                                  {"single": "retrieve_method_guidance", "choose": "request_scope_confirmation", "stop": "issue_notice", "error": "issue_notice"})
+    builder.add_conditional_edges("request_scope_confirmation", lambda s: "error" if current_errors(s) else s["scope_route"],
+                                  {"single": "scope_request", "stop": "issue_notice", "error": "issue_notice"})
+    builder.add_edge("retrieve_method_guidance", "plan_analysis")
+    builder.add_conditional_edges("plan_analysis", plan_route, {"ready": "approve_analysis_plan", "revise_plan_once": "plan_analysis", "stop": "issue_notice", "error": "issue_notice"})
+    builder.add_conditional_edges("approve_analysis_plan", lambda s: "error" if current_errors(s) else s["approval_route"],
+                                  {"approved": "prepare_data_summary", "replan": "scope_request", "stop": "issue_notice", "error": "issue_notice"})
     builder.add_edge("prepare_data_summary", "llm_diagnostics")
     builder.add_edge("prepare_data_summary", "stat_diagnostics")
     builder.add_edge(["llm_diagnostics", "stat_diagnostics"], "merge_diagnostics")
@@ -87,7 +98,7 @@ def build_graph(agent_a=None, agent_b=None, *, mode="mock", checkpointer=None, t
                            ("draft_report", "check_report"), ("check_report", "review_report"), ("revise_report", "check_report")):
         builder.add_edge(source, target)
     builder.add_conditional_edges("review_report", review_route, {"review_passed": "deliver_report", "revise_once": "revise_report", "fail_after_revision": "issue_notice", "error": "issue_notice"})
-    builder.add_conditional_edges("handle_followup", followup_route, {"new_confidence_level": "run_statistical_test", "re_explain": "draft_report", "new_question": "plan_analysis", "stop": "issue_notice", "error": "issue_notice"})
+    builder.add_conditional_edges("handle_followup", followup_route, {"new_confidence_level": "run_statistical_test", "re_explain": "draft_report", "new_question": "scope_request", "stop": "issue_notice", "error": "issue_notice"})
     builder.add_edge("deliver_report", "save_session")
     builder.add_edge("issue_notice", "save_session")
     builder.add_edge("save_session", END)

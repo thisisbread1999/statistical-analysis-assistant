@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="440" viewBox="0 0 960 440" role="img" aria-labelledby="title desc">
+<title id="title">The same ten patients received both drugs</title><desc id="desc">Lines join each patient&#x27;s additional hours of sleep under the two drugs. The mean drug two minus drug one difference is 1.58 hours.</desc>
+<rect width="100%" height="100%" fill="#fafafa"/>
+<style>text{font-family:Arial,sans-serif;fill:#172536}.title{font-size:23px;font-weight:bold}.label{font-size:16px}.small{font-size:13px}</style>
+<text class="title" x="35" y="36">The same ten patients received both drugs</text>
+<line x1="100" y1="340.0" x2="650" y2="340.0" stroke="#dce1e7"/>
+<text class="small" x="65" y="344.0">-2</text>
+<line x1="100" y1="276.25" x2="650" y2="276.25" stroke="#dce1e7"/>
+<text class="small" x="65" y="280.25">0</text>
+<line x1="100" y1="212.5" x2="650" y2="212.5" stroke="#dce1e7"/>
+<text class="small" x="65" y="216.5">2</text>
+<line x1="100" y1="148.75" x2="650" y2="148.75" stroke="#dce1e7"/>
+<text class="small" x="65" y="152.75">4</text>
+<line x1="100" y1="85.0" x2="650" y2="85.0" stroke="#dce1e7"/>
+<text class="small" x="65" y="89.0">6</text>
+<line x1="200" y1="253.9375" x2="550" y2="215.6875" stroke="#557388" stroke-opacity=".60" stroke-width="2"/>
+<circle cx="200" cy="253.9375" r="5" fill="#26738b"/><circle cx="550" cy="215.6875" r="5" fill="#b24b35"/>
+<line x1="200" y1="327.25" x2="550" y2="250.75" stroke="#557388" stroke-opacity=".60" stroke-width="2"/>
+<circle cx="200" cy="327.25" r="5" fill="#26738b"/><circle cx="550" cy="250.75" r="5" fill="#b24b35"/>
+<line x1="200" y1="282.625" x2="550" y2="241.1875" stroke="#557388" stroke-opacity=".60" stroke-width="2"/>
+<circle cx="200" cy="282.625" r="5" fill="#26738b"/><circle cx="550" cy="241.1875" r="5" fill="#b24b35"/>
+<line x1="200" y1="314.5" x2="550" y2="273.0625" stroke="#557388" stroke-opacity=".60" stroke-width="2"/>
+<circle cx="200" cy="314.5" r="5" fill="#26738b"/><circle cx="550" cy="273.0625" r="5" fill="#b24b35"/>
+<line x1="200" y1="279.4375" x2="550" y2="279.4375" stroke="#557388" stroke-opacity=".60" stroke-width="2"/>
+<circle cx="200" cy="279.4375" r="5" fill="#26738b"/><circle cx="550" cy="279.4375" r="5" fill="#b24b35"/>
+<line x1="200" y1="167.875" x2="550" y2="136.0" stroke="#557388" stroke-opacity=".60" stroke-width="2"/>
+<circle cx="200" cy="167.875" r="5" fill="#26738b"/><circle cx="550" cy="136.0" r="5" fill="#b24b35"/>
+<line x1="200" y1="158.3125" x2="550" y2="100.9375" stroke="#557388" stroke-opacity=".60" stroke-width="2"/>
+<circle cx="200" cy="158.3125" r="5" fill="#26738b"/><circle cx="550" cy="100.9375" r="5" fill="#b24b35"/>
+<line x1="200" y1="250.75" x2="550" y2="225.25" stroke="#557388" stroke-opacity=".60" stroke-width="2"/>
+<circle cx="200" cy="250.75" r="5" fill="#26738b"/><circle cx="550" cy="225.25" r="5" fill="#b24b35"/>
+<line x1="200" y1="276.25" x2="550" y2="129.625" stroke="#557388" stroke-opacity=".60" stroke-width="2"/>
+<circle cx="200" cy="276.25" r="5" fill="#26738b"/><circle cx="550" cy="129.625" r="5" fill="#b24b35"/>
+<line x1="200" y1="212.5" x2="550" y2="167.875" stroke="#557388" stroke-opacity=".60" stroke-width="2"/>
+<circle cx="200" cy="212.5" r="5" fill="#26738b"/><circle cx="550" cy="167.875" r="5" fill="#b24b35"/>
+<text class="label" x="160" y="372">Drug one</text><text class="label" x="510" y="372">Drug two</text>
+<text class="label" transform="translate(28,300) rotate(-90)">Additional hours of sleep</text>
+<text class="label" x="690" y="150">Mean paired difference</text><text x="690" y="188" font-size="32" fill="#b24b35">+1.58 hours</text>
+<text class="small" x="690" y="219">95% CI: +0.70 to +2.46</text>
+<text class="small" x="35" y="414">Source: R datasets::sleep; Student (1908). Modern paired reanalysis; no randomization claim.</text></svg>

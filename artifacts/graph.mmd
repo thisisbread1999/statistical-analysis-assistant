@@ -5,7 +5,11 @@ config:
 ---
 graph TD;
 	__start__([<p>__start__</p>]):::first
+	scope_request(scope_request<hr/><small><em>role = Analysis Agent A separates statistical targets</em></small>)
+	request_scope_confirmation(request_scope_confirmation<hr/><small><em>role = Human chooses one target or clarifies the question</em></small>)
+	retrieve_method_guidance(retrieve_method_guidance<hr/><small><em>role = Local lexical retrieval of sourced method cards</em></small>)
 	plan_analysis(plan_analysis<hr/><small><em>role = Analysis Agent A planning</em></small>)
+	approve_analysis_plan(approve_analysis_plan<hr/><small><em>role = Human approves the method, target and ordered steps</em></small>)
 	prepare_data_summary(prepare_data_summary<hr/><small><em>role = Python descriptive tool</em></small>)
 	llm_diagnostics(llm_diagnostics<hr/><small><em>role = Analysis Agent A semantic diagnosis</em></small>)
 	stat_diagnostics(stat_diagnostics<hr/><small><em>role = Python statistical diagnostic tool</em></small>)
@@ -24,32 +28,41 @@ graph TD;
 	handle_followup(handle_followup<hr/><small><em>role = Analysis Agent A followup routing</em></small>)
 	__end__([<p>__end__</p>]):::last
 	__start__ -. &nbsp;followup&nbsp; .-> handle_followup;
-	__start__ -. &nbsp;new_analysis&nbsp; .-> plan_analysis;
+	__start__ -. &nbsp;new_analysis&nbsp; .-> scope_request;
 	apply_corrections -. &nbsp;error&nbsp; .-> issue_notice;
 	apply_corrections -. &nbsp;recheck_data&nbsp; .-> prepare_data_summary;
+	approve_analysis_plan -. &nbsp;error&nbsp; .-> issue_notice;
+	approve_analysis_plan -. &nbsp;approved&nbsp; .-> prepare_data_summary;
+	approve_analysis_plan -. &nbsp;replan&nbsp; .-> scope_request;
 	build_stats_block --> draft_report;
 	check_report --> review_report;
 	deliver_report --> save_session;
 	draft_report --> check_report;
 	handle_followup -. &nbsp;re_explain&nbsp; .-> draft_report;
 	handle_followup -. &nbsp;error&nbsp; .-> issue_notice;
-	handle_followup -. &nbsp;new_question&nbsp; .-> plan_analysis;
 	handle_followup -. &nbsp;new_confidence_level&nbsp; .-> run_statistical_test;
+	handle_followup -. &nbsp;new_question&nbsp; .-> scope_request;
 	issue_notice --> save_session;
 	llm_diagnostics --> merge_diagnostics;
 	merge_diagnostics -. &nbsp;error&nbsp; .-> issue_notice;
 	merge_diagnostics -. &nbsp;needs_clarification&nbsp; .-> request_clarification;
 	merge_diagnostics -. &nbsp;proceed&nbsp; .-> run_statistical_test;
+	plan_analysis -. &nbsp;ready&nbsp; .-> approve_analysis_plan;
 	plan_analysis -. &nbsp;error&nbsp; .-> issue_notice;
-	plan_analysis -. &nbsp;ready&nbsp; .-> prepare_data_summary;
 	prepare_data_summary --> llm_diagnostics;
 	prepare_data_summary --> stat_diagnostics;
 	request_clarification --> apply_corrections;
+	request_scope_confirmation -. &nbsp;error&nbsp; .-> issue_notice;
+	request_scope_confirmation -. &nbsp;single&nbsp; .-> scope_request;
+	retrieve_method_guidance --> plan_analysis;
 	review_report -. &nbsp;review_passed&nbsp; .-> deliver_report;
 	review_report -. &nbsp;error&nbsp; .-> issue_notice;
 	review_report -. &nbsp;revise_once&nbsp; .-> revise_report;
 	revise_report --> check_report;
 	run_statistical_test --> build_stats_block;
+	scope_request -. &nbsp;error&nbsp; .-> issue_notice;
+	scope_request -. &nbsp;choose&nbsp; .-> request_scope_confirmation;
+	scope_request -. &nbsp;single&nbsp; .-> retrieve_method_guidance;
 	stat_diagnostics --> merge_diagnostics;
 	save_session --> __end__;
 	plan_analysis -. &nbsp;revise_plan_once&nbsp; .-> plan_analysis;

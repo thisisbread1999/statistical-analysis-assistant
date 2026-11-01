@@ -3,3 +3,4 @@
 examples/benchmark_v2/** -text
 artifacts/benchmark_v2/** -text
 artifacts/interpretation_checks/** -text
+examples/public_reproductions/** -text

@@ -1,0 +1,126 @@
+{
+  "client_date": "2026-11-01",
+  "graph_nodes": 21,
+  "methods": [
+    "welch_t_test",
+    "paired_t_test",
+    "pearson_correlation",
+    "chi_square_independence",
+    "fisher_exact",
+    "simple_linear_regression"
+  ],
+  "software_tests": {
+    "passed": 262,
+    "failed": 0,
+    "duration_seconds": 19.52,
+    "mode": "mock model responses plus real Python tools",
+    "command": "python -m pytest -q --basetemp=artifacts/runtime/pytest_november_release",
+    "evidence": "Recorded executed command output; this is a software test count, not model accuracy."
+  },
+  "software": {
+    "python": "3.13.5",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1"
+  },
+  "public_fixtures": {
+    "version": "public-reproductions-v2",
+    "hashes_verified": true
+  },
+  "real_model_run": {
+    "summary": "examples/public_reproductions/evidence/real_20261101_final/summary.json",
+    "cases": [
+      {
+        "id": "student_sleep",
+        "independent_reference_status": "passed",
+        "numerical_tool_status": "ok",
+        "numerical_tool_comparison": "passed",
+        "workflow_status": "delivered",
+        "report_file": "student_sleep.json"
+      },
+      {
+        "id": "berkeley_admissions",
+        "independent_reference_status": "passed",
+        "numerical_tool_status": "ok",
+        "numerical_tool_comparison": "passed",
+        "workflow_status": "delivered",
+        "report_file": "berkeley_admissions.json"
+      },
+      {
+        "id": "anscombe_quartet",
+        "independent_reference_status": "passed",
+        "numerical_tool_status": "ok",
+        "numerical_tool_comparison": "passed",
+        "workflow_status": "delivered",
+        "report_file": "anscombe_quartet.json"
+      }
+    ],
+    "models": [
+      "ollama:qwen3:8b",
+      "ollama:gemma3:12b"
+    ],
+    "predefined_benchmark_plan_approval": true,
+    "human_approval": false,
+    "human_scoring_performed": false,
+    "note": "Three prespecified reproductions are not an estimate of general model accuracy. Sleep review retained a minor false-positive numeric-mismatch comment."
+  },
+  "actual_native_tool_requests": [
+    {
+      "method": "simple_linear_regression",
+      "tool_call_id": "e5ce064f-39c9-4084-a890-af5311e6af74",
+      "recorded_files": [
+        {
+          "file": "examples/public_reproductions/evidence/real_20261101_final/native_tools/simple_linear_regression_request.json",
+          "sha256": "89b2ba81760903938ae73edb5ae7d8d9fd843730399e8e4c3903565dc9ef9a7a"
+        },
+        {
+          "file": "examples/public_reproductions/evidence/real_20261101_final/native_tools/simple_linear_regression_result.json",
+          "sha256": "087de18e75f4c6ff81e6095ba37b731a38704c2246eeeb0f18a4d6b6c4c3a4aa"
+        }
+      ]
+    },
+    {
+      "method": "paired_t_test",
+      "tool_call_id": "15c5d0e5-a15e-498e-82e8-c3569f4bf919",
+      "recorded_files": [
+        {
+          "file": "examples/public_reproductions/evidence/real_20261101_final/native_tools/paired_t_test_request.json",
+          "sha256": "dc070fa379a4723530e0d77f32200fcfec12af837b85674017b71d917f0cb7d2"
+        },
+        {
+          "file": "examples/public_reproductions/evidence/real_20261101_final/native_tools/paired_t_test_result.json",
+          "sha256": "64470ccdcf492b614f9caea6a30adabd5d18f9b5c2035325d5b66d7d21ecf326"
+        }
+      ]
+    },
+    {
+      "method": "chi_square_independence",
+      "tool_call_id": "b736d3c7-e4eb-49bc-aa10-f96f1b74bdc7",
+      "recorded_files": [
+        {
+          "file": "examples/public_reproductions/evidence/real_20261101_final/native_tools/chi_square_independence_request.json",
+          "sha256": "662ea53edc9f39af3c0eb4ac299f7dc7984d007659d682efdad5a7d8908a13ec"
+        },
+        {
+          "file": "examples/public_reproductions/evidence/real_20261101_final/native_tools/chi_square_independence_result.json",
+          "sha256": "74c6d1d3da6c3361ceba9cd0537d7c58255ef4472bd14e6d918bb9faac83b194"
+        }
+      ]
+    }
+  ],
+  "ui": "Browser verified scope selection and plan approval; public plots are illustrations of the original source values.",
+  "frozen_assignments": "Unchanged. Original 17-node notebook and original scores remain historical.",
+  "notebook": {
+    "file": "demo.ipynb",
+    "executed_code_cells": 7,
+    "mode": "mock",
+    "saved_errors": 0,
+    "plan_decision_supplied": false,
+    "data_decisions_supplied": false,
+    "status": "paused before inference"
+  },
+  "frozen_assignment_files_unchanged": true,
+  "git_diff_check": {
+    "authored_changes": "passed",
+    "source_snapshots": "Byte-exact original R snapshots retain upstream whitespace; excluded from authored-style checks."
+  }
+}

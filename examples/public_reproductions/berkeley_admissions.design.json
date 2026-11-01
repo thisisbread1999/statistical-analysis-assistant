@@ -1,0 +1,41 @@
+{
+  "id_column": "derived_record_id",
+  "randomized": false,
+  "independent": true,
+  "assignment": "Historical observational admissions counts; sex and department were not randomized.",
+  "independence": "Treat counted applications as independent observational units for the pooled contingency-table model; the source is a grouped table.",
+  "record_provenance": "The CSV is a deterministic frequency expansion, not original individual-level records. Generated IDs only satisfy the current categorical-tool interface.",
+  "variables": {
+    "sex": {
+      "type": "categorical",
+      "levels": [
+        "Male",
+        "Female"
+      ],
+      "meaning": "Historical source classification"
+    },
+    "admission": {
+      "type": "categorical",
+      "levels": [
+        "Admitted",
+        "Rejected"
+      ]
+    },
+    "department": {
+      "type": "categorical",
+      "levels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ]
+    }
+  },
+  "limitations": [
+    "Only the six largest departments are represented; the whole university had 12763 applications.",
+    "Pooling discards department information and cannot establish discrimination.",
+    "Counts do not verify independence or reveal applicant qualifications."
+  ]
+}

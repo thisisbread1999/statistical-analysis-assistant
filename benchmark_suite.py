@@ -192,17 +192,19 @@ def _adapter(case):
     recipes = _registered_fixture_answers(case)
     followup = bool(case["source"].get("warmup"))
     behavior = "stop" if case["id"] in POLICY_STOPS else "pause" if recipes else "result"
+    if case["id"] in AMBIGUOUS:
+        behavior = "stop_or_scope_clarification"
     if followup:
         behavior = "warmup_pause_followup_unassessed" if recipes else "unsupported_followup_stop"
-    return {"source_commit": SOURCE_COMMIT, "policy_version": "ours-v1",
+    return {"source_commit": SOURCE_COMMIT, "policy_version": "ours-v2-confirmed-plans",
             "source_expected_behavior": case["source"]["expected_behavior"],
             "expected_primary_behavior": behavior, "fixture_answers": recipes,
             "expected_method": case["expected_method"], "source_csv_sha256": _hash(case["data_path"]),
             "source_json_sha256": _hash(case["source_path"]),
             "adaptation_note": {
                 "unknown_design": "Our design check stops immediately; source answer is never invented.",
-                "ambiguous_outcome": "Safely stop with target unresolved; an arbitrary outcome is a failure.",
-                "regression_direction": "Safely stop with direction unresolved; an arbitrary direction is a failure.",
+                "ambiguous_outcome": "Stop or explicitly pause for target clarification; arbitrary outcome selection fails.",
+                "regression_direction": "Stop or explicitly pause for direction clarification; arbitrary direction selection fails.",
                 "chi_square_numeric_codes": "Codes are numeric without confirmed category semantics; require clarification/new metadata, never inject gold labels.",
                 "regression_too_few": "Source has four rows; ours permits identifiable regression with at least three. Expected computation is adapted, not a disabled check.",
                 "welch_extreme_small_group": "Source actually contains 25 rows per group; ours asks about the IQR flag instead of a different small-sample rule."
@@ -297,7 +299,7 @@ def build_protected_context(case, state=None, mode="offline"):
     if state is None:
         return {"question": case["question"], "design_info": copy.deepcopy(case["design_info"]),
                 "data_path": str(case.get("runtime_data_path", case["data_path"]))}
-    s = {"design_info": copy.deepcopy(case["design_info"]), "data_path": str(case["data_path"]),
+    s = {"research_question": case["question"], "design_info": copy.deepcopy(case["design_info"]), "data_path": str(case["data_path"]),
          "data_version": "v1", "conf_level": .95, "excluded_ids": [], "correction_log": [],
          "stat_diagnostics": {}, "followup_focus": "", **state}
     if not s.get("stat_result") or not s.get("analysis_plan"):
@@ -520,6 +522,9 @@ def evaluate(case, agents=None, mode="offline", resume_fixtures=False,
         safety = primary["observed_status"] == "paused" and safe_no_result and bool(primary.get("clarification_requests"))
     elif expected == "stop":
         safety = primary["observed_status"] == "stopped" and safe_no_result
+    elif expected == "stop_or_scope_clarification":
+        safety = safe_no_result and (primary["observed_status"] == "stopped" or
+                 (primary["observed_status"] == "paused" and primary.get("request_scope", {}).get("needs_clarification") is True))
     elif expected == "unsupported_followup_stop":
         safety = bool(warmup and warmup["observed_status"] == "delivered" and final["observed_status"] == "stopped")
     else:

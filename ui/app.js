@@ -7,7 +7,11 @@ const state = { catalog: null, examples: new Map(), material: null, upload: null
 const CUSTOM_DESIGN = { id_column: "", independence: "", randomized: null,
   assignment: "", variables: {}, typical_outcome: "" };
 const NODE_LABELS = {
+  scope_request: ["Scope the question", "Identify distinct statistical targets before choosing a method"],
+  request_scope_confirmation: ["Choose one target", "The user selects or clarifies one question per run"],
+  retrieve_method_guidance: ["Retrieve guidance", "Search local sourced statistical method cards"],
   plan_analysis: ["Plan", "Model A chooses a supported method and statistical target"],
+  approve_analysis_plan: ["Confirm the plan", "The user approves the displayed method, target and steps"],
   prepare_data_summary: ["Data profile", "Python reads the current CSV version"],
   llm_diagnostics: ["Semantic checks", "Model A reviews meanings, design and goal alignment"],
   stat_diagnostics: ["Statistical checks", "Python checks values and method requirements"],
@@ -64,7 +68,7 @@ function setBusy(busy) {
     $("run").disabled = state.loadingExample || (!state.material && !state.upload);
     $("case").disabled = !state.catalog;
     $("downloadCsv").disabled = !state.material;
-    $("confidence").disabled = state.result?.stats_block?.method === "chi_square_independence";
+    $("confidence").disabled = ["chi_square_independence", "fisher_exact"].includes(state.result?.stats_block?.method);
   }
 }
 async function getJson(url, options = {}) {
@@ -112,10 +116,20 @@ function exampleGuide(example) {
   const container = el("div");
   container.append(el("strong", "Expected behavior"), el("p", example.expected || example.description));
   if (example.followup) container.append(el("strong", "Try a follow-up"), el("p", example.followup));
-  container.append(el("span", "Synthetic teaching data; these are demonstration scenarios.", "muted"));
+  container.append(el("span", example.provenance_note || "Synthetic teaching data; these are demonstration scenarios.", "muted"));
+  if (example.source_url) {
+    const link = el("a", "Dataset documentation"); link.href = example.source_url;
+    link.target = "_blank"; link.rel = "noopener noreferrer"; container.append(link);
+  }
   replace("caseGuide", container);
+  $("caseIllustration").hidden = !example.illustration_url;
+  if (example.illustration_url) {
+    $("sourcePlot").src = example.illustration_url;
+    $("sourcePlot").alt = `${example.title}: source-data illustration`;
+  }
 }
 function useCustom() {
+  $("caseIllustration").hidden = true;
   state.material = null;
   $("material").hidden = true;
   $("caseNote").textContent = "Use a CSV with a unique header and one record per row. Confirm the study facts below before running.";
@@ -188,7 +202,7 @@ async function runJob(action, values, progressId) {
   setBusy(true);
   const began = Date.now();
   const activeMode = values.mode || state.result?.mode || "mock";
-  const title = action === "resume" ? "Applying your decisions" : action === "followup" ? "Running follow-up" : "Running analysis";
+  const title = ["resume", "resume_plan"].includes(action) ? "Applying your decision" : action === "followup" ? "Running follow-up" : "Running analysis";
   progress(progressId, `${title}…`);
   notice(`${title}. Please keep this tab open.`, "running");
   if (state.result) $("notice").textContent = "A new request is running. The results currently displayed belong to the previous request.";
@@ -201,9 +215,9 @@ async function runJob(action, values, progressId) {
       if (job.status === "completed") {
         if (!job.result) throw new Error("The server completed the request without a result.");
         renderResult(job.result);
-        const paused = job.result.status === "needs_clarification";
+        const paused = job.result.status.startsWith("needs_");
         const stopped = job.result.status === "stopped";
-        const message = paused ? "Paused for your decisions. Review the flagged records below." : stopped ? "Analysis stopped. The reason is shown in the result." : "Report delivered. Inspect the plan and execution trail below.";
+        const message = paused ? "Paused for your decision. Review the question, plan or flagged records below." : stopped ? "Analysis stopped. The reason is shown in the result." : "Report delivered. Inspect the plan and execution trail below.";
         progress(progressId, message, paused || stopped ? "attention" : "success");
         if (progressId !== "progress") progress("progress", message, paused || stopped ? "attention" : "success");
         notice(message, paused || stopped ? "attention" : "success");
@@ -241,6 +255,8 @@ function renderMetrics(result) {
   if (!Object.keys(v).length) { replace("metrics"); $("hypotheses").hidden = true; return; }
   const metrics = [];
   if (sb.method === "welch_t_test") metrics.push(["Mean difference", v.mean_difference, `${v.group_1} minus ${v.group_2}`]);
+  if (sb.method === "paired_t_test") metrics.push(["Mean paired difference", v.mean_difference, `${v.y_column} minus ${v.x_column}`]);
+  if (sb.method === "fisher_exact") metrics.push(["Sample odds ratio", v.odds_ratio, "See the table's explicit row and column order"]);
   if (sb.method === "pearson_correlation") metrics.push(["Pearson correlation", v.r, "Linear association"]);
   if (sb.method === "chi_square_independence") metrics.push(["Cramer's V", v.cramers_v, "Strength of association"]);
   if (sb.method === "simple_linear_regression") metrics.push(["Estimated slope", v.slope, "Outcome change per predictor unit"]);
@@ -259,7 +275,7 @@ function renderMetrics(result) {
     wrap.append(table(["Group", "n", "Mean", "SD"], [[v.group_1, v.n_group_1, v.mean_group_1, v.sd_group_1], [v.group_2, v.n_group_2, v.mean_group_2, v.sd_group_2]]));
     $("hypotheses").append(wrap);
   }
-  if (sb.method === "chi_square_independence" && sb.observed?.counts) {
+  if (["chi_square_independence", "fisher_exact"].includes(sb.method) && sb.observed?.counts) {
     const wrap = el("div", null, "table-wrap");
     const observed = sb.observed;
     wrap.append(table(["Observed counts", ...observed.col_labels], observed.counts.map((counts, index) => [observed.row_labels[index], ...counts])));
@@ -426,19 +442,53 @@ function renderClarification(result) {
   replace("clarificationRequests", ...elements);
   progress("clarifyProgress", "");
 }
+function renderPlanningDecision(result) {
+  const pending = result.clarification || {};
+  const active = ["plan_approval", "scope_selection"].includes(pending.kind);
+  $("planningDecision").hidden = !active;
+  if (!active) return;
+  const choosing = pending.kind === "scope_selection";
+  $("planningTitle").textContent = choosing ? "Choose one analysis target" : "Confirm the proposed analysis";
+  $("planningMessage").textContent = choosing ? pending.message : "Check the method, comparison direction and hypotheses. Computation begins only after you approve.";
+  $("approvePlan").textContent = choosing ? "Use this question →" : "Approve plan & continue →";
+  $("changePlan").hidden = choosing;
+  $("planningQuestion").value = pending.question || pending.original_question || result.question || "";
+  replace("planningChoices");
+  if (choosing) {
+    const label = el("label", "Analysis target"); label.htmlFor = "scopeChoice";
+    const select = el("select"); select.id = "scopeChoice";
+    const empty = el("option", "Select one question…"); empty.value = ""; select.append(empty);
+    for (const task of pending.tasks || []) {
+      const option = el("option", task.question); option.value = task.task_id; select.append(option);
+    }
+    select.addEventListener("change", () => {
+      const task = pending.tasks.find((item) => item.task_id === select.value);
+      if (task) $("planningQuestion").value = task.question;
+    });
+    $("planningChoices").append(label, select);
+  }
+  const plan = pending.plan || {};
+  renderPairs("approvalPlan", [["Method", plan.method], ["Target", plan.target_parameter],
+    ["Null hypothesis", plan.null_hypothesis], ["Alternative", plan.alternative_hypothesis], ["Reason", plan.method_rationale]]);
+  replace("planningSteps", ...(pending.steps || []).map((step) => el("li", step)));
+  progress("planningProgress", "");
+}
 function renderResult(result) {
   state.result = result;
   $("empty").hidden = true;
   $("output").hidden = false;
-  $("status").textContent = result.status === "delivered" ? "Report delivered" : result.status === "needs_clarification" ? "Paused for your decisions" : "Analysis stopped";
+  $("status").textContent = result.status === "delivered" ? "Report delivered" : result.status.startsWith("needs_") ? "Paused for your decision" : "Analysis stopped";
   $("modeBadge").textContent = result.mode === "real" ? "REAL · two models" : "MOCK · rule-based agents";
   $("resultContext").textContent = `Request ${result.request_number || 1} · Data ${result.data_version || "v1"} · ${result.question || ""}`;
   const messages = [];
   if (result.mode !== "real") messages.push("Mock mode demonstrates workflow behavior with rule-based agents; these results do not evaluate LLM reasoning.");
   if (result.status === "stopped") messages.push("No validated inferential report was delivered. Any statistics displayed were computed before the stop and are not an approved interpretation.");
   if (result.status === "needs_clarification") messages.push("Data issues require your explicit answers. No records have been silently corrected or excluded.");
+  if (result.status === "needs_plan_approval") messages.push("The proposed plan is ready. Statistical computation has not started.");
+  if (result.status === "needs_scope_selection") messages.push("Choose one statistical target. The remaining questions will not be silently discarded or executed.");
   $("notice").textContent = messages.join(" ");
   renderClarification(result);
+  renderPlanningDecision(result);
   renderMetrics(result);
   $("interpretation").hidden = !result.report;
   $("reportTitle").textContent = result.status === "delivered" ? "Validated report" : "Workflow notice";
@@ -458,6 +508,13 @@ function renderResult(result) {
     ["Outcome", plan.outcome], ["Group", plan.group], ["Group order", plan.group_1_label ? `${plan.group_1_label} minus ${plan.group_2_label}` : ""],
     ["Predictor / first variable", plan.x], ["Outcome / second variable", plan.y], ["Null hypothesis", plan.null_hypothesis],
     ["Alternative hypothesis", plan.alternative_hypothesis], ["Why this method", plan.method_rationale], ["Design notes", plan.design_notes]]);
+  const references = (result.references || []).map((reference) => {
+    const item = el("div"); item.append(el("strong", reference.title), el("p", reference.text));
+    const link = el("a", "Primary method reference"); link.href = reference.source; link.target = "_blank"; link.rel = "noopener noreferrer";
+    item.append(link); return item;
+  });
+  if (result.tool_selection?.call) references.push(el("p", `Tool call: ${result.tool_selection.call.name} · id ${result.tool_selection.call.id}`));
+  replace("references", ...references);
   renderChecks(result); renderReview(result); renderTrace(result);
   showPreview("preview", result.preview);
   const audit = result.correction_log || [];
@@ -468,7 +525,7 @@ function renderResult(result) {
   replace("modelCalls", calls.length ? table(["Node", "Agent action", "Model", "Mode", "Status"], calls.map((entry) => [entry.node, entry.method, entry.model, entry.mode, entry.status])) : el("p", "No model calls were made for this request.", "muted"));
   $("followSection").hidden = !result.can_followup;
   $("followSection").querySelector("p").textContent = "Re-explanation reuses the saved statistics. A new confidence level recomputes the interval. A new supported question replans the analysis. Follow-ups use the displayed session and its original execution mode, even if you change the input panel. To use new data or a different subset, start a new analysis with a new CSV.";
-  $("confidence").disabled = result.stats_block?.method === "chi_square_independence";
+  $("confidence").disabled = ["chi_square_independence", "fisher_exact"].includes(result.stats_block?.method);
   $("confidence").title = result.stats_block?.method === "chi_square_independence" ? "A confidence interval for Cramer's V is not implemented." : "Recompute this analysis with a 99% confidence interval.";
   $("follow").value = "";
   progress("followProgress", "");
@@ -534,6 +591,24 @@ $("stop").addEventListener("click", () => {
   const request = state.result?.clarification?.requests?.find((item) => item.allowed_responses?.includes("stop"));
   if (request) runJob("resume", { session_id: state.result.session_id, answers: [{ request_id: request.request_id, action: "stop", reason: "" }] }, "clarifyProgress");
 });
+function sendPlanDecision(decision) {
+  runJob("resume_plan", { session_id: state.result.session_id, decision }, "planningProgress");
+}
+$("approvePlan").addEventListener("click", () => {
+  const pending = state.result.clarification;
+  if (pending.kind === "scope_selection") {
+    const taskId = $("scopeChoice").value;
+    if (!taskId) { progress("planningProgress", "Select one analysis target first.", "error"); return; }
+    sendPlanDecision({ action: "select", task_id: taskId, question: $("planningQuestion").value.trim() });
+  } else {
+    if ($("planningQuestion").value.trim() !== pending.question) {
+      progress("planningProgress", "The question was edited. Request a new plan before approving.", "error"); return;
+    }
+    sendPlanDecision({ action: "approve", plan_id: pending.plan_id });
+  }
+});
+$("changePlan").addEventListener("click", () => sendPlanDecision({ action: "change_question", question: $("planningQuestion").value.trim() }));
+$("stopPlan").addEventListener("click", () => sendPlanDecision({ action: "stop" }));
 function followup(question) {
   if (!question.trim()) { progress("followProgress", "Enter a follow-up question.", "error"); return; }
   runJob("followup", { session_id: state.result.session_id, question: question.trim() }, "followProgress");

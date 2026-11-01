@@ -1,9 +1,23 @@
 # Agentic Statistical Analysis Assistant
 
-A course-scale Python statistical assistant with **two distinct LLMs**, **17 LangGraph nodes**
+A course-scale Python statistical assistant with **two distinct LLMs**, **21 LangGraph nodes**
 and **NumPy/SciPy statistical tools**. Model A plans and explains; Model B reviews against
 original evidence. The user resolves data issues before inference. Local Ollama models can
 run without a paid API or model training.
+
+The November extension adds **request scoping, sourced local method retrieval,
+native LLM tool calls, and explicit plan approval** in the browser and interactive CLI.
+Six methods are available: Welch t, paired t, Pearson correlation, chi-square,
+Fisher exact, and simple OLS. A multi-question request is shown as separate targets;
+the user chooses one for the current run. It is not silently converted into a batch
+of tests. See [course alignment](docs/COURSE_ALIGNMENT_2026-11-01.md) and the
+[three-slide classroom story](docs/THREE_SLIDE_STORY.md).
+
+Three sourced demonstrations are in [public reproductions](docs/PUBLIC_REPRODUCTIONS.md):
+Student's matched sleep measurements, Berkeley's six-department admissions counts,
+and Anscombe's published constructed quartet. Original sources, transformations,
+reference calculations, model runs and failures are kept separately. These examples
+reproduce stated numerical targets, not every conclusion of the original papers.
 
 The current layout follows the teammate's
 [repository at `b7eff1c`](https://github.com/Junliang-Lyu/statistical-analysis-assistant/tree/b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5):
@@ -24,6 +38,8 @@ are now adapted to our workflow; date filtering still requires a new CSV.
 | `ui_server.py`, `ui/` | Local browser interface: select an example or upload CSV, review study metadata, answer data issues and inspect the report and execution trail. |
 | `artifacts/graph.png`, `artifacts/graph.mmd` | Diagram and Mermaid source exported from the compiled workflow used by the demo. |
 | `stat_assistant/` | Python package: `agents.py`, `workflow.py`, `tools.py` and supporting modules. |
+| `stat_assistant/planning.py`, `references.py` | Scope selection and plan approval; inspectable lexical retrieval over six sourced method cards. |
+| `reproduce_public.py`, `examples/public_reproductions/` | Sourced historical/constructed examples, independent numerical references, saved mock/real runs and classroom plots. |
 | `examples/` | Active synthetic CSV examples, with their original descriptive filenames. |
 | `benchmark_suite.py`, `examples/benchmark_v2/` | Frozen 31-case evaluation inputs, with our own policy adapter and offline/live workflow scoring. |
 | `interpretation_benchmark.py`, `examples/interpretation_checks/` | Sixteen controlled interpretation challenges, scored separately by program checks and Model B. |
@@ -40,6 +56,8 @@ The frozen Module 6 v1 is preserved at Git tag `module6-submission-v1`. Its
 and `r/stats_tools.R` remain available. `data/` also retains the pre-layout Python synthetic
 CSV for provenance. `docs/V1_README.md` is the historical setup guide. The unfinished R v2
 extension and bridge are archived in `legacy/`. Active Python code does not require R.
+Previously submitted dated notebooks, slides and writeups remain historical snapshots;
+their embedded graph and evaluation numbers have not been relabeled as this extension.
 
 ## Run on Windows
 
@@ -48,7 +66,7 @@ From the project folder:
 ```powershell
 py -m venv "$env:USERPROFILE\.venvs\langgraph-viz"
 & "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" -m pip install -r requirements.txt
-& "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" demo.py --mode mock
+& "$env:USERPROFILE\.venvs\langgraph-viz\Scripts\python.exe" demo.py --mode mock --interactive
 ```
 
 Reuse an existing project environment when available. `requirements.txt` includes
@@ -75,6 +93,13 @@ models to be available. A failed real call is reported, without a mock substitut
 
 For your own CSV, review the study and variable metadata JSON explicitly before
 running the analysis. A CSV alone cannot establish independence or randomization.
+The browser first shows the proposed method, target, hypotheses, direction and
+ordered steps. Approve that exact plan, edit the question to request a new plan,
+or stop. Multiple targets require choosing one before approval. Approval is bound
+to the displayed plan and input fingerprint; it does not certify statistical validity.
+For paired measurements, use one row per pair and explicitly declare
+`independent_pairs: true`, with the two ordered `paired_columns`; different subjects
+must be treated as independent units. Chronological order is not assumed.
 When the graph pauses on a data issue, choose a permitted correction, exclusion,
 verification or stop action. **Source or reason is optional** for correction,
 exclusion and verification; a correction still requires a valid replacement value.
@@ -137,8 +162,7 @@ the examples use fixed thread IDs. PNG generation requires network access to the
 renderer. The messy-data example remains paused in headless mode. Set `INTERACTIVE = True`
 in its cell to enter your own verified answers in Jupyter.
 
-`python build_notebook.py` regenerates the canonical teaching and assignment notebooks
-and clears their saved outputs; execute them again after rebuilding. The assignment
+`python build_notebook.py` regenerates only the current project-linked `demo.ipynb` and clears its saved outputs. It does not rewrite the dated assignment notebook. Execute the new demo explicitly after rebuilding. The assignment
 notebook embeds the source and data and can be executed independently of the package
 folder. Its current artifact instructions are in
 [assignments/2026-10-12/README.md](assignments/2026-10-12/README.md).
@@ -151,7 +175,7 @@ real-model evaluation. See the verification record for measured results.
 
 ## What the assistant does
 
-1. **Plan:** map the question to variable roles, estimand and hypotheses. Supported methods are two-sided Welch t, Pearson correlation, chi-square independence and simple OLS with an intercept.
+1. **Scope, retrieve and plan:** separate distinct targets, retrieve sourced method notes, and map one question to roles, estimand and hypotheses. Real Model A uses native `bind_tools` calls with name, arguments and ID; only allowlisted statistical functions can be selected. The proposed call is deferred until plan approval. Methods are two-sided Welch t, paired t, Pearson correlation, chi-square independence, Fisher exact and simple OLS with an intercept.
 2. **Diagnose in parallel:** Model A checks semantics/design/goal alignment from a shared descriptive summary; Python checks raw values and method-specific computability. The branches join before routing.
 3. **Clarify if needed:** missing scores, invalid labels, impossible values or unusual observations are shown to the user. Each correction/exclusion/verification needs an explicit permitted action; source or reason is optional. Corrections require valid replacement values. The original file stays unchanged, approved changes produce a new data version, and the audit records actions and any supplied notes without inventing reasons. The system never fills in missing values or drops rows silently.
 4. **Compute and explain:** Python produces the numerical result. Model A writes a placeholder-based explanation. A program checks required values, common field bindings and decision consistency; Model B checks the rendered meaning against original evidence. One report revision is allowed, then delivery or an issue notice.
@@ -165,7 +189,8 @@ settings, not statistical validity guarantees.
 The method is chosen from the question and data roles, not from whether its p-value is
 significant. Welch does not assume equal variances. Normality diagnostics are descriptive,
 not a switch to a rank test. A sparse contingency table stops because an exact-test fallback
-is outside this stage. Correlations and observational group differences do not establish
+is not automatic: an explicit new Fisher plan is available for a two-by-two table.
+Correlations and observational group differences do not establish
 causation. A new confidence level does not change alpha (fixed at 0.05).
 
 ## Scope and evaluation
@@ -195,7 +220,7 @@ no model weights are trained. See [benchmark policy](docs/BENCHMARK_V2.md),
 for measured results and unresolved failures.
 
 This is a runnable course prototype, not a general statistical consulting product. It does
-not implement automatic filtering, missing-data imputation, paired/clustered models, multiple
+not implement automatic filtering, missing-data imputation, clustered or extended repeated-measures models, multiple
 regression, arbitrary code generation, causal adjustment or persistent multi-user storage.
 For “only last year's data”, supply a new CSV and run a new analysis.
 
@@ -205,3 +230,18 @@ ambiguous and failing cases, checking method/estimand alignment, effect and unce
 missingness disclosure, non-significance wording and causal restraint. Human evaluation scores
 the whole system; it does not train either model. See the verification record for measured
 results rather than assuming these demos establish accuracy.
+
+### Reproduce a public numerical target
+
+```powershell
+python reproduce_public.py --mode mock --noninteractive-benchmark
+python reproduce_public.py --mode real --noninteractive-benchmark --case student_sleep
+```
+
+These commands use **predefined benchmark approval**, logged as `human_approval=false`;
+they never answer record-level data questions. Omit `--noninteractive-benchmark` to
+leave the plan paused for actual confirmation. Real mode calls the configured two
+models; mock mode is not model accuracy evidence. Immutable output directories
+separate independent reference correctness, numerical-tool correctness and workflow
+delivery. API callers retain the backward-compatible `new_run` default without a
+human checkpoint; interactive clients explicitly set `require_plan_confirmation=True`.

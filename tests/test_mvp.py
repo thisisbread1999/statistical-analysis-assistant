@@ -32,9 +32,9 @@ def run(graph=None, name="clean", **kwargs):
                          copy.deepcopy(DESIGN), **kwargs)
 
 
-def test_actual_graph_has_seventeen_nodes_and_labelled_routes():
+def test_actual_graph_has_planning_retrieval_approval_and_labelled_routes():
     graph = build_graph()
-    assert len(ROLES) == 17
+    assert {"scope_request", "retrieve_method_guidance", "approve_analysis_plan", "request_scope_confirmation"} <= set(ROLES)
     mermaid = graph.get_graph().draw_mermaid()
     for label in ("revise_plan_once", "needs_clarification", "review_passed", "new_confidence_level"):
         assert label in mermaid

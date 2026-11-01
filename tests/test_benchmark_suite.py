@@ -72,7 +72,9 @@ def test_primary_pause_retained_after_fixture_continuation(tmp_path, name):
 @pytest.mark.parametrize("name", ["unknown_design", "ambiguous_outcome", "regression_direction", "chi_square_numeric_codes"])
 def test_safe_stop_never_invents_answers_or_inference(tmp_path, name):
     row = bench.evaluate(case(name), resume_fixtures=True, audit_dir=tmp_path)
-    assert row["actual_status"] == "stopped" and row["mechanical_pass"]
+    assert row["actual_status"] in ("stopped", "paused") and row["mechanical_pass"]
+    if row["actual_status"] == "paused":
+        assert row["final_state"]["request_scope"]["needs_clarification"] is True
     assert row["final_state"].get("stat_result", {}).get("status") != "ok"
     assert not any(stage.get("answers") for stage in row["stages"])
 

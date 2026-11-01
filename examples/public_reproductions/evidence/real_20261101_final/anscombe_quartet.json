@@ -1,0 +1,934 @@
+{
+  "case_id": "anscombe_quartet",
+  "source": {
+    "source_name": "R datasets::anscombe",
+    "source_url": "https://svn.r-project.org/R/trunk/src/library/datasets/data/anscombe.R",
+    "source_sha256": "02f29379f282fcf909ff988b3fde2be2d5591975ba27ed0efd8714a91629223e",
+    "data_sha256": "7297f5406acd1819ed6bbd53bd662ba173e32b6ca8b13e9d57b2617882232dda",
+    "documentation_url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/anscombe.html",
+    "citation": "Anscombe FJ (1973). Graphs in Statistical Analysis. The American Statistician 27(1), 17–21. R documentation credits Tufte (1990), pp. 13–14, as its data source.",
+    "paper_doi": "https://doi.org/10.1080/00031305.1973.10478966"
+  },
+  "source_version": "public-reproductions-v2",
+  "question": "Fit one simple linear regression with x1 as predictor and y1 as outcome, including an intercept. Report the slope and its two-sided 95% confidence interval. This run analyses only the first constructed dataset.",
+  "data_kind": "published_pedagogically_constructed_data",
+  "scope": {
+    "supports": "Reproduce the first dataset's ordinary least-squares summary and show the quartet's nearly identical summaries despite very different plotted patterns.",
+    "does_not_support": "Empirical population evidence, a causal relationship, identical unrounded statistics across all four sets, or automatic workflow analysis of all four regressions."
+  },
+  "independent_reference": {
+    "calculation": "Independent explicit oracle; no application compute function or LLM",
+    "source_version": "public-reproductions-v2",
+    "source_sha256": "02f29379f282fcf909ff988b3fde2be2d5591975ba27ed0efd8714a91629223e",
+    "expected": {
+      "n": 11,
+      "slope": 0.5000909090909091,
+      "intercept": 3.0000909090909103,
+      "r_squared": 0.6665424595087749,
+      "t_statistic": 4.241455288892832,
+      "df": 9,
+      "p_value": 0.002169628873078799,
+      "ci_lower": 0.23337013638518744,
+      "ci_upper": 0.7668116817966308
+    },
+    "calculated": {
+      "n": 11,
+      "slope": 0.5000909090909091,
+      "intercept": 3.0000909090909103,
+      "r_squared": 0.666542459508775,
+      "t_statistic": 4.2414552888928325,
+      "df": 9,
+      "p_value": 0.002169628873078794,
+      "ci_lower": 0.2333701363851875,
+      "ci_upper": 0.7668116817966308
+    },
+    "tolerance": {
+      "rtol": 1e-08,
+      "atol": 1e-12,
+      "p_value_atol": 1e-30
+    },
+    "status": "passed",
+    "checks": {
+      "n": {
+        "expected": 11,
+        "calculated": 11,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "slope": {
+        "expected": 0.5000909090909091,
+        "calculated": 0.5000909090909091,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "intercept": {
+        "expected": 3.0000909090909103,
+        "calculated": 3.0000909090909103,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "r_squared": {
+        "expected": 0.6665424595087749,
+        "calculated": 0.666542459508775,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "t_statistic": {
+        "expected": 4.241455288892832,
+        "calculated": 4.2414552888928325,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "df": {
+        "expected": 9,
+        "calculated": 9,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "p_value": {
+        "expected": 0.002169628873078799,
+        "calculated": 0.002169628873078794,
+        "rtol": 1e-08,
+        "atol": 1e-30,
+        "passed": true
+      },
+      "ci_lower": {
+        "expected": 0.23337013638518744,
+        "calculated": 0.2333701363851875,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "ci_upper": {
+        "expected": 0.7668116817966308,
+        "calculated": 0.7668116817966308,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      }
+    }
+  },
+  "numerical_tool_reference": {
+    "status": "ok",
+    "comparison": {
+      "status": "passed",
+      "checks": {
+        "n": {
+          "expected": 11,
+          "calculated": 11,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "slope": {
+          "expected": 0.5000909090909091,
+          "calculated": 0.5000909090909091,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "intercept": {
+          "expected": 3.0000909090909103,
+          "calculated": 3.0000909090909103,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "r_squared": {
+          "expected": 0.6665424595087749,
+          "calculated": 0.666542459508775,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "t_statistic": {
+          "expected": 4.241455288892832,
+          "calculated": 4.2414552888928325,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "df": {
+          "expected": 9,
+          "calculated": 9,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "p_value": {
+          "expected": 0.002169628873078799,
+          "calculated": 0.002169628873078794,
+          "rtol": 1e-08,
+          "atol": 1e-30,
+          "passed": true
+        },
+        "ci_lower": {
+          "expected": 0.23337013638518744,
+          "calculated": 0.2333701363851875,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "ci_upper": {
+          "expected": 0.7668116817966308,
+          "calculated": 0.7668116817966308,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        }
+      }
+    },
+    "result": {
+      "task": "run_test",
+      "data_version": "public-reproductions-v2",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\public_reproductions\\anscombe_quartet.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 11,
+      "columns_found": [
+        "illustrative_row_id",
+        "x1",
+        "x2",
+        "x3",
+        "x4",
+        "y1",
+        "y2",
+        "y3",
+        "y4"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 11,
+      "tool_warnings": [],
+      "method_label": "Ordinary least squares (one predictor, with intercept)",
+      "n": 11,
+      "slope": 0.5000909090909091,
+      "slope_se": 0.11790550059563408,
+      "intercept": 3.0000909090909103,
+      "ci_lower": 0.2333701363851875,
+      "ci_upper": 0.7668116817966308,
+      "t_statistic": 4.2414552888928325,
+      "df": 9,
+      "p_value": 0.002169628873078794,
+      "r_squared": 0.666542459508775,
+      "regression_diagnostics": {
+        "n": 11,
+        "parameter_count": 2,
+        "thresholds": {
+          "cooks_distance": 0.36363636363636365,
+          "leverage": 0.36363636363636365
+        },
+        "max_leverage": 0.31818181818181823,
+        "max_cooks_distance": 0.48920927577433576,
+        "high_leverage_ids": [],
+        "influential_ids": [
+          "illustrative_03"
+        ],
+        "observations": [
+          {
+            "record_id": "illustrative_01",
+            "row_number": 1,
+            "leverage": 0.1,
+            "cooks_distance": 6.139788079219117e-05
+          },
+          {
+            "record_id": "illustrative_02",
+            "row_number": 2,
+            "leverage": 0.1,
+            "cooks_distance": 0.00010424672321835138
+          },
+          {
+            "record_id": "illustrative_03",
+            "row_number": 3,
+            "leverage": 0.2363636363636364,
+            "cooks_distance": 0.48920927577433576
+          },
+          {
+            "record_id": "illustrative_04",
+            "row_number": 4,
+            "leverage": 0.09090909090909091,
+            "cooks_distance": 0.061636998950852465
+          },
+          {
+            "record_id": "illustrative_05",
+            "row_number": 5,
+            "leverage": 0.1272727272727273,
+            "cooks_distance": 0.0015993418763965569
+          },
+          {
+            "record_id": "illustrative_06",
+            "row_number": 6,
+            "leverage": 0.31818181818181823,
+            "cooks_distance": 0.0003828995111222913
+          },
+          {
+            "record_id": "illustrative_07",
+            "row_number": 7,
+            "leverage": 0.17272727272727273,
+            "cooks_distance": 0.12675648475149423
+          },
+          {
+            "record_id": "illustrative_08",
+            "row_number": 8,
+            "leverage": 0.31818181818181823,
+            "cooks_distance": 0.12269989634029715
+          },
+          {
+            "record_id": "illustrative_09",
+            "row_number": 9,
+            "leverage": 0.17272727272727273,
+            "cooks_distance": 0.2790295933758794
+          },
+          {
+            "record_id": "illustrative_10",
+            "row_number": 10,
+            "leverage": 0.1272727272727273,
+            "cooks_distance": 0.15434122237202735
+          },
+          {
+            "record_id": "illustrative_11",
+            "row_number": 11,
+            "leverage": 0.2363636363636364,
+            "cooks_distance": 0.004268011426677266
+          }
+        ],
+        "breusch_pagan": {
+          "lm_statistic": 0.6553075561484156,
+          "p_value": 0.4182214568018926,
+          "df": 1,
+          "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+          "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+        },
+        "warnings": [
+          {
+            "code": "influential_observations",
+            "message": "Potential influential observations have Cook's distance > 4/n (0.363636): illustrative_03. No observations were excluded automatically."
+          }
+        ]
+      },
+      "decision": "reject_H0"
+    },
+    "note": "Read-only numerical reference call; does not approve the workflow's pending data checks."
+  },
+  "workflow": {
+    "mode": "real",
+    "agents_are_llms": true,
+    "configuration": {
+      "mode": "real",
+      "model_a": "ollama:qwen3:8b",
+      "model_b": "ollama:gemma3:12b"
+    },
+    "status": "delivered",
+    "final_status": "delivered",
+    "run_id": "6ebf9d6505e9447a89b7ec6de8b71306",
+    "interrupts": [],
+    "benchmark_decisions": [
+      {
+        "policy": "benchmark_predefined_plan",
+        "source": "explicit --noninteractive-benchmark",
+        "human_approval": false,
+        "decision": {
+          "action": "approve",
+          "plan_id": "813e11876bf54090f3fab23bc8ff84b9f6d11131145096917f93de3744c47c34"
+        },
+        "note": "Only the fixture's predefined method and variable roles were approved; no data verification was supplied."
+      }
+    ],
+    "analysis_plan": {
+      "method": "simple_linear_regression",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "x1",
+      "y": "y1",
+      "target_parameter": "slope",
+      "null_hypothesis": "slope = 0",
+      "alternative_hypothesis": "two-sided",
+      "method_rationale": "Fit a simple linear regression model with x1 as the predictor and y1 as the outcome to estimate the slope and its 95% confidence interval.",
+      "design_notes": [
+        "The analysis is based on published pedagogically constructed data, not empirical observations.",
+        "Only x1-y1 is the approved workflow target; the quartet comparison is descriptive.",
+        "Similar numerical summaries do not establish adequate linear model fit."
+      ]
+    },
+    "plan_approval": {
+      "status": "approved",
+      "plan_id": "813e11876bf54090f3fab23bc8ff84b9f6d11131145096917f93de3744c47c34",
+      "question": "Fit one simple linear regression with x1 as predictor and y1 as outcome, including an intercept. Report the slope and its two-sided 95% confidence interval. This run analyses only the first constructed dataset.",
+      "method": "simple_linear_regression",
+      "approved_plan": {
+        "method": "simple_linear_regression",
+        "outcome": "",
+        "group": "",
+        "group_1_label": "",
+        "group_2_label": "",
+        "x": "x1",
+        "y": "y1",
+        "target_parameter": "slope",
+        "null_hypothesis": "slope = 0",
+        "alternative_hypothesis": "two-sided",
+        "method_rationale": "Fit a simple linear regression model with x1 as the predictor and y1 as the outcome to estimate the slope and its 95% confidence interval.",
+        "design_notes": [
+          "The analysis is based on published pedagogically constructed data, not empirical observations.",
+          "Only x1-y1 is the approved workflow target; the quartet comparison is descriptive.",
+          "Similar numerical summaries do not establish adequate linear model fit."
+        ]
+      }
+    },
+    "retrieved_references": [
+      {
+        "id": "simple-regression",
+        "title": "Simple ordinary least squares",
+        "method": "simple_linear_regression",
+        "keywords": "regression slope predict outcome predictor ols 回归 预测 斜率",
+        "text": "Explicitly identify one numeric predictor x and outcome y. A fitted slope describes a linear association. The current ordinary OLS inference is not automatically made robust after a heteroscedasticity warning. Do not replace an adjusted or multivariable question with several unadjusted regressions.",
+        "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html",
+        "retrieval_score": 4,
+        "retriever": "local_lexical_method_cards_v1"
+      },
+      {
+        "id": "linear-association",
+        "title": "Pearson linear association",
+        "method": "pearson_correlation",
+        "keywords": "correlation association pearson linear numeric 相关 关联",
+        "text": "Use two numeric variables to estimate linear association. Correlation does not establish causation; a weak coefficient does not rule out a nonlinear relationship. Do not use it as a substitute for a requested mean difference.",
+        "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html",
+        "retrieval_score": 1,
+        "retriever": "local_lexical_method_cards_v1"
+      }
+    ],
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\public_reproductions\\anscombe_quartet.csv",
+      "method": "simple_linear_regression",
+      "request_format": "v2",
+      "n_rows_in_file": 11,
+      "columns_found": [
+        "illustrative_row_id",
+        "x1",
+        "x2",
+        "x3",
+        "x4",
+        "y1",
+        "y2",
+        "y3",
+        "y4"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95)",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 11,
+      "tool_warnings": [],
+      "method_label": "Ordinary least squares (one predictor, with intercept)",
+      "n": 11,
+      "slope": 0.5000909090909091,
+      "slope_se": 0.11790550059563408,
+      "intercept": 3.0000909090909103,
+      "ci_lower": 0.2333701363851875,
+      "ci_upper": 0.7668116817966308,
+      "t_statistic": 4.2414552888928325,
+      "df": 9,
+      "p_value": 0.002169628873078794,
+      "r_squared": 0.666542459508775,
+      "regression_diagnostics": {
+        "n": 11,
+        "parameter_count": 2,
+        "thresholds": {
+          "cooks_distance": 0.36363636363636365,
+          "leverage": 0.36363636363636365
+        },
+        "max_leverage": 0.31818181818181823,
+        "max_cooks_distance": 0.48920927577433576,
+        "high_leverage_ids": [],
+        "influential_ids": [
+          "illustrative_03"
+        ],
+        "observations": [
+          {
+            "record_id": "illustrative_01",
+            "row_number": 1,
+            "leverage": 0.1,
+            "cooks_distance": 6.139788079219117e-05
+          },
+          {
+            "record_id": "illustrative_02",
+            "row_number": 2,
+            "leverage": 0.1,
+            "cooks_distance": 0.00010424672321835138
+          },
+          {
+            "record_id": "illustrative_03",
+            "row_number": 3,
+            "leverage": 0.2363636363636364,
+            "cooks_distance": 0.48920927577433576
+          },
+          {
+            "record_id": "illustrative_04",
+            "row_number": 4,
+            "leverage": 0.09090909090909091,
+            "cooks_distance": 0.061636998950852465
+          },
+          {
+            "record_id": "illustrative_05",
+            "row_number": 5,
+            "leverage": 0.1272727272727273,
+            "cooks_distance": 0.0015993418763965569
+          },
+          {
+            "record_id": "illustrative_06",
+            "row_number": 6,
+            "leverage": 0.31818181818181823,
+            "cooks_distance": 0.0003828995111222913
+          },
+          {
+            "record_id": "illustrative_07",
+            "row_number": 7,
+            "leverage": 0.17272727272727273,
+            "cooks_distance": 0.12675648475149423
+          },
+          {
+            "record_id": "illustrative_08",
+            "row_number": 8,
+            "leverage": 0.31818181818181823,
+            "cooks_distance": 0.12269989634029715
+          },
+          {
+            "record_id": "illustrative_09",
+            "row_number": 9,
+            "leverage": 0.17272727272727273,
+            "cooks_distance": 0.2790295933758794
+          },
+          {
+            "record_id": "illustrative_10",
+            "row_number": 10,
+            "leverage": 0.1272727272727273,
+            "cooks_distance": 0.15434122237202735
+          },
+          {
+            "record_id": "illustrative_11",
+            "row_number": 11,
+            "leverage": 0.2363636363636364,
+            "cooks_distance": 0.004268011426677266
+          }
+        ],
+        "breusch_pagan": {
+          "lm_statistic": 0.6553075561484156,
+          "p_value": 0.4182214568018926,
+          "df": 1,
+          "method": "Koenker studentized Breusch-Pagan LM (n * auxiliary R-squared)",
+          "note": "Squared OLS residuals regressed on an intercept and x; chi-square(1) asymptotic p-value. Small samples can exaggerate significance. A large p-value does not establish constant variance."
+        },
+        "warnings": [
+          {
+            "code": "influential_observations",
+            "message": "Potential influential observations have Cook's distance > 4/n (0.363636): illustrative_03. No observations were excluded automatically."
+          }
+        ]
+      },
+      "decision": "reject_H0"
+    },
+    "program_check": {
+      "report_version": "draft2",
+      "passed": true,
+      "problems": []
+    },
+    "review_verdict": {
+      "passed": true,
+      "issues": [],
+      "summary": "The report accurately reflects the statistical results and adheres to the provided guidelines. All limitations are appropriately stated, and the interpretation correctly acknowledges the non-causal nature of the analysis."
+    },
+    "final_report": "REAL: two distinct models; statistics computed with Python.\n\nMethod: simple linear regression (one predictor, with intercept)  (data version v1; Python: NumPy centered OLS with intercept; scipy.stats.t slope inference(confidence_level=0.95))\nH0: β1 = 0 versus H1: β1 ≠ 0 (slope of y1 on x1); α = 0.05\n\nn = 11; slope = 0.500 (95% CI 0.233 to 0.767); intercept = 3.000; t(9) = 4.241; p = 0.0022; R-squared = 0.667\nDecision at α = 0.05: reject_H0\n\nRegression diagnostics (screening flags; no automatic record deletion):\nMaximum Cook's distance = 0.489209; screening threshold = 0.363636.\nMaximum leverage = 0.318182; screening threshold = 0.363636.\nKoenker studentized Breusch–Pagan test: LM = 0.655308; p = 0.418221.\nInfluential record IDs: illustrative_03\nHigh-leverage record IDs: none flagged\nDiagnostic warning: Potential influential observations have Cook's distance > 4/n (0.363636): illustrative_03. No observations were excluded automatically.\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'residuals', 'n': 11, 'shapiro_wilk_p': 0.5455846853413836}, {'check': 'spread_check', 'variable': '|residual| vs fitted value', 'method': 'spearman', 'n': 11, 'spearman_rho': 0.009090909090909092, 'p_value': 0.9788365001441937}]\n\nA total of 11 records were analyzed. The estimated slope is 0.500 (change in y per one unit of x) with a 95% confidence interval ranging from 0.233 to 0.767. The t-statistic is t(9) = 4.241, and the p-value is 0.0022, which is less than 0.05. Therefore, we reject H0 (slope = 0) in favor of H1 (slope ≠ 0). The R-squared value of 0.667 indicates that approximately 0.667 of the variation in y is explained by x. However, it is important to note that the slope describes an association, not the effect of changing x, and this analysis does not establish causation due to the nonrandom design.\n\nLimitations:\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.\n- Potential influential observations were flagged. The fitted slope may be sensitive to particular records; flagged records were not automatically removed.\n- The slope describes the linear association within the observed range of the predictor and should not be extrapolated beyond it.\n- Random allocation was not established. This analysis describes an association and does not establish causation.",
+    "errors": [],
+    "stop_reasons": [],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "scope_request",
+        "status": "completed",
+        "start": 1793566621.3036027,
+        "end": 1793566630.7959056,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "retrieve_method_guidance",
+        "status": "completed",
+        "start": 1793566630.796488,
+        "end": 1793566630.7965183,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1793566630.7972283,
+        "end": 1793566633.9847515,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "approve_analysis_plan",
+        "status": "completed",
+        "start": 1793566633.9872477,
+        "end": 1793566633.9874628,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1793566633.9881468,
+        "end": 1793566633.9896474,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1793566633.990247,
+        "end": 1793566645.2179668,
+        "thread": "ThreadPoolExecutor-6_0",
+        "data_version": "v1",
+        "step": 6
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1793566633.9920511,
+        "end": 1793566633.9944198,
+        "thread": "ThreadPoolExecutor-6_1",
+        "data_version": "v1",
+        "step": 6
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1793566645.218525,
+        "end": 1793566648.4703798,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 7
+      },
+      {
+        "request_number": 1,
+        "node": "run_statistical_test",
+        "status": "completed",
+        "start": 1793566648.4710279,
+        "end": 1793566648.4739883,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 8
+      },
+      {
+        "request_number": 1,
+        "node": "build_stats_block",
+        "status": "completed",
+        "start": 1793566648.4745007,
+        "end": 1793566648.4745293,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 9
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "status": "completed",
+        "start": 1793566648.4753802,
+        "end": 1793566654.471892,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 10
+      },
+      {
+        "request_number": 1,
+        "node": "check_report",
+        "status": "completed",
+        "start": 1793566654.4724228,
+        "end": 1793566654.4726999,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 11
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "status": "completed",
+        "start": 1793566654.4731467,
+        "end": 1793566668.960574,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 12
+      },
+      {
+        "request_number": 1,
+        "node": "revise_report",
+        "status": "completed",
+        "start": 1793566668.961165,
+        "end": 1793566685.4733477,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 13
+      },
+      {
+        "request_number": 1,
+        "node": "check_report",
+        "status": "completed",
+        "start": 1793566685.4738717,
+        "end": 1793566685.4741123,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 14
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "status": "completed",
+        "start": 1793566685.4746158,
+        "end": 1793566699.92992,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 15
+      },
+      {
+        "request_number": 1,
+        "node": "deliver_report",
+        "status": "completed",
+        "start": 1793566699.930549,
+        "end": 1793566699.9305782,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 16
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1793566699.9308982,
+        "end": 1793566699.9311178,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 17
+      }
+    ],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "scope_request",
+        "method": "scope",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "method": "draft",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "method": "review",
+        "model": "ollama:gemma3:12b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "revise_report",
+        "method": "revise",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "method": "review",
+        "model": "ollama:gemma3:12b",
+        "mode": "REAL",
+        "status": "completed"
+      }
+    ],
+    "correction_log": [],
+    "numeric_comparison": {
+      "status": "passed",
+      "checks": {
+        "n": {
+          "expected": 11,
+          "calculated": 11,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "slope": {
+          "expected": 0.5000909090909091,
+          "calculated": 0.5000909090909091,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "intercept": {
+          "expected": 3.0000909090909103,
+          "calculated": 3.0000909090909103,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "r_squared": {
+          "expected": 0.6665424595087749,
+          "calculated": 0.666542459508775,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "t_statistic": {
+          "expected": 4.241455288892832,
+          "calculated": 4.2414552888928325,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "df": {
+          "expected": 9,
+          "calculated": 9,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "p_value": {
+          "expected": 0.002169628873078799,
+          "calculated": 0.002169628873078794,
+          "rtol": 1e-08,
+          "atol": 1e-30,
+          "passed": true
+        },
+        "ci_lower": {
+          "expected": 0.23337013638518744,
+          "calculated": 0.2333701363851875,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "ci_upper": {
+          "expected": 0.7668116817966308,
+          "calculated": 0.7668116817966308,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        }
+      }
+    }
+  },
+  "quartet_descriptive_summaries": [
+    {
+      "dataset": 1,
+      "n": 11,
+      "mean_x": 9.0,
+      "mean_y": 7.500909090909093,
+      "sd_x": 3.3166247903554,
+      "sd_y": 2.031568135925815,
+      "slope": 0.5000909090909091,
+      "intercept": 3.0000909090909103,
+      "r": 0.81642051634484,
+      "r_squared": 0.6665424595087752
+    },
+    {
+      "dataset": 2,
+      "n": 11,
+      "mean_x": 9.0,
+      "mean_y": 7.50090909090909,
+      "sd_x": 3.3166247903554,
+      "sd_y": 2.0316567355016177,
+      "slope": 0.5000000000000001,
+      "intercept": 3.000909090909089,
+      "r": 0.8162365060002429,
+      "r_squared": 0.6662420337274846
+    },
+    {
+      "dataset": 3,
+      "n": 11,
+      "mean_x": 9.0,
+      "mean_y": 7.5,
+      "sd_x": 3.3166247903554,
+      "sd_y": 2.030423601123667,
+      "slope": 0.49972727272727274,
+      "intercept": 3.0024545454545457,
+      "r": 0.8162867394895981,
+      "r_squared": 0.666324041066559
+    },
+    {
+      "dataset": 4,
+      "n": 11,
+      "mean_x": 9.0,
+      "mean_y": 7.500909090909091,
+      "sd_x": 3.3166247903554,
+      "sd_y": 2.0305785113876023,
+      "slope": 0.49990909090909097,
+      "intercept": 3.0017272727272726,
+      "r": 0.816521436888503,
+      "r_squared": 0.6667072568984656
+    }
+  ]
+}

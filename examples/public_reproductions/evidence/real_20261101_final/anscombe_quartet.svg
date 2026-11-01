@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="880" viewBox="0 0 1060 880" role="img" aria-labelledby="title desc">
+<title id="title">Anscombe’s quartet: similar summaries, different plots</title>
+<desc id="desc">Four published constructed datasets, each with eleven pairs and its own fitted line. Similar regression summaries conceal different patterns. Only the first pair of variables is a workflow target.</desc>
+<rect width="1060" height="880" fill="#fafafa"/>
+<style>text{font-family:Arial,sans-serif;fill:#172536}.title{font-size:25px;font-weight:bold}.panel{font-size:17px;font-weight:bold}.small{font-size:13px}</style>
+<text class="title" x="35" y="38">Anscombe’s quartet: similar summaries, different plots</text>
+<text class="small" x="35" y="65">Published pedagogically constructed data, not empirical observations. Each orange line is fitted separately.</text>
+<text class="panel" x="55" y="113">I: roughly linear scatter</text>
+<text class="small" x="55" y="135">y = 3.0001 + 0.5001x; R² = 0.6665</text>
+<line x1="95.0" y1="356.6666666666667" x2="505.0" y2="356.6666666666667" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="87.0" y="360.6666666666667">4</text>
+<line x1="95.0" y1="280.0" x2="505.0" y2="280.0" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="87.0" y="284.0">8</text>
+<line x1="95.0" y1="203.33333333333331" x2="505.0" y2="203.33333333333331" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="87.0" y="207.33333333333331">12</text>
+<text class="small" text-anchor="middle" x="140.55555555555554" y="414">4</text>
+<text class="small" text-anchor="middle" x="231.66666666666666" y="414">8</text>
+<text class="small" text-anchor="middle" x="322.7777777777778" y="414">12</text>
+<text class="small" text-anchor="middle" x="413.8888888888889" y="414">16</text>
+<text class="small" text-anchor="middle" x="505.0" y="414">20</text>
+<line x1="95.0" y1="395.0" x2="505.0" y2="395.0" stroke="#607080"/>
+<line x1="95.0" y1="395.0" x2="95.0" y2="165.0" stroke="#607080"/>
+<line x1="95.0" y1="356.66143939393936" x2="505.0" y2="184.1300757575757" stroke="#b24b35" stroke-width="2.3"/>
+<circle cx="277.2222222222222" cy="279.23333333333335" r="5" fill="#26738b"/>
+<circle cx="231.66666666666666" cy="300.125" r="5" fill="#26738b"/>
+<circle cx="345.55555555555554" cy="288.05" r="5" fill="#26738b"/>
+<circle cx="254.44444444444446" cy="264.475" r="5" fill="#26738b"/>
+<circle cx="300.0" cy="273.675" r="5" fill="#26738b"/>
+<circle cx="368.3333333333333" cy="242.4333333333333" r="5" fill="#26738b"/>
+<circle cx="186.1111111111111" cy="294.56666666666666" r="5" fill="#26738b"/>
+<circle cx="140.55555555555554" cy="351.68333333333334" r="5" fill="#26738b"/>
+<circle cx="322.7777777777778" cy="225.56666666666666" r="5" fill="#26738b"/>
+<circle cx="208.8888888888889" cy="340.95" r="5" fill="#26738b"/>
+<circle cx="163.33333333333331" cy="324.4666666666667" r="5" fill="#26738b"/>
+<text class="small" text-anchor="middle" x="300.0" y="435">x1</text>
+<text class="small" x="55" y="162">y1</text>
+<text class="panel" x="565" y="113">II: a curved pattern</text>
+<text class="small" x="565" y="135">y = 3.0009 + 0.5000x; R² = 0.6662</text>
+<line x1="605.0" y1="356.6666666666667" x2="1015.0" y2="356.6666666666667" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="597.0" y="360.6666666666667">4</text>
+<line x1="605.0" y1="280.0" x2="1015.0" y2="280.0" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="597.0" y="284.0">8</text>
+<line x1="605.0" y1="203.33333333333331" x2="1015.0" y2="203.33333333333331" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="597.0" y="207.33333333333331">12</text>
+<text class="small" text-anchor="middle" x="650.5555555555555" y="414">4</text>
+<text class="small" text-anchor="middle" x="741.6666666666666" y="414">8</text>
+<text class="small" text-anchor="middle" x="832.7777777777778" y="414">12</text>
+<text class="small" text-anchor="middle" x="923.8888888888889" y="414">16</text>
+<text class="small" text-anchor="middle" x="1015.0" y="414">20</text>
+<line x1="605.0" y1="395.0" x2="1015.0" y2="395.0" stroke="#607080"/>
+<line x1="605.0" y1="395.0" x2="605.0" y2="165.0" stroke="#607080"/>
+<line x1="605.0" y1="356.64924242424246" x2="1015.0" y2="184.14924242424246" stroke="#b24b35" stroke-width="2.3"/>
+<circle cx="787.2222222222222" cy="258.15" r="5" fill="#26738b"/>
+<circle cx="741.6666666666666" cy="277.31666666666666" r="5" fill="#26738b"/>
+<circle cx="855.5555555555555" cy="265.81666666666666" r="5" fill="#26738b"/>
+<circle cx="764.4444444444445" cy="265.2416666666667" r="5" fill="#26738b"/>
+<circle cx="810.0" cy="255.85" r="5" fill="#26738b"/>
+<circle cx="878.3333333333333" cy="278.08333333333337" r="5" fill="#26738b"/>
+<circle cx="696.1111111111111" cy="315.8416666666667" r="5" fill="#26738b"/>
+<circle cx="650.5555555555555" cy="373.9166666666667" r="5" fill="#26738b"/>
+<circle cx="832.7777777777778" cy="258.34166666666664" r="5" fill="#26738b"/>
+<circle cx="718.8888888888889" cy="294.18333333333334" r="5" fill="#26738b"/>
+<circle cx="673.3333333333334" cy="342.48333333333335" r="5" fill="#26738b"/>
+<text class="small" text-anchor="middle" x="810.0" y="435">x2</text>
+<text class="small" x="565" y="162">y2</text>
+<text class="panel" x="55" y="468">III: an unusual y value</text>
+<text class="small" x="55" y="490">y = 3.0025 + 0.4997x; R² = 0.6663</text>
+<line x1="95.0" y1="711.6666666666666" x2="505.0" y2="711.6666666666666" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="87.0" y="715.6666666666666">4</text>
+<line x1="95.0" y1="635.0" x2="505.0" y2="635.0" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="87.0" y="639.0">8</text>
+<line x1="95.0" y1="558.3333333333333" x2="505.0" y2="558.3333333333333" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="87.0" y="562.3333333333333">12</text>
+<text class="small" text-anchor="middle" x="140.55555555555554" y="769">4</text>
+<text class="small" text-anchor="middle" x="231.66666666666666" y="769">8</text>
+<text class="small" text-anchor="middle" x="322.7777777777778" y="769">12</text>
+<text class="small" text-anchor="middle" x="413.8888888888889" y="769">16</text>
+<text class="small" text-anchor="middle" x="505.0" y="769">20</text>
+<line x1="95.0" y1="750.0" x2="505.0" y2="750.0" stroke="#607080"/>
+<line x1="95.0" y1="750.0" x2="95.0" y2="520.0" stroke="#607080"/>
+<line x1="95.0" y1="711.6300757575757" x2="505.0" y2="539.2241666666666" stroke="#b24b35" stroke-width="2.3"/>
+<circle cx="277.2222222222222" cy="645.35" r="5" fill="#26738b"/>
+<circle cx="231.66666666666666" cy="658.575" r="5" fill="#26738b"/>
+<circle cx="345.55555555555554" cy="544.15" r="5" fill="#26738b"/>
+<circle cx="254.44444444444446" cy="652.0583333333334" r="5" fill="#26738b"/>
+<circle cx="300.0" cy="638.6416666666667" r="5" fill="#26738b"/>
+<circle cx="368.3333333333333" cy="618.9" r="5" fill="#26738b"/>
+<circle cx="186.1111111111111" cy="671.8" r="5" fill="#26738b"/>
+<circle cx="140.55555555555554" cy="685.025" r="5" fill="#26738b"/>
+<circle cx="322.7777777777778" cy="632.125" r="5" fill="#26738b"/>
+<circle cx="208.8888888888889" cy="665.2833333333333" r="5" fill="#26738b"/>
+<circle cx="163.33333333333331" cy="678.5083333333333" r="5" fill="#26738b"/>
+<text class="small" text-anchor="middle" x="300.0" y="790">x3</text>
+<text class="small" x="55" y="517">y3</text>
+<text class="panel" x="565" y="468">IV: one distant x value</text>
+<text class="small" x="565" y="490">y = 3.0017 + 0.4999x; R² = 0.6667</text>
+<line x1="605.0" y1="711.6666666666666" x2="1015.0" y2="711.6666666666666" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="597.0" y="715.6666666666666">4</text>
+<line x1="605.0" y1="635.0" x2="1015.0" y2="635.0" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="597.0" y="639.0">8</text>
+<line x1="605.0" y1="558.3333333333333" x2="1015.0" y2="558.3333333333333" stroke="#dce1e7"/>
+<text class="small" text-anchor="end" x="597.0" y="562.3333333333333">12</text>
+<text class="small" text-anchor="middle" x="650.5555555555555" y="769">4</text>
+<text class="small" text-anchor="middle" x="741.6666666666666" y="769">8</text>
+<text class="small" text-anchor="middle" x="832.7777777777778" y="769">12</text>
+<text class="small" text-anchor="middle" x="923.8888888888889" y="769">16</text>
+<text class="small" text-anchor="middle" x="1015.0" y="769">20</text>
+<line x1="605.0" y1="750.0" x2="1015.0" y2="750.0" stroke="#607080"/>
+<line x1="605.0" y1="750.0" x2="605.0" y2="520.0" stroke="#607080"/>
+<line x1="605.0" y1="711.6370454545455" x2="1015.0" y2="539.1684090909091" stroke="#b24b35" stroke-width="2.3"/>
+<circle cx="741.6666666666666" cy="662.2166666666667" r="5" fill="#26738b"/>
+<circle cx="741.6666666666666" cy="677.9333333333334" r="5" fill="#26738b"/>
+<circle cx="741.6666666666666" cy="640.5583333333334" r="5" fill="#26738b"/>
+<circle cx="741.6666666666666" cy="618.9" r="5" fill="#26738b"/>
+<circle cx="741.6666666666666" cy="625.9916666666667" r="5" fill="#26738b"/>
+<circle cx="741.6666666666666" cy="653.4" r="5" fill="#26738b"/>
+<circle cx="741.6666666666666" cy="687.7083333333334" r="5" fill="#26738b"/>
+<circle cx="992.2222222222222" cy="548.75" r="5" fill="#26738b"/>
+<circle cx="741.6666666666666" cy="681.7666666666667" r="5" fill="#26738b"/>
+<circle cx="741.6666666666666" cy="636.725" r="5" fill="#26738b"/>
+<circle cx="741.6666666666666" cy="656.275" r="5" fill="#26738b"/>
+<text class="small" text-anchor="middle" x="810.0" y="790">x4</text>
+<text class="small" x="565" y="517">y4</text>
+<text class="small" x="35" y="838">One approved workflow target: x1 → y1. The four-panel comparison is descriptive; unrounded statistics are nearly identical.</text>
+<text class="small" x="35" y="862">Source: R datasets::anscombe; Anscombe (1973), Graphs in Statistical Analysis.</text></svg>

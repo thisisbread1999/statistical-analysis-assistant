@@ -1,6 +1,6 @@
 """Local browser entry point, using the teammate's ui_server.py / ui/ convention.
 
-The UI is an adapter to our existing seventeen-node workflow. CSV inputs and audit
+The UI is an adapter to the planning and two-model workflow. CSV inputs and audit
 files stay in ignored artifacts/runtime; graph memory lasts for this process only.
 """
 from __future__ import annotations
@@ -25,7 +25,7 @@ from demo import SYNTHETIC_DESIGN
 from stat_assistant import settings
 from stat_assistant.models import DEFAULT_MODEL_A, DEFAULT_MODEL_B, create_agents, load_env
 from stat_assistant.nodes import validate_answers
-from stat_assistant.runtime import ask_followup, new_run, resume_answers
+from stat_assistant.runtime import ask_followup, new_run, resume_answers, resume_plan
 from stat_assistant.workflow import ROLES, build_graph
 
 PROJECT_DIR = Path(__file__).resolve().parent
@@ -52,14 +52,16 @@ def _examples():
          "Pearson correlation; linear association, with a confidence interval and causal restraint."),
         ("chi_square", "Association of tutoring and passing", "students", "Are tutoring and passed associated?", student,
          "Chi-square independence test; no confidence interval for Cramer's V in this stage."),
+        ("fisher", "Exact association test (two by two)", "students", "Use Fisher exact to test whether tutoring and passed are associated.", student,
+         "Explicit two-sided Fisher exact test; inspect table order and the sample odds ratio. No odds-ratio interval is claimed."),
         ("regression", "Score change per additional study hour", "students", "Regress score on study hours: how does score change per additional study hour?", student,
          "Simple regression with one predictor and an intercept; observational association."),
         ("no_difference", "Non-significant mean comparison", "no_difference", "Compare the mean score for tutoring yes versus no.", SYNTHETIC_DESIGN,
          "A non-significant result must not be described as proof of equal population means."),
         ("unequal_variance", "Unequal variances and group sizes", "unequal_variance", "Compare the mean score for tutoring yes versus no.", SYNTHETIC_DESIGN,
          "Welch does not require equal variances; it still compares population means."),
-        ("paired", "Unsupported paired study design", "clean", "Compare the mean score before and after for the same students.", paired,
-         "Stop before model calls: paired or repeated observations require a method outside this prototype."),
+        ("paired", "Unconfirmed pairing (requires study metadata)", "clean", "Compare the mean score before and after for the same students.", paired,
+         "Stop before model calls: a paired test needs two matched measurement columns and an explicit declaration that different pairs are independent."),
     ]
     examples = {key: {"id": key, "title": title, "description": expected, "question": question,
                   "design_info": copy.deepcopy(design), "expected": expected,
@@ -77,6 +79,19 @@ def _examples():
                          "question": "Fit simple regression with predictor x and outcome y.", "design_info": copy.deepcopy(regression_design),
                          "followup": "Explain the regression diagnostics and their limitations.",
                          "filename": f"benchmark_v2/boundary/{key}.csv"}
+    public_root = settings.DATA_DIR / "public_reproductions"
+    manifest_path = public_root / "manifest.json"
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        for case in manifest["cases"]:
+            examples[case["id"]] = {"id": case["id"], "title": case["title"],
+                "description": case["claim_supported"], "expected": case["claim_supported"],
+                "question": case["question"],
+                "design_info": json.loads((public_root / case["design_file"]).read_text(encoding="utf-8")),
+                "followup": "Explain what this result supports and what it does not establish.",
+                "filename": "public_reproductions/" + case["data_file"], "source_url": case["documentation_url"],
+                "illustration_url": "/illustrations/" + case["id"] + ".png",
+                "provenance_note": case["unit"] + " " + case["derivation"]}
     return examples
 
 
@@ -139,6 +154,13 @@ def validate_design(design, columns):
             raise ValueError(f"{key} must be text describing the study.")
     if "randomized" in design and design["randomized"] is not None and not isinstance(design["randomized"], bool):
         raise ValueError("randomized must be true, false or null; use null when unknown.")
+    if "independent_pairs" in design and not isinstance(design["independent_pairs"], bool):
+        raise ValueError("independent_pairs must be explicitly true or false.")
+    if "paired_columns" in design:
+        pair = design["paired_columns"]
+        if (not isinstance(pair, list) or len(pair) != 2 or
+                any(not isinstance(column, str) or column not in columns for column in pair) or len(set(pair)) != 2):
+            raise ValueError("paired_columns must name two different columns in the CSV.")
     # Unknown/unsupported independence remains a workflow issue, not an invented fact.
     return copy.deepcopy(design)
 
@@ -161,7 +183,7 @@ def _json_safe(value):
 
 class Workspace:
     """One local workspace; requests queue to avoid concurrent mutations of a thread."""
-    def __init__(self, runtime_dir=None, configuration=None, agents_factory=None):
+    def __init__(self, runtime_dir=None, configuration=None, agents_factory=None, require_plan_confirmation=True):
         load_env()
         self.configuration = configuration or {
             "model_a": os.getenv("MODEL_A", DEFAULT_MODEL_A),
@@ -170,6 +192,7 @@ class Workspace:
         self.runtime_dir = Path(runtime_dir or settings.OUTPUT_DIR / "ui").resolve()
         self.runtime_dir.mkdir(parents=True, exist_ok=True)
         self.agents_factory = agents_factory or create_agents
+        self.require_plan_confirmation = require_plan_confirmation
         self.sessions, self.jobs, self.job_owners = {}, {}, {}
         self.lock = threading.RLock()
         self.executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="browser-analysis")
@@ -221,7 +244,7 @@ class Workspace:
                            "design_info": design, "preview": preview, "graph": None, "state": {}, "busy": True}
                 self.sessions[sid] = session
                 operation = lambda: self._analyze(session)
-            elif action in ("resume", "followup"):
+            elif action in ("resume", "resume_plan", "followup"):
                 sid = payload.get("session_id")
                 session = self.sessions.get(sid) if isinstance(sid, str) else None
                 if session is None or session.get("owner") != owner:
@@ -231,9 +254,19 @@ class Workspace:
                 if session["graph"] is None:
                     raise ValueError("The session could not start. Run a new analysis after checking model setup.")
                 state = session["state"]
-                if action == "resume":
+                if action == "resume_plan":
+                    pending = state.get("__interrupt__", [])
+                    if not pending or pending[0].value.get("kind") not in ("plan_approval", "scope_selection"):
+                        raise ValueError("This session is not waiting for a plan or question selection.")
+                    decision = payload.get("decision")
+                    if not isinstance(decision, dict):
+                        raise ValueError("Supply an explicit plan decision.")
+                    operation = lambda: resume_plan(session["graph"], session["session_id"], decision)
+                elif action == "resume":
                     if not state.get("__interrupt__"):
                         raise ValueError("This session is not waiting for data clarification.")
+                    if state["__interrupt__"][0].value.get("kind") in ("plan_approval", "scope_selection"):
+                        raise ValueError("Confirm the plan or analysis target before answering record questions.")
                     answers = validate_answers(state["__interrupt__"][0].value["requests"], payload.get("answers"))
                     operation = lambda: resume_answers(session["graph"], session["session_id"], answers)
                 else:
@@ -245,7 +278,7 @@ class Workspace:
                     operation = lambda: ask_followup(session["graph"], session["session_id"], question)
                 session["busy"] = True
             else:
-                raise ValueError("Unknown action. Use analyze, resume or followup.")
+                raise ValueError("Unknown action. Use analyze, resume_plan, resume or followup.")
             job_id = secrets.token_urlsafe(24)
             self.jobs[job_id] = {"status": "running"}
             self.job_owners[job_id] = owner
@@ -257,7 +290,7 @@ class Workspace:
         agent_a, agent_b, _ = self.agents_factory(config)
         session["graph"] = build_graph(agent_a, agent_b, mode=session["mode"])
         return new_run(session["graph"], session["data_path"], session["question"], session["design_info"],
-                       thread_id=session["session_id"])
+                       thread_id=session["session_id"], require_plan_confirmation=self.require_plan_confirmation)
 
     def _execute(self, job_id, session, operation):
         try:
@@ -281,7 +314,9 @@ class Workspace:
     def _public(self, session, state):
         number = state["request_number"]
         interrupts = state.get("__interrupt__", [])
-        status = "needs_clarification" if interrupts else state.get("final_status", "stopped")
+        kind = interrupts[0].value.get("kind") if interrupts else None
+        status = ("needs_plan_approval" if kind == "plan_approval" else "needs_scope_selection" if kind == "scope_selection"
+                  else "needs_clarification" if interrupts else state.get("final_status", "stopped"))
         errors = [{"node": e["node"], "type": e["type"], "message": "This step failed; no validated report was delivered."}
                   for e in state.get("errors", []) if e["request_number"] == number]
         report = state.get("final_report", "") if not errors else (
@@ -292,8 +327,10 @@ class Workspace:
         return _json_safe({"session_id": session["session_id"], "mode": session["mode"],
             "models": {k: self.configuration[k] for k in ("model_a", "model_b")},
             "status": status, "request_number": number,
-            "question": state.get("followup_question") if state.get("request_kind") == "followup" else state["research_question"],
+            "question": state["research_question"], "followup_request": state.get("followup_question", ""),
             "plan": state.get("analysis_plan", {}), "data_summary": state.get("data_summary", {}),
+            "request_scope": state.get("request_scope", {}), "plan_approval": state.get("plan_approval", {}),
+            "references": state.get("retrieved_references", []), "tool_selection": state.get("selected_tool_call", {}),
             "llm_diagnostics": state.get("llm_diagnostics", {}), "stat_diagnostics": state.get("stat_diagnostics", {}),
             "stats": state.get("stat_result", {}) if inference else {},
             "stats_block": state.get("stats_block", {}) if inference else {}, "report": report,
@@ -413,6 +450,11 @@ def create_server(workspace, port=8765, *, public_origin=None, share_token=None)
                     return self._send(200, (UI_DIR / name).read_bytes(), mime)
                 if path == "/api/catalog":
                     return self._send(200, workspace.catalog())
+                illustrations = {f"/illustrations/{name}.png": name for name in
+                                 ("student_sleep", "berkeley_admissions", "anscombe_quartet")}
+                if path in illustrations:
+                    image = settings.DATA_DIR / "public_reproductions" / "classroom_plots" / (illustrations[path] + ".png")
+                    return self._send(200, image.read_bytes(), "image/png")
                 if path.startswith("/examples/") and path.endswith(".json"):
                     return self._send(200, workspace.example(path[len("/examples/"):-5]))
                 if path.startswith("/api/jobs/"):

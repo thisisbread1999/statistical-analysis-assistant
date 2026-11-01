@@ -10,4 +10,6 @@ __pycache__/
 # Private runtime audit/session files; shareable graph and verification stay tracked.
 artifacts/runtime/
 artifacts/pytest/
+artifacts/pytest_november*/
+examples/public_reproductions/evidence/*/runtime/
 artifacts/benchmark_v2/*/runtime/

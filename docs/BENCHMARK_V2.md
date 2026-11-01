@@ -1,5 +1,11 @@
 # Frozen benchmark and evaluation adapter
 
+November extension: the source inputs remain frozen, while the adapter policy is
+now `ours-v2-confirmed-plans`. Ambiguous outcome/direction cases pass the safety
+check only if no inference is computed and the system stops or explicitly pauses
+for scope clarification. A random pause is not sufficient. Historical scores use
+their recorded policy and have not been rewritten as results of the new graph.
+
 The source catalog is the teammate repository snapshot `b7eff1c4a8035f196ac4bfc73ef3fe88956dadb5` (short name `b7eff1c`), copied into `examples/benchmark_v2/`. Its 31 CSV files, 31 JSON definitions, manifest, questions, source labels, notes, and source numeric references are preserved unchanged. The runner imports no teammate Python code and does not claim their existing scores as ours. All datasets are synthetic.
 
 `benchmark_suite.py` loads the exported CSV/JSON objects and runs **our** `build_graph`, `new_run`, `resume_answers`, and `ask_followup` interfaces. Our method names and source data are adapted separately. `examples/benchmark_v2_adapted/` contains adapter declarations and source SHA-256 checksums after `--export-only`. Every actual run also writes `preregistered_cases.json` before creating live agents. That file fixes the selected cases, source hashes, metadata, expected primary behavior, and any synthetic continuation recipes before model results are known.

@@ -39,7 +39,7 @@ The tasks are `summary`, `diagnostics` and `run_test`. `welch_test` remains a le
 | `data_version` | Caller-assigned version, echoed in the result. The graph separately checks the file fingerprint. |
 | `excluded_ids` | Explicitly approved record IDs omitted from this request; default empty. |
 | `id_column` | ID column, or null. Without a usable ID, diagnostic references use `row N`, with one-based data row numbering. |
-| `method` | One of the four canonical methods below, or a supported alias. |
+| `method` | One of the six canonical methods below, or a supported alias. |
 | `roles` | Distinct existing columns appropriate for that method; the ID column cannot serve as a role. |
 | `group_labels` | Welch only: two labels in subtraction order, group 1 minus group 2. |
 | `valid_ranges` | Optional user-stated numeric bounds, inclusive. |
@@ -112,15 +112,19 @@ Method checks are deferred until blocking record-level issues are resolved:
 | Pearson | At least four pairs for the Fisher interval; positive finite variance in both variables. |
 | Simple regression | At least three pairs; positive finite variance in both variables; finite fit and positive, nondegenerate residual variance/standard error. |
 | Chi-square | At least two observed levels per variable; no expected count below one and at most twenty percent below five. |
+| Paired t | At least two complete independent pairs, finite nonzero variance and standard error of y minus x. Normality diagnostics describe the differences. |
+| Fisher exact | Exactly two observed row levels and two column levels; sparse cells are allowed for the explicitly selected two-sided exact test. Sample odds ratio uses the documented sorted level order. |
 
 These minimum sample sizes are computational policy, not sufficient evidence of valid assumptions, adequate power or reliable small-sample diagnostics. No automatic Mann-Whitney, Spearman-inference or Fisher-exact fallback changes the research question.
 
 When data and method requirements pass, descriptive distribution checks are:
 
 - Welch: Shapiro-Wilk per group.
+- Paired t: Shapiro-Wilk on within-pair differences, not the two marginal distributions.
 - Pearson: Shapiro-Wilk for x and y separately. These do not establish linearity or joint normality.
 - Regression: Shapiro-Wilk for residuals; a descriptive Spearman correlation between absolute residuals and fitted values. The separate `regression_diagnostics` object adds leverage, Cook's distance and an approximate Koenker Breusch-Pagan variance diagnostic.
 - Chi-square: minimum expected count and share of expected counts below five.
+- Fisher: the observed two-by-two table and explicitly sorted row/column orientation. Infinite sample odds ratios use a null numeric field with an explicit boundary status, never JSON Infinity. No odds-ratio confidence interval is claimed.
 
 Shapiro-Wilk runs only for 3 through 5000 nonconstant observations; otherwise its p-value is null. A large p-value does not establish normality and a small p-value does not mechanically select another method. Welch does not require equal variances, so an equal-variance pretest is not a gate.
 

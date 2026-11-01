@@ -1,0 +1,49 @@
+{
+  "id_column": "illustrative_row_id",
+  "randomized": null,
+  "independent": true,
+  "assignment": "Published pedagogically constructed values from Anscombe's quartet, not empirical observations or a randomized study.",
+  "independence": "For this illustrative regression, treat the listed x1-y1 pairs as independent model units. The values were constructed to teach graphical checking, not sampled from a population.",
+  "record_provenance": "The four datasets share published row positions, not subject identities; the generated illustrative_row_id is only an index.",
+  "variables": {
+    "x1": {
+      "type": "numeric",
+      "meaning": "Constructed dataset 1: predictor"
+    },
+    "x2": {
+      "type": "numeric",
+      "meaning": "Constructed dataset 2: predictor"
+    },
+    "x3": {
+      "type": "numeric",
+      "meaning": "Constructed dataset 3: predictor"
+    },
+    "x4": {
+      "type": "numeric",
+      "meaning": "Constructed dataset 4: predictor"
+    },
+    "y1": {
+      "type": "numeric",
+      "meaning": "Constructed dataset 1: outcome"
+    },
+    "y2": {
+      "type": "numeric",
+      "meaning": "Constructed dataset 2: outcome"
+    },
+    "y3": {
+      "type": "numeric",
+      "meaning": "Constructed dataset 3: outcome"
+    },
+    "y4": {
+      "type": "numeric",
+      "meaning": "Constructed dataset 4: outcome"
+    }
+  },
+  "typical_outcome": "y1",
+  "data_kind": "published_pedagogically_constructed_data",
+  "limitations": [
+    "This is published illustrative constructed data, not empirical population evidence.",
+    "Only x1-y1 is the approved workflow target; the quartet comparison is descriptive.",
+    "Similar numerical summaries do not establish adequate linear model fit."
+  ]
+}

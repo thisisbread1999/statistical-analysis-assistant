@@ -21,6 +21,7 @@ from . import settings
 from .agents import default_question
 from .methods import METHODS, NO_METHOD, direction_of, hypotheses, protected_values
 from .report import check_report as check_draft, format_stats_block, render
+from .planning import PlanningNodes, unsupported_scope_reason
 from .schemas import (AnalysisPlan, FollowupDecision, LLMDiagnosticReport, MergeAssessment,
                       ReportDraft, ReviewVerdict)
 
@@ -42,6 +43,16 @@ class AnalysisState(TypedDict, total=False):
     followup_design_changed: bool
     followup_dataset_replaced: bool
     analysis_plan: dict
+    request_scope: dict
+    scope_route: str
+    selected_task_id: str
+    scope_revision_count: int
+    scope_selection_count: int
+    require_plan_confirmation: bool
+    approval_route: str
+    plan_approval: dict
+    retrieved_references: list
+    selected_tool_call: dict
     plan_feedback: list
     plan_revision_count: int
     plan_route: str
@@ -101,8 +112,16 @@ def _schema(schema, result):
     return schema.model_validate(result).model_dump()
 
 
-def _design_problems(design):
+def _design_problems(design, method=None):
     text = str(design.get("independence", "")).lower()
+    if design.get("independent_pairs") is True:
+        if re.search(r"\b(clustered|longitudinal)\b", text):
+            return ["Clustered or extended longitudinal designs are not supported."]
+        if method and method not in ("paired_t_test", "pearson_correlation", "simple_linear_regression"):
+            return ["This study declares independent pairs; use a paired mean comparison or a supported association across independent subjects."]
+        return []
+    if method == "paired_t_test":
+        return ["A paired analysis requires explicit independent_pairs=true and one complete pair per row."]
     if design.get("independent") is False or re.search(
             r"\b(not independent|non-independent|dependent observations|clustered|repeated|paired)\b", text):
         return ["The stated dependent, paired, repeated or clustered design is not supported."]
@@ -181,7 +200,7 @@ def validate_answers(requests, answers):
     return accepted
 
 
-class Nodes:
+class Nodes(PlanningNodes):
     def __init__(self, agent_a, agent_b, tool_runner):
         self.a, self.b, self.tool = agent_a, agent_b, tool_runner
 
@@ -237,13 +256,15 @@ class Nodes:
         if design_problems:
             return {"plan_route": "stop", "stop_reasons": design_problems}
         columns, _ = _read_csv(s["data_path"])
-        plan = _schema(AnalysisPlan, call(self.a, "plan", s["research_question"], s["design_info"], columns,
-                                        s.get("plan_feedback", [])))
+        design_for_planning = {**s["design_info"], "retrieved_method_guidance": s.get("retrieved_references", [])}
+        raw_plan = call(self.a, "plan", s["research_question"], design_for_planning, columns, s.get("plan_feedback", []))
+        selected = raw_plan.get("_tool_selection", {}) if isinstance(raw_plan, dict) else {}
+        plan = _schema(AnalysisPlan, raw_plan)
         if plan["method"] == NO_METHOD:
             return {"analysis_plan": plan, "plan_route": "stop", "stop_reasons": [plan["method_rationale"]]}
         if s.get("plan_revision_count", 0) and plan["method"] != s["analysis_plan"]["method"]:
             return {"plan_route": "stop", "stop_reasons": ["A plan repair cannot silently change the statistical target or method."]}
-        problems, variables = [], s["design_info"].get("variables", {})
+        problems, variables = _design_problems(s["design_info"], plan["method"]), s["design_info"].get("variables", {})
         roles = METHODS[plan["method"]].roles
         for role, expected_type in roles.items():
             col = plan[role]
@@ -254,6 +275,9 @@ class Nodes:
                 problems.append(f"Role {role} must be {expected_type}; user metadata says {actual_type}.")
         if len({plan[r] for r in roles}) != len(roles):
             problems.append("The two variable roles must reference different columns.")
+        if plan["method"] == "paired_t_test" and s["design_info"].get("paired_columns"):
+            if set(s["design_info"]["paired_columns"]) != {plan["x"], plan["y"]}:
+                problems.append("The paired test must use the two measurement columns declared by the user.")
         if plan["method"] == "welch_t_test":
             labels = [plan["group_1_label"], plan["group_2_label"]]
             if not all(labels) or len(set(labels)) != 2:
@@ -267,7 +291,8 @@ class Nodes:
             return {"analysis_plan": plan, "plan_feedback": problems,
                     "plan_revision_count": count + int(again),
                     "plan_route": "revise_plan_once" if again else "stop", "stop_reasons": problems}
-        return {"analysis_plan": plan, "plan_route": "ready", "stop_reasons": [], "plan_feedback": []}
+        return {"analysis_plan": plan, "selected_tool_call": selected,
+                "plan_route": "ready", "stop_reasons": [], "plan_feedback": []}
 
     def prepare_data_summary(self, s, call):
         before = fingerprint(s["data_path"])
@@ -388,7 +413,16 @@ class Nodes:
     def run_statistical_test(self, s, call):
         if fingerprint(s["data_path"]) != s["data_fingerprint"]:
             raise ValueError("The data changed after diagnostics; run fresh diagnostics before testing.")
-        result = self.tool("run_test", tool_request(s), f"{s['run_id']}-test-{s['request_number']}")
+        if s.get("require_plan_confirmation") and s.get("plan_approval", {}).get("status") != "approved":
+            raise ValueError("The proposed analysis plan has not been approved by the user.")
+        if s.get("require_plan_confirmation") and s["plan_approval"].get("approved_plan") != s["analysis_plan"]:
+            raise ValueError("The analysis target or method changed after approval; a new plan must be confirmed.")
+        request = tool_request(s)
+        native = s.get("selected_tool_call", {})
+        if native.get("protocol") == "native_tool_call":
+            request["provider_tool_call_id"] = native["call"]["id"]
+            request["provider_tool_name"] = native["call"]["name"]
+        result = self.tool("run_test", request, f"{s['run_id']}-test-{s['request_number']}")
         if fingerprint(s["data_path"]) != s["data_fingerprint"]:
             raise ValueError("The data changed while the statistical test was running; the result cannot be used for this data version.")
         if result["status"] != "ok":
@@ -406,7 +440,7 @@ class Nodes:
             limitations["missing_data"] = "User-confirmed exclusions include missing values. The missingness mechanism is unknown; complete-case analysis may be biased and generalizability is limited."
         if any(not r["check"].startswith("missing") for r in log):
             limitations["other_exclusions"] = "Other records were excluded with explicit user confirmation; exclusions may affect the estimate and generalizability."
-        if method in ("pearson_correlation", "simple_linear_regression", "welch_t_test"):
+        if method in ("pearson_correlation", "simple_linear_regression", "welch_t_test", "paired_t_test"):
             limitations["analysis_assumptions"] = "Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions."
         if result.get("tool_warnings"):
             limitations["tool_warnings"] = "The statistical tool reported additional warnings, shown with the protected results; these warnings must be considered when interpreting the estimate."
@@ -438,9 +472,13 @@ class Nodes:
     def _context(self, s):
         return {**s["stats_block"], "placeholders": s["stats_block"]["values"],
                 "analysis_plan": s["analysis_plan"], "design_info": s["design_info"],
+                "research_question": s.get("research_question", ""),
                 "sentence_plan": METHODS[s["analysis_plan"]["method"]].sentence_plan,
                 "stat_result": s["stat_result"], "correction_log": s.get("correction_log", []),
-                "followup_focus": s.get("followup_focus", "")}
+                "followup_focus": s.get("followup_focus", ""),
+                "retrieved_references": s.get("retrieved_references", []),
+                "_native_tool_exchange": {**s["selected_tool_call"], "result": s["stat_result"]}
+                    if s.get("selected_tool_call", {}).get("protocol") == "native_tool_call" else None}
 
     def draft_report(self, s, call):
         draft = _schema(ReportDraft, call(self.a, "draft", self._context(s)))
@@ -462,6 +500,8 @@ class Nodes:
         verdict = _schema(ReviewVerdict, call(self.b, "review", {"report_draft": s["rendered_draft"],
             "stat_result": s["stat_result"], "protected_statistics": s["stats_block"],
             "analysis_plan": s["analysis_plan"], "design_info": s["design_info"],
+            "research_question": s["research_question"], "followup_question": s.get("followup_question", ""),
+            "retrieved_references": s.get("retrieved_references", []),
             "correction_log": s.get("correction_log", []), "required_limitations": s["stats_block"]["required_limitations"]}))
         if verdict["passed"] is False and not verdict["issues"]:
             raise ValueError("The reviewer returned an inconsistent verdict: passed=false with no review issues. The report cannot be treated as reviewed successfully.")
@@ -495,7 +535,8 @@ class Nodes:
         memory = copy.deepcopy(s.get("session_memory", {}))
         if s.get("final_status") == "delivered":
             keys = ("research_question", "design_info", "original_data_path", "data_path", "data_version", "data_fingerprint", "analysis_plan",
-                    "excluded_ids", "verified_ids", "correction_log", "conf_level", "stat_result", "stats_block", "stat_diagnostics")
+                    "excluded_ids", "verified_ids", "correction_log", "conf_level", "stat_result", "stats_block", "stat_diagnostics",
+                    "retrieved_references", "selected_tool_call", "plan_approval")
             memory["last_success"] = {k: copy.deepcopy(s[k]) for k in keys if k in s}
             memory["last_success"]["request_number"] = s["request_number"]
         memory["last_request_status"] = s["final_status"]
@@ -505,6 +546,10 @@ class Nodes:
         previous = s.get("session_memory", {}).get("last_success")
         if not previous:
             return {"followup_route": "stop", "stop_reasons": ["A follow-up requires an earlier successful analysis on this thread."]}
+        # Deterministic scope guard: never let an intent classifier silently reuse all rows for a requested subset.
+        scope_problem = unsupported_scope_reason(s["followup_question"])
+        if scope_problem:
+            return {"followup_route": "stop", "stop_reasons": [scope_problem]}
         decision = _schema(FollowupDecision, call(self.a, "followup", s["followup_question"], previous))
         kind, updates = decision["kind"], {"followup_focus": decision["focus"]}
         bytes_changed = s.get("followup_data_changed", False) or fingerprint(s["data_path"]) != previous["data_fingerprint"]
@@ -518,16 +563,18 @@ class Nodes:
             level = decision["confidence_level"]
             if not math.isfinite(level) or not 0 < level < 1:
                 raise ValueError("The confidence level must be strictly between zero and one.")
-            if previous["analysis_plan"]["method"] == "chi_square_independence":
-                return {"followup_route": "stop", "stop_reasons": ["A confidence interval for Cramer's V is not implemented."]}
+            if previous["analysis_plan"]["method"] in ("chi_square_independence", "fisher_exact"):
+                return {"followup_route": "stop", "stop_reasons": ["An effect confidence interval for this categorical method is not implemented."]}
             updates["conf_level"] = level
         if kind == "new_question" or changed:
             updates.update(research_question=s["followup_question"] if kind == "new_question" else previous["research_question"],
                            followup_route="new_question", excluded_ids=[], verified_ids=[],
                            plan_feedback=[], plan_revision_count=0, clarification_rounds=0,
+                           analysis_plan={}, selected_tool_call={}, retrieved_references=[], plan_approval={},
                            data_summary={}, llm_diagnostics={}, stat_diagnostics={}, stat_result={}, stats_block={})
             if changed:
                 updates["data_version"] = f"v{int(s['data_version'][1:]) + 1}"
+                updates["data_fingerprint"] = fingerprint(s["data_path"])
             if s.get("followup_dataset_replaced", False) and bytes_changed:
                 updates["correction_log"] = []
                 updates["original_data_path"] = s["data_path"]

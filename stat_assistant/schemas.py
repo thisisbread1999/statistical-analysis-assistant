@@ -8,7 +8,18 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 MethodName = Literal["welch_t_test", "pearson_correlation", "chi_square_independence",
-                     "simple_linear_regression", "no_supported_method"]
+                     "simple_linear_regression", "paired_t_test", "fisher_exact", "no_supported_method"]
+
+
+class ScopedTask(BaseModel):
+    task_id: str = Field(min_length=1, max_length=40)
+    question: str = Field(min_length=1, max_length=10_000)
+
+
+class RequestScope(BaseModel):
+    tasks: list[ScopedTask] = Field(min_length=1, max_length=4)
+    needs_clarification: bool
+    clarification_question: str
 
 
 class AnalysisPlan(BaseModel):
@@ -17,8 +28,8 @@ class AnalysisPlan(BaseModel):
     group: str = Field(description="Welch only: two-level group column; otherwise ''")
     group_1_label: str = Field(description="Welch only: label of group 1 (Δ = group 1 minus group 2); otherwise ''")
     group_2_label: str = Field(description="Welch only: label of group 2; otherwise ''")
-    x: str = Field(description="Correlation/chi-square: first variable; regression: predictor; Welch: ''")
-    y: str = Field(description="Correlation/chi-square: second variable; regression: outcome; Welch: ''")
+    x: str = Field(description="Correlation/categorical: first variable; regression: predictor; paired: first measurement; Welch: ''")
+    y: str = Field(description="Correlation/categorical: second variable; regression: outcome; paired: second measurement (difference y minus x); Welch: ''")
     target_parameter: str
     null_hypothesis: str
     alternative_hypothesis: str
@@ -30,7 +41,7 @@ class DiagnosticIssue(BaseModel):
     topic: Literal["variable_meaning", "study_design", "goal_alignment", "distribution", "other"]
     severity: Literal["note", "limitation", "out_of_scope"] = Field(
         description="out_of_scope ONLY if the planned test cannot validly answer the question "
-                    "(e.g. paired or clustered data, wrong variable types); non-random groups are a limitation")
+                    "(e.g. unsupported clustered design, wrong variable types); non-random groups are a limitation")
     issue: str
     evidence: str
     suggested_action: str

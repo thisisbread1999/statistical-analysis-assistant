@@ -1,0 +1,20 @@
+{
+  "id_column": "patient_id",
+  "randomized": null,
+  "independent_pairs": true,
+  "assignment": "Historical drug comparisons. The R data documentation does not establish random assignment or treatment order.",
+  "independence": "One matched pair per patient. Different patients are treated as independent units for this teaching reanalysis.",
+  "pairing": "Each patient_id matches drug_1 and drug_2 in the R source. The contrast is drug_2 minus drug_1, not a claim about chronological before/after order.",
+  "independence_provenance": "Working analysis assumption between patients; the dataset identifies ten distinct patients. This is not a claim of verified random sampling.",
+  "variables": {
+    "drug_1": {
+      "type": "numeric",
+      "meaning": "Additional hours of sleep versus control under R drug group 1"
+    },
+    "drug_2": {
+      "type": "numeric",
+      "meaning": "Additional hours of sleep versus control under R drug group 2"
+    }
+  },
+  "typical_outcome": "drug_2"
+}

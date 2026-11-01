@@ -7,11 +7,12 @@
 import json
 import re
 
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, ToolMessage
 
 from .methods import METHODS, NO_METHOD
 from .schemas import (AnalysisPlan, ClarificationQuestion, DiagnosticIssue, FollowupDecision, LimitationText,
-                      LLMDiagnosticReport, MergeAssessment, ReportDraft, ReviewIssue, ReviewVerdict)
+                      LLMDiagnosticReport, MergeAssessment, ReportDraft, RequestScope, ReviewIssue, ReviewVerdict)
+from .planning import simple_scope
 
 # --------------------------------------------------------------------------- prompts
 SYSTEM_PROMPT_A = """You are the Analysis Agent (Model A) of a statistical analysis assistant.
@@ -32,12 +33,26 @@ question it answers and which variable roles it needs. Use exact column names fr
 - Welch t-test: outcome (numeric) and group (two levels); group_1_label / group_2_label in the order
   the user's question implies (Δ = group 1 minus group 2); leave x and y empty.
 - Pearson correlation and chi-square: x and y. Regression: x = predictor, y = outcome.
-If no supported method answers the question (e.g. paired or repeated measures, more than two groups,
+Paired t-test: x is the first measurement, y the second; estimate mean(y minus x). Use it only when
+independent_pairs=true explicitly confirms independent subjects/pairs with both measurements in each row.
+Fisher exact: x and y are two categorical variables forming a two by two table; use only when that
+exact analysis is requested or explicitly planned. It is not an automatic fallback after a chi-square failure.
+If no supported method answers the question (e.g. clustered or extended repeated measures, more than two groups,
 several predictors, a binary outcome regression), use method no_supported_method and explain why.
 Do not plan a switch to another method based on a normality test. If plan_feedback is given, it lists
 problems the program found in your previous plan: fix them.
 Example (different study): "Is mean reaction time different between caffeine and placebo groups?"
 -> welch_t_test, outcome = reaction_time, group = condition, group_1_label = caffeine, group_2_label = placebo."""
+
+SCOPE_TASK = """Identify the distinct statistical targets in the user's request before planning.
+Return one to four tasks, each with a stable task_id and a complete, self-contained research question.
+If more than four targets are present, set needs_clarification and ask the user to narrow the request;
+do not imply that the first four represent every target.
+Do not split a single correlation between two variables into two questions. A question about an adjusted
+association is one multivariable target, not several unadjusted tests; preserve it even if unsupported.
+If predictor/outcome, comparison direction, or requested target is ambiguous, mark needs_clarification
+and ask one short question. Never invent study facts. Multiple targets will be shown to the user, who
+chooses one per run; you are not authorized to execute or silently select all of them."""
 
 DIAGNOSE_TASK = """Review the shared statistical summary of the current data version, the plan and the user's design facts.
 Assess: variable meanings, study design, alignment between the question and the planned test, and what
@@ -59,7 +74,7 @@ placeholder listed in required_placeholders.
 When restating H0, write its null value as {null_value} or the word "zero", never the literal digit.
 Write the interpretation as ONE plain paragraph (no numbering), following sentence_plan in order.
 If a follow-up focus is given, answer it directly within the paragraph.
-Set direction_claim to the sign of the estimate (or not_applicable for chi-square) and decision_claim to the
+Set direction_claim to the sign of the estimate (or not_applicable for chi-square and Fisher) and decision_claim to the
 decision at alpha. Write exactly one limitation entry for each id in required_limitations (the content is
 given) and no other entries; limitations contain no digits. Do not add claims the evidence does not support
 (e.g. that a check was not done, or that another method should be used because of a normality test)."""
@@ -127,13 +142,50 @@ class AnalysisAgentA:
 
     def _ask(self, schema, task: str, payload: dict):
         structured = self.llm.with_structured_output(schema, method="json_schema")
-        return structured.invoke([SystemMessage(SYSTEM_PROMPT_A),
-                                  HumanMessage(f"{task}\n\nINPUT (JSON):\n{_as_json(payload)}")])
+        payload = dict(payload)
+        exchange = payload.pop("_native_tool_exchange", None)
+        messages = [SystemMessage(SYSTEM_PROMPT_A)]
+        if exchange and exchange.get("protocol") == "native_tool_call":
+            messages += [HumanMessage("Execute the approved statistical analysis selected in this tool call."),
+                         AIMessage(content="", tool_calls=[exchange["call"]]),
+                         ToolMessage(content=_as_json(exchange["result"]), tool_call_id=exchange["call"]["id"])]
+        messages.append(HumanMessage(f"{task}\n\nINPUT (JSON):\n{_as_json(payload)}"))
+        return structured.invoke(messages)
+
+    def scope(self, question, design_info):
+        return self._ask(RequestScope, SCOPE_TASK, {"research_question": question, "design_info": design_info})
 
     def plan(self, question, design_info, columns, plan_feedback):
-        return self._ask(AnalysisPlan, PLAN_TASK, {"research_question": question, "design_info": design_info,
-                         "csv_columns": columns, "supported_methods": supported_methods_catalog(),
-                         "plan_feedback": plan_feedback})
+        # Real tool-calling protocol: the model supplies name, arguments and call id.
+        # Execution remains deferred until schema checks and the human approval gate.
+        schema = AnalysisPlan.model_json_schema()
+        common = {"target_parameter", "null_hypothesis", "alternative_hypothesis", "method_rationale", "design_notes"}
+        def parameters_for(fields):
+            return {"type": "object", "properties": {k: v for k, v in schema["properties"].items() if k in fields},
+                    "required": [k for k in schema["required"] if k in fields], "additionalProperties": False}
+        tools = [{"type": "function", "function": {"name": name, "description": spec.answers,
+                  "parameters": parameters_for(common | set(spec.roles) |
+                      ({"group_1_label", "group_2_label"} if name == "welch_t_test" else set()))}}
+                 for name, spec in METHODS.items()]
+        tools.append({"type": "function", "function": {"name": NO_METHOD,
+                      "description": "Explain that no supported tool answers the requested target.", "parameters": parameters_for(common)}})
+        payload = {"research_question": question, "design_info": design_info, "csv_columns": columns,
+                   "supported_methods": supported_methods_catalog(), "plan_feedback": plan_feedback}
+        response = self.llm.bind_tools(tools).invoke([SystemMessage(SYSTEM_PROMPT_A),
+            HumanMessage(PLAN_TASK + "\nCall exactly one listed tool. Do not calculate results.\nINPUT (JSON):\n" + _as_json(payload))])
+        calls = response.tool_calls
+        if len(calls) != 1 or getattr(response, "invalid_tool_calls", []):
+            raise ValueError("Planning must return exactly one valid allowlisted tool call; no statistical tool was executed.")
+        selected = calls[0]
+        if selected["name"] not in {*METHODS, NO_METHOD} or not selected.get("id"):
+            raise ValueError("The planner selected an unknown tool or omitted its tool-call id.")
+        # Empty unused roles are structural normalization, never inferred variable names.
+        unused = {key: "" for key in ("outcome", "group", "group_1_label", "group_2_label", "x", "y")
+                  if key not in (set(METHODS[selected["name"]].roles) |
+                  ({"group_1_label", "group_2_label"} if selected["name"] == "welch_t_test" else set()))} if selected["name"] in METHODS else {
+                      key: "" for key in ("outcome", "group", "group_1_label", "group_2_label", "x", "y")}
+        plan = AnalysisPlan.model_validate({**unused, **selected["args"], "method": selected["name"]}).model_dump()
+        return {**plan, "_tool_selection": {"protocol": "native_tool_call", "call": selected}}
 
     def diagnose(self, plan, design_info, data_summary):
         return self._ask(LLMDiagnosticReport, DIAGNOSE_TASK,
@@ -179,11 +231,13 @@ def _mentioned(question: str, columns: list) -> list:
     q = question.lower()
     hits = []
     for col in columns:
+        raw_pos = q.find(col.lower())
         stem = col.lower().replace("_", " ")
         stem = stem[:-2] if stem.endswith("ed") else stem
         pos = q.find(stem)
-        if pos >= 0:
-            hits.append((pos, col))
+        positions = [p for p in (raw_pos, pos) if p >= 0]
+        if positions:
+            hits.append((min(positions), col))
     return [c for _, c in sorted(hits)]
 
 
@@ -192,6 +246,9 @@ class MockAnalysisAgentA:
     is_mock = True
     model_name = "MOCK stand-in for Model A (rule-based, no LLM)"
 
+    def scope(self, question, design_info):
+        return RequestScope.model_validate(simple_scope(question))
+
     def plan(self, question, design_info, columns, plan_feedback):
         variables = design_info.get("variables", {})
         numeric = [c for c in _mentioned(question, columns) if variables.get(c, {}).get("type") == "numeric"]
@@ -199,9 +256,22 @@ class MockAnalysisAgentA:
         q = question.lower()
         base = dict(outcome="", group="", group_1_label="", group_2_label="", x="", y="",
                     design_notes=[design_info.get("assignment", ""), design_info.get("independence", "")])
-        if "paired" in q or "before and after" in q or "same students" in q:
+        if (design_info.get("independent_pairs") is True and len(numeric) >= 2
+                and not any(term in q for term in ("correlat", "regress", "predict"))):
+            ordered = design_info.get("paired_columns", numeric[:2])
+            x, y = ordered[:2]
+            column_pattern = "|".join(re.escape(column) for column in numeric)
+            contrast = re.search(rf"\b({column_pattern})\s+(?:minus|-)\s+({column_pattern})\b", question, re.I)
+            if contrast:
+                by_lower = {column.lower(): column for column in numeric}
+                y, x = by_lower[contrast[1].lower()], by_lower[contrast[2].lower()]
+            return AnalysisPlan(method="paired_t_test", **{**base, "x": x, "y": y},
+                                target_parameter=f"mean({y} minus {x})", null_hypothesis="H0: mean paired difference = 0",
+                                alternative_hypothesis="H1: mean paired difference != 0",
+                                method_rationale="Two measurements on each of explicitly independent pairs.")
+        if ("paired" in q or "before and after" in q or "same students" in q) and design_info.get("independent_pairs") is not True:
             return AnalysisPlan(method=NO_METHOD, target_parameter="", null_hypothesis="", alternative_hypothesis="",
-                                method_rationale="Paired measurements are not supported in this stage.", **base)
+                                method_rationale="Explicit independent_pairs metadata and paired columns are required.", **base)
         if "correlat" in q and len(numeric) >= 2:
             return AnalysisPlan(method="pearson_correlation", **{**base, "x": numeric[0], "y": numeric[1]},
                                 target_parameter=f"ρ({numeric[0]}, {numeric[1]})", null_hypothesis="H0: ρ = 0",
@@ -213,6 +283,11 @@ class MockAnalysisAgentA:
                                 target_parameter=f"slope of {y} on {x}", null_hypothesis="H0: β1 = 0",
                                 alternative_hypothesis="H1: β1 ≠ 0", method_rationale="Change in a numeric outcome per unit of a predictor.")
         if len(categorical) >= 2:
+            if "fisher" in q or "exact" in q:
+                return AnalysisPlan(method="fisher_exact", **{**base, "x": categorical[0], "y": categorical[1]},
+                                    target_parameter="two by two table odds ratio", null_hypothesis="H0: odds ratio = 1",
+                                    alternative_hypothesis="H1: odds ratio != 1",
+                                    method_rationale="Explicit two-sided exact analysis of a two by two categorical table.")
             return AnalysisPlan(method="chi_square_independence", **{**base, "x": categorical[0], "y": categorical[1]},
                                 target_parameter="association of two categorical variables",
                                 null_hypothesis="H0: independent", alternative_hypothesis="H1: associated",
@@ -252,6 +327,12 @@ class MockAnalysisAgentA:
                                           for i in open_items])
 
     _TEMPLATES = {
+        "paired_t_test": ("The analysis included {n} complete pairs. The estimated mean difference "
+                          "({y_column} minus {x_column}) was {mean_difference} ({confidence_level} CI {ci_lower} to {ci_upper}). "
+                          "The paired test gave t({df}) = {t_statistic}, p = {p_value}. At alpha = {alpha}, we {decision} H0."),
+        "fisher_exact": ("The analysis included {n} records. The two-sided Fisher exact test gave p = {p_value}. "
+                         "The sample odds ratio was {odds_ratio}, comparing row {row_1} versus {row_2} for "
+                         "column {col_1} versus {col_2}. At alpha = {alpha}, we {decision} H0."),
         "welch_t_test": ("The analysis included {n_group_1} records in group {group_1} and {n_group_2} in group "
                          "{group_2}. Welch's test gave t({df}) = {t_statistic}, p = {p_value}. At alpha = {alpha}, "
                          "we {decision} H0. The estimated mean difference ({group_1} minus {group_2}) was "

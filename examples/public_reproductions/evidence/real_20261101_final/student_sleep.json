@@ -1,0 +1,639 @@
+{
+  "case_id": "student_sleep",
+  "source": {
+    "source_name": "R datasets::sleep",
+    "source_url": "https://svn.r-project.org/R/trunk/src/library/datasets/data/sleep.R",
+    "source_sha256": "998f363abb36342a6e5cd1d508d2ac2d044146832b617b18649b5b8ce21ab7f2",
+    "data_sha256": "f84fecde653a275e23096c0ab57ad0141b773f9ab90bac968584fe1b548f91ec",
+    "documentation_url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sleep.html",
+    "citation": "Student (1908). The probable error of a mean. Biometrika 6(1), 1–25; data from Cushny and Peebles (1905).",
+    "paper_doi": "https://doi.org/10.2307/2331554"
+  },
+  "source_version": "public-reproductions-v2",
+  "question": "Use a two-sided paired t-test to compare the mean within-patient difference drug_2 minus drug_1, in additional hours of sleep.",
+  "data_kind": "historical_observations",
+  "scope": {
+    "supports": "Modern two-sided reanalysis of the paired historical values; reproduce the published mean difference of 1.58 hours.",
+    "does_not_support": "A modern randomized clinical trial, current treatment guidance, or an exact reproduction of Student's historical probability wording."
+  },
+  "independent_reference": {
+    "calculation": "Independent explicit oracle; no application compute function or LLM",
+    "source_version": "public-reproductions-v2",
+    "source_sha256": "998f363abb36342a6e5cd1d508d2ac2d044146832b617b18649b5b8ce21ab7f2",
+    "expected": {
+      "n": 10,
+      "n_pairs": 10,
+      "mean_difference": 1.58,
+      "t_statistic": 4.062127683382037,
+      "df": 9,
+      "p_value": 0.00283289019738427,
+      "ci_lower": 0.7001142367012769,
+      "ci_upper": 2.459885763298723
+    },
+    "calculated": {
+      "n": 10,
+      "n_pairs": 10,
+      "mean_difference": 1.58,
+      "t_statistic": 4.062127683382037,
+      "df": 9,
+      "p_value": 0.002832890197384273,
+      "ci_lower": 0.7001142367230176,
+      "ci_upper": 2.4598857632769824
+    },
+    "tolerance": {
+      "rtol": 1e-08,
+      "atol": 1e-12,
+      "p_value_atol": 1e-30
+    },
+    "status": "passed",
+    "checks": {
+      "n": {
+        "expected": 10,
+        "calculated": 10,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "n_pairs": {
+        "expected": 10,
+        "calculated": 10,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "mean_difference": {
+        "expected": 1.58,
+        "calculated": 1.58,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "t_statistic": {
+        "expected": 4.062127683382037,
+        "calculated": 4.062127683382037,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "df": {
+        "expected": 9,
+        "calculated": 9,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "p_value": {
+        "expected": 0.00283289019738427,
+        "calculated": 0.002832890197384273,
+        "rtol": 1e-08,
+        "atol": 1e-30,
+        "passed": true
+      },
+      "ci_lower": {
+        "expected": 0.7001142367012769,
+        "calculated": 0.7001142367230176,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      },
+      "ci_upper": {
+        "expected": 2.459885763298723,
+        "calculated": 2.4598857632769824,
+        "rtol": 1e-08,
+        "atol": 1e-12,
+        "passed": true
+      }
+    }
+  },
+  "numerical_tool_reference": {
+    "status": "ok",
+    "comparison": {
+      "status": "passed",
+      "checks": {
+        "n": {
+          "expected": 10,
+          "calculated": 10,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "n_pairs": {
+          "expected": 10,
+          "calculated": 10,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "mean_difference": {
+          "expected": 1.58,
+          "calculated": 1.58,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "t_statistic": {
+          "expected": 4.062127683382037,
+          "calculated": 4.062127683382037,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "df": {
+          "expected": 9,
+          "calculated": 9,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "p_value": {
+          "expected": 0.00283289019738427,
+          "calculated": 0.002832890197384273,
+          "rtol": 1e-08,
+          "atol": 1e-30,
+          "passed": true
+        },
+        "ci_lower": {
+          "expected": 0.7001142367012769,
+          "calculated": 0.7001142367230175,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "ci_upper": {
+          "expected": 2.459885763298723,
+          "calculated": 2.459885763276983,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        }
+      }
+    },
+    "result": {
+      "task": "run_test",
+      "data_version": "public-reproductions-v2",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\public_reproductions\\student_sleep.csv",
+      "method": "paired_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 10,
+      "columns_found": [
+        "patient_id",
+        "drug_1",
+        "drug_2"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "scipy.stats.ttest_rel(y, x, nan_policy='raise', alternative='two-sided'); confidence_interval(confidence_level=0.95); difference = y minus x",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 10,
+      "tool_warnings": [],
+      "method_label": "Paired-samples t-test (second minus first)",
+      "n": 10,
+      "n_pairs": 10,
+      "x_column": "drug_1",
+      "y_column": "drug_2",
+      "pairing_definition": "Each included row is one independent pair; the requested contrast is y minus x, without assuming time order.",
+      "mean_x": 0.75,
+      "mean_y": 2.3299999999999996,
+      "mean_difference": 1.58,
+      "sd_difference": 1.2299954832798732,
+      "ci_lower": 0.7001142367230175,
+      "ci_upper": 2.459885763276983,
+      "t_statistic": 4.062127683382037,
+      "df": 9,
+      "p_value": 0.002832890197384273,
+      "decision": "reject_H0"
+    },
+    "note": "Read-only numerical reference call; does not approve the workflow's pending data checks."
+  },
+  "workflow": {
+    "mode": "real",
+    "agents_are_llms": true,
+    "configuration": {
+      "mode": "real",
+      "model_a": "ollama:qwen3:8b",
+      "model_b": "ollama:gemma3:12b"
+    },
+    "status": "delivered",
+    "final_status": "delivered",
+    "run_id": "8f4939bedc4745f985f2c7e1601d4bdd",
+    "interrupts": [],
+    "benchmark_decisions": [
+      {
+        "policy": "benchmark_predefined_plan",
+        "source": "explicit --noninteractive-benchmark",
+        "human_approval": false,
+        "decision": {
+          "action": "approve",
+          "plan_id": "1107064758cc5f348d450a23546b0be1d914d8b4b80add5ec70d13628957f268"
+        },
+        "note": "Only the fixture's predefined method and variable roles were approved; no data verification was supplied."
+      }
+    ],
+    "analysis_plan": {
+      "method": "paired_t_test",
+      "outcome": "",
+      "group": "",
+      "group_1_label": "",
+      "group_2_label": "",
+      "x": "drug_1",
+      "y": "drug_2",
+      "target_parameter": "mean(y minus x)",
+      "null_hypothesis": "mean(y minus x) = 0",
+      "alternative_hypothesis": "two-sided",
+      "method_rationale": "The research question asks for a two-sided paired t-test to compare the mean within-patient difference drug_2 minus drug_1. The design specifies that each row contains both measurements on one subject, and different pairs are independent. The relevant distribution is the differences, and the analysis focuses on the mean difference y minus x.",
+      "design_notes": [
+        "One matched pair per patient.",
+        "Different patients are treated as independent units.",
+        "The contrast is drug_2 minus drug_1, not a claim about chronological before/after order.",
+        "The dataset identifies ten distinct patients.",
+        "This is not a claim of verified random sampling.",
+        "The R data documentation does not establish random assignment or treatment order.",
+        "Historical drug comparisons are used.",
+        "The analysis assumes independence between patients."
+      ]
+    },
+    "plan_approval": {
+      "status": "approved",
+      "plan_id": "1107064758cc5f348d450a23546b0be1d914d8b4b80add5ec70d13628957f268",
+      "question": "Use a two-sided paired t-test to compare the mean within-patient difference drug_2 minus drug_1, in additional hours of sleep.",
+      "method": "paired_t_test",
+      "approved_plan": {
+        "method": "paired_t_test",
+        "outcome": "",
+        "group": "",
+        "group_1_label": "",
+        "group_2_label": "",
+        "x": "drug_1",
+        "y": "drug_2",
+        "target_parameter": "mean(y minus x)",
+        "null_hypothesis": "mean(y minus x) = 0",
+        "alternative_hypothesis": "two-sided",
+        "method_rationale": "The research question asks for a two-sided paired t-test to compare the mean within-patient difference drug_2 minus drug_1. The design specifies that each row contains both measurements on one subject, and different pairs are independent. The relevant distribution is the differences, and the analysis focuses on the mean difference y minus x.",
+        "design_notes": [
+          "One matched pair per patient.",
+          "Different patients are treated as independent units.",
+          "The contrast is drug_2 minus drug_1, not a claim about chronological before/after order.",
+          "The dataset identifies ten distinct patients.",
+          "This is not a claim of verified random sampling.",
+          "The R data documentation does not establish random assignment or treatment order.",
+          "Historical drug comparisons are used.",
+          "The analysis assumes independence between patients."
+        ]
+      }
+    },
+    "retrieved_references": [
+      {
+        "id": "independent-means",
+        "title": "Comparing two independent means",
+        "method": "welch_t_test",
+        "keywords": "mean compare difference group independent score 平均 差异 两组",
+        "text": "Use a numeric outcome and two independent groups. Welch allows unequal variances. The estimand is a difference in population means, not a causal effect without an appropriate design. A normality test alone does not select or replace the method.",
+        "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html",
+        "retrieval_score": 3,
+        "retriever": "local_lexical_method_cards_v1"
+      },
+      {
+        "id": "paired-means",
+        "title": "Comparing two measurements on the same subjects",
+        "method": "paired_t_test",
+        "keywords": "paired same before after drug sleep repeated 配对 同一 前后 睡眠",
+        "text": "Each row must contain both measurements on one subject; different pairs must be independent. Compare the mean within-pair difference y minus x. The relevant distribution is the differences. Do not treat the two measurements as independent groups or silently remove incomplete pairs.",
+        "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_rel.html",
+        "retrieval_score": 2,
+        "retriever": "local_lexical_method_cards_v1"
+      }
+    ],
+    "stat_result": {
+      "task": "run_test",
+      "data_version": "v1",
+      "data_path": "C:\\Users\\62703\\OneDrive\\Desktop\\SMU\\26fall\\agentic ai\\langgraph_visualization\\examples\\public_reproductions\\student_sleep.csv",
+      "method": "paired_t_test",
+      "request_format": "v2",
+      "n_rows_in_file": 10,
+      "columns_found": [
+        "patient_id",
+        "drug_1",
+        "drug_2"
+      ],
+      "missing_required_columns": [],
+      "excluded_ids": [],
+      "request_warnings": [],
+      "python_version": "3.13.5",
+      "scipy_version": "1.18.1",
+      "tool_call": "scipy.stats.ttest_rel(y, x, nan_policy='raise', alternative='two-sided'); confidence_interval(confidence_level=0.95); difference = y minus x",
+      "status": "ok",
+      "alternative": "two-sided",
+      "conf_level": 0.95,
+      "alpha": 0.05,
+      "n_included": 10,
+      "tool_warnings": [],
+      "method_label": "Paired-samples t-test (second minus first)",
+      "n": 10,
+      "n_pairs": 10,
+      "x_column": "drug_1",
+      "y_column": "drug_2",
+      "pairing_definition": "Each included row is one independent pair; the requested contrast is y minus x, without assuming time order.",
+      "mean_x": 0.75,
+      "mean_y": 2.3299999999999996,
+      "mean_difference": 1.58,
+      "sd_difference": 1.2299954832798732,
+      "ci_lower": 0.7001142367230175,
+      "ci_upper": 2.459885763276983,
+      "t_statistic": 4.062127683382037,
+      "df": 9,
+      "p_value": 0.002832890197384273,
+      "decision": "reject_H0"
+    },
+    "program_check": {
+      "report_version": "draft1",
+      "passed": true,
+      "problems": []
+    },
+    "review_verdict": {
+      "passed": true,
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "numeric_mismatch",
+          "offending_sentence": "The estimated mean difference is 1.58, with a 95% confidence interval ranging from 0.70 to 2.46, indicating a positive change.",
+          "evidence": "Report draft: 'The estimated mean difference is 1.58, with a 95% confidence interval ranging from 0.70 to 2.46'. Protected statistics: 'mean_difference': '1.58', 'ci_lower': '0.70', 'ci_upper': '2.46'.",
+          "suggested_correction": "The estimated mean difference is 1.58, with a 95% confidence interval ranging from 0.70 to 2.46."
+        }
+      ],
+      "summary": "The report is generally well-written and consistent with the statistical results. There is a minor numeric mismatch in the reported confidence interval, which has been corrected."
+    },
+    "final_report": "REAL: two distinct models; statistics computed with Python.\n\nMethod: paired-samples t-test (two-sided, second minus first)  (data version v1; Python: scipy.stats.ttest_rel(y, x, nan_policy='raise', alternative='two-sided'); confidence_interval(confidence_level=0.95); difference = y minus x)\nH0: μd = 0 versus H1: μd ≠ 0, where d = drug_2 − drug_1, one independent pair per row; α = 0.05\n\nComplete independent pairs: n = 10; each row pairs drug_1 with drug_2.\nMean difference (drug_2 minus drug_1) = 1.58 (95% CI 0.70 to 2.46); SD of differences = 1.23; t(9) = 4.062; p = 0.0028\nDecision at α = 0.05: reject_H0\nDistribution checks (descriptive only, never used to choose the method): [{'check': 'shapiro_wilk', 'variable': 'drug_2 minus drug_1', 'role': 'paired_difference', 'n': 10, 'shapiro_wilk_p': 0.03334160863030771, 'note': 'Describes the within-pair differences, not either marginal distribution; does not establish normality or independence of pairs.'}]\n\nWe analysed 10 complete independent pairs of drug_1 and drug_2. The paired t-test result is t(9) = 4.062, p = 0.0028. At 0.05, we reject H0, which states that the mean difference (drug_2 minus drug_1) is 0. The estimated mean difference is 1.58, with a 95% confidence interval ranging from 0.70 to 2.46, indicating a positive change. Pairing alone does not establish causation.\n\nLimitations:\n- Each row must be a correctly matched pair and pairs must be independent. The paired t-test assumes approximately normal within-pair differences for small samples; descriptive normality checks do not establish this assumption.\n- Random allocation was not established. This analysis describes an association and does not establish causation.\n- Inference is conditional on the stated independent observations and the method's distribution and model assumptions; descriptive checks do not prove these assumptions.",
+    "errors": [],
+    "stop_reasons": [],
+    "trace": [
+      {
+        "request_number": 1,
+        "node": "scope_request",
+        "status": "completed",
+        "start": 1793566487.3597622,
+        "end": 1793566496.5243556,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 1
+      },
+      {
+        "request_number": 1,
+        "node": "retrieve_method_guidance",
+        "status": "completed",
+        "start": 1793566496.5250754,
+        "end": 1793566496.5251505,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 2
+      },
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "status": "completed",
+        "start": 1793566496.5259478,
+        "end": 1793566500.9712796,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 3
+      },
+      {
+        "request_number": 1,
+        "node": "approve_analysis_plan",
+        "status": "completed",
+        "start": 1793566500.9738493,
+        "end": 1793566500.9740658,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 4
+      },
+      {
+        "request_number": 1,
+        "node": "prepare_data_summary",
+        "status": "completed",
+        "start": 1793566500.9751058,
+        "end": 1793566500.9768965,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 5
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "status": "completed",
+        "start": 1793566500.9775555,
+        "end": 1793566512.7752173,
+        "thread": "ThreadPoolExecutor-2_0",
+        "data_version": "v1",
+        "step": 6
+      },
+      {
+        "request_number": 1,
+        "node": "stat_diagnostics",
+        "status": "completed",
+        "start": 1793566500.9800029,
+        "end": 1793566500.9815905,
+        "thread": "ThreadPoolExecutor-2_1",
+        "data_version": "v1",
+        "step": 6
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "status": "completed",
+        "start": 1793566512.775957,
+        "end": 1793566516.7328534,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 7
+      },
+      {
+        "request_number": 1,
+        "node": "run_statistical_test",
+        "status": "completed",
+        "start": 1793566516.733513,
+        "end": 1793566516.7358143,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 8
+      },
+      {
+        "request_number": 1,
+        "node": "build_stats_block",
+        "status": "completed",
+        "start": 1793566516.736331,
+        "end": 1793566516.7363582,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 9
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "status": "completed",
+        "start": 1793566516.7371254,
+        "end": 1793566522.5853622,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 10
+      },
+      {
+        "request_number": 1,
+        "node": "check_report",
+        "status": "completed",
+        "start": 1793566522.586026,
+        "end": 1793566522.5868454,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 11
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "status": "completed",
+        "start": 1793566522.5872192,
+        "end": 1793566540.6144085,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 12
+      },
+      {
+        "request_number": 1,
+        "node": "deliver_report",
+        "status": "completed",
+        "start": 1793566540.615024,
+        "end": 1793566540.6150475,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 13
+      },
+      {
+        "request_number": 1,
+        "node": "save_session",
+        "status": "completed",
+        "start": 1793566540.61537,
+        "end": 1793566540.6155448,
+        "thread": "MainThread",
+        "data_version": "v1",
+        "step": 14
+      }
+    ],
+    "model_calls": [
+      {
+        "request_number": 1,
+        "node": "scope_request",
+        "method": "scope",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "plan_analysis",
+        "method": "plan",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "llm_diagnostics",
+        "method": "diagnose",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "merge_diagnostics",
+        "method": "merge",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "draft_report",
+        "method": "draft",
+        "model": "ollama:qwen3:8b",
+        "mode": "REAL",
+        "status": "completed"
+      },
+      {
+        "request_number": 1,
+        "node": "review_report",
+        "method": "review",
+        "model": "ollama:gemma3:12b",
+        "mode": "REAL",
+        "status": "completed"
+      }
+    ],
+    "correction_log": [],
+    "numeric_comparison": {
+      "status": "passed",
+      "checks": {
+        "n": {
+          "expected": 10,
+          "calculated": 10,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "n_pairs": {
+          "expected": 10,
+          "calculated": 10,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "mean_difference": {
+          "expected": 1.58,
+          "calculated": 1.58,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "t_statistic": {
+          "expected": 4.062127683382037,
+          "calculated": 4.062127683382037,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "df": {
+          "expected": 9,
+          "calculated": 9,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "p_value": {
+          "expected": 0.00283289019738427,
+          "calculated": 0.002832890197384273,
+          "rtol": 1e-08,
+          "atol": 1e-30,
+          "passed": true
+        },
+        "ci_lower": {
+          "expected": 0.7001142367012769,
+          "calculated": 0.7001142367230175,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        },
+        "ci_upper": {
+          "expected": 2.459885763298723,
+          "calculated": 2.459885763276983,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "passed": true
+        }
+      }
+    }
+  }
+}

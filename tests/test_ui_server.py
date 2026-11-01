@@ -64,7 +64,9 @@ DESIGN = {
 @pytest.fixture
 def workspace(tmp_path, monkeypatch):
     monkeypatch.setattr(settings, "OUTPUT_DIR", tmp_path / "core_outputs")
-    instance = Workspace(runtime_dir=tmp_path / "ui", configuration=CONFIGURATION)
+    # Legacy adapter scenarios bypass plan approval explicitly; new production-default
+    # approval and multi-target behavior is covered in test_planning.py.
+    instance = Workspace(runtime_dir=tmp_path / "ui", configuration=CONFIGURATION, require_plan_confirmation=False)
     try:
         yield instance
     finally:
@@ -406,6 +408,15 @@ def test_catalog_and_examples_are_json_and_unknown_routes_are_404(http_ui):
     assert request(http_ui, "/api/jobs/not-a-job")[0] == 404
     assert request(http_ui, "/examples/not-a-case.json")[0] == 404
     assert request(http_ui, "/missing.html")[0] == 404
+
+
+def test_only_named_public_illustrations_are_served(http_ui):
+    for name in ("student_sleep", "berkeley_admissions", "anscombe_quartet"):
+        status, headers, data = request(http_ui, f"/illustrations/{name}.png")
+        assert status == 200 and headers["Content-Type"] == "image/png"
+        assert data.startswith(b"\x89PNG\r\n\x1a\n")
+    assert request(http_ui, "/illustrations/unknown.png")[0] == 404
+    assert request(http_ui, "/illustrations/../../.env")[0] == 404
 
 
 def test_http_post_enforces_local_origin_and_host(http_ui):
